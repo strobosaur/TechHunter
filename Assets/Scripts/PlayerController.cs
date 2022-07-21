@@ -12,6 +12,9 @@ public class PlayerController : Movable
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
 
+    // CROSSHAIR
+    private Crosshair crosshair;
+
     // INPUT SYSTEM
     public InputSystem inputSystem;
     
@@ -40,6 +43,7 @@ public class PlayerController : Movable
     {
         inputSystem = new InputSystem();
         anim = GetComponent<Animator>();
+        crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
     }
 
     // ON ENABLE
@@ -119,7 +123,13 @@ public class PlayerController : Movable
     // Update is called once per frame
     void Update()
     {
+        // GET MOVE INPUT
         moveInput = move.ReadValue<Vector2>();
+
+        // UPDATE CROSSHAIR
+        crosshair.UpdateCrosshair(look.ReadValue<Vector2>());
+
+        // UPDATE ANIMATOR PARAMETERS
         anim.SetFloat("velX", moveDelta.x);
         anim.SetFloat("velY", moveDelta.y);
         anim.SetFloat("magnitude", moveDelta.magnitude);
