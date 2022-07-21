@@ -13,7 +13,7 @@ public class Crosshair : MonoBehaviour
     private float playerDist;
     private float playerMinDist = 0.75f;
     private float playerMaxDist = 10f;
-    private float moveSpd = 0.1f;
+    private float moveSpd = 0.15f;
 
     // AWAKE
     void Awake()
