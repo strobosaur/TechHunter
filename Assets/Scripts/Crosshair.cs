@@ -52,9 +52,7 @@ public class Crosshair : MonoBehaviour
 
         // SMOOTH MOVEMENT BY LERPING & FIX COORDINATES TO WHOLE PIXELS
         moveDelta = Vector2.Lerp(transform.position, targetPos, moveSpd);
-        moveDelta = new Vector3(
-            Mathf.RoundToInt(moveDelta.x * Globals.G_CELLSIZE) / Globals.G_CELLSIZE, 
-            Mathf.RoundToInt(moveDelta.y * Globals.G_CELLSIZE) / Globals.G_CELLSIZE, 0f);
+        moveDelta = Globals.PPPos(moveDelta);
 
         // SET ALPHA BASED ON DISTANCE TO PLAYER
         float alpha = Globals.EaseOutSine(Mathf.Max(0f, playerDist - playerMinDist) / (playerMaxDist - playerMinDist), 0f, 1f, 1f);

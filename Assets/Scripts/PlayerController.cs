@@ -48,7 +48,7 @@ public class PlayerController : Movable
         moveInput = LS;
 
         // UPDATE CROSSHAIR
-        crosshair.UpdateCrosshair(InputManager.input.look.ReadValue<Vector2>());
+        crosshair.UpdateCrosshair(RS);
 
         // UPDATE ANIMATOR
         UpdateAnimator();
@@ -69,8 +69,17 @@ public class PlayerController : Movable
     // GET STICK INPUT
     private void GetStickInput()
     {
+        // LEFT STICK
         LS = InputManager.input.move.ReadValue<Vector2>();
+        if (LS.magnitude < Globals.G_LS_DEADZONE){
+            LS = Vector3.zero;
+        }
+
+        // RIGHT STICK
         RS = InputManager.input.look.ReadValue<Vector2>();
+        if (RS.magnitude < Globals.G_RS_DEADZONE) {
+            RS = Vector3.zero;
+        }
     }
 
     // MOVE DUST
@@ -88,19 +97,25 @@ public class PlayerController : Movable
     // UPDATE ANIMATOR
     private void UpdateAnimator()
     {
-        if (RS.magnitude > 0)
+        if (moveDelta.magnitude > 0.1f) {
+            anim.SetFloat("velX", moveDelta.x);
+            anim.SetFloat("velY", moveDelta.y);
+            weapon.UpdateWeapon(moveDelta);
+
+            // UPDATE ANIMATOR PARAMETERS
+            anim.SetFloat("magnitude", moveDelta.magnitude);
+            anim.speed = moveDelta.magnitude * animSpd;
+        } else {
+            // UPDATE ANIMATOR PARAMETERS
+            anim.SetFloat("magnitude", 0f);
+            anim.speed = 0f;
+        }
+
+        if (RS.magnitude > 0.2)
         {
             anim.SetFloat("velX", RS.x);
             anim.SetFloat("velY", RS.y);
             weapon.UpdateWeapon(RS);
-        } else {
-            anim.SetFloat("velX", moveDelta.x);
-            anim.SetFloat("velY", moveDelta.y);
-            weapon.UpdateWeapon(moveDelta);
         }
-        
-        // UPDATE ANIMATOR PARAMETERS
-        anim.SetFloat("magnitude", moveDelta.magnitude);
-        anim.speed = moveDelta.magnitude * animSpd;
     }
 }
