@@ -5,16 +5,23 @@ using UnityEngine;
 public static class Globals
 {
     // GLOBAL VARIABLES
+
+    // DISPLAY
     public static int G_GAMEWIDTH = 480;
     public static int G_GAMEHEIGHT = 270;
+    public static int G_SCALE_TO_HD = 4;
     public static float G_CELLSIZE = 16.0f;
 
+    // PHYSICS
     public static float G_INERTIA = 0.04f;
     public static float G_FRICTION = 0.16f;
 
-    public static int G_SCALE_TO_HD = 4;
-
+    // GAME MANAGEMENT
     public static string G_PLAYERNAME = "Player";
+
+    // INPUT
+    public static float G_LS_DEADZONE = 0.2f;
+    public static float G_RS_DEADZONE = 0.2f;
 
     private static Camera _camera;
 
@@ -77,5 +84,17 @@ public static class Globals
             Mathf.RoundToInt(input.x * G_CELLSIZE) / G_CELLSIZE, 
             Mathf.RoundToInt(input.y * G_CELLSIZE) / G_CELLSIZE, 
             Mathf.RoundToInt(input.z * G_CELLSIZE) / G_CELLSIZE);
+    }
+
+    // HANDLE DEADZONES FLOAT
+    public static float SmoothDZ(float input, float min, float max)
+    {
+        return Mathf.Max(0f, input - min) / (max - min);
+    }
+
+    // HANDLE DEADZONES VECTOR2
+    public static Vector2 SmoothDZ(Vector2 input, float min, float max)
+    {
+        return new Vector2(SmoothDZ(input.x,min,max), SmoothDZ(input.y,min,max));
     }
 }
