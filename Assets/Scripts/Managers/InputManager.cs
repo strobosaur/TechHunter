@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputSystem instance;
+    //public static InputManager input;
+    public InputSystem instance;
     
     public InputAction move;
     public InputAction look;
