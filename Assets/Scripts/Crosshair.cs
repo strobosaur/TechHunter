@@ -41,6 +41,12 @@ public class Crosshair : MonoBehaviour
         // DISTANCE TO PLAYER
         playerDist = Vector2.Distance(transform.position, player.position);
 
+        if (playerDist < playerMinDist) {
+            sr.enabled = false;
+        } else {
+            sr.enabled = true;
+        }
+
         // SET TARGET POSITION TO PLAYER POS + R STICK * MAX DISTANCE
         targetPos = new Vector2(player.position.x,player.position.y) + (axis * playerMaxDist);
 
