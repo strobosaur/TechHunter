@@ -55,6 +55,11 @@ public class PlayerController : Movable
 
         // SPAWN MOVE DUST PARTICLES
         MoveDust();
+
+        if (InputManager.input.R2.WasPressedThisFrame())
+        {
+            GameManager.boomPS.Emit(transform.position,Vector3.zero, Random.Range(0.8f,1.2f), 0.0625f, Color.white);
+        }
     }
 
     // FIXED UPDATE
