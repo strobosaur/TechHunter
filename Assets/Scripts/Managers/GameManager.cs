@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     // STATIC INSTANCE
     public static GameManager instance;
 
+    // PARTICLE SYSTEMS
+    public static ParticleSystem boomPS;
+
     void Awake()
     {
         // CREATE SINGLETON
@@ -17,5 +20,7 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+        boomPS = GameObject.Find("BoomPS").GetComponent<ParticleSystem>();
     }
 }
