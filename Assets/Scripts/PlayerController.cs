@@ -9,6 +9,9 @@ public class PlayerController : Movable
     private Animator anim;
     private float animSpd = 1f;
 
+    // PARTICLE SYSTEMS
+    public ParticleSystem dustPS;
+
     // INPUT SYSTEM
     public InputSystem inputSystem;
     
@@ -121,6 +124,14 @@ public class PlayerController : Movable
         anim.SetFloat("velY", moveDelta.y);
         anim.SetFloat("magnitude", moveDelta.magnitude);
         anim.speed = moveDelta.magnitude * animSpd;
+
+        // DUST PS
+        dustPS.transform.position = transform.position - (moveDelta * 0.2f);
+        if (moveDelta.magnitude > 1f){
+            if (!dustPS.isEmitting) {
+                dustPS.Play();
+            }
+        } else dustPS.Stop();
     }
 
     // FIXED UPDATE
