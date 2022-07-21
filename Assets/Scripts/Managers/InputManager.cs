@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     //public static InputManager input;
-    public InputSystem instance;
+    public static InputSystem instance;
     
     public InputAction move;
     public InputAction look;
