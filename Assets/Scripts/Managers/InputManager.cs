@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     //public static InputManager input;
-    public static InputSystem instance;
+    public static InputManager input;
+    public InputSystem instance;
     
     public InputAction move;
     public InputAction look;
@@ -96,5 +97,6 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         instance = new InputSystem();
+        input = this;
     }
 }
