@@ -55,4 +55,27 @@ public static class Globals
     {
         return (Random.Range(0f,1f) < chance);
     }
+
+    // ROUND FLOAT TO PIXEL PERFECT
+    public static float PPPos(float input)
+    {
+        return Mathf.RoundToInt(input * G_CELLSIZE) / G_CELLSIZE;
+    }
+
+    // ROUND VECTOR2 TO PIXEL PERFECT
+    public static Vector2 PPPos(Vector2 input)
+    {
+        return new Vector2(
+            Mathf.RoundToInt(input.x * G_CELLSIZE) / G_CELLSIZE, 
+            Mathf.RoundToInt(input.y * G_CELLSIZE) / G_CELLSIZE);
+    }
+
+    // ROUND VECTOR2 TO PIXEL PERFECT
+    public static Vector3 PPPos(Vector3 input)
+    {
+        return new Vector3(
+            Mathf.RoundToInt(input.x * G_CELLSIZE) / G_CELLSIZE, 
+            Mathf.RoundToInt(input.y * G_CELLSIZE) / G_CELLSIZE, 
+            Mathf.RoundToInt(input.z * G_CELLSIZE) / G_CELLSIZE);
+    }
 }

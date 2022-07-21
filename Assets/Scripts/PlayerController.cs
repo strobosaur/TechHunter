@@ -58,4 +58,7 @@ public class PlayerController : Movable
     {
         UpdateMotor(moveInput);
     }
+
+    // GET MOVE DELTA
+    public Vector3 GetMoveDelta() { return moveDelta; }
 }
