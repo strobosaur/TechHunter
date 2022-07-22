@@ -8,8 +8,9 @@ public class Weapon : MonoBehaviour
     protected Animator anim;
     protected SpriteRenderer sr;
 
-    protected float fireRate = 0.1f;
-    protected float fireTimer = 0;
+    // WEAPON PARAMETERS
+    protected WeaponParams wpnParams;
+    protected int burstCount;
 
     // TIMER ARRAY
     protected float[] wpnTimers;
@@ -27,6 +28,7 @@ public class Weapon : MonoBehaviour
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        wpnParams = new WeaponParams(0.15f, 0.15f, 1f, 15f, 0.5f, 0.15f, 0);
     }
 
     // FIXED UPDATE
@@ -54,15 +56,15 @@ public class Weapon : MonoBehaviour
     public void Fire(Vector3 origin, Vector3 target)
     { 
         if (!(wpnTimers[(int)WeaponTimers.fireTimer] > 0)) {
-            MuzzleFlash(origin);
-            wpnTimers[(int)WeaponTimers.fireTimer] = fireRate;
+            MuzzleFlash(origin, 1f);
+            wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate;
         }       
     }
 
     // DISPLAY MUZZLE FLASH
-    protected void MuzzleFlash(Vector3 origin)
+    protected void MuzzleFlash(Vector3 origin, float size)
     {
-        GameManager.boomPS.Emit(origin,Vector3.zero, Random.Range(0.75f,1.25f), 0.0625f, Color.white);
+        GameManager.boomPS.Emit(origin,Vector3.zero, size + Random.Range(0.75f,1.25f), 0.0625f, Color.white);
     }
 
     // UPDATE FIRE TIMER
