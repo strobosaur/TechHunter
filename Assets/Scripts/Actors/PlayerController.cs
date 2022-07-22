@@ -27,7 +27,7 @@ public class PlayerController : Fighter
     protected void Start()
     {
         moveSpd = 3f;
-        aimTarget = crosshair.transform;
+        aimTarget = crosshair.transform.position;
     }
 
     // UPDATE
@@ -50,6 +50,7 @@ public class PlayerController : Fighter
         // FIRE WEAPON
         if (InputManager.input.R2.IsPressed())
         {
+            aimTarget = crosshair.transform.position;
             FireWeapon();
         }
     }

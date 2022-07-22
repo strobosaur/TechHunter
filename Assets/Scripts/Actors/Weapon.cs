@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     protected IWeapon weapon;
     protected WeaponParams wpnParams;
     protected int burstCount;
+    protected float bulletSpd = 32f;
 
     // TIMER ARRAY
     protected float[] wpnTimers;
@@ -29,7 +30,7 @@ public class Weapon : MonoBehaviour
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        wpnParams = new WeaponParams(1.5f, 0.15f, 1f, 15f, 0.5f, 0.15f, 5);
+        wpnParams = new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 8);
     }
 
     // FIXED UPDATE
@@ -67,6 +68,13 @@ public class Weapon : MonoBehaviour
             // FIRE ACTUAL WEAPON
             MuzzleFlash(origin, 1f);
             //weapon.FireWeapon(origin, target);
+            var ob = WeaponManager.instance.SpawnBullet();
+            var rnd = Random.insideUnitCircle * 1.25f;
+            target.x += rnd.x;
+            target.y += rnd.y;
+            ob.transform.position = origin;
+            ob.moveDelta = bulletSpd * Random.Range(0.9f, 1.9f);
+            ob.target = target;
             
             // SET BURST TIMER
             wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate;
