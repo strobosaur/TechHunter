@@ -3,16 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Movable
+public class PlayerController : Fighter
 {
     // INPUT
     private Vector2 LS;
     private Vector2 RS;
-
-    // ANIMATOR
-    private Animator anim;
-    private float animSpd = 1f;
-    private Vector2 firePivot;
 
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
@@ -20,29 +15,26 @@ public class PlayerController : Movable
     // CROSSHAIR
     private Crosshair crosshair;
 
-    // WEAPON
-    private Weapon weapon;
-    private float firePivotYmod = 0.66f;
-    private float firePivotDist = 0.75f;
-
     // AWAKE
-    void Awake()
+    protected override void Awake()
     {
-        anim = GetComponent<Animator>();
+        base.Awake();
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
         weapon = GameObject.Find("Weapon").GetComponent<Weapon>();
     }
 
     // START
-    protected override void Start()
+    protected void Start()
     {
-        base.Start();
-        moveSpd = 3f;        
+        moveSpd = 3f;
+        aimTarget = crosshair.transform;
     }
 
     // UPDATE
-    void Update()
+    protected override void Update()
     {
+        base.Update();
+        
         // GET STICK INPUT
         GetStickInput();
 
@@ -52,17 +44,14 @@ public class PlayerController : Movable
         // UPDATE CROSSHAIR
         crosshair.UpdateCrosshair(RS);
 
-        // GET AIM DIRECTION
-        GetFacingDir(crosshair.transform.position);
-
-        // UPDATE ANIMATOR
-        UpdateAnimator();
-
         // SPAWN MOVE DUST PARTICLES
         MoveDust();
 
         // FIRE WEAPON
-        FireWeapon();
+        if (InputManager.input.R2.IsPressed())
+        {
+            FireWeapon();
+        }
     }
 
     // GET MOVE DELTA
@@ -94,62 +83,5 @@ public class PlayerController : Movable
                 dustPS.Play();
             }
         } else dustPS.Stop();
-    }
-
-    // UPDATE ANIMATOR
-    private void UpdateAnimator()
-    {
-        if (anim != null) 
-        {
-            // FACE MOVEMENT DIRECTION
-            if (moveDelta.magnitude > 0.1f) {
-                anim.SetFloat("velX", moveDelta.x);
-                anim.SetFloat("velY", moveDelta.y);
-                weapon.UpdateWeapon(moveDelta);
-
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", moveDelta.magnitude);
-                anim.speed = moveDelta.magnitude * animSpd;
-            } else {
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", 0f);
-                anim.speed = 0f;
-            }
-
-            // IF HAS TARGET, FACE TARGET POSITION
-            if (facingDir.magnitude > 0.2)
-            {
-                anim.SetFloat("velX", RS.x);
-                anim.SetFloat("velY", RS.y);
-                weapon.UpdateWeapon(RS);
-            }
-        }
-    }
-
-    // GET AIM DIRECTION
-    private void GetFacingDir(Vector3 target)
-    {
-        if (Vector3.Distance(target, transform.position) > 0.2f)
-        {
-            // FACING DIRECTIOn
-            facingDir = target - transform.position;
-
-            // FIRE PIVOT PLACEMENT
-            firePivot = facingDir.normalized;
-            firePivot *= firePivotDist;
-            firePivot.y *= firePivotYmod;
-        }
-    }
-
-    // FIRE WEAPON
-    private void FireWeapon()
-    {
-        if (InputManager.input.R2.IsPressed())
-        {
-            Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
-            Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
-
-            weapon.Fire(firePos, crosshair.transform.position);
-        }
     }
 }
