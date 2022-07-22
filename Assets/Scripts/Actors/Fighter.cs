@@ -11,7 +11,7 @@ public class Fighter : Movable
     private float firePivotDist = 0.66f;
 
     // PARAMETERS
-    protected Transform aimTarget;
+    protected Vector3 aimTarget;
 
     // AWAKE
     protected override void Awake()
@@ -22,7 +22,7 @@ public class Fighter : Movable
     // UPDATE
     protected override void Update()
     {
-        GetFacingDir(aimTarget.position);
+        GetFacingDir(aimTarget);
         UpdateFirePivot();
         UpdateAnimator();
     }
@@ -70,6 +70,6 @@ public class Fighter : Movable
         Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
 
-        weapon.Fire(firePos, aimTarget.position);
+        weapon.Fire(firePos, aimTarget);
     }
 }
