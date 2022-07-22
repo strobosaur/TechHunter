@@ -43,6 +43,7 @@ public class PlayerController : Fighter
 
         // UPDATE CROSSHAIR
         crosshair.UpdateCrosshair(RS);
+        aimTarget = crosshair.transform.position;
 
         // SPAWN MOVE DUST PARTICLES
         MoveDust();
@@ -50,7 +51,6 @@ public class PlayerController : Fighter
         // FIRE WEAPON
         if (InputManager.input.R2.IsPressed())
         {
-            aimTarget = crosshair.transform.position;
             FireWeapon();
         }
     }

@@ -84,7 +84,7 @@ public class Weapon : MonoBehaviour
     // DISPLAY MUZZLE FLASH
     protected void MuzzleFlash(Vector3 origin, float size)
     {
-        GameManager.boomPS.Emit(origin,Vector3.zero, size * Random.Range(0.9f,1.1f), 0.0625f, Color.white);
+        EffectsManager.boomPS.Emit(origin,Vector3.zero, size * Random.Range(0.9f,1.1f), 0.0625f, Color.white);
     }
 
     // UPDATE FIRE TIMER
