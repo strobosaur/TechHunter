@@ -41,6 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 157546173
+    locked: 0
+  - name: Actors
+    uniqueID: 3103470673
+    locked: 0
+  - name: FX
+    uniqueID: 1762181943
+    locked: 0
   - name: HUD
     uniqueID: 2520677807
     locked: 0
