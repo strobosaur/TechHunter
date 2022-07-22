@@ -13,6 +13,7 @@ public class PlayerController : Movable
     private Animator anim;
     private float animSpd = 1f;
     private Vector3 facingDir;
+    private Vector2 firePivot;
 
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
@@ -22,6 +23,8 @@ public class PlayerController : Movable
 
     // WEAPON
     private Weapon weapon;
+    private float firePivotYmod = 0.75f;
+    private float firePivotDist = 0.75f;
 
     // AWAKE
     void Awake()
@@ -47,6 +50,9 @@ public class PlayerController : Movable
         // GET MOVE INPUT
         moveInput = LS;
 
+        // GET AIM DIRECTION
+        GetAimDir();
+
         // UPDATE CROSSHAIR
         crosshair.UpdateCrosshair(RS);
 
@@ -56,10 +62,8 @@ public class PlayerController : Movable
         // SPAWN MOVE DUST PARTICLES
         MoveDust();
 
-        if (InputManager.input.R2.WasPressedThisFrame())
-        {
-            GameManager.boomPS.Emit(transform.position,Vector3.zero, Random.Range(0.8f,1.2f), 0.0625f, Color.white);
-        }
+        // FIRE WEAPON
+        FireWeapon();
     }
 
     // FIXED UPDATE
@@ -121,6 +125,28 @@ public class PlayerController : Movable
             anim.SetFloat("velX", RS.x);
             anim.SetFloat("velY", RS.y);
             weapon.UpdateWeapon(RS);
+        }
+    }
+
+    // GET AIM DIRECTION
+    private void GetAimDir()
+    {
+        if (RS.magnitude > 0f)
+        {
+            firePivot = (crosshair.transform.position - transform.position).normalized;
+            firePivot *= firePivotDist;
+            firePivot.y *= firePivotYmod;
+        }
+    }
+
+    private void FireWeapon()
+    {
+        if (InputManager.input.R2.IsPressed())
+        {
+            Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
+            Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
+
+            weapon.Fire(firePos);
         }
     }
 }
