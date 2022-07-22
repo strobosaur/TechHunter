@@ -12,7 +12,6 @@ public class PlayerController : Movable
     // ANIMATOR
     private Animator anim;
     private float animSpd = 1f;
-    private Vector3 facingDir;
     private Vector2 firePivot;
 
     // PARTICLE SYSTEMS
@@ -23,7 +22,7 @@ public class PlayerController : Movable
 
     // WEAPON
     private Weapon weapon;
-    private float firePivotYmod = 0.75f;
+    private float firePivotYmod = 0.66f;
     private float firePivotDist = 0.75f;
 
     // AWAKE
@@ -50,11 +49,11 @@ public class PlayerController : Movable
         // GET MOVE INPUT
         moveInput = LS;
 
-        // GET AIM DIRECTION
-        GetAimDir();
-
         // UPDATE CROSSHAIR
         crosshair.UpdateCrosshair(RS);
+
+        // GET AIM DIRECTION
+        GetFacingDir(crosshair.transform.position);
 
         // UPDATE ANIMATOR
         UpdateAnimator();
@@ -64,12 +63,6 @@ public class PlayerController : Movable
 
         // FIRE WEAPON
         FireWeapon();
-    }
-
-    // FIXED UPDATE
-    void FixedUpdate()
-    {
-        UpdateMotor(moveInput);
     }
 
     // GET MOVE DELTA
@@ -106,39 +99,49 @@ public class PlayerController : Movable
     // UPDATE ANIMATOR
     private void UpdateAnimator()
     {
-        if (moveDelta.magnitude > 0.1f) {
-            anim.SetFloat("velX", moveDelta.x);
-            anim.SetFloat("velY", moveDelta.y);
-            weapon.UpdateWeapon(moveDelta);
-
-            // UPDATE ANIMATOR PARAMETERS
-            anim.SetFloat("magnitude", moveDelta.magnitude);
-            anim.speed = moveDelta.magnitude * animSpd;
-        } else {
-            // UPDATE ANIMATOR PARAMETERS
-            anim.SetFloat("magnitude", 0f);
-            anim.speed = 0f;
-        }
-
-        if (RS.magnitude > 0.2)
+        if (anim != null) 
         {
-            anim.SetFloat("velX", RS.x);
-            anim.SetFloat("velY", RS.y);
-            weapon.UpdateWeapon(RS);
+            // FACE MOVEMENT DIRECTION
+            if (moveDelta.magnitude > 0.1f) {
+                anim.SetFloat("velX", moveDelta.x);
+                anim.SetFloat("velY", moveDelta.y);
+                weapon.UpdateWeapon(moveDelta);
+
+                // UPDATE ANIMATOR PARAMETERS
+                anim.SetFloat("magnitude", moveDelta.magnitude);
+                anim.speed = moveDelta.magnitude * animSpd;
+            } else {
+                // UPDATE ANIMATOR PARAMETERS
+                anim.SetFloat("magnitude", 0f);
+                anim.speed = 0f;
+            }
+
+            // IF HAS TARGET, FACE TARGET POSITION
+            if (facingDir.magnitude > 0.2)
+            {
+                anim.SetFloat("velX", RS.x);
+                anim.SetFloat("velY", RS.y);
+                weapon.UpdateWeapon(RS);
+            }
         }
     }
 
     // GET AIM DIRECTION
-    private void GetAimDir()
+    private void GetFacingDir(Vector3 target)
     {
-        if (RS.magnitude > 0f)
+        if (Vector3.Distance(target, transform.position) > 0.2f)
         {
-            firePivot = (crosshair.transform.position - transform.position).normalized;
+            // FACING DIRECTIOn
+            facingDir = target - transform.position;
+
+            // FIRE PIVOT PLACEMENT
+            firePivot = facingDir.normalized;
             firePivot *= firePivotDist;
             firePivot.y *= firePivotYmod;
         }
     }
 
+    // FIRE WEAPON
     private void FireWeapon()
     {
         if (InputManager.input.R2.IsPressed())

@@ -10,6 +10,7 @@ public abstract class Movable : MonoBehaviour
     protected Vector2 moveInput;
     protected Vector3 moveDelta;
     protected Vector2 movePos;
+    protected Vector3 facingDir;
     protected Vector3 pushDirection;
     protected float pushRecoverySpeed = 0.05f;
     protected float moveSpd;
@@ -22,6 +23,12 @@ public abstract class Movable : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         movePos = new Vector2(0,0);
+    }
+
+    // FIXED UPDATE
+    protected virtual void FixedUpdate()
+    {
+        UpdateMotor(moveInput);
     }
 
     // MOVEMENT
