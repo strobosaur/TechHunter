@@ -4,9 +4,15 @@ using UnityEngine;
 
 public abstract class Movable : MonoBehaviour
 {
+    // ANIMATOR
+    protected Animator anim;
+    protected float animSpd = 1f;
+
+    // COLLISIONS
     protected BoxCollider2D boxCollider;
     protected RaycastHit2D hit;
 
+    // MOVE PARAMETERS
     protected Vector2 moveInput;
     protected Vector3 moveDelta;
     protected Vector2 movePos;
@@ -19,10 +25,18 @@ public abstract class Movable : MonoBehaviour
     protected float xSpeed = 1.0f;
 
     // START
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
         movePos = new Vector2(0,0);
+    }
+
+    // UPDATE
+    protected virtual void Update()
+    {
+        GetFacingDir(moveDelta);
+        UpdateAnimator();
     }
 
     // FIXED UPDATE
@@ -63,6 +77,44 @@ public abstract class Movable : MonoBehaviour
             transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
         } else {
             movePos.x = 0;
+        }
+    }
+
+    // UPDATE ANIMATOR
+    protected virtual void UpdateAnimator()
+    {
+        if (anim != null) 
+        {
+            // FACE MOVEMENT DIRECTION
+            if (moveDelta.magnitude > 0.1f) {
+                anim.SetFloat("velX", moveDelta.x);
+                anim.SetFloat("velY", moveDelta.y);
+
+                // UPDATE ANIMATOR PARAMETERS
+                anim.SetFloat("magnitude", moveDelta.magnitude);
+                anim.speed = moveDelta.magnitude * animSpd;
+            } else {
+                // UPDATE ANIMATOR PARAMETERS
+                anim.SetFloat("magnitude", 0f);
+                anim.speed = 0f;
+            }
+
+            // IF HAS TARGET, FACE TARGET POSITION
+            if (facingDir.magnitude > 0.2)
+            {
+                anim.SetFloat("velX", facingDir.x);
+                anim.SetFloat("velY", facingDir.y);
+            }
+        }
+    }
+
+    // GET FACE DIRECTION
+    protected void GetFacingDir(Vector3 target)
+    {
+        if (Vector3.Distance(target, transform.position) > 0.2f)
+        {
+            // FACING DIRECTIOn
+            facingDir = (target - transform.position).normalized;
         }
     }
 }
