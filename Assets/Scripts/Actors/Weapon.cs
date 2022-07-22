@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     protected SpriteRenderer sr;
 
     // WEAPON PARAMETERS
+    protected IWeapon weapon;
     protected WeaponParams wpnParams;
     protected int burstCount;
 
@@ -28,7 +29,7 @@ public class Weapon : MonoBehaviour
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        wpnParams = new WeaponParams(0.15f, 0.15f, 1f, 15f, 0.5f, 0.15f, 0);
+        wpnParams = new WeaponParams(1.5f, 0.15f, 1f, 15f, 0.5f, 0.15f, 5);
     }
 
     // FIXED UPDATE
@@ -55,23 +56,41 @@ public class Weapon : MonoBehaviour
     // FIRE WEAPON
     public void Fire(Vector3 origin, Vector3 target)
     { 
-        if (!(wpnTimers[(int)WeaponTimers.fireTimer] > 0)) {
+        // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
+        if ((burstCount <= wpnParams.burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
+            // SET FIRE RATE TIMER
+            if (burstCount <= 0) wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate;
+
+            // INCREMENT BURST
+            burstCount++;
+
+            // FIRE ACTUAL WEAPON
             MuzzleFlash(origin, 1f);
-            wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate;
-        }       
+            //weapon.FireWeapon(origin, target);
+            
+            // SET BURST TIMER
+            wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate;
+        }
     }
 
     // DISPLAY MUZZLE FLASH
     protected void MuzzleFlash(Vector3 origin, float size)
     {
-        GameManager.boomPS.Emit(origin,Vector3.zero, size + Random.Range(0.75f,1.25f), 0.0625f, Color.white);
+        GameManager.boomPS.Emit(origin,Vector3.zero, size + Random.Range(-0.25f,0.25f), 0.0625f, Color.white);
     }
 
     // UPDATE FIRE TIMER
     private void UpdateTimers()
     {
+        // LOOP THROUGH TIMER LIST
         for (int i = 0; i < wpnTimers.Length; i++){
             if (wpnTimers[i] > 0f) wpnTimers[i] -= Time.deltaTime;
+        } 
+        
+        // CHECK FOR FIRE RATE TIMER & RESET BURSTS
+        if ((burstCount > 0) && !(wpnTimers[(int)WeaponTimers.fireTimer] > 0)) {
+            // SET TIMERS
+            burstCount = 0;
         }
     }
 }
