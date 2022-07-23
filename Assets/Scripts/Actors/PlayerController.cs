@@ -33,7 +33,6 @@ public class PlayerController : Fighter
     // UPDATE
     protected override void Update()
     {
-        base.Update();
         
         // GET STICK INPUT
         GetStickInput();
@@ -43,7 +42,13 @@ public class PlayerController : Fighter
 
         // UPDATE CROSSHAIR
         crosshair.UpdateCrosshair(RS);
-        aimTarget = crosshair.transform.position;
+        if (RS.magnitude > 0.2)
+            aimTarget = crosshair.transform.position;
+        else
+            aimTarget = transform.position + moveDelta;
+
+        // BASE UPDATE
+        base.Update();
 
         // SPAWN MOVE DUST PARTICLES
         MoveDust();

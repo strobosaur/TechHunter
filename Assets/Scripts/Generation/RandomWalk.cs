@@ -4,23 +4,24 @@ using UnityEngine;
 
 public static class RandomWalk
 {
-    public static HashSet<Vector2Int> RandomWalkGen(Vector2Int origin, int steps, float chance = 0.2f)
+    public static HashSet<Vector2Int> RandomWalkGen(Vector2Int origin, int steps, float chance = 0.5f)
     {
         HashSet<Vector2Int> path = new HashSet<Vector2Int>();
         path.Add(origin);
         var prevPos = origin;
+        var dir = Direction2D.GetRandomDir();
 
         for(int i = 0; i < steps; i++)
-        {
-            var newPos = prevPos + Direction2D.GetRandomDir();
+        {            
+            var newPos = prevPos + dir;
             path.Add(newPos);
             prevPos = newPos;
+
+            dir = Random.Range(0f,1f) < chance ? Direction2D.GetRandomDir() : dir;
         }
 
         return path;
-    }
-
-    
+    }    
 }
 
 public static class Direction2D
