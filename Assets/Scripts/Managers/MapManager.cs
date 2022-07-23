@@ -10,8 +10,9 @@ public class MapManager : MonoBehaviour
     [SerializeField] private List<TileBase> floorTiles;
 
     private Vector2Int startPos = Vector2Int.zero;
-    private int iterations = 10;
-    public int walkLength = 10;
+    public float chance = 0.5f;
+    public int iterations = 25;
+    public int walkLength = 100;
     public bool randomEachIteration = true;
 
     void Awake()
@@ -19,22 +20,42 @@ public class MapManager : MonoBehaviour
         GenerateMap();
     }
 
-    // public void FillMap(IEnumerable<Vector2Int> floorPositions)
-    // {
-    //     float offsetX = (mapGrid.GetLength(0) * Globals.G_CELLSIZE) / 2;
-    //     float offsetY = (mapGrid.GetLength(1) * Globals.G_CELLSIZE) / 2;
-
-    //     for(int j = 0; j < mapGrid.GetLength(1); j++) {
-    //         for(int i = 0; i < mapGrid.GetLength(0); i++) {
-
-    //         }
-    //     }
-    // }
-
     public void GenerateMap()
     {
         HashSet<Vector2Int> floorPos = RunRandomWalk();
+        floorPos = AddCardinalDirs(floorPos);
         PaintFloorTiles(floorPos);
+    }
+
+    public HashSet<Vector2Int> AddCardinalDirs(IEnumerable<Vector2Int> positions)
+    {
+        HashSet<Vector2Int> outSet = new HashSet<Vector2Int>();
+        foreach (var pos in positions)
+        {
+            outSet.Add(pos);
+            foreach (var dir in Direction2D.dirList)
+            {
+                outSet.Add(pos + dir);
+            }    
+        }
+
+        return outSet;
+    }
+
+    private HashSet<Vector2Int> RunRandomWalk()
+    {
+        var currPos = startPos;
+        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+
+        for (int i = 0; i < iterations; i++)
+        {
+            var path = RandomWalk.RandomWalkGen(currPos, walkLength, chance);
+            floorPositions.UnionWith(path);
+            if (randomEachIteration)
+                currPos = floorPositions.ElementAt(Random.Range(0,floorPositions.Count));
+        }
+        
+        return floorPositions;
     }
 
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
@@ -59,22 +80,6 @@ public class MapManager : MonoBehaviour
     {
         var tilePos = tilemap.WorldToCell((Vector3Int)position);
         tilemap.SetTile(tilePos, tile);
-    }
-
-    private HashSet<Vector2Int> RunRandomWalk()
-    {
-        var currPos = startPos;
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-
-        for (int i = 0; i < iterations; i++)
-        {
-            var path = RandomWalk.RandomWalkGen(currPos, walkLength);
-            floorPositions.UnionWith(path);
-            if (randomEachIteration)
-                currPos = floorPositions.ElementAt(Random.Range(0,floorPositions.Count));
-        }
-        
-        return floorPositions;
     }
 
     public class RngVector

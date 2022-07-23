@@ -22,7 +22,10 @@ public class Fighter : Movable
     // UPDATE
     protected override void Update()
     {
-        GetFacingDir(aimTarget);
+        if (Vector3.Distance(transform.position, aimTarget) > 0.2f)
+            GetFacingDir(aimTarget);
+        else
+            GetFacingDir(moveInput);
         UpdateFirePivot();
         UpdateAnimator();
     }
