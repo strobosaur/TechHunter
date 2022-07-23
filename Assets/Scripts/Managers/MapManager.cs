@@ -43,7 +43,7 @@ public class MapManager : MonoBehaviour
     public void GenerateMapCF()
     {
         tileManager.ClearTiles();
-        HashSet<Vector2Int> floorPos = RandomWalk.CorridorFirstGeneration(corrLen, corrCount);
+        HashSet<Vector2Int> floorPos = RandomWalk.CorridorFirstGeneration(corrLen, corrCount, walkLength);
         //floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
@@ -64,7 +64,7 @@ public class MapManager : MonoBehaviour
         return outSet;
     }
 
-    private HashSet<Vector2Int> RunRandomWalk()
+    public HashSet<Vector2Int> RunRandomWalk()
     {
         var currPos = startPos;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
