@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomNeighborhoodGraph : MonoBehaviour
+public class RandomNeighborhoodGraph
 {
     public class RngVector
     {
@@ -15,7 +15,22 @@ public class RandomNeighborhoodGraph : MonoBehaviour
         }
     }
 
-    public int[,] RNGgen(int size, int coords, float minDist, int fillWith, float border, bool circleArea)
+    public HashSet<Vector2Int> ConvertRngToHash(int[,] input)
+    {
+        HashSet<Vector2Int> result = new HashSet<Vector2Int>();
+        for (int j = 0; j < input.GetLength(1); j++)
+        {
+            for (int i = 0; i < input.GetLength(0); i++)
+            {
+                if (input[i,j] == 1)
+                    result.Add(new Vector2Int(i,j));
+            }            
+        }
+
+        return result;
+    }
+
+    public int[,] RNGgen(int size, int coords, float minDist, int fillWith, float border, bool circleArea = false)
     {
         // INPUT
         int gw = size;
@@ -99,6 +114,7 @@ public class RandomNeighborhoodGraph : MonoBehaviour
                 // Make grid line between connected points
                 if (connect)
                 {
+                    SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(3f,8f), 1);
                     outgrid[Mathf.RoundToInt(a.x), Mathf.RoundToInt(a.y)] = fillWith;
                     outgrid[Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y)] = fillWith;
                     n = a;
@@ -138,7 +154,11 @@ public class RandomNeighborhoodGraph : MonoBehaviour
 
         foreach (Vector2Int v in offsets)
         {
-            grid[v.x,v.y] = fillValue;
+            if(!((v.x >= grid.GetLength(0))
+            || (v.x < 0)
+            || (v.y >= grid.GetLength(1))
+            || (v.y < 0)))
+                grid[v.x,v.y] = fillValue;
         }
     }
 }

@@ -288,10 +288,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileManager: {fileID: 59904967}
+  startPos: {x: 0, y: 0}
   chance: 1
   iterations: 10
-  walkLength: 100
+  walkLength: 250
   randomEachIteration: 1
+  RNGsize: 80
+  RNGpoints: 16
+  RNGminDist: 4
+  corrLen: 12
+  corrCount: 15
 --- !u!114 &59904967
 MonoBehaviour:
   m_ObjectHideFlags: 0

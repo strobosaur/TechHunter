@@ -7,11 +7,16 @@ using UnityEngine.Tilemaps;
 public class MapManager : MonoBehaviour
 {
     public TileManager tileManager;
+    public RandomNeighborhoodGraph rngGen = new RandomNeighborhoodGraph();
     public Vector2Int startPos = Vector2Int.zero;
     public float chance = 0.5f;
     public int iterations = 25;
     public int walkLength = 100;
     public bool randomEachIteration = true;
+
+    public int RNGsize = 128;
+    public int RNGpoints = 24;
+    public float RNGminDist = 10f;
 
     // CORRIDORS FIRST
     public int corrLen = 14;
@@ -20,14 +25,16 @@ public class MapManager : MonoBehaviour
     void Awake()
     {
         //GenerateMap();
-        GenerateMapCF();
+        //GenerateMapCF();
+        GenerateMapRNG();
     }
 
     void Update()
     {
         if (InputManager.input.X.WasPressedThisFrame())
         {
-            GenerateMapCF();
+            //GenerateMapCF();
+            GenerateMapRNG();
         }
     }
 
@@ -45,6 +52,15 @@ public class MapManager : MonoBehaviour
         tileManager.ClearTiles();
         HashSet<Vector2Int> floorPos = RandomWalk.CorridorFirstGeneration(corrLen, corrCount, walkLength);
         //floorPos = AddCardinalDirs(floorPos);
+        tileManager.PaintFloorTiles(floorPos);
+        WallFinder.MakeWalls(floorPos, tileManager);
+    }
+
+    public void GenerateMapRNG()
+    {
+        tileManager.ClearTiles();
+        HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2));
+        floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
     }
