@@ -1,26 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public static class RandomWalk
 {
     public static HashSet<Vector2Int> RandomWalkGen(Vector2Int origin, int steps, float chance = 0.5f)
     {
-        HashSet<Vector2Int> path = new HashSet<Vector2Int>();
-        path.Add(origin);
+        HashSet<Vector2Int> corridor = new HashSet<Vector2Int>();
+        corridor.Add(origin);
         var prevPos = origin;
         var dir = Direction2D.GetRandomDir();
 
         for(int i = 0; i < steps; i++)
         {            
             var newPos = prevPos + dir;
-            path.Add(newPos);
+            corridor.Add(newPos);
             prevPos = newPos;
 
             dir = Random.Range(0f,1f) < chance ? Direction2D.GetRandomDir() : dir;
         }
 
-        return path;
+        return corridor;
     }
     
     public static List<Vector2Int> RandomWalkCorridor(Vector2Int origin, int steps)
@@ -37,6 +38,26 @@ public static class RandomWalk
         }
 
         return corridor;
+    }
+
+    public static HashSet<Vector2Int> CorridorFirstGeneration(int corrLen, int corrCount, float roomChance = 0.8f)
+    {
+        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+
+        return CreateCorridors(floorPositions, Vector2Int.zero, corrLen, corrCount);
+    }
+
+    private static HashSet<Vector2Int> CreateCorridors(HashSet<Vector2Int> floorPositions, Vector2Int origin, int corrLen, int corrCount)
+    {
+        var currentPosition = origin;
+        for (int i = 0; i < corrCount; i++)
+        {
+            var corridor = RandomWalkCorridor(currentPosition, corrLen);
+            currentPosition = corridor[corridor.Count - 1];
+            floorPositions.UnionWith(corridor);
+        }
+
+        return floorPositions;
     }
 }
 

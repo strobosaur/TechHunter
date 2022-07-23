@@ -7,21 +7,44 @@ using UnityEngine.Tilemaps;
 public class MapManager : MonoBehaviour
 {
     public TileManager tileManager;
-    private Vector2Int startPos = Vector2Int.zero;
+    public Vector2Int startPos = Vector2Int.zero;
     public float chance = 0.5f;
     public int iterations = 25;
     public int walkLength = 100;
     public bool randomEachIteration = true;
 
+    // CORRIDORS FIRST
+    public int corrLen = 14;
+    public int corrCount = 10;
+
     void Awake()
     {
-        GenerateMap();
+        //GenerateMap();
+        GenerateMapCF();
+    }
+
+    void Update()
+    {
+        if (InputManager.input.X.WasPressedThisFrame())
+        {
+            GenerateMapCF();
+        }
     }
 
     public void GenerateMap()
     {
+        tileManager.ClearTiles();
         HashSet<Vector2Int> floorPos = RunRandomWalk();
         floorPos = AddCardinalDirs(floorPos);
+        tileManager.PaintFloorTiles(floorPos);
+        WallFinder.MakeWalls(floorPos, tileManager);
+    }
+
+    public void GenerateMapCF()
+    {
+        tileManager.ClearTiles();
+        HashSet<Vector2Int> floorPos = RandomWalk.CorridorFirstGeneration(corrLen, corrCount);
+        //floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
     }
