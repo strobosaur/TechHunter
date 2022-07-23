@@ -9,6 +9,12 @@ public class TileManager : MonoBehaviour
     [SerializeField] private List<TileBase> floorTiles;
     [SerializeField] private List<TileBase> wallTiles;
     [SerializeField] private float decoChance = 0.125f;
+
+    public void ClearTiles()
+    {
+        floorTilemap.ClearAllTiles();
+        wallTilemap.ClearAllTiles();
+    }
     
     public void PaintFloorTiles(IEnumerable<Vector2Int> floorPositions)
     {
