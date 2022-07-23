@@ -21,7 +21,23 @@ public static class RandomWalk
         }
 
         return path;
-    }    
+    }
+    
+    public static List<Vector2Int> RandomWalkCorridor(Vector2Int origin, int steps)
+    {
+        List<Vector2Int> corridor = new List<Vector2Int>();
+        var direction = Direction2D.GetRandomDir();
+        var currPos = origin;
+        corridor.Add(currPos);
+
+        for (int i = 0; i < steps; i++)
+        {
+            currPos += direction;
+            corridor.Add(currPos);
+        }
+
+        return corridor;
+    }
 }
 
 public static class Direction2D
