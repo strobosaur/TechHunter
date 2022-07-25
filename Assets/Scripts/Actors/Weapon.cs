@@ -68,8 +68,9 @@ public class Weapon : MonoBehaviour
             // FIRE ACTUAL WEAPON
             MuzzleFlash(origin, 1f);
             //weapon.FireWeapon(origin, target);
+            var targetDist = Vector3.Distance(origin, target);
             var ob = WeaponManager.instance.SpawnBullet();
-            var rnd = Random.insideUnitCircle * 1.25f;
+            var rnd = Random.insideUnitCircle * (targetDist * wpnParams.spr * 0.25f);
             target.x += rnd.x;
             target.y += rnd.y;
             ob.transform.position = origin;
