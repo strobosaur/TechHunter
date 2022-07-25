@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class RandomNeighborhoodGraph
 {
+    public Vector2Int startPos;
     public class RngVector
     {
         public Vector2 position;
@@ -18,14 +20,19 @@ public class RandomNeighborhoodGraph
     public HashSet<Vector2Int> ConvertRngToHash(int[,] input)
     {
         HashSet<Vector2Int> result = new HashSet<Vector2Int>();
-        for (int j = 0; j < input.GetLength(1); j++)
+        int width = input.GetLength(0);
+        int height = input.GetLength(1);
+        for (int j = 0; j < height; j++)
         {
-            for (int i = 0; i < input.GetLength(0); i++)
+            for (int i = 0; i < width; i++)
             {
                 if (input[i,j] == 1)
-                    result.Add(new Vector2Int(i,j));
+                    result.Add(new Vector2Int(i - (width / 2), j - (height / 2)));
             }            
         }
+
+        startPos.x -= (width / 2);
+        startPos.y -= (height / 2);
 
         return result;
     }
@@ -43,6 +50,7 @@ public class RandomNeighborhoodGraph
         int ypad = Mathf.RoundToInt(border);
         
         List<Vector2> coordList = new List<Vector2>();
+        HashSet<Vector2Int> connectedCoords = new HashSet<Vector2Int>();
         
         Vector2 a = Vector2.zero;
         Vector2 b = Vector2.zero;
@@ -114,7 +122,11 @@ public class RandomNeighborhoodGraph
                 // Make grid line between connected points
                 if (connect)
                 {
+                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(a.x),Mathf.RoundToInt(a.y)));
+                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x),Mathf.RoundToInt(b.y)));
+
                     SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(3f,8f), 1);
+
                     outgrid[Mathf.RoundToInt(a.x), Mathf.RoundToInt(a.y)] = fillWith;
                     outgrid[Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y)] = fillWith;
                     n = a;
@@ -127,6 +139,10 @@ public class RandomNeighborhoodGraph
                 }
             }
         }
+
+        // MAKE START POSITION
+        startPos = connectedCoords.ElementAt(Random.Range(0,connectedCoords.Count));
+        SetCircle2DArr(outgrid, startPos.x, startPos.y, Random.Range(6f,8f), 1);
 
         return outgrid;
     }
@@ -165,7 +181,6 @@ public class RandomNeighborhoodGraph
     // CELLULAR AUTOMATA 
     public int[,] CA_RNG(int[,] inGrid, float livechance)
     {
-        int[,] outGrid;
         for (int j = 2; j < inGrid.GetLength(1)-2; j++)
         {
             for (int i = 2; i < inGrid.GetLength(0)-2; i++)
