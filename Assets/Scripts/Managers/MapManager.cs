@@ -18,6 +18,8 @@ public class MapManager : MonoBehaviour
     public int RNGpoints = 24;
     public float RNGminDist = 10f;
 
+    public float CAlivechance = 0.4f;
+
     // CORRIDORS FIRST
     public int corrLen = 14;
     public int corrCount = 10;
@@ -59,7 +61,11 @@ public class MapManager : MonoBehaviour
     public void GenerateMapRNG()
     {
         tileManager.ClearTiles();
-        HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2));
+        //HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGen.CA_RNG(rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2), CAlivechance));
+        int[,] rngGrid = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2);
+        rngGrid = rngGen.AddCardinalDirsArr(rngGrid);
+        rngGrid = rngGen.CA_RNG(rngGrid, CAlivechance);
+        HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGrid);
         floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);

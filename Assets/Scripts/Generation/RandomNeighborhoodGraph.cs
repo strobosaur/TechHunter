@@ -161,4 +161,83 @@ public class RandomNeighborhoodGraph
                 grid[v.x,v.y] = fillValue;
         }
     }
+
+    // CELLULAR AUTOMATA 
+    public int[,] CA_RNG(int[,] inGrid, float livechance)
+    {
+        int[,] outGrid;
+        for (int j = 2; j < inGrid.GetLength(1)-2; j++)
+        {
+            for (int i = 2; i < inGrid.GetLength(0)-2; i++)
+            {
+                if (inGrid[i,j] == 0) inGrid[i,j] = Random.value < livechance ? 1 : 0;
+            }            
+        }
+
+        for (int n = 0; n < 5; n++)
+        {
+            inGrid = CA_Smoothing(inGrid,5,5);
+        }
+
+        return inGrid;
+    }
+
+    public int[,] CA_Smoothing(int[,] inGrid, int min = 5, int max = 5)
+    {
+        for (int j = 2; j < inGrid.GetLength(1)-2; j++)
+        {
+            for (int i = 2; i < inGrid.GetLength(0)-2; i++)
+            {
+                inGrid[i,j] = (CellR1(inGrid, i, j) < min) ? 0 : 1;
+            }            
+        } 
+
+        return inGrid;       
+    }
+
+    public int CellR1(int[,] inGrid, int x, int y)
+    {
+        int count = 0;
+        for (int j = y-1; j <= y+1; j++)
+        {
+            for (int i = x-1; i <= x+1; i++)
+            {
+                if (!OutOfArrBounds(inGrid, i, j) && (inGrid[i,j] == 1)) count++;
+            }            
+        }
+
+        return count;
+    }
+
+    public bool OutOfArrBounds(int[,] grid, int x, int y)
+    {
+        if((x > grid.GetLength(0)-1)
+            || (x < 0)
+            || (y > grid.GetLength(1)-1)
+            || (y < 0)) {
+                return true;
+            } else {
+                return false;
+            }
+    }
+
+    public int[,] AddCardinalDirsArr(int[,] inGrid)
+    {
+        int[,] outGrid = new int[inGrid.GetLength(0),inGrid.GetLength(1)];
+        for (int j = 2; j < inGrid.GetLength(1)-2; j++)
+        {
+            for (int i = 2; i < inGrid.GetLength(0)-2; i++)
+            {
+                if(inGrid[i,j] == 1){
+                    outGrid[i,j] = 1;
+                    if (!OutOfArrBounds(inGrid, i-1, j)) outGrid[i-1,j] = 1;
+                    if (!OutOfArrBounds(inGrid, i+1, j)) outGrid[i-1,j] = 1;
+                    if (!OutOfArrBounds(inGrid, i, j-1)) outGrid[i-1,j] = 1;
+                    if (!OutOfArrBounds(inGrid, i-1, j+1)) outGrid[i-1,j] = 1;
+                }
+            }            
+        } 
+
+        return outGrid;
+    }
 }
