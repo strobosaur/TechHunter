@@ -69,19 +69,25 @@ public class MapManager : MonoBehaviour
         WallFinder.MakeWalls(floorPos, tileManager);
     }
 
+    // GENERATE MAP WITH CELLULAR AUTOMATA + RANDOM NEIGHBORHOOD GRAPH
     public void GenerateMapRNG()
     {
         tileManager.ClearTiles();
-        //HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGen.CA_RNG(rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2), CAlivechance));
-        int[,] rngGrid = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,8);
+
+        var rngData = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,8);
+        int[,] rngGrid = rngData.Item1;
+        var rngPoints = rngData.Item2;
+
         rngGrid = rngGen.AddCardinalDirsArr(rngGrid);
         rngGrid = rngGen.CA_RNG(rngGrid, CAlivechance);
+
         HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGrid);
-        //floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
 
         GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f); //* (1f / Globals.G_CELLSIZE);
+
+        EnemyManager.instance.astar.Scan();
     }
 
     public void GenerateMapBSP_RW()

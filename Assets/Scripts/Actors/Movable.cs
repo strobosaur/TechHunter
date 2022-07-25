@@ -9,7 +9,7 @@ public abstract class Movable : MonoBehaviour
     protected float animSpd = 1f;
 
     // COLLISIONS
-    protected BoxCollider2D boxCollider;
+    protected CircleCollider2D circleCollider;
     protected RaycastHit2D hit;
 
     // MOVE PARAMETERS
@@ -27,7 +27,7 @@ public abstract class Movable : MonoBehaviour
     // START
     protected virtual void Awake()
     {
-        boxCollider = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
         anim = GetComponent<Animator>();
         movePos = new Vector2(0,0);
     }
@@ -60,7 +60,7 @@ public abstract class Movable : MonoBehaviour
         pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
 
         // COLLISION CHECK Y
-        hit = Physics2D.BoxCast(transform.position + new Vector3(boxCollider.offset.x,boxCollider.offset.y,0), boxCollider.size, 0, new Vector2(0,moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
+        hit = Physics2D.CircleCast(transform.position + new Vector3(circleCollider.offset.x,circleCollider.offset.y,0), circleCollider.radius, new Vector2(0,moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
         if (hit.collider == null)
         {
             // MAKE ACTOR MOVE
@@ -70,7 +70,7 @@ public abstract class Movable : MonoBehaviour
         }
 
         // COLLISION CHECK X
-        hit = Physics2D.BoxCast(transform.position + new Vector3(boxCollider.offset.x,boxCollider.offset.y,0), boxCollider.size, 0, new Vector2(moveDelta.x,0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
+        hit = Physics2D.CircleCast(transform.position + new Vector3(circleCollider.offset.x,circleCollider.offset.y,0), circleCollider.radius, new Vector2(moveDelta.x,0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
         if (hit.collider == null)
         {
             // MAKE ACTOR MOVE
