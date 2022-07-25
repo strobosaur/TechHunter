@@ -24,11 +24,21 @@ public class MapManager : MonoBehaviour
     public int corrLen = 14;
     public int corrCount = 10;
 
+    // BSP PARAMETERS
+    public int BSPwidth = 128;
+    public int BSPheight = 128;
+    public int BSProomWidth = 16;
+    public int BSProomHeight = 16;
+    public int BSPpadding = 2;
+    public int BSPsteps = 25;
+    public int BSPiterations = 5;
+
     void Awake()
     {
         //GenerateMap();
         //GenerateMapCF();
-        GenerateMapRNG();
+        //GenerateMapRNG();
+        GenerateMapBSP_RW();
     }
 
     void Update()
@@ -36,7 +46,8 @@ public class MapManager : MonoBehaviour
         if (InputManager.input.X.WasPressedThisFrame())
         {
             //GenerateMapCF();
-            GenerateMapRNG();
+            //GenerateMapRNG();
+            GenerateMapBSP_RW();
         }
     }
 
@@ -69,6 +80,20 @@ public class MapManager : MonoBehaviour
         floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
+    }
+
+    public void GenerateMapBSP_RW()
+    {
+        tileManager.ClearTiles();
+        List<BoundsInt> bounds = RandomWalk.BSPgen(new BoundsInt(
+            new Vector3Int(-(BSPwidth / 2), -(BSPheight / 2), 0),
+            new Vector3Int((BSPwidth / 2), (BSPheight / 2), 0)), BSProomWidth, BSProomHeight);
+
+        List<Vector2Int> roomPositions = RandomWalk.FindPotentialRoomPos(bounds);
+        HashSet<Vector2Int> floorTiles = RandomWalk.MakeRoomsBSP(roomPositions, bounds, BSPsteps, BSPiterations, BSPpadding);
+
+        tileManager.PaintFloorTiles(floorTiles);
+        WallFinder.MakeWalls(floorTiles, tileManager);
     }
 
     public HashSet<Vector2Int> AddCardinalDirs(IEnumerable<Vector2Int> positions)
