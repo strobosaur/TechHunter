@@ -148,6 +148,91 @@ public static class RandomWalk
         roomQueue.Enqueue(room1);
         roomQueue.Enqueue(room2);
     }
+
+    public static List<Vector2Int> FindPotentialRoomPos(List<BoundsInt> boundsList)
+    {
+        List<Vector2Int> roomPositions = new List<Vector2Int>();
+        Vector2Int position = Vector2Int.zero;
+        foreach (var bounds in boundsList)
+        {
+            position.x = bounds.min.x + (int)(bounds.size.x / 2);
+            position.y = bounds.min.y + (int)(bounds.size.y / 2);
+            roomPositions.Add(position);
+        }
+
+        return roomPositions;
+    }
+
+    public static int FindBiggestRoom(List<BoundsInt> boundsList)
+    {
+        int area = 0;
+        int tempArea;
+        int index = 0;
+        for (int i = 0; i < boundsList.Count; i++)
+        {
+            tempArea = boundsList[i].size.x * boundsList[i].size.y;
+            if (tempArea > area) {
+                area = tempArea;
+                index = i;
+            }
+        }
+
+        return index;
+    }
+
+    public static HashSet<Vector2Int> MakeRoomsBSP(List<Vector2Int> startPoints, List<BoundsInt> boundsList, int walkLength, int iterations, int padding = 2)
+    {
+        HashSet<Vector2Int> allTiles = new HashSet<Vector2Int>();        
+        HashSet<Vector2Int> roomTiles = new HashSet<Vector2Int>();
+
+        for (int j = 0; j < startPoints.Count; j++)
+        {
+            roomTiles = new HashSet<Vector2Int>();
+            var start = startPoints[j];
+            var bounds = boundsList[j];
+            for (int i = 0; i < iterations; i++)
+            {
+                roomTiles = MakeRoomBSP(start, bounds, walkLength, padding);
+                start = roomTiles.ElementAt(Random.Range(0, roomTiles.Count));
+            }
+
+            allTiles.UnionWith(roomTiles);
+        }
+
+        return allTiles;
+    }
+
+    public static HashSet<Vector2Int> MakeRoomBSP (Vector2Int startPos, BoundsInt bounds, int walkLength, int padding)
+    {
+        HashSet<Vector2Int> roomTiles = new HashSet<Vector2Int>();
+        roomTiles.Add(startPos);
+        var newPos = startPos;
+        var prevPos = startPos;
+        var dir = Direction2D.GetRandomDir(); 
+        for(int i = 0; i < walkLength; i++)
+        {
+            do {
+                dir = Direction2D.GetRandomDir();                
+            } while (!PositionInsideBounds(prevPos + dir, bounds, padding));
+                
+            newPos = prevPos + dir;
+            roomTiles.Add(newPos);
+            prevPos = newPos;
+        }
+
+        return roomTiles;
+    }
+
+    private static bool PositionInsideBounds(Vector2Int position, BoundsInt bounds, int padding)
+    {
+        if ((position.x < bounds.min.x + padding)
+        || (position.x > bounds.min.x + bounds.size.x - padding)
+        || (position.y < bounds.min.y + padding)
+        || (position.y > bounds.size.y + bounds.size.y - padding))
+            return false;
+        else
+            return true;
+    }
 }
 
 public static class Direction2D
