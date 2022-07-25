@@ -37,8 +37,8 @@ public class MapManager : MonoBehaviour
     {
         //GenerateMap();
         //GenerateMapCF();
-        //GenerateMapRNG();
-        GenerateMapBSP_RW();
+        GenerateMapRNG();
+        //GenerateMapBSP_RW();
     }
 
     void Update()
@@ -46,8 +46,8 @@ public class MapManager : MonoBehaviour
         if (InputManager.input.X.WasPressedThisFrame())
         {
             //GenerateMapCF();
-            //GenerateMapRNG();
-            GenerateMapBSP_RW();
+            GenerateMapRNG();
+            //GenerateMapBSP_RW();
         }
     }
 
@@ -73,13 +73,15 @@ public class MapManager : MonoBehaviour
     {
         tileManager.ClearTiles();
         //HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGen.CA_RNG(rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2), CAlivechance));
-        int[,] rngGrid = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,2);
+        int[,] rngGrid = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,8);
         rngGrid = rngGen.AddCardinalDirsArr(rngGrid);
         rngGrid = rngGen.CA_RNG(rngGrid, CAlivechance);
         HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGrid);
-        floorPos = AddCardinalDirs(floorPos);
+        //floorPos = AddCardinalDirs(floorPos);
         tileManager.PaintFloorTiles(floorPos);
         WallFinder.MakeWalls(floorPos, tileManager);
+
+        GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f); //* (1f / Globals.G_CELLSIZE);
     }
 
     public void GenerateMapBSP_RW()

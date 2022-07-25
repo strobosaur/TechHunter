@@ -293,11 +293,19 @@ MonoBehaviour:
   iterations: 10
   walkLength: 250
   randomEachIteration: 1
-  RNGsize: 80
+  RNGsize: 64
   RNGpoints: 16
-  RNGminDist: 4
+  RNGminDist: 2
+  CAlivechance: 0.375
   corrLen: 12
   corrCount: 15
+  BSPwidth: 128
+  BSPheight: 128
+  BSProomWidth: 32
+  BSProomHeight: 32
+  BSPpadding: 2
+  BSPsteps: 25
+  BSPiterations: 5
 --- !u!114 &59904967
 MonoBehaviour:
   m_ObjectHideFlags: 0
