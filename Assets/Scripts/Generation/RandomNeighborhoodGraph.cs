@@ -31,13 +31,10 @@ public class RandomNeighborhoodGraph
             }            
         }
 
-        startPos.x -= (width / 2);
-        startPos.y -= (height / 2);
-
         return result;
     }
 
-    public int[,] RNGgen(int size, int coords, float minDist, int fillWith, float border, bool circleArea = false)
+    public (int[,], HashSet<Vector2Int>) RNGgen(int size, int coords, float minDist, int fillWith, float border, bool circleArea = false)
     {
         // INPUT
         int gw = size;
@@ -122,8 +119,8 @@ public class RandomNeighborhoodGraph
                 // Make grid line between connected points
                 if (connect)
                 {
-                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(a.x),Mathf.RoundToInt(a.y)));
-                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x),Mathf.RoundToInt(b.y)));
+                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(a.x - (size / 2)),Mathf.RoundToInt(a.y - (size / 2))));
+                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x - (size / 2)),Mathf.RoundToInt(b.y - (size / 2))));
 
                     SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(3f,8f), 1);
 
@@ -142,9 +139,9 @@ public class RandomNeighborhoodGraph
 
         // MAKE START POSITION
         startPos = connectedCoords.ElementAt(Random.Range(0,connectedCoords.Count));
-        SetCircle2DArr(outgrid, startPos.x, startPos.y, Random.Range(6f,8f), 1);
+        SetCircle2DArr(outgrid, startPos.x + (size / 2), startPos.y + (size / 2), Random.Range(6f,8f), 1);
 
-        return outgrid;
+        return (outgrid, connectedCoords);
     }
 
     // SET CIRCLE IN 2D ARRAY
