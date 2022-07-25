@@ -33,7 +33,7 @@ public class MapManager : MonoBehaviour
     public int BSPsteps = 25;
     public int BSPiterations = 5;
 
-    void Awake()
+    void Start()
     {
         //GenerateMap();
         //GenerateMapCF();
@@ -86,8 +86,12 @@ public class MapManager : MonoBehaviour
         WallFinder.MakeWalls(floorPos, tileManager);
 
         GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f); //* (1f / Globals.G_CELLSIZE);
+        InvokeRepeating("UpdateAstar", 0.5f, 5f);
+    }
 
-        EnemyManager.instance.astar.Scan();
+    public void UpdateAstar()
+    {
+        EnemyManager.instance.astar.Scan();        
     }
 
     public void GenerateMapBSP_RW()
