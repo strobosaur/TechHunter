@@ -8,6 +8,8 @@ public class PlayerState
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
+    protected IMoveInput moveInput;
+
     protected float startTime;
 
     private string animBoolName;
