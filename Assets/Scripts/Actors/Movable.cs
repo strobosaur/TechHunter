@@ -27,6 +27,8 @@ public class Movable : MonoBehaviour
 
     public Weapon weapon;
 
+    public Queue<Vector2> forceQueue;
+
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
 
@@ -41,6 +43,9 @@ public class Movable : MonoBehaviour
         // PLAYER DATA
         data = new EntityData();
 
+        // FORCE QUEUE
+        forceQueue = new Queue<Vector2>();
+
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();
         lookInput = GetComponent<ILookInput>();
@@ -53,19 +58,23 @@ public class Movable : MonoBehaviour
         stateMove = new StateMove(this, stateMachine, "move");
     }
 
+    // START
     protected virtual void Start()
     {
         stateMachine.Iinitialize(stateIdle);
     }
 
+    // UPDATE
     protected virtual void Update()
     {
         stateMachine.CurrentState.LogicUpdate();
     }
 
+    // FIXED UPDATE
     protected virtual void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
+        if (forceQueue.Count > 0) ApplyForces();
     }
 
     // MOVE DUST
@@ -78,5 +87,14 @@ public class Movable : MonoBehaviour
                 dustPS.Play();
             }
         } else dustPS.Stop();
+    }
+
+    // APPLY FORCES
+    private void ApplyForces()
+    {
+        while (forceQueue.Count > 0)
+        {
+            rb.AddForce(forceQueue.Dequeue());
+        }
     }
 }

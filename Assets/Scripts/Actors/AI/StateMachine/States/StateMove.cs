@@ -36,7 +36,6 @@ public class StateMove : EntityState
         
         // CHECK FOR MOVEMENT
         if (moveInput.magnitude > 0) {
-            entity.movement.Move(moveInput, entity.data.moveSpd, entity.rb);
         } else {
             stateMachine.ChangeState(entity.stateMove);
         }
@@ -55,5 +54,6 @@ public class StateMove : EntityState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        entity.movement.Move(moveInput, entity.data.moveSpd, entity.rb);
     }
 }
