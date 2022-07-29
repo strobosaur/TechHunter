@@ -6,13 +6,15 @@ using UnityEngine;
 
 public static class WallFinder
 {
-    public static void MakeWalls(IEnumerable<Vector2Int> floorPositions, TileManager tileManager)
+    public static HashSet<Vector2Int> MakeWalls(IEnumerable<Vector2Int> floorPositions, TileManager tileManager)
     {
         var wallPositions = FindWallsCardinal(floorPositions, Direction2D.dirList);
         foreach (var position in wallPositions)
         {
             tileManager.PaintSingleWall(position);
         }
+
+        return wallPositions;
     }
 
     private static HashSet<Vector2Int> FindWallsCardinal(IEnumerable<Vector2Int> floorPositions, List<Vector2Int> dirList)

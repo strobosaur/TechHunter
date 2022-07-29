@@ -9,6 +9,8 @@ public class MapManager : MonoBehaviour
     public TileManager tileManager;
     public RandomNeighborhoodGraph rngGen = new RandomNeighborhoodGraph();
     public Vector2Int startPos = Vector2Int.zero;
+    public List<Vector2> nodePositions = new List<Vector2>();
+
     public float chance = 0.5f;
     public int iterations = 25;
     public int walkLength = 100;
@@ -74,19 +76,33 @@ public class MapManager : MonoBehaviour
     {
         tileManager.ClearTiles();
 
+        HashSet<Vector2Int> voidPos = tileManager.CreateVoid(RNGsize);
+
         var rngData = rngGen.RNGgen(RNGsize,RNGpoints,RNGminDist,1,8);
         int[,] rngGrid = rngData.Item1;
         var rngPoints = rngData.Item2;
+
+        foreach (var position in rngPoints)
+        {
+            nodePositions.Add(position);            
+        }
 
         rngGrid = rngGen.AddCardinalDirsArr(rngGrid);
         rngGrid = rngGen.CA_RNG(rngGrid, CAlivechance);
 
         HashSet<Vector2Int> floorPos = rngGen.ConvertRngToHash(rngGrid);
+
         tileManager.PaintFloorTiles(floorPos);
-        WallFinder.MakeWalls(floorPos, tileManager);
+        HashSet<Vector2Int> wallPos = WallFinder.MakeWalls(floorPos, tileManager);
+
+        voidPos.ExceptWith(floorPos);
+        voidPos.ExceptWith(wallPos);
+        tileManager.PaintVoid(voidPos);
 
         GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f); //* (1f / Globals.G_CELLSIZE);
-        InvokeRepeating("UpdateAstar", 0.5f, 5f);
+        InvokeRepeating("UpdateAstar", 0.5f, 60f);
+
+        GameObject.Find("Enemy2").transform.position = nodePositions[Random.Range(0,nodePositions.Count)];
     }
 
     public void UpdateAstar()

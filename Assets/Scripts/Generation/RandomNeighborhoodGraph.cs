@@ -120,9 +120,9 @@ public class RandomNeighborhoodGraph
                 if (connect)
                 {
                     connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(a.x - (size / 2)),Mathf.RoundToInt(a.y - (size / 2))));
-                    connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x - (size / 2)),Mathf.RoundToInt(b.y - (size / 2))));
+                    //connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x - (size / 2)),Mathf.RoundToInt(b.y - (size / 2))));
 
-                    SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(3f,8f), 1);
+                    SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(4f,8f), 1);
 
                     outgrid[Mathf.RoundToInt(a.x), Mathf.RoundToInt(a.y)] = fillWith;
                     outgrid[Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y)] = fillWith;
@@ -140,6 +140,7 @@ public class RandomNeighborhoodGraph
         // MAKE START POSITION
         startPos = connectedCoords.ElementAt(Random.Range(0,connectedCoords.Count));
         SetCircle2DArr(outgrid, startPos.x + (size / 2), startPos.y + (size / 2), Random.Range(6f,8f), 1);
+        connectedCoords.Remove(startPos);
 
         return (outgrid, connectedCoords);
     }
