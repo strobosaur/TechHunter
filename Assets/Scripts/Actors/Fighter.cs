@@ -5,13 +5,9 @@ using UnityEngine;
 public class Fighter : Movable
 {
     // WEAPON
-    public Weapon weapon { get; protected set; }
     protected Vector2 firePivot;
     private float firePivotYmod = 0.66f;
     private float firePivotDist = 0.66f;
-
-    // PARAMETERS
-    protected Vector3 aimTarget;
 
     // AWAKE
     protected override void Awake()
@@ -22,26 +18,22 @@ public class Fighter : Movable
         weapon = GetComponentInChildren<Weapon>();
     }
 
-    // UPDATE
-    protected override void Update()
-    {
-    }
-
-    protected void UpdateFirePivot()
+    // UPDATE FIRE PIVOT
+    protected void UpdateFirePivot(Vector2 dir)
     {
         // FIRE PIVOT PLACEMENT
-        firePivot = data.facingDir * firePivotDist;
+        firePivot = dir * firePivotDist;
         firePivot.y *= firePivotYmod;
     }
 
     // FIRE WEAPON
-    public void FireWeapon()
+    public void FireWeapon(Vector2 target)
     {
-        UpdateFirePivot();
+        UpdateFirePivot(((Vector3)target - transform.position).normalized);
 
         Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
 
-        weapon.Fire(firePos, aimTarget);
+        weapon.Fire(firePos, target);
     }    
 }

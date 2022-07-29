@@ -15,7 +15,7 @@ public static class Globals
     // PHYSICS
     public static float G_INERTIA = 0.04f;
     public static float G_FRICTION = 0.16f;
-    public static float G_MOVEFORCE = 1f;
+    public static float G_MOVEFORCE = 1.5f;
     public static float G_LNRDRAG = 2f;
 
     // GAME MANAGEMENT

@@ -18,8 +18,8 @@ public class Enemy : Fighter
 
         // CREATE STATE MACHINE
         stateMachine = new StateMachine();
-        stateIdle = new StateIdle(this, stateMachine, data, "idle");
-        stateMove = new StateMove(this, stateMachine, data, "move");
+        stateIdle = new StateIdle(this, stateMachine, "idle");
+        stateMove = new StateMove(this, stateMachine, "move");
     }
 
     protected override void Start()

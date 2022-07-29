@@ -6,18 +6,15 @@ public class EntityState
 {
     protected Movable entity;
     protected StateMachine stateMachine;
-    protected EntityData data;
-    protected Weapon weapon;
 
     protected float startTime;
 
     private string animBoolName;
 
-    public EntityState(Movable entity, StateMachine stateMachine, EntityData data, string animBoolName)
+    public EntityState(Movable entity, StateMachine stateMachine, string animBoolName)
     {
         this.entity = entity;
         this.stateMachine = stateMachine;
-        this.data = data;
         this.animBoolName = animBoolName;
     }
 
@@ -50,10 +47,10 @@ public class EntityState
 
                 // UPDATE ANIMATOR PARAMETERS
                 entity.anim.SetFloat("magnitude", moveDelta.magnitude);
-                entity.anim.speed = moveDelta.magnitude * data.animSpd;
+                entity.anim.speed = moveDelta.magnitude * entity.data.animSpd;
 
                 // WEAPON
-                if (weapon != null) weapon.UpdateWeapon(moveDelta);
+                if (entity.weapon != null) entity.weapon.UpdateWeapon(moveDelta);
             } else {
                 // UPDATE ANIMATOR PARAMETERS
                 entity.anim.SetFloat("magnitude", 0f);
@@ -67,7 +64,7 @@ public class EntityState
                 entity.anim.SetFloat("velY", lookDelta.y);
 
                 // WEAPON
-                if (weapon != null) weapon.UpdateWeapon(lookDelta);
+                if (entity.weapon != null) entity.weapon.UpdateWeapon(lookDelta);
             }
         }
     }
@@ -78,7 +75,7 @@ public class EntityState
         if (Vector3.Distance(target, entity.transform.position) > 0.2f)
         {
             // FACING DIRECTIOn
-            data.facingDir = (target - entity.transform.position).normalized;
+            entity.data.facingDir = (target - entity.transform.position).normalized;
         }
     }
 }

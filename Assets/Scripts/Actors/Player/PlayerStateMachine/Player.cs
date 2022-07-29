@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Fighter
 {
     // PLAYER DATA
-    public PlayerData playerData;
+    public PlayerData data;
 
     // STATE MACHINE
     public PlayerStateMachine stateMachine { get; private set; }
@@ -14,38 +14,43 @@ public class Player : Fighter
     public StatePlayerMove stateMove { get; private set; }
 
     // CROSSHAIR
-    public Crosshair crosshair;
+    public Crosshair crosshair { get; private set; }
 
+    // AWAKE
     protected override void Awake()
     {
         base.Awake();
 
         // PLAYER DATA
-        playerData = new PlayerData();
+        data = new PlayerData();
 
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();
         lookInput = GetComponent<ILookInput>();
         movement = GetComponent<IMoveable>();
+        combat = GetComponent<ICombat>();
         
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
         // CREATE STATE MACHINE
         stateMachine = new PlayerStateMachine();
-        stateIdle = new StatePlayerIdle(this, stateMachine, playerData, "idle");
-        stateMove = new StatePlayerMove(this, stateMachine, playerData, "move");
+        stateIdle = new StatePlayerIdle(this, stateMachine, "idle");
+        stateMove = new StatePlayerMove(this, stateMachine, "move");
     }
 
+    // START
     protected override void Start()
     {
         stateMachine.Iinitialize(stateIdle);
     }
 
+    // UPDATE
     protected override void Update()
     {
         stateMachine.CurrentState.LogicUpdate();
     }
 
+    // FIXED UPDATE
     protected override void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();

@@ -7,7 +7,7 @@ public class StateMove : EntityState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StateMove(Movable entity, StateMachine stateMachine, EntityData data, string animBoolName) : base(entity, stateMachine, data, animBoolName)
+    public StateMove(Movable entity, StateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName)
     {
     }
 
@@ -19,7 +19,6 @@ public class StateMove : EntityState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Movestate");
     }
 
     public override void Exit()
@@ -33,7 +32,6 @@ public class StateMove : EntityState
 
         // GET INPUT
         moveInput = entity.moveInput.GetMoveInput();
-        Debug.Log("Moveinput: " + moveInput);
         if (lookInput != null ) lookInput = entity.lookInput.GetLookInput();
         
         // CHECK FOR MOVEMENT
