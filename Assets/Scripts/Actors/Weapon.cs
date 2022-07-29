@@ -84,7 +84,7 @@ public class Weapon : MonoBehaviour
             ob.tag = owner.tag;
             ob.targetLayer = 3;
             ob.shooter = owner;
-            ob.damage = new DoDamage{damage = 1, force = 5f};
+            ob.damage = new DoDamage{damage = 1, force = 1f};
             
             // SET BURST TIMER
             wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate;

@@ -290,11 +290,12 @@ MonoBehaviour:
   tileManager: {fileID: 59904967}
   startPos: {x: 0, y: 0}
   nodePositions: []
+  enemyManager: {fileID: 0}
   chance: 1
   iterations: 10
   walkLength: 250
   randomEachIteration: 1
-  RNGsize: 64
+  RNGsize: 70
   RNGpoints: 16
   RNGminDist: 2
   CAlivechance: 0.375
@@ -753,6 +754,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   astar: {fileID: 0}
+  spawnPoint: {fileID: 4859832800998387679, guid: d627def3685b126489e233e274806c82, type: 3}
+  spawnPoints: []
 --- !u!1 &356009887
 GameObject:
   m_ObjectHideFlags: 0

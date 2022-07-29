@@ -122,7 +122,7 @@ public class RandomNeighborhoodGraph
                     connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(a.x - (size / 2)),Mathf.RoundToInt(a.y - (size / 2))));
                     //connectedCoords.Add(new Vector2Int(Mathf.RoundToInt(b.x - (size / 2)),Mathf.RoundToInt(b.y - (size / 2))));
 
-                    SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(4f,8f), 1);
+                    SetCircle2DArr(outgrid, (int)a.x, (int)a.y, Random.Range(5.5f,8f), 1);
 
                     outgrid[Mathf.RoundToInt(a.x), Mathf.RoundToInt(a.y)] = fillWith;
                     outgrid[Mathf.RoundToInt(b.x), Mathf.RoundToInt(b.y)] = fillWith;
