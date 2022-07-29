@@ -47,7 +47,6 @@ public class EnemyMoveInput : MonoBehaviour, IMoveInput
             currentWaypoint++;
         }
         
-        Debug.Log("Dir: " + direction);
         return direction;
     }
 

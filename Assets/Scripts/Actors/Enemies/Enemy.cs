@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Fighter
+public class Enemy : Fighter, IDamageable
 {
     protected override void Awake()
     {
@@ -35,5 +35,11 @@ public class Enemy : Fighter
     protected override void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public void ReceiveDamage(DoDamage damage, Vector2 originDir)
+    {
+        rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
+        Debug.Log(this + " received " + damage.damage + " pts. damage");
     }
 }

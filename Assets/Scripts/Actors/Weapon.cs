@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     // SPRITES & ANIMATIONS
     protected Animator anim;
     protected SpriteRenderer sr;
+    protected Fighter owner;
 
     // WEAPON PARAMETERS
     protected IWeapon weapon;
@@ -31,6 +32,7 @@ public class Weapon : MonoBehaviour
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
         wpnParams = new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 8);
+        owner = GetComponentInParent<Fighter>();
     }
 
     // FIXED UPDATE
@@ -79,6 +81,10 @@ public class Weapon : MonoBehaviour
             ob.transform.position = origin;
             ob.moveDelta = bulletSpd * Random.Range(0.9f, 1.9f);
             ob.target = target;
+            ob.tag = owner.tag;
+            ob.targetLayer = 3;
+            ob.shooter = owner;
+            ob.damage = new DoDamage{damage = 1, force = 5f};
             
             // SET BURST TIMER
             wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate;

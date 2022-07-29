@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 73893502}
   m_Layer: 3
   m_Name: Player2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5872,7 +5872,7 @@ GameObject:
   - component: {fileID: 588637686}
   m_Layer: 3
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5890,9 +5890,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.125}
   serializedVersion: 2
-  m_Radius: 0.1875
+  m_Radius: 0.325
 --- !u!114 &588637682
 MonoBehaviour:
   m_ObjectHideFlags: 0
