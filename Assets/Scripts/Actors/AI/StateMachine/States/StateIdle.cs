@@ -7,25 +7,30 @@ public class StateIdle : EntityState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StateIdle(Movable entity, StateMachine stateMachine, EntityData data, string animBoolName) : base(entity, stateMachine, data, animBoolName)
+    // CONSTRUCTOR
+    public StateIdle(Movable entity, StateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName)
     {
     }
 
+    // DO CHECKS
     public override void DoChecks()
     {
         base.DoChecks();
     }
 
+    // ON STATE ENTER
     public override void Enter()
     {
         base.Enter();
     }
 
+    // ON STATE EXIT
     public override void Exit()
     {
         base.Exit();
     }
 
+    // LOGIC UPDATE
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -51,6 +56,7 @@ public class StateIdle : EntityState
         entity.MoveDust();
     }
 
+    // PHYSICS UPDATE
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();

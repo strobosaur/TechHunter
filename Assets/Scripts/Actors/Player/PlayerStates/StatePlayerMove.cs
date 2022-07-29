@@ -7,7 +7,7 @@ public class StatePlayerMove : PlayerState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StatePlayerMove(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public StatePlayerMove(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
@@ -36,10 +36,13 @@ public class StatePlayerMove : PlayerState
 
         // CROSSHAIR
         player.crosshair.UpdateCrosshair(lookInput);
+
+        // COMBAT
+        player.combat.Attack(player.weapon, player.rb.position, player.data.facingDir);
         
         // CHECK FOR MOVEMENT
         if (moveInput.magnitude > 0) {
-            player.movement.Move(moveInput, player.playerData.moveSpd, player.rb);
+            player.movement.Move(moveInput, player.data.moveSpd, player.rb);
         } else {
             stateMachine.ChangeState(player.stateMove);
         }

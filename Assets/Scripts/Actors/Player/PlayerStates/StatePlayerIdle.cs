@@ -7,7 +7,7 @@ public class StatePlayerIdle : PlayerState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StatePlayerIdle(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
+    public StatePlayerIdle(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
     }
 
@@ -36,6 +36,9 @@ public class StatePlayerIdle : PlayerState
 
         // CROSSHAIR
         player.crosshair.UpdateCrosshair(lookInput);
+
+        // COMBAT
+        player.combat.Attack(player.weapon, player.rb.position, player.data.facingDir);
 
         // CHECK FOR MOVEMENT & CHANGE STATE
         if (moveInput.magnitude > 0)

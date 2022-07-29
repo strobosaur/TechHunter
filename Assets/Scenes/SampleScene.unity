@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 73893499}
   - component: {fileID: 73893498}
   - component: {fileID: 73893501}
+  - component: {fileID: 73893502}
   m_Layer: 3
   m_Name: Player2
   m_TagString: Untagged
@@ -542,8 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33651e4e78d12854c9c0857602d9a5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   dustPS: {fileID: 1383084806}
-  crosshair: {fileID: 0}
 --- !u!114 &73893501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,6 +557,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e6078cb446115844b0ec1b4585b6e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &73893502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b50da538ac5d4d468e2b11f89e5c342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &279669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +597,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279669363}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -599,7 +613,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279669363}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
   m_Name: 
@@ -613,7 +627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279669363}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
@@ -5847,13 +5861,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588637683}
-  - component: {fileID: 588637682}
   - component: {fileID: 588637681}
+  - component: {fileID: 588637682}
   - component: {fileID: 588637685}
   - component: {fileID: 588637684}
   - component: {fileID: 588637689}
-  - component: {fileID: 588637688}
   - component: {fileID: 588637690}
+  - component: {fileID: 588637688}
   - component: {fileID: 588637687}
   - component: {fileID: 588637686}
   m_Layer: 3
@@ -5951,6 +5965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba0b6df7d06f274cb59fe1ccfdd8e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   dustPS: {fileID: 796015257}
 --- !u!50 &588637686
 Rigidbody2D:
@@ -5972,7 +5987,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &588637687
 SpriteRenderer:
   m_ObjectHideFlags: 0

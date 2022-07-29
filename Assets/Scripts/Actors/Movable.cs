@@ -23,6 +23,9 @@ public class Movable : MonoBehaviour
     public IMoveInput moveInput;
     public ILookInput lookInput;
     public IMoveable movement;
+    public ICombat combat;
+
+    public Weapon weapon;
 
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
@@ -42,11 +45,12 @@ public class Movable : MonoBehaviour
         moveInput = GetComponent<IMoveInput>();
         lookInput = GetComponent<ILookInput>();
         movement = GetComponent<IMoveable>();
+        combat = GetComponent<ICombat>();
 
         // CREATE STATE MACHINE
         stateMachine = new StateMachine();
-        stateIdle = new StateIdle(this, stateMachine, data, "idle");
-        stateMove = new StateMove(this, stateMachine, data, "move");
+        stateIdle = new StateIdle(this, stateMachine, "idle");
+        stateMove = new StateMove(this, stateMachine, "move");
     }
 
     protected virtual void Start()

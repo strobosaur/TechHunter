@@ -6,17 +6,15 @@ public class PlayerState
 {
     protected Player player;
     protected PlayerStateMachine stateMachine;
-    protected PlayerData playerData;
 
     protected float startTime;
 
     private string animBoolName;
 
-    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
+    public PlayerState(Player player, PlayerStateMachine stateMachine, string animBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
-        this.playerData = playerData;
         this.animBoolName = animBoolName;
     }
 
@@ -53,7 +51,7 @@ public class PlayerState
 
                 // UPDATE ANIMATOR PARAMETERS
                 player.anim.SetFloat("magnitude", moveDelta.magnitude);
-                player.anim.speed = moveDelta.magnitude * playerData.animSpd;
+                player.anim.speed = moveDelta.magnitude * player.data.animSpd;
 
                 // WEAPON
                 if (player.weapon != null) player.weapon.UpdateWeapon(moveDelta);
@@ -84,10 +82,7 @@ public class PlayerState
     // GET FACE DIRECTION
     protected void GetFacingDir(Vector3 target)
     {
-        if (Vector3.Distance(target, player.transform.position) > 0.2f)
-        {
-            // FACING DIRECTIOn
-            playerData.facingDir = (target - player.transform.position).normalized;
-        }
+        // FACING DIRECTIOn
+        player.data.facingDir = target.normalized;
     }
 }
