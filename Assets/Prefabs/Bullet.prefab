@@ -144,7 +144,8 @@ GameObject:
   - component: {fileID: 7993852875584092310}
   - component: {fileID: 9167488646297100193}
   - component: {fileID: 8472156353761650786}
-  m_Layer: 0
+  - component: {fileID: 3004072999678152076}
+  m_Layer: 3
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,8 +206,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1191496623
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 45ad18b3c48c8674aa9cfd09229c24bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -228,18 +229,18 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814037813807110704}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &9167488646297100193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +256,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   target: {x: 0, y: 0}
   moveDelta: 0
+  shooter: {fileID: 0}
+  targetLayer: 0
+  shooterTag: 
 --- !u!96 &8472156353761650786
 TrailRenderer:
   serializedVersion: 2
@@ -354,3 +358,19 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!58 &3004072999678152076
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814037813807110704}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.25
