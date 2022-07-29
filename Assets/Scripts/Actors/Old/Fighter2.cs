@@ -73,6 +73,6 @@ public class Fighter2 : Movable2
         Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
 
-        weapon.Fire(firePos, aimTarget);
+        //weapon.Fire(firePos, aimTarget);
     }
 }

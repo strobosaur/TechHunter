@@ -25,7 +25,7 @@ public class Movable : MonoBehaviour
     public IMoveable movement;
     public ICombat combat;
 
-    public Weapon weapon;
+    public IWeapon weapon;
 
     public Queue<Vector2> forceQueue;
 

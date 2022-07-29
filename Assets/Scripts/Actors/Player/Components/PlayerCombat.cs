@@ -11,7 +11,7 @@ public class PlayerCombat : MonoBehaviour, ICombat
         player = GetComponent<Player>();
     }
 
-    public void Attack(Weapon weapon, Vector2 origin, Vector2 target)
+    public void Attack(IWeapon weapon, Vector2 origin, Vector2 target)
     {
         // COMBAT
         if ((weapon != null) && (InputManager.input.R2.IsPressed()))

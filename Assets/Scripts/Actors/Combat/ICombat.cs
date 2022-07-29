@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ICombat
 {
-    public void Attack(Weapon weapon, Vector2 origin, Vector2 target);
+    public void Attack(IWeapon weapon, Vector2 origin, Vector2 target);
 }

@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    void FireWeapon(Vector3 origin, Vector3 target);
+    void WeaponAttack(Vector3 origin, Vector3 target);
+    void UpdateWeapon(Vector2 dir);
 }
