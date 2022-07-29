@@ -42,7 +42,7 @@ public class StatePlayerMove : PlayerState
         
         // CHECK FOR MOVEMENT
         if (moveInput.magnitude > 0) {
-            player.movement.Move(moveInput, player.data.moveSpd, player.rb);
+            
         } else {
             stateMachine.ChangeState(player.stateMove);
         }
@@ -61,5 +61,6 @@ public class StatePlayerMove : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        player.movement.Move(moveInput, player.data.moveSpd, player.rb);
     }
 }
