@@ -19,31 +19,42 @@ public class Player : MonoBehaviour
     public StatePlayerIdle stateIdle { get; private set; }
     public StatePlayerMove stateMove { get; private set; }
 
-    // INPUT
+    // MOVEMENT
     public IMoveInput moveInput;
     public ILookInput lookInput;
+    public IMoveable movement;
 
     // PARTICLE SYSTEMS
     public ParticleSystem dustPS;
 
     // CROSSHAIR
-    private Crosshair crosshair;
+    public Crosshair crosshair;
 
     void Awake()
     {
-        // CREATE STATE MACHINE
-        stateMachine = new PlayerStateMachine();
-        stateIdle = new StatePlayerIdle(this, stateMachine, playerData, "idle");
-        stateMove = new StatePlayerMove(this, stateMachine, playerData, "move");
+        // COMPONENTS
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+
+        // PLAYER DATA
+        playerData = new PlayerData();
 
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();
         lookInput = GetComponent<ILookInput>();
+        movement = GetComponent<IMoveable>();
+        
+        crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
+
+        // CREATE STATE MACHINE
+        stateMachine = new PlayerStateMachine();
+        stateIdle = new StatePlayerIdle(this, stateMachine, playerData, "idle");
+        stateMove = new StatePlayerMove(this, stateMachine, playerData, "move");
+        //weapon = GameObject.Find("Weapon").GetComponent<Weapon>();
     }
 
     void Start()
     {
-        anim = GetComponent<Animator>();
         stateMachine.Iinitialize(stateIdle);
     }
 

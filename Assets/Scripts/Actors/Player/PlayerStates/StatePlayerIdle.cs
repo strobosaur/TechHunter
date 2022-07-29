@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class StatePlayerIdle : PlayerState
 {
+    Vector2 moveInput;
+    Vector2 lookInput;
+
     public StatePlayerIdle(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName)
     {
     }
@@ -26,10 +29,29 @@ public class StatePlayerIdle : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (player.moveInput.GetMoveInput().magnitude > 0)
+
+        // GET INPUT
+        moveInput = player.moveInput.GetMoveInput();
+        lookInput = player.lookInput.GetLookInput();
+
+        // CROSSHAIR
+        player.crosshair.UpdateCrosshair(lookInput);
+
+        // CHECK FOR MOVEMENT & CHANGE STATE
+        if (moveInput.magnitude > 0)
         {
             stateMachine.ChangeState(player.stateMove);
         }
+
+        // ANIMATOR
+        if (moveInput.magnitude > player.rb.velocity.magnitude) {
+            UpdateAnimator(moveInput, lookInput);
+        } else {
+            UpdateAnimator(player.rb.velocity, lookInput);
+        }
+
+        // MOVE DUST
+        player.MoveDust();
     }
 
     public override void PhysicsUpdate()

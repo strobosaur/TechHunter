@@ -2,18 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IMoveable
 {
-    Vector3 LS;
-    
-    void Update()
+    public void Move(Vector2 moveInput, float moveSpd, Rigidbody2D rb)
     {
-        // LEFT STICK
-        LS = InputManager.input.move.ReadValue<Vector2>().normalized;
-        if (LS.magnitude < Globals.G_LS_DEADZONE){
-            LS = Vector3.zero;
-        }
-
-        GetComponent<IMoveVelocity>().SetVelocity(LS);
+        rb.AddForce(moveInput * moveSpd * Globals.G_MOVEFORCE);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private PlayerController player;
+    private Player player;
     private Transform playerTransform;
     private Transform crossTransform;
     private Vector2 targetPos;
@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     // AWAKE
     void Awake()
     {
-        player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<PlayerController>();
+        player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
         playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
         crossTransform = GameObject.Find("Crosshair").transform;
     }
@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
         {
             targetPos = Vector2.Lerp(playerTransform.position, crossTransform.position, 0.33f);
         } else if (InputManager.input.move.ReadValue<Vector2>().magnitude > 0) {
-            targetPos = playerTransform.position + (player.GetMoveDelta() * camDistMove);
+            targetPos = playerTransform.position + ((Vector3)player.rb.velocity * camDistMove);
         } else {
             targetPos = playerTransform.position;
         }
