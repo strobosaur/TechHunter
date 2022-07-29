@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class Weapon : MonoBehaviour, IWeapon
 {
     // SPRITES & ANIMATIONS
     protected Animator anim;
@@ -13,7 +13,6 @@ public class Weapon : MonoBehaviour
     protected IWeapon weapon;
     protected WeaponParams wpnParams;
     protected int burstCount;
-    protected float bulletSpd = 32f;
 
     // TIMER ARRAY
     protected float[] wpnTimers;
@@ -31,7 +30,7 @@ public class Weapon : MonoBehaviour
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        wpnParams = new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 8);
+        wpnParams = new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
         owner = GetComponentInParent<Fighter>();
     }
 
@@ -42,7 +41,7 @@ public class Weapon : MonoBehaviour
     }
 
     // UPDATE WEAPON ANIMATION STATE
-    public void UpdateWeapon(Vector3 facingDir)
+    public void UpdateWeapon(Vector2 facingDir)
     {
         if (anim != null && sr != null)
         {
@@ -53,41 +52,6 @@ public class Weapon : MonoBehaviour
             } else {
                 sr.sortingOrder = 1;
             }
-        }
-    }
-
-    // FIRE WEAPON
-    public void Fire(Vector3 origin, Vector3 target)
-    { 
-        // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
-        if ((burstCount <= wpnParams.burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
-            // SET FIRE RATE TIMER
-            if (burstCount <= 0) wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate;
-
-            // INCREMENT BURST
-            burstCount++;
-
-            // FIRE ACTUAL WEAPON
-            MuzzleFlash(origin, 1f);
-            //weapon.FireWeapon(origin, target);
-
-            var targetDist = Vector3.Distance(origin, target);
-            var ob = WeaponManager.instance.SpawnBullet();
-            var rnd = Random.insideUnitCircle * (targetDist * wpnParams.spr * 0.25f);
-
-            target.x += rnd.x;
-            target.y += rnd.y;
-            
-            ob.transform.position = origin;
-            ob.moveDelta = bulletSpd * Random.Range(0.9f, 1.9f);
-            ob.target = target;
-            ob.tag = owner.tag;
-            ob.targetLayer = 3;
-            ob.shooter = owner;
-            ob.damage = new DoDamage{damage = 1, force = 1f};
-            
-            // SET BURST TIMER
-            wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate;
         }
     }
 
@@ -111,4 +75,6 @@ public class Weapon : MonoBehaviour
             burstCount = 0;
         }
     }
+
+    public virtual void WeaponAttack(Vector3 origin, Vector3 target){}
 }
