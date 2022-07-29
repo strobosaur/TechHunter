@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fighter : Movable
 {
     // WEAPON
-    protected Weapon weapon;
+    public Weapon weapon { get; protected set; }
     protected Vector2 firePivot;
     private float firePivotYmod = 0.66f;
     private float firePivotDist = 0.66f;
@@ -17,62 +17,31 @@ public class Fighter : Movable
     protected override void Awake()
     {
         base.Awake();
+
+        // GET WEAPON
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     // UPDATE
     protected override void Update()
     {
-        if (Vector3.Distance(transform.position, aimTarget) > 0.2f)
-            GetFacingDir(aimTarget);
-        else
-            GetFacingDir(moveInput);
-        UpdateFirePivot();
-        UpdateAnimator();
-    }
-
-    // UPDATE ANIMATOR
-    protected override void UpdateAnimator()
-    {
-        if (anim != null) 
-        {
-            // FACE MOVEMENT DIRECTION
-            if (moveDelta.magnitude > 0.1f) {
-                anim.SetFloat("velX", moveDelta.x);
-                anim.SetFloat("velY", moveDelta.y);
-                if (weapon != null) weapon.UpdateWeapon(moveDelta);
-
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", moveDelta.magnitude);
-                anim.speed = moveDelta.magnitude * animSpd;
-            } else {
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", 0f);
-                anim.speed = 0f;
-            }
-
-            // IF HAS TARGET, FACE TARGET POSITION
-            if (facingDir.magnitude > 0.2)
-            {
-                anim.SetFloat("velX", facingDir.x);
-                anim.SetFloat("velY", facingDir.y);
-                if (weapon != null) weapon.UpdateWeapon(facingDir);
-            }
-        }
     }
 
     protected void UpdateFirePivot()
     {
         // FIRE PIVOT PLACEMENT
-        firePivot = facingDir * firePivotDist;
+        firePivot = data.facingDir * firePivotDist;
         firePivot.y *= firePivotYmod;
     }
 
     // FIRE WEAPON
-    protected void FireWeapon()
+    public void FireWeapon()
     {
+        UpdateFirePivot();
+
         Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
 
         weapon.Fire(firePos, aimTarget);
-    }
+    }    
 }

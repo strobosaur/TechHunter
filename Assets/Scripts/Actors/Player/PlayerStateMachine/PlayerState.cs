@@ -54,6 +54,12 @@ public class PlayerState
                 // UPDATE ANIMATOR PARAMETERS
                 player.anim.SetFloat("magnitude", moveDelta.magnitude);
                 player.anim.speed = moveDelta.magnitude * playerData.animSpd;
+
+                // WEAPON
+                if (player.weapon != null) player.weapon.UpdateWeapon(moveDelta);
+
+                // FACING
+                GetFacingDir(moveDelta);
             } else {
                 // UPDATE ANIMATOR PARAMETERS
                 player.anim.SetFloat("magnitude", 0f);
@@ -65,6 +71,12 @@ public class PlayerState
             {
                 player.anim.SetFloat("velX", lookDelta.x);
                 player.anim.SetFloat("velY", lookDelta.y);
+
+                // WEAPON
+                if (player.weapon != null) player.weapon.UpdateWeapon(lookDelta);
+
+                // FACING
+                GetFacingDir(lookDelta);
             }
         }
     }

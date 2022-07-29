@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : Fighter
+public class PlayerController2 : Fighter2
 {
     // INPUT
     private Vector2 LS;

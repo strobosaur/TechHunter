@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Pathfinding;
-using System;
+using UnityEngine;
 
-public class EnemyAI : Movable
+public class EnemyMoveInput : MonoBehaviour, IMoveInput
 {
     public Transform target;
+    public Enemy enemy;
 
     public float nextWaypointDistance = 3f;
 
@@ -16,34 +16,29 @@ public class EnemyAI : Movable
 
     private Seeker seeker;
 
-    // Start is called before the first frame update
+    // START
     void Start()
     {
-        //moveSpd = 2f;
         seeker = GetComponent<Seeker>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
         seeker.StartPath(transform.position, target.position, OnPathComplete);
     }
 
-    // Update is called once per frame
-    protected override void Update()
+    public Vector2 GetMoveInput()
     {
-        base.Update();
-
         if (path == null)
-            return;
+            return Vector2.zero;
 
         if (currentWaypoint >= path.vectorPath.Count)
         {
             endOfPath = true;
-            return;
+            return Vector2.zero;
         } else {
             endOfPath = false;
         }
 
         Vector2 direction = ((Vector2)(path.vectorPath[currentWaypoint] - transform.position)).normalized;
-        //moveInput = direction;
 
         float distance = Vector2.Distance(transform.position, path.vectorPath[currentWaypoint]);
 
@@ -51,6 +46,9 @@ public class EnemyAI : Movable
         {
             currentWaypoint++;
         }
+        
+        Debug.Log("Dir: " + direction);
+        return direction;
     }
 
     private void UpdatePath()
