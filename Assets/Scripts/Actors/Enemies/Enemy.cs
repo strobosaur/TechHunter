@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Enemy : Fighter
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        
+        base.Awake();
+
+        // PLAYER DATA
+        data = new EntityData();
+
+        // GET MOVE INPUT COMPONENT
+        moveInput = GetComponent<IMoveInput>();
+        lookInput = GetComponent<ILookInput>();
+        movement = GetComponent<IMoveable>();
+
+        // CREATE STATE MACHINE
+        stateMachine = new StateMachine();
+        stateIdle = new StateIdle(this, stateMachine, data, "idle");
+        stateMove = new StateMove(this, stateMachine, data, "move");
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Start()
     {
-        
+        stateMachine.Iinitialize(stateIdle);
+    }
+
+    protected override void Update()
+    {
+        stateMachine.CurrentState.LogicUpdate();
+    }
+
+    protected override void FixedUpdate()
+    {
+        stateMachine.CurrentState.PhysicsUpdate();
     }
 }

@@ -2,14 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Fighter
 {
-    // ANIMATOR
-    public Animator anim { get; private set; }
-
-    // RIGIDBODY
-    public Rigidbody2D rb { get; private set; }
-
     // PLAYER DATA
     public PlayerData playerData;
 
@@ -19,22 +13,12 @@ public class Player : MonoBehaviour
     public StatePlayerIdle stateIdle { get; private set; }
     public StatePlayerMove stateMove { get; private set; }
 
-    // MOVEMENT
-    public IMoveInput moveInput;
-    public ILookInput lookInput;
-    public IMoveable movement;
-
-    // PARTICLE SYSTEMS
-    public ParticleSystem dustPS;
-
     // CROSSHAIR
     public Crosshair crosshair;
 
-    void Awake()
+    protected override void Awake()
     {
-        // COMPONENTS
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        base.Awake();
 
         // PLAYER DATA
         playerData = new PlayerData();
@@ -50,33 +34,20 @@ public class Player : MonoBehaviour
         stateMachine = new PlayerStateMachine();
         stateIdle = new StatePlayerIdle(this, stateMachine, playerData, "idle");
         stateMove = new StatePlayerMove(this, stateMachine, playerData, "move");
-        //weapon = GameObject.Find("Weapon").GetComponent<Weapon>();
     }
 
-    void Start()
+    protected override void Start()
     {
         stateMachine.Iinitialize(stateIdle);
     }
 
-    void Update()
+    protected override void Update()
     {
         stateMachine.CurrentState.LogicUpdate();
     }
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
-    }
-
-    // MOVE DUST
-    public void MoveDust()
-    {
-        // DUST PS
-        dustPS.transform.position = transform.position - ((Vector3)rb.velocity * 0.2f);
-        if (rb.velocity.magnitude > 2f){
-            if (!dustPS.isEmitting) {
-                dustPS.Play();
-            }
-        } else dustPS.Stop();
     }
 }

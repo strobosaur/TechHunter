@@ -2,119 +2,77 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Movable : MonoBehaviour
+public class Movable : MonoBehaviour
 {
     // ANIMATOR
-    protected Animator anim;
-    protected float animSpd = 1f;
+    public Animator anim { get; protected set; }
 
-    // COLLISIONS
-    protected CircleCollider2D circleCollider;
-    protected RaycastHit2D hit;
+    // RIGIDBODY
+    public Rigidbody2D rb { get; protected set; }
 
-    // MOVE PARAMETERS
-    protected Vector2 moveInput;
-    protected Vector3 moveDelta;
-    protected Vector2 movePos;
-    protected Vector3 facingDir;
-    protected Vector3 pushDirection;
-    protected float pushRecoverySpeed = 0.05f;
-    protected float moveSpd;
-    protected float spdBoost = 1.0f;
-    protected float ySpeed = 1.0f;
-    protected float xSpeed = 1.0f;
+    // PLAYER DATA
+    public EntityData data;
 
-    // START
-    protected virtual void Awake()
-    {
-        circleCollider = GetComponent<CircleCollider2D>();
-        anim = GetComponent<Animator>();
-        movePos = new Vector2(0,0);
-    }
+    // STATE MACHINE
+    public StateMachine stateMachine { get; protected set; }
 
-    // UPDATE
-    protected virtual void Update()
-    {
-        GetFacingDir(moveDelta);
-        UpdateAnimator();
-    }
-
-    // FIXED UPDATE
-    protected virtual void FixedUpdate()
-    {
-        UpdateMotor(moveInput);
-    }
+    public StateIdle stateIdle { get; protected set; }
+    public StateMove stateMove { get; protected set; }
 
     // MOVEMENT
-    protected virtual void UpdateMotor(Vector3 input)
-    {        
-        // RESET MOVE DELTA
-        moveInput = new Vector3(input.x * xSpeed, input.y * ySpeed, 0);
-        movePos = Vector2.Lerp(movePos, moveInput * moveSpd * spdBoost, Globals.G_INERTIA);
-        moveDelta = new Vector3(movePos.x, movePos.y, 0);
+    public IMoveInput moveInput;
+    public ILookInput lookInput;
+    public IMoveable movement;
 
-        // ADD PUSH VECTOR IF ANY
-        moveDelta += pushDirection;
+    // PARTICLE SYSTEMS
+    public ParticleSystem dustPS;
 
-        // REDUCE PUSH FORCE
-        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
+    protected virtual void Awake()
+    {
+        // COMPONENTS
+        anim = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
 
-        // COLLISION CHECK Y
-        hit = Physics2D.CircleCast(transform.position + new Vector3(circleCollider.offset.x,circleCollider.offset.y,0), circleCollider.radius, new Vector2(0,moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
-        if (hit.collider == null)
-        {
-            // MAKE ACTOR MOVE
-            transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
-        } else {
-            movePos.y = 0;
-        }
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // COLLISION CHECK X
-        hit = Physics2D.CircleCast(transform.position + new Vector3(circleCollider.offset.x,circleCollider.offset.y,0), circleCollider.radius, new Vector2(moveDelta.x,0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
-        if (hit.collider == null)
-        {
-            // MAKE ACTOR MOVE
-            transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
-        } else {
-            movePos.x = 0;
-        }
+        // PLAYER DATA
+        data = new EntityData();
+
+        // GET MOVE INPUT COMPONENT
+        moveInput = GetComponent<IMoveInput>();
+        lookInput = GetComponent<ILookInput>();
+        movement = GetComponent<IMoveable>();
+
+        // CREATE STATE MACHINE
+        stateMachine = new StateMachine();
+        stateIdle = new StateIdle(this, stateMachine, data, "idle");
+        stateMove = new StateMove(this, stateMachine, data, "move");
     }
 
-    // UPDATE ANIMATOR
-    protected virtual void UpdateAnimator()
+    protected virtual void Start()
     {
-        if (anim != null) 
-        {
-            // FACE MOVEMENT DIRECTION
-            if (moveDelta.magnitude > 0.1f) {
-                anim.SetFloat("velX", moveDelta.x);
-                anim.SetFloat("velY", moveDelta.y);
-
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", moveDelta.magnitude);
-                anim.speed = moveDelta.magnitude * animSpd;
-            } else {
-                // UPDATE ANIMATOR PARAMETERS
-                anim.SetFloat("magnitude", 0f);
-                anim.speed = 0f;
-            }
-
-            // IF HAS TARGET, FACE TARGET POSITION
-            if (facingDir.magnitude > 0.2)
-            {
-                anim.SetFloat("velX", facingDir.x);
-                anim.SetFloat("velY", facingDir.y);
-            }
-        }
+        stateMachine.Iinitialize(stateIdle);
     }
 
-    // GET FACE DIRECTION
-    protected void GetFacingDir(Vector3 target)
+    protected virtual void Update()
     {
-        if (Vector3.Distance(target, transform.position) > 0.2f)
-        {
-            // FACING DIRECTIOn
-            facingDir = (target - transform.position).normalized;
-        }
+        stateMachine.CurrentState.LogicUpdate();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        stateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    // MOVE DUST
+    public void MoveDust()
+    {
+        // DUST PS
+        dustPS.transform.position = transform.position - ((Vector3)rb.velocity * 0.2f);
+        if (rb.velocity.magnitude > 2f){
+            if (!dustPS.isEmitting) {
+                dustPS.Play();
+            }
+        } else dustPS.Stop();
     }
 }
