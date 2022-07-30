@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class StateMove : EntityState
 {
+    float targetDist;
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StateMove(Movable entity, StateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName)
-    {
-    }
+    public StateMove(Movable entity, StateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName) {}
 
     public override void DoChecks()
     {
@@ -54,6 +53,6 @@ public class StateMove : EntityState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        entity.movement.Move(moveInput, entity.data.moveSpd, entity.rb);
+        entity.movement.Move(moveInput, entity.stats.moveSpd.GetValue(), entity.rb);
     }
 }

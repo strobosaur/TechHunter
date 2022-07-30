@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Enemy : Fighter, IDamageable
 {
+    // TARGET
+    public Transform target;
+
+    // STATE MACHINE SETUP
+    public EnemyStateMachine stateMachine { get; protected set; }
+
+    public StateEnemyIdle stateIdle { get; protected set; }
+    public StateEnemyMove stateMove { get; protected set; }
+
+    // ENEMY PARAMETERS
+    public float chargeDist;
+    
+    // AWAKE
     protected override void Awake()
     {
         base.Awake();
@@ -17,29 +30,37 @@ public class Enemy : Fighter, IDamageable
         movement = GetComponent<IMoveable>();
 
         // CREATE STATE MACHINE
-        stateMachine = new StateMachine();
-        stateIdle = new StateIdle(this, stateMachine, "idle");
-        stateMove = new StateMove(this, stateMachine, "move");
+        stateMachine = new EnemyStateMachine();
+        stateIdle = new StateEnemyIdle(this, stateMachine, "idle");
+        stateMove = new StateEnemyMove(this, stateMachine, "move");
 
         // CREATE WEAPON
         weapon.SetWeaponParams(new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));
+
+        // GET TARGET
+        if (target == null)
+            target = FindTarget();
     }
 
+    // START
     protected override void Start()
     {
         stateMachine.Iinitialize(stateIdle);
     }
 
+    // UPDATE
     protected override void Update()
     {
         stateMachine.CurrentState.LogicUpdate();
     }
 
+    // FIXED UPDATE
     protected override void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
 
+    // RECEIVE DAMAGE
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)
     {
         rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
@@ -48,6 +69,7 @@ public class Enemy : Fighter, IDamageable
         hitflash.Flash();
     }
 
+    // CHECK DAMAGE
     public void CheckDeath(EntityStats stats)
     {
         if (stats.HPcur <= 0f)
@@ -56,8 +78,9 @@ public class Enemy : Fighter, IDamageable
         }
     }
 
+    // FIND NEW TARGET
     public Transform FindTarget()
     {
-        return GameObject.FindWithTag("Player").transform;
+        return GameManager.instance.playerManager.playerList[Random.Range(0,GameManager.instance.playerManager.playerList.Count)].transform;
     }
 }

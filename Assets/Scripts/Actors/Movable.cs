@@ -84,7 +84,7 @@ public class Movable : MonoBehaviour
     {
         // DUST PS
         dustPS.transform.position = transform.position - ((Vector3)rb.velocity * 0.2f);
-        if (rb.velocity.magnitude > 2f){
+        if (rb.velocity.magnitude > 2.5f){
             if (!dustPS.isEmitting) {
                 dustPS.Play();
             }
