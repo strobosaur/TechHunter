@@ -9,6 +9,7 @@ public class EntityStats : MonoBehaviour
     public Stat armor;
     public Stat staminaMax;
     public Stat staminaCur;
+    public Stat moveSpd;
 
     public void TakeDamage(float damage)
     {

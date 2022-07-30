@@ -20,6 +20,14 @@ public class CameraController : MonoBehaviour
         crossTransform = GameObject.Find("Crosshair").transform;
     }
 
+    // UPDATE
+    void Update()
+    {
+        if (player == null) player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
+        if (playerTransform == null) playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
+        if (crossTransform == null) crossTransform = GameObject.Find("Crosshair").transform;
+    }
+
     // FIXED UPDATE
     void FixedUpdate()
     {

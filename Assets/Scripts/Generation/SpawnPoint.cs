@@ -7,7 +7,7 @@ public class SpawnPoint : MonoBehaviour
     public float lastSpawn;
     public float spawnCDBase = 60f;
     public float spawnCD = 60f;
-    public float spawnMultiplier = 0.25f;
+    public float spawnMultiplier = 0.1f;
     
     // Start is called before the first frame update
     void Start()
@@ -30,9 +30,9 @@ public class SpawnPoint : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        int glandCount = Mathf.RoundToInt(Random.Range(0,4) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)) * spawnMultiplier);
-        int germCount = Mathf.RoundToInt(Random.Range(3,8) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)) * spawnMultiplier);
-        int shellCount = Mathf.RoundToInt(Random.Range(3,12) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)) * spawnMultiplier);
+        int glandCount = Mathf.RoundToInt((Random.Range(0,4) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
+        int germCount = Mathf.RoundToInt((Random.Range(3,8) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
+        int shellCount = Mathf.RoundToInt((Random.Range(3,12) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
 
         // GLANDS
         for (int i = 0; i < glandCount; i++)

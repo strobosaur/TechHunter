@@ -206,6 +206,8 @@ MonoBehaviour:
     baseValue: 0
   staminaCur:
     baseValue: 0
+  moveSpd:
+    baseValue: 3
 --- !u!95 &640108655522021680
 Animator:
   serializedVersion: 4

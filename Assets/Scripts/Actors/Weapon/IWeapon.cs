@@ -6,4 +6,5 @@ public interface IWeapon
 {
     void WeaponAttack(Vector3 origin, Vector3 target);
     void UpdateWeapon(Vector2 dir);
+    void SetWeaponParams(WeaponParams stats);
 }
