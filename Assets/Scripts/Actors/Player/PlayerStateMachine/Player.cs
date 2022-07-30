@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Fighter
+public class Player : Fighter, IDamageable
 {
     // PLAYER DATA
     public PlayerData data;
@@ -40,7 +40,7 @@ public class Player : Fighter
         stateMove = new StatePlayerMove(this, stateMachine, "move");
 
         // CREATE WEAPON
-        weapon.SetWeaponParams(new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8));
+        weapon.SetWeaponParams(new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8));
         stats2 = new PlayerStats(2f, 3f, 10f);
         moveBoost = GetComponent<PlayerMoveBoost>();
     }
@@ -62,5 +62,22 @@ public class Player : Fighter
     protected override void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    // RECEIVE DAMAGE
+    public void ReceiveDamage(DoDamage damage, Vector2 originDir)
+    {
+        rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
+        stats.TakeDamage(damage.damage);
+        CheckDeath(stats);
+        hitflash.Flash();        
+    }
+
+    public void CheckDeath(EntityStats stats)
+    {
+        if (stats.HPcur <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour, IWeapon
     protected WeaponParams wpnParams;
     protected int burstCount;
 
+    public bool isMelee;
+
     // TIMER ARRAY
     protected float[] wpnTimers;
 
@@ -25,7 +27,7 @@ public class Weapon : MonoBehaviour, IWeapon
     }
 
     // AWAKE
-    void Awake()
+    protected virtual void Awake()
     {
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
@@ -35,7 +37,7 @@ public class Weapon : MonoBehaviour, IWeapon
     }
 
     // FIXED UPDATE
-    void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         UpdateTimers();
     }

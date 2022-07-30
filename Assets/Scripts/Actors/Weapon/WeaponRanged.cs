@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class WeaponRanged : Weapon
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        isMelee = false;
+    }
+
     public override void WeaponAttack(Vector3 origin, Vector3 target)
     {
         // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class WeaponMelee : Weapon, IWeapon
 {
+    protected override void Awake()
+    {
+        base.Awake();
+        isMelee = true;
+    }
+
     public override void WeaponAttack(Vector3 origin, Vector3 target)
     {
         if (Vector2.Distance(origin, target) <= wpnParams.range.GetValue())

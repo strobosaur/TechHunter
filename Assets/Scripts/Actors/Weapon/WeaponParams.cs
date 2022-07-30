@@ -4,6 +4,7 @@ using UnityEngine;
 
 public struct WeaponParams
 {
+    public bool isMelee;
     public Stat frate;     // TIME BETWEEN FIRE
     public Stat brate;     // TIME BETWEEN BURST SHOTS
     public Stat dmg;       // BASE DAMAGE
@@ -14,7 +15,9 @@ public struct WeaponParams
     public Stat knockback; // BULLET SPEED
     public StatInt burst;  // NUMBER OF SHOTS IN ONE BURST
 
-    public WeaponParams(float fireRate = 0, float burstRate = 0, float damage = 0, float range = 0, float spread = 0, float damageSpread = 0, float bulletSpd = 0, float knockback = 0, int burst = 0){
+    public WeaponParams(bool isMelee, float fireRate = 0, float burstRate = 0, float damage = 0, float range = 0, float spread = 0, float damageSpread = 0, float bulletSpd = 0, float knockback = 0, int burst = 0){
+        this.isMelee = isMelee;
+        
         this.frate = new Stat();
         this.frate.SetValue(fireRate);
         

@@ -9,6 +9,9 @@ public class Fighter : Movable
     private float firePivotYmod = 0.66f;
     private float firePivotDist = 0.66f;
 
+    // COMPONENTS
+    public HitFlash hitflash;
+
     // AWAKE
     protected override void Awake()
     {
@@ -16,6 +19,9 @@ public class Fighter : Movable
 
         // GET WEAPON
         weapon = GetComponentInChildren<IWeapon>();
+
+        // GET HITFLASH
+        hitflash = GetComponent<HitFlash>();
     }
 
     // UPDATE FIRE PIVOT

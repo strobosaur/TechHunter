@@ -248,6 +248,8 @@ GameObject:
   - component: {fileID: 73893501}
   - component: {fileID: 73893502}
   - component: {fileID: 73893503}
+  - component: {fileID: 73893504}
+  - component: {fileID: 73893505}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -343,7 +345,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9d7ea0d0b7631424d8b74c8894c4a784, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -432,6 +434,8 @@ MonoBehaviour:
   data: {fileID: 0}
   stats: {fileID: 0}
   dustPS: {fileID: 1383084806}
+  stats2: {fileID: 0}
+  moveBoost: {fileID: 0}
 --- !u!114 &73893501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +481,36 @@ MonoBehaviour:
     baseValue: 0
   staminaCur:
     baseValue: 0
+  moveSpd:
+    baseValue: 3
+--- !u!114 &73893504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ca87016bc90074f8c74f06c3cfe4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  lastBoost: 0
+--- !u!114 &73893505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c14995bb4f63d40ae84371699898ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.25
 --- !u!1 &279669363
 GameObject:
   m_ObjectHideFlags: 0
@@ -5839,7 +5873,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIexBv0K5WwIAABUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VEtz2jAQ/iuMzqVjaAikt9YQ0kMCE9LJxRchrbEGWfLowSMZ/ntXso1dOj2xfPvt7rcP+ZMIZStgTpulEfxZcyDfByTY5Mugcz7Bie602ogPaDnvgrsikGjkvFInNOKjEGZ1Cc4I9kPtZCAnCHolcm3KBd9Bqq2zCOdUWkCX0S5EK4Q+B+SEP8OHEHJGazwN1gdaD8nggiYD5cB01JbY0mqWV0zSsgIeJHfkWcue1TSFzTSM5OskZNdSCttoIe5cxV5TWlmPnSCBC4q9RQGjGFGA2BUuKO2Hr/LcgmtkGXqeC4NDqvOSn7qeXEntvtZ2oNKHSvd3UVad8/kf93AU3bnR5VNbdpSEEq4QbP9Kz4xa15tsH573lMcJHanc062E9wLUi14a7RVHpzM+hHoL43n399pZWgDbd3gt9Qb01f/3E3q4xOZPqRTlNo7+rgY2UseBx+2DweX8QsHxNmyTAtGg4reFN7rrH1HjeBTGOnQ1Xaogb6u9CVSyiDML3XiXaqMgwo3oChSV7rzGNO52gze+XtkbzyMNz6Up3vjaV3ATEuGOnyQ3rrU+XpdlC318BlusvJNCQSc6OF5wTqlWqj6w/kzasI03OWW9sJ0X/O/TIjkbTcb8fsYZm46/sdkwZzOWTO4m4+12up2yGYm3JxT2SeW6FtqMB7emuuQK76z9igyWhlbx2Lmhx6X4KHVv5ELlesMMgFrVGa7CwWARfJh8wQUOaAPOCRX3TT4zIjXbA8+uibLY6eLkDM26LBmpxEG7gGQkjZ+NjAT4estrAwcBx1C8TXYhlz9QSwMEFAAACAgAAAgh7IgtLhhtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFJasqGpUYqZRUpysrmRcbKFblqyRbKBqYmpUVKSeZJ5soVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7EG/QrlbAgAAFQUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7IgtLhhtAAAAeAAAAAkAJAAAAAAAAAAAAAAAqAIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABgAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAIIezTsxHuXAIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VEtz2jAQ/iuMzqVjaAikt9YQ0kMCE9LJxRchrbEGWfLoER4Z/ntXso1dOj2xfPvt7rcP+ZMIZStgTpulEfxZcyDfByTY5Mugcz7Bke602ogztJx3wV0RSDRyXqkTGvFRCLO6BGcE+6F2MpATBL0SuTblgu8g1dZZhHMqLaDLaBeiFUKfA3LEn+FDCDmhNZ4G64zWQzK4oMlAOTAdtSW2tJrlFZO0rIAHyR151rJnNU1hMw0j+ToJ2bWUwjZaiDtVsdeUVtZjJ0jggmJvUcAoRhQgdoULSvvhqzy34BpZhp7mwuCQ6rzkp64nV1K7r7V9UOlDpfu7KKvO+fyPeziK7tzo8qktO0pCCVcItn+lJ0at6022D897yuOEDlTu6VbCewHqRS+N9oqj0xkfQr2F8bz7e+0sLYDtO7yWegP66v/7CT1cYvPHVIpyG0d/VwMbqePA4/bB4HJ+oeB4G7ZJgWhQ8dvCG931j6hxPApjHbqaLlWQt9XeBCp5RCMMnnmXaqMgoo3mChSV7rTGLO52gTe+XtUbzyMNr6Wp3fjaR3ATEuGOnyQ3rrU+XHdlC314BlusvJNCQSc6OF5wTKlWqr6v/kjasI03OWW9sJ0X/O/LIjkbTcb8fsYZm46/sdkwZzOWTO4m4+12up2yGYmnJxT2SeW6FtqMB5emuuQKz6z9iAyWhlbx1rmhh6U4l7o3cqFyvWEGQK3qDFfhYLAIvku+4AIHtAHnhIrrJp8ZkZrtgWfXRFnsdHF0hmZdloxU4kO7gGQkjV+NjAT4esprAx8CDqF4m+xCLn8AUEsDBBQAAAgIAAAIIeyILS4YbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSWrKhqVGKmUVKcrK5kXGyhW5askWygamJqVFSknmSebKFUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIezTsxHuXAIAABQFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIeyILS4YbQAAAHgAAAAJACQAAAAAAAAAAAAAAKkCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAYQMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -5852,9 +5886,9 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
+  logPathResults: 4
+  maxNearestNodeDistance: 32
+  scanOnStartup: 0
   fullGetNearestSearch: 0
   prioritizeGraphs: 0
   prioritizeGraphsLimit: 1
@@ -5867,7 +5901,39 @@ MonoBehaviour:
     _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
     _AreaColors:
     - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
