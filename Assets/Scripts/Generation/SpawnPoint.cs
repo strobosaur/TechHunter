@@ -38,7 +38,8 @@ public class SpawnPoint : MonoBehaviour
         for (int i = 0; i < glandCount; i++)
         {
             var pos = Random.insideUnitCircle * 2f;
-            var ob = Instantiate(EnemyManager.instance.enemyPrefabList[2]);
+            //var ob = Instantiate(EnemyManager.instance.enemyPrefabList[2]);
+            var ob = EnemyManager.instance.GetEnemyPool(2);
             EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
 
             ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
@@ -49,7 +50,8 @@ public class SpawnPoint : MonoBehaviour
         for (int j = 0; j < germCount; j++)
         {
             var pos = Random.insideUnitCircle * 2f;
-            var ob = Instantiate(EnemyManager.instance.enemyPrefabList[1]);
+            //var ob = Instantiate(EnemyManager.instance.enemyPrefabList[1]);
+            var ob = EnemyManager.instance.GetEnemyPool(1);
             EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
 
             ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
@@ -60,7 +62,8 @@ public class SpawnPoint : MonoBehaviour
         for (int k = 0; k < shellCount; k++)
         {
             var pos = Random.insideUnitCircle * 2f;
-            var ob = Instantiate(EnemyManager.instance.enemyPrefabList[0]);
+            //var ob = Instantiate(EnemyManager.instance.enemyPrefabList[0]);
+            var ob = EnemyManager.instance.GetEnemyPool(0);
             EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
 
             ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
