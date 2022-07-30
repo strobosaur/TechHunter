@@ -2,16 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateIdle : EntityState
+public class StateEnemyIdle : EnemyState
 {
     float targetDist;
     Vector2 moveInput;
     Vector2 lookInput;
 
     // CONSTRUCTOR
-    public StateIdle(Movable entity, StateMachine stateMachine, string animBoolName) : base(entity, stateMachine, animBoolName)
-    {
-    }
+    public StateEnemyIdle(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName) {}
 
     // DO CHECKS
     public override void DoChecks()
@@ -36,25 +34,32 @@ public class StateIdle : EntityState
     {
         base.LogicUpdate();
 
+        // GET TARGET
+        if (enemy.target == null)
+            enemy.target = enemy.FindTarget();
+
+        // DISTANCE TO TARGET
+        targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
+
         // GET INPUT
-        moveInput = entity.moveInput.GetMoveInput();
-        lookInput = entity.lookInput.GetLookInput();
+        moveInput = enemy.moveInput.GetMoveInput();
+        lookInput = enemy.lookInput.GetLookInput();
 
         // CHECK FOR MOVEMENT & CHANGE STATE
         if (moveInput.magnitude > 0)
         {
-            stateMachine.ChangeState(entity.stateMove);
+            stateMachine.ChangeState(enemy.stateMove);
         }
 
         // ANIMATOR
-        if (moveInput.magnitude > entity.rb.velocity.magnitude) {
+        if (moveInput.magnitude > enemy.rb.velocity.magnitude) {
             UpdateAnimator(moveInput, lookInput);
         } else {
-            UpdateAnimator(entity.rb.velocity, lookInput);
+            UpdateAnimator(enemy.rb.velocity, lookInput);
         }
 
         // MOVE DUST
-        entity.MoveDust();
+        enemy.MoveDust();
     }
 
     // PHYSICS UPDATE

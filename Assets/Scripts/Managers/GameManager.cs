@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     // STATIC INSTANCE
     public static GameManager instance;
 
+    // PLAYER MANAGER
+    public PlayerManager playerManager;
+
     void Awake()
     {
         // CREATE SINGLETON
@@ -17,5 +20,7 @@ public class GameManager : MonoBehaviour
         } else {
             Destroy(gameObject);
         }
+
+        playerManager = GetComponent<PlayerManager>();
     }
 }
