@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61d874bc2c30084595cf9a43d454644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMelee: 0
 --- !u!1 &640108655522021677
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ GameObject:
   - component: {fileID: 640108655522021683}
   - component: {fileID: 640108655522021682}
   - component: {fileID: 640108655522021681}
+  - component: {fileID: 4241270793043093604}
   - component: {fileID: 6329121655212747068}
   - component: {fileID: 640108655522021680}
   - component: {fileID: 640108655522021679}
@@ -148,6 +150,9 @@ MonoBehaviour:
   data: {fileID: 0}
   stats: {fileID: 0}
   dustPS: {fileID: 1204032103941762971}
+  hitflash: {fileID: 0}
+  target: {fileID: 0}
+  chargeDist: 0
 --- !u!114 &640108655522021684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,6 +214,23 @@ MonoBehaviour:
     baseValue: 0
   moveSpd:
     baseValue: 3
+  moveBoost:
+    baseValue: 2.5
+  moveBoostTime:
+    baseValue: 3
+--- !u!114 &4241270793043093604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640108655522021677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f89ba6d3e62014598e43656c9b74a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!114 &6329121655212747068
 MonoBehaviour:
   m_ObjectHideFlags: 0

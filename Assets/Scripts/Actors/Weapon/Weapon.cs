@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour, IWeapon
 
     // WEAPON PARAMETERS
     protected IWeapon weapon;
-    protected WeaponParams wpnParams;
+    public WeaponParams wpnParams { get; protected set; }
     protected int burstCount;
 
     public bool isMelee;
@@ -81,6 +81,11 @@ public class Weapon : MonoBehaviour, IWeapon
     public void SetWeaponParams(WeaponParams stats)
     {
         wpnParams = stats;
+    }
+
+    public WeaponParams GetWeaponParams()
+    {
+        return wpnParams;
     }
 
     public virtual void WeaponAttack(Vector3 origin, Vector3 target){}
