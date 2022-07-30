@@ -35,5 +35,5 @@ public class Fighter : Movable
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);
 
         weapon.WeaponAttack(firePos, target);
-    }    
+    }
 }

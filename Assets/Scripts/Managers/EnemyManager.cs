@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject spawnPoint;
 
     public List<GameObject> spawnPoints;
+    public Dictionary<string, EntityStats> enemyStats = new Dictionary<string, EntityStats>();
 
     void Awake()
     {
