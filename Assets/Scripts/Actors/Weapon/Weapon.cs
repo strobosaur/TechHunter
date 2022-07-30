@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour, IWeapon
         wpnTimers = new float[(int)WeaponTimers.end];
         anim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-        wpnParams = new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
+        wpnParams = new WeaponParams();
         owner = GetComponentInParent<Fighter>();
     }
 
@@ -74,6 +74,11 @@ public class Weapon : MonoBehaviour, IWeapon
             // SET TIMERS
             burstCount = 0;
         }
+    }
+
+    public void SetWeaponParams(WeaponParams stats)
+    {
+        wpnParams = stats;
     }
 
     public virtual void WeaponAttack(Vector3 origin, Vector3 target){}

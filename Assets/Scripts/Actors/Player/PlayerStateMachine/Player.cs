@@ -6,6 +6,8 @@ public class Player : Fighter
 {
     // PLAYER DATA
     public PlayerData data;
+    public PlayerStats stats2;
+    public PlayerMoveBoost moveBoost;
 
     // STATE MACHINE
     public PlayerStateMachine stateMachine { get; private set; }
@@ -36,6 +38,11 @@ public class Player : Fighter
         stateMachine = new PlayerStateMachine();
         stateIdle = new StatePlayerIdle(this, stateMachine, "idle");
         stateMove = new StatePlayerMove(this, stateMachine, "move");
+
+        // CREATE WEAPON
+        weapon.SetWeaponParams(new WeaponParams(1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8));
+        stats2 = new PlayerStats(2f, 3f, 10f);
+        moveBoost = GetComponent<PlayerMoveBoost>();
     }
 
     // START
@@ -47,6 +54,7 @@ public class Player : Fighter
     // UPDATE
     protected override void Update()
     {
+        if (crosshair == null) GameObject.Find("Crosshair").GetComponent<Crosshair>();
         stateMachine.CurrentState.LogicUpdate();
     }
 

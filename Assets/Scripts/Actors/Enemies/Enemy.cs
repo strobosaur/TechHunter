@@ -20,6 +20,9 @@ public class Enemy : Fighter, IDamageable
         stateMachine = new StateMachine();
         stateIdle = new StateIdle(this, stateMachine, "idle");
         stateMove = new StateMove(this, stateMachine, "move");
+
+        // CREATE WEAPON
+        weapon.SetWeaponParams(new WeaponParams(2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));
     }
 
     protected override void Start()

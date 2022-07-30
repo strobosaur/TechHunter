@@ -26,6 +26,7 @@ public class StatePlayerMove : PlayerState
         base.Exit();
     }
 
+    // LOGIC UPDATE
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -38,7 +39,13 @@ public class StatePlayerMove : PlayerState
         player.crosshair.UpdateCrosshair(lookInput);
 
         // COMBAT
-        player.combat.Attack(player.weapon, player.rb.position, player.data.facingDir);
+        if (InputManager.input.R2.IsPressed())
+            player.combat.Attack(player.weapon, player.rb.position, player.data.facingDir);
+
+        // MOVE BOOST
+        if (InputManager.input.B.IsPressed()) {
+            player.moveBoost.MoveBoost();
+        }
         
         // CHECK FOR MOVEMENT
         if (moveInput.magnitude > 0) {
@@ -58,9 +65,10 @@ public class StatePlayerMove : PlayerState
         player.MoveDust();
     }
 
+    // PHYSICS UPDATE
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        player.movement.Move(moveInput, player.data.moveSpd, player.rb);
+        player.movement.Move(moveInput, player.stats.moveSpd.GetValue(), player.rb);
     }
 }
