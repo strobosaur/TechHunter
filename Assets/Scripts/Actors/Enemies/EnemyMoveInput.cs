@@ -21,13 +21,13 @@ public class EnemyMoveInput : MonoBehaviour, IMoveInput
     {
         seeker = GetComponent<Seeker>();
 
-        InvokeRepeating("UpdatePath", 0f, 0.5f);
+        InvokeRepeating("UpdatePath", 0f, 2 + Random.Range(0f,0.5f));
         seeker.StartPath(transform.position, target.position, OnPathComplete);
     }
 
     public Vector2 GetMoveInput()
     {
-        if (path == null)
+        if ((path == null) || (target == null))
             return Vector2.zero;
 
         if (currentWaypoint >= path.vectorPath.Count)

@@ -19,7 +19,7 @@ public static class Globals
     public static float G_LNRDRAG = 2f;
 
     // GAME MANAGEMENT
-    public static string G_PLAYERNAME = "Player2";
+    public static string G_PLAYERNAME = "Player";
 
     // INPUT
     public static float G_LS_DEADZONE = 0.2f;
