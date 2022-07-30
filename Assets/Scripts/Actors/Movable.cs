@@ -12,6 +12,7 @@ public class Movable : MonoBehaviour
 
     // PLAYER DATA
     public EntityData data;
+    public EntityStats stats;
 
     // STATE MACHINE
     public StateMachine stateMachine { get; protected set; }
@@ -42,6 +43,7 @@ public class Movable : MonoBehaviour
 
         // PLAYER DATA
         data = new EntityData();
+        stats = GetComponent<EntityStats>();
 
         // FORCE QUEUE
         forceQueue = new Queue<Vector2>();

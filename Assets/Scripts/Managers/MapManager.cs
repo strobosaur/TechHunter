@@ -80,7 +80,7 @@ public class MapManager : MonoBehaviour
     {
         // FIND ENEMY MANAGER
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
-        enemyManager.DeleteAllSpawnPoints();
+        enemyManager.spawnPointManager.DeleteAllSpawnPoints();
 
         // CLEAR TILES
         tileManager.ClearTiles();
@@ -117,11 +117,11 @@ public class MapManager : MonoBehaviour
         tileManager.PaintVoid(voidPos);
 
         // SPAWN POINTS
-        enemyManager.MakeSpawnPoints(startPos, nodePositions, 4, 14f, 22f);
+        enemyManager.spawnPointManager.MakeSpawnPoints(startPos, nodePositions, 4, 14f, 22f);
 
         // PLACE PLAYER AT START POSITION
         GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f); //* (1f / Globals.G_CELLSIZE);        
-        GameObject.Find("Enemy2").transform.position = (Vector2)nodePositions[Random.Range(0,nodePositions.Count)];
+        //GameObject.Find("Enemy2").transform.position = (Vector2)nodePositions[Random.Range(0,nodePositions.Count)];
 
         // UPDATE A* GRID
         InvokeRepeating("UpdateAstar", 0.5f, 60f);
