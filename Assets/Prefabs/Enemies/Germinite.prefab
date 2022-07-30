@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 640108655522021683}
   - component: {fileID: 640108655522021682}
   - component: {fileID: 640108655522021681}
+  - component: {fileID: 6329121655212747068}
   - component: {fileID: 640108655522021680}
   - component: {fileID: 640108655522021679}
   - component: {fileID: 640108655522021678}
@@ -208,6 +209,20 @@ MonoBehaviour:
     baseValue: 0
   moveSpd:
     baseValue: 3
+--- !u!114 &6329121655212747068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640108655522021677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c14995bb4f63d40ae84371699898ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 0}
+  flashDuration: 0.5
 --- !u!95 &640108655522021680
 Animator:
   serializedVersion: 4
@@ -248,7 +263,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 9d7ea0d0b7631424d8b74c8894c4a784, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

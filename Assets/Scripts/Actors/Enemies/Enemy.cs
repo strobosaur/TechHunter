@@ -22,7 +22,7 @@ public class Enemy : Fighter, IDamageable
         stateMove = new StateMove(this, stateMachine, "move");
 
         // CREATE WEAPON
-        weapon.SetWeaponParams(new WeaponParams(2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));
+        weapon.SetWeaponParams(new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));
     }
 
     protected override void Start()
@@ -43,9 +43,9 @@ public class Enemy : Fighter, IDamageable
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)
     {
         rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
-        //Debug.Log(this + " received " + damage.damage + " pts. damage");
         stats.TakeDamage(damage.damage);
         CheckDeath(stats);
+        hitflash.Flash();
     }
 
     public void CheckDeath(EntityStats stats)
