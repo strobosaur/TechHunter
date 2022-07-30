@@ -40,6 +40,16 @@ public class Enemy : Fighter, IDamageable
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)
     {
         rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
-        Debug.Log(this + " received " + damage.damage + " pts. damage");
+        //Debug.Log(this + " received " + damage.damage + " pts. damage");
+        stats.TakeDamage(damage.damage);
+        CheckDeath(stats);
+    }
+
+    public void CheckDeath(EntityStats stats)
+    {
+        if (stats.HPcur <= 0f)
+        {
+            Destroy(gameObject);
+        }
     }
 }
