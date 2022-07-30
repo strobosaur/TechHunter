@@ -22,7 +22,7 @@ public class WeaponMelee : Weapon, IWeapon
                 // CHECK FOR HIT
                 var collision = (Physics2D.CircleCast(origin, 4f, (target - origin).normalized));                
                 {
-                    Debug.Log("Bullet hit " + collision);
+                    Debug.Log("Melee hit " + collision);
                     if (owner.tag != collision.collider.tag)
                     {
                         var damage = new DoDamage{damage = wpnParams.dmg * Random.Range(1f - wpnParams.dmgSpr, 1f), force = 1f};
