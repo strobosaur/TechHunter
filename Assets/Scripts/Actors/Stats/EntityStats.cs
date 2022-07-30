@@ -10,6 +10,8 @@ public class EntityStats : MonoBehaviour
     public Stat staminaMax;
     public Stat staminaCur;
     public Stat moveSpd;
+    public Stat moveBoost;
+    public Stat moveBoostTime;
 
     public void TakeDamage(float damage)
     {

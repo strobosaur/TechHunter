@@ -12,6 +12,8 @@ public class Enemy : Fighter, IDamageable
 
     public StateEnemyIdle stateIdle { get; protected set; }
     public StateEnemyMove stateMove { get; protected set; }
+    public StateEnemyCharge stateCharge { get; protected set; }
+    public StateEnemyAttack stateAttack { get; protected set; }
 
     // ENEMY PARAMETERS
     public float chargeDist;
@@ -28,11 +30,14 @@ public class Enemy : Fighter, IDamageable
         moveInput = GetComponent<IMoveInput>();
         lookInput = GetComponent<ILookInput>();
         movement = GetComponent<IMoveable>();
+        combat = GetComponent<ICombat>();
 
         // CREATE STATE MACHINE
         stateMachine = new EnemyStateMachine();
         stateIdle = new StateEnemyIdle(this, stateMachine, "idle");
         stateMove = new StateEnemyMove(this, stateMachine, "move");
+        stateCharge = new StateEnemyCharge(this, stateMachine, "charge");
+        stateAttack = new StateEnemyAttack(this, stateMachine, "attack");
 
         // CREATE WEAPON
         weapon.SetWeaponParams(new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));

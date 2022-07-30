@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    void WeaponAttack(Vector3 origin, Vector3 target);
-    void UpdateWeapon(Vector2 dir);
-    void SetWeaponParams(WeaponParams stats);
+    public void WeaponAttack(Vector3 origin, Vector3 target);
+    public void UpdateWeapon(Vector2 dir);
+    public void SetWeaponParams(WeaponParams stats);
+    public WeaponParams GetWeaponParams();
 }

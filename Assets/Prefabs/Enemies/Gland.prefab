@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1004670130657727163}
   - component: {fileID: 1004670130657727160}
   - component: {fileID: 1004670130657727161}
+  - component: {fileID: 2302509538139626946}
   - component: {fileID: -8492539105425625631}
   - component: {fileID: 1004670130657727162}
   - component: {fileID: 1004670130657727157}
@@ -104,6 +105,9 @@ MonoBehaviour:
   data: {fileID: 0}
   stats: {fileID: 0}
   dustPS: {fileID: 1560151572440276913}
+  hitflash: {fileID: 0}
+  target: {fileID: 0}
+  chargeDist: 0
 --- !u!114 &1004670130657727158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +169,23 @@ MonoBehaviour:
     baseValue: 0
   moveSpd:
     baseValue: 3
+  moveBoost:
+    baseValue: 2.5
+  moveBoostTime:
+    baseValue: 3
+--- !u!114 &2302509538139626946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004670130657727148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f89ba6d3e62014598e43656c9b74a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 0}
 --- !u!114 &-8492539105425625631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f61d874bc2c30084595cf9a43d454644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMelee: 0
 --- !u!1 &1004670131900347353
 GameObject:
   m_ObjectHideFlags: 0
