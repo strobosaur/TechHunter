@@ -52,4 +52,9 @@ public class Enemy : Fighter, IDamageable
             Destroy(gameObject);
         }
     }
+
+    public Transform FindTarget()
+    {
+        return GameObject.FindWithTag("Player").transform;
+    }
 }
