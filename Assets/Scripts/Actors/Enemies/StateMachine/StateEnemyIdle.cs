@@ -46,8 +46,20 @@ public class StateEnemyIdle : EnemyState
         lookInput = enemy.lookInput.GetLookInput();
 
         // CHECK FOR MOVEMENT & CHANGE STATE
-        if (moveInput.magnitude > 0)
+        if (targetDist < enemy.wpnStats.range.GetValue())
         {
+            // ATTACK STATE
+            stateMachine.ChangeState(enemy.stateAttack);
+        }
+        else if (targetDist < enemy.chargeDist)
+        {
+            // CHARGE STATE
+            if (Time.time > enemy.timerArr[(int)Enemy.EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
+                stateMachine.ChangeState(enemy.stateCharge);
+
+        } else if (moveInput.magnitude > 0) {
+
+            // MOVE STATE
             stateMachine.ChangeState(enemy.stateMove);
         }
 

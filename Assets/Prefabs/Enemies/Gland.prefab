@@ -102,11 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba0b6df7d06f274cb59fe1ccfdd8e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
   stats: {fileID: 0}
   dustPS: {fileID: 1560151572440276913}
   hitflash: {fileID: 0}
   target: {fileID: 0}
+  timerArr: []
   chargeDist: 0
 --- !u!114 &1004670130657727158
 MonoBehaviour:
@@ -173,6 +173,8 @@ MonoBehaviour:
     baseValue: 2.5
   moveBoostTime:
     baseValue: 3
+  moveBoostCD:
+    baseValue: 10
 --- !u!114 &2302509538139626946
 MonoBehaviour:
   m_ObjectHideFlags: 0

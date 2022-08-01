@@ -42,10 +42,16 @@ public class StateEnemyMove : EnemyState
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
         // CHANGE STATE?
-        if (targetDist < enemy.wpnStats.range.GetValue()) {
+        if (targetDist < enemy.wpnStats.range.GetValue()) 
+        {
+            // ATTACK STATE
             stateMachine.ChangeState(enemy.stateAttack);
-        } else if (targetDist < enemy.chargeDist) {
-            stateMachine.ChangeState(enemy.stateCharge);
+        } 
+        else if (targetDist < enemy.chargeDist) 
+        {
+            // CHARGE STATE
+            if (Time.time > enemy.timerArr[(int)Enemy.EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
+                stateMachine.ChangeState(enemy.stateCharge);
         }
 
         // GET INPUT
