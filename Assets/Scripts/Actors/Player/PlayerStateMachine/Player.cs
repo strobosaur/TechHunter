@@ -18,6 +18,8 @@ public class Player : Fighter, IDamageable
 
     // CROSSHAIR
     public Crosshair crosshair { get; private set; }
+    //public IWeapon weapon;
+    //public WeaponParams wpnStats;
 
     // AWAKE
     protected override void Awake()
@@ -40,7 +42,7 @@ public class Player : Fighter, IDamageable
         weapon = GetComponent<IWeapon>();
         wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
         weapon.SetWeaponParams(wpnStats);
-        stats2 = new PlayerStats(2f, 3f, 10f, 1f);
+        stats2 = new PlayerStats(2f, 3f, 10f, 3f);
         moveBoost = GetComponent<PlayerMoveBoost>();
 
         // CREATE STATE MACHINE
@@ -67,6 +69,15 @@ public class Player : Fighter, IDamageable
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
+
+    // ON COLLISION ENTER
+    // protected void OnCollisionEnter(Collision coll)
+    // {
+    //     if ((invincibility.isInvincible) && (coll.gameObject.layer == 3))
+    //     {
+    //         Physics.IgnoreCollision(coll.gameObject.GetComponent<Collider>(), GetComponent<Collider>());
+    //     }
+    // }
 
     // RECEIVE DAMAGE
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)

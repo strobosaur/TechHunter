@@ -99,6 +99,7 @@ public class Enemy : Fighter, IDamageable
     {
         if (stats.HPcur <= 0f)
         {
+            EnemyManager.instance.enemyList.Remove(this);
             Destroy(gameObject);
         }
     }

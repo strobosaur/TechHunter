@@ -71,4 +71,12 @@ public class EnemyManager : MonoBehaviour
         if (index == 2) return glandPool.Get();
         else return shellPool.Get();
     }
+
+    public void ClearAllEnemies()
+    {
+        foreach(var enemy in enemyList)
+        {
+            Destroy(enemy.gameObject);
+        }
+    }
 }
