@@ -15,6 +15,15 @@ public class Enemy : Fighter, IDamageable
     public StateEnemyCharge stateCharge { get; protected set; }
     public StateEnemyAttack stateAttack { get; protected set; }
 
+    // ENEMY TIMERS
+    public enum EnemyTimers
+    {
+        chargeState,
+        end
+    }
+
+    public float[] timerArr;
+
     // ENEMY PARAMETERS
     public float chargeDist;
     
@@ -23,9 +32,12 @@ public class Enemy : Fighter, IDamageable
     {
         base.Awake();
 
-        // PLAYER DATA
+        // ENEMY DATA
         data = new EntityData();
         //stats = GetComponent<EntityStats>();
+
+        // TIMERS
+        timerArr = new float[(int)EnemyTimers.end];
 
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();

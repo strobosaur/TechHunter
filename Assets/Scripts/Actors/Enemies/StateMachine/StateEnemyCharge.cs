@@ -22,6 +22,7 @@ public class StateEnemyCharge : EnemyState
     {
         base.Enter();
         enemy.stats.moveSpd.AddModifier(enemy.stats.moveBoost.GetValue());
+        enemy.timerArr[(int)Enemy.EnemyTimers.chargeState] = Time.time;
     }
 
     // ON STATE EXIT

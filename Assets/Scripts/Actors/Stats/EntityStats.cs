@@ -12,6 +12,7 @@ public class EntityStats : MonoBehaviour
     public Stat moveSpd;
     public Stat moveBoost;
     public Stat moveBoostTime;
+    public Stat moveBoostCD;
 
     public void TakeDamage(float damage)
     {
