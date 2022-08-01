@@ -12,6 +12,7 @@ public class PlayerMoveBoost : MonoBehaviour
     {
         player = GetComponent<Player>();
         isBoosting = false;
+        lastBoost = Time.time;
     }
 
     void Update()
