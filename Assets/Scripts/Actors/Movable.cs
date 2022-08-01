@@ -15,18 +15,16 @@ public class Movable : MonoBehaviour
     public EntityStats stats;
 
     // STATE MACHINE
-    public StateMachine stateMachine { get; protected set; }
+    //public StateMachine stateMachine { get; protected set; }
 
-    public StateIdle stateIdle { get; protected set; }
-    public StateMove stateMove { get; protected set; }
+    //public StateIdle stateIdle { get; protected set; }
+    //public StateMove stateMove { get; protected set; }
 
     // MOVEMENT
     public IMoveInput moveInput;
     public ILookInput lookInput;
     public IMoveable movement;
     public ICombat combat;
-
-    public IWeapon weapon;
 
     public Queue<Vector2> forceQueue;
 
@@ -55,27 +53,27 @@ public class Movable : MonoBehaviour
         combat = GetComponent<ICombat>();
 
         // CREATE STATE MACHINE
-        stateMachine = new StateMachine();
-        stateIdle = new StateIdle(this, stateMachine, "idle");
-        stateMove = new StateMove(this, stateMachine, "move");
+        //stateMachine = new StateMachine();
+        //stateIdle = new StateIdle(this, stateMachine, "idle");
+        //stateMove = new StateMove(this, stateMachine, "move");
     }
 
     // START
     protected virtual void Start()
     {
-        stateMachine.Iinitialize(stateIdle);
+        //stateMachine.Iinitialize(stateIdle);
     }
 
     // UPDATE
     protected virtual void Update()
     {
-        stateMachine.CurrentState.LogicUpdate();
+        //stateMachine.CurrentState.LogicUpdate();
     }
 
     // FIXED UPDATE
     protected virtual void FixedUpdate()
     {
-        stateMachine.CurrentState.PhysicsUpdate();
+        //stateMachine.CurrentState.PhysicsUpdate();
         if (forceQueue.Count > 0) ApplyForces();
     }
 

@@ -54,7 +54,7 @@ public class PlayerState
                 player.anim.speed = moveDelta.magnitude * player.data.animSpd;
 
                 // WEAPON
-                if (player.weapon != null) player.weapon.UpdateWeapon(moveDelta);
+                if (player.weapon != null) player.combat.UpdateWeapon(moveDelta);
 
                 // FACING
                 GetFacingDir(moveDelta);
@@ -71,7 +71,7 @@ public class PlayerState
                 player.anim.SetFloat("velY", lookDelta.y);
 
                 // WEAPON
-                if (player.weapon != null) player.weapon.UpdateWeapon(lookDelta);
+                if (player.weapon != null) player.combat.UpdateWeapon(lookDelta);
 
                 // FACING
                 GetFacingDir(lookDelta);

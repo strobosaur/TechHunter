@@ -10,9 +10,9 @@ public class WeaponMelee : Weapon, IWeapon
         isMelee = true;
     }
 
-    public override void WeaponAttack(Vector3 origin, Vector3 target)
+    public override void WeaponAttack(Vector3 origin, Transform target)
     {
-        if (Vector2.Distance(origin, target) <= wpnParams.range.GetValue())
+        if (Vector2.Distance(origin, target.position) <= wpnParams.range.GetValue())
         {
             // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
             if ((burstCount <= wpnParams.burst.GetValue()) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
@@ -23,19 +23,27 @@ public class WeaponMelee : Weapon, IWeapon
                 burstCount++;
 
                 // FIRE ACTUAL WEAPON
-                //MuzzleFlash(origin, 1f);                
+                //MuzzleFlash(origin, 1f);
 
                 // CHECK FOR HIT
-                var collision = (Physics2D.CircleCast(origin, 4f, (target - origin).normalized));                
+                var targetOb = target.GetComponent<IDamageable>();
+                if (targetOb != null)
                 {
-                    Debug.Log("Melee hit " + collision);
-                    if (owner.tag != collision.collider.tag)
-                    {
-                        var damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
-                        if (collision.collider.GetComponent<IDamageable>() != null)
-                            collision.collider.GetComponent<IDamageable>().ReceiveDamage(damage, (collision.transform.position - transform.position).normalized);
-                    }        
+                    var damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
+                    targetOb.ReceiveDamage(damage, (target.position - origin).normalized);
                 }
+
+                // var collision = (Physics2D.CircleCast(origin, 4f, (target.position - origin).normalized));
+                // {
+                //     Debug.Log("Melee hit " + collision.collider);
+                //     Debug.Log("Owner Tag: " + owner.tag + " | Collider Tag: " + collision.collider.tag);
+                //     if (owner.tag != collision.collider.tag)
+                //     {
+                //         var damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
+                //         if (collision.collider.GetComponent<IDamageable>() != null)
+                //             collision.collider.GetComponent<IDamageable>().ReceiveDamage(damage, (collision.transform.position - transform.position).normalized);
+                //     }        
+                // }
                 
                 // SET BURST TIMER
                 wpnTimers[(int)WeaponTimers.burstTimer] = wpnParams.brate.GetValue();

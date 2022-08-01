@@ -50,7 +50,7 @@ public class StateEnemyCharge : EnemyState
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
         // SWITCH STATES
-        if (targetDist <= enemy.weapon.GetWeaponParams().range.GetValue()) {
+        if (targetDist <= enemy.wpnStats.range.GetValue()) {
             stateMachine.ChangeState(enemy.stateAttack);
         } else if (Time.time > startTime + enemy.stats.moveBoostTime.GetValue()) {
             stateMachine.ChangeState(enemy.stateIdle);

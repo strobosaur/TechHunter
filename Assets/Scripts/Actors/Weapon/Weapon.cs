@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour, IWeapon
+public class Weapon : MonoBehaviour
 {
     // SPRITES & ANIMATIONS
     protected Animator anim;
@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour, IWeapon
     protected Fighter owner;
 
     // WEAPON PARAMETERS
-    protected IWeapon weapon;
     public WeaponParams wpnParams { get; protected set; }
     protected int burstCount;
 
@@ -30,31 +29,13 @@ public class Weapon : MonoBehaviour, IWeapon
     protected virtual void Awake()
     {
         wpnTimers = new float[(int)WeaponTimers.end];
-        anim = GetComponent<Animator>();
-        sr = GetComponent<SpriteRenderer>();
-        wpnParams = new WeaponParams();
-        owner = GetComponentInParent<Fighter>();
+        owner = GetComponent<Fighter>();
     }
 
     // FIXED UPDATE
     protected virtual void FixedUpdate()
     {
         UpdateTimers();
-    }
-
-    // UPDATE WEAPON ANIMATION STATE
-    public void UpdateWeapon(Vector2 facingDir)
-    {
-        if (anim != null && sr != null)
-        {
-            anim.SetFloat("velX", facingDir.x);
-            anim.SetFloat("velY", facingDir.y);
-            if (facingDir.y > Mathf.Abs(facingDir.x)) {
-                sr.sortingOrder = -1;
-            } else {
-                sr.sortingOrder = 1;
-            }
-        }
     }
 
     // DISPLAY MUZZLE FLASH
@@ -88,5 +69,5 @@ public class Weapon : MonoBehaviour, IWeapon
         return wpnParams;
     }
 
-    public virtual void WeaponAttack(Vector3 origin, Vector3 target){}
+    public virtual void WeaponAttack(Vector3 origin, Transform target){}
 }

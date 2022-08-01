@@ -39,7 +39,7 @@ public class StatePlayerIdle : PlayerState
 
         // COMBAT
         if (InputManager.input.R2.IsPressed())
-            player.combat.Attack(player.weapon, player.rb.position, player.data.facingDir);
+            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform);
 
         // MOVE BOOST
         if (InputManager.input.B.IsPressed()) {

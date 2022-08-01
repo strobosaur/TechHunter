@@ -41,6 +41,13 @@ public class StateEnemyMove : EnemyState
         // DISTANCE TO TARGET
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
+        // CHANGE STATE?
+        if (targetDist < enemy.wpnStats.range.GetValue()) {
+            stateMachine.ChangeState(enemy.stateAttack);
+        } else if (targetDist < enemy.chargeDist) {
+            stateMachine.ChangeState(enemy.stateCharge);
+        }
+
         // GET INPUT
         moveInput = enemy.moveInput.GetMoveInput();
         if (lookInput != null ) lookInput = enemy.lookInput.GetLookInput();

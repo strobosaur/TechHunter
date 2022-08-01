@@ -34,15 +34,17 @@ public class Player : Fighter, IDamageable
         
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
+        // CREATE WEAPON
+        weapon = GetComponent<IWeapon>();
+        wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
+        weapon.SetWeaponParams(wpnStats);
+        stats2 = new PlayerStats(2f, 3f, 10f);
+        moveBoost = GetComponent<PlayerMoveBoost>();
+
         // CREATE STATE MACHINE
         stateMachine = new PlayerStateMachine();
         stateIdle = new StatePlayerIdle(this, stateMachine, "idle");
         stateMove = new StatePlayerMove(this, stateMachine, "move");
-
-        // CREATE WEAPON
-        weapon.SetWeaponParams(new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8));
-        stats2 = new PlayerStats(2f, 3f, 10f);
-        moveBoost = GetComponent<PlayerMoveBoost>();
     }
 
     // START
