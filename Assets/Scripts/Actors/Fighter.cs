@@ -11,6 +11,8 @@ public class Fighter : Movable
 
     // COMPONENTS
     public HitFlash hitflash;
+    public IWeapon weapon;
+    public WeaponParams wpnStats;
 
     // AWAKE
     protected override void Awake()
@@ -18,7 +20,7 @@ public class Fighter : Movable
         base.Awake();
 
         // GET WEAPON
-        weapon = GetComponentInChildren<IWeapon>();
+        weapon = GetComponent<IWeapon>();
 
         // GET HITFLASH
         hitflash = GetComponent<HitFlash>();
@@ -33,9 +35,9 @@ public class Fighter : Movable
     }
 
     // FIRE WEAPON
-    public void FireWeapon(Vector2 target)
+    public void FireWeapon(IWeapon weapon, Transform target)
     {
-        UpdateFirePivot(((Vector3)target - transform.position).normalized);
+        UpdateFirePivot((target.position - transform.position).normalized);
 
         Vector2 muzzlePos = Random.insideUnitCircle * 0.15f;
         Vector3 firePos = new Vector3(transform.position.x + firePivot.x + muzzlePos.x, transform.position.y + firePivot.y + muzzlePos.y, 0f);

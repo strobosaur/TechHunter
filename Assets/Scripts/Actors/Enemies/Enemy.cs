@@ -25,6 +25,7 @@ public class Enemy : Fighter, IDamageable
 
         // PLAYER DATA
         data = new EntityData();
+        //stats = GetComponent<EntityStats>();
 
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();
@@ -32,19 +33,24 @@ public class Enemy : Fighter, IDamageable
         movement = GetComponent<IMoveable>();
         combat = GetComponent<ICombat>();
 
+        // CREATE WEAPON
+        if (weapon == null)
+            weapon = GetComponent<IWeapon>();
+        wpnStats = new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 1, 0, 0, 0.5f, 1);
+        weapon.SetWeaponParams(wpnStats);
+
+        chargeDist = 8f;
+
+        // GET TARGET
+        if (target == null)
+            target = FindTarget();
+
         // CREATE STATE MACHINE
         stateMachine = new EnemyStateMachine();
         stateIdle = new StateEnemyIdle(this, stateMachine, "idle");
         stateMove = new StateEnemyMove(this, stateMachine, "move");
         stateCharge = new StateEnemyCharge(this, stateMachine, "charge");
         stateAttack = new StateEnemyAttack(this, stateMachine, "attack");
-
-        // CREATE WEAPON
-        weapon.SetWeaponParams(new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 0, 0, 0, 0.5f, 1));
-
-        // GET TARGET
-        if (target == null)
-            target = FindTarget();
     }
 
     // START
@@ -57,6 +63,8 @@ public class Enemy : Fighter, IDamageable
     protected override void Update()
     {
         stateMachine.CurrentState.LogicUpdate();
+        if (weapon == null)
+            weapon = GetComponent<IWeapon>();
     }
 
     // FIXED UPDATE

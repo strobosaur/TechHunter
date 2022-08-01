@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponRanged : Weapon
+public class WeaponRanged : Weapon, IWeapon
 {
     protected override void Awake()
     {
@@ -10,7 +10,7 @@ public class WeaponRanged : Weapon
         isMelee = false;
     }
 
-    public override void WeaponAttack(Vector3 origin, Vector3 target)
+    public override void WeaponAttack(Vector3 origin, Transform target)
     {
         // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
         if ((burstCount <= wpnParams.burst.GetValue()) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
@@ -23,16 +23,17 @@ public class WeaponRanged : Weapon
             // FIRE ACTUAL WEAPON
             MuzzleFlash(origin, 1f);
 
-            var targetDist = Vector3.Distance(origin, target);
+            var targetDist = Vector3.Distance(origin, target.position);
+            var targetPos = target.position;
             var ob = WeaponManager.instance.SpawnBullet();
             var rnd = Random.insideUnitCircle * (Mathf.Min(wpnParams.range.GetValue(), targetDist) * wpnParams.spr.GetValue() * 0.25f);
 
-            target.x += rnd.x;
-            target.y += rnd.y;
+            targetPos.x += rnd.x;
+            targetPos.y += rnd.y;
             
             ob.transform.position = origin;
             ob.moveDelta = wpnParams.bulletSpd.GetValue() * Random.Range(0.9f, 1.9f);
-            ob.target = target;
+            ob.target = targetPos;
             ob.tag = owner.tag;
             ob.targetLayer = 3;
             ob.shooter = owner;

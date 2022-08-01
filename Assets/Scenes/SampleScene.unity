@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 73893503}
   - component: {fileID: 73893504}
   - component: {fileID: 73893505}
+  - component: {fileID: 73893506}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -431,7 +432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33651e4e78d12854c9c0857602d9a5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
   stats: {fileID: 0}
   dustPS: {fileID: 1383084806}
   hitflash: {fileID: 0}
@@ -474,8 +474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7470690f0399c49a28cc6a29ea013f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPmax: 10
-  HPcur: 10
+  HPmax: 100
+  HPcur: 100
   armor:
     baseValue: 0
   staminaMax:
@@ -516,6 +516,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColor: {r: 1, g: 1, b: 1, a: 1}
   flashDuration: 0.25
+--- !u!114 &73893506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07fef2a05f04323418f76b885d47f34b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMelee: 0
 --- !u!1 &345800566
 GameObject:
   m_ObjectHideFlags: 0
@@ -5589,7 +5602,6 @@ GameObject:
   - component: {fileID: 612353373}
   - component: {fileID: 612353376}
   - component: {fileID: 612353375}
-  - component: {fileID: 612353377}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -5684,19 +5696,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &612353377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612353372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07fef2a05f04323418f76b885d47f34b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMelee: 0
 --- !u!1 &650873990
 GameObject:
   m_ObjectHideFlags: 0

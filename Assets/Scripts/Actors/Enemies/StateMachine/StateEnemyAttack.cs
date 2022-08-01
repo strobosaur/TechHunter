@@ -45,11 +45,12 @@ public class StateEnemyAttack : EnemyState
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
         // SWITCH STATES
-        if (targetDist > enemy.weapon.GetWeaponParams().range.GetValue())
+        if (targetDist > enemy.wpnStats.range.GetValue())
         {
             stateMachine.ChangeState(enemy.stateIdle);
         } else {
-            enemy.combat.Attack(enemy.weapon, enemy.transform.position, enemy.target.position);
+            //Debug.Log("Combat: " + enemy.combat + "\nWeapon: " + enemy.weapon + "\nTarget: " + enemy.target);
+            enemy.combat.Attack(enemy.weapon, enemy.transform.position, enemy.target);
         }
 
         // ANIMATOR

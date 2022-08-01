@@ -50,7 +50,7 @@ public class EnemyState
                 enemy.anim.speed = moveDelta.magnitude * enemy.data.animSpd;
 
                 // WEAPON
-                if (enemy.weapon != null) enemy.weapon.UpdateWeapon(moveDelta);
+                if (enemy.weapon != null) enemy.combat.UpdateWeapon(moveDelta);
             } else {
                 // UPDATE ANIMATOR PARAMETERS
                 enemy.anim.SetFloat("magnitude", 0f);
@@ -64,7 +64,7 @@ public class EnemyState
                 enemy.anim.SetFloat("velY", lookDelta.y);
 
                 // WEAPON
-                if (enemy.weapon != null) enemy.weapon.UpdateWeapon(lookDelta);
+                if (enemy.weapon != null) enemy.combat.UpdateWeapon(lookDelta);
             }
         }
     }
