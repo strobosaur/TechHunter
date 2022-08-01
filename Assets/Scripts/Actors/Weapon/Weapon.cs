@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour
 {
     // SPRITES & ANIMATIONS
     protected Animator anim;
-    protected SpriteRenderer sr;
+    public SpriteRenderer sr { get; protected set; }
     protected Fighter owner;
 
     // WEAPON PARAMETERS
@@ -29,7 +29,12 @@ public class Weapon : MonoBehaviour
     protected virtual void Awake()
     {
         wpnTimers = new float[(int)WeaponTimers.end];
-        owner = GetComponent<Fighter>();
+    }
+
+    // UPDATE
+    protected virtual void Update()
+    {
+        if (sr != null) sr.color = owner.sr.color;
     }
 
     // FIXED UPDATE

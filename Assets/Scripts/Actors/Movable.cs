@@ -6,6 +6,7 @@ public class Movable : MonoBehaviour
 {
     // ANIMATOR
     public Animator anim { get; protected set; }
+    public SpriteRenderer sr { get; protected set; }
 
     // RIGIDBODY
     public Rigidbody2D rb { get; protected set; }
@@ -36,6 +37,7 @@ public class Movable : MonoBehaviour
         // COMPONENTS
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
