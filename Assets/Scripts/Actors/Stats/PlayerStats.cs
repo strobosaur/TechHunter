@@ -8,7 +8,10 @@ public class PlayerStats : MonoBehaviour
     public Stat moveBoostTime;
     public Stat moveBoostCD;
 
-    public PlayerStats(float moveBoost, float moveBoostTime, float moveBoostCD)
+    public Stat invincibilityTime;
+    public float lastDamage;
+
+    public PlayerStats(float moveBoost, float moveBoostTime, float moveBoostCD, float invincibilityTime)
     {
         this.moveBoost = new Stat();
         this.moveBoost.SetValue(moveBoost);
@@ -18,5 +21,8 @@ public class PlayerStats : MonoBehaviour
 
         this.moveBoostCD = new Stat();
         this.moveBoostCD.SetValue(moveBoostCD);
+
+        this.invincibilityTime = new Stat();
+        this.invincibilityTime.SetValue(invincibilityTime);
     }
 }

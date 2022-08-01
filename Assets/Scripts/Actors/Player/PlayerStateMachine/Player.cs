@@ -8,6 +8,7 @@ public class Player : Fighter, IDamageable
     public PlayerData data;
     public PlayerStats stats2;
     public PlayerMoveBoost moveBoost;
+    public PlayerInvincibility invincibility;
 
     // STATE MACHINE
     public PlayerStateMachine stateMachine { get; private set; }
@@ -31,14 +32,15 @@ public class Player : Fighter, IDamageable
         lookInput = GetComponent<ILookInput>();
         movement = GetComponent<IMoveable>();
         combat = GetComponent<ICombat>();
-        
+        invincibility = GetComponent<PlayerInvincibility>();
+
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
         // CREATE WEAPON
         weapon = GetComponent<IWeapon>();
         wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
         weapon.SetWeaponParams(wpnStats);
-        stats2 = new PlayerStats(2f, 3f, 10f);
+        stats2 = new PlayerStats(2f, 3f, 10f, 1f);
         moveBoost = GetComponent<PlayerMoveBoost>();
 
         // CREATE STATE MACHINE
@@ -69,10 +71,15 @@ public class Player : Fighter, IDamageable
     // RECEIVE DAMAGE
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)
     {
-        rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
-        stats.TakeDamage(damage.damage);
-        CheckDeath(stats);
-        hitflash.Flash();        
+        if (!invincibility.isInvincible)
+        {
+            rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
+            stats.TakeDamage(damage.damage);
+            CheckDeath(stats);
+            hitflash.Flash();
+            stats2.lastDamage = Time.time;
+            invincibility.SetInvincible();
+        }
     }
 
     public void CheckDeath(EntityStats stats)

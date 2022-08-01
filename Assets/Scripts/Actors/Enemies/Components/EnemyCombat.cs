@@ -6,7 +6,7 @@ public class EnemyCombat : MonoBehaviour, ICombat
 {
     public Enemy enemy;
 
-    void OnEnable()
+    void Awake()
     {
         enemy = GetComponent<Enemy>();
     }

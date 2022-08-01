@@ -54,6 +54,9 @@ public class StatePlayerMove : PlayerState
             stateMachine.ChangeState(player.stateMove);
         }
 
+        // INVINCIBILITY UPDATE
+        player.invincibility.UpdateInvincibilityTimer();
+
         // ANIMATOR
         if (moveInput.magnitude > player.rb.velocity.magnitude) {
             UpdateAnimator(moveInput, lookInput);
