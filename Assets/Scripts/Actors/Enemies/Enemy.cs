@@ -15,13 +15,6 @@ public class Enemy : Fighter, IDamageable
     public StateEnemyCharge stateCharge { get; protected set; }
     public StateEnemyAttack stateAttack { get; protected set; }
 
-    // ENEMY TIMERS
-    public enum EnemyTimers
-    {
-        chargeState,
-        end
-    }
-
     public float[] timerArr;
 
     // ENEMY PARAMETERS
@@ -109,4 +102,11 @@ public class Enemy : Fighter, IDamageable
     {
         return GameManager.instance.playerManager.playerList[Random.Range(0,GameManager.instance.playerManager.playerList.Count)].transform;
     }
+}
+
+// ENEMY TIMERS
+public enum EnemyTimers
+{
+    chargeState,
+    end
 }
