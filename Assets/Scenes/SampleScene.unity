@@ -251,6 +251,7 @@ GameObject:
   - component: {fileID: 73893504}
   - component: {fileID: 73893505}
   - component: {fileID: 73893506}
+  - component: {fileID: 73893507}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -437,6 +438,7 @@ MonoBehaviour:
   hitflash: {fileID: 0}
   stats2: {fileID: 0}
   moveBoost: {fileID: 0}
+  invincibility: {fileID: 0}
 --- !u!114 &73893501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +464,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  wpnAnim: {fileID: 0}
+  wpnSr: {fileID: 0}
 --- !u!114 &73893503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -487,6 +491,8 @@ MonoBehaviour:
   moveBoost:
     baseValue: 0
   moveBoostTime:
+    baseValue: 0
+  moveBoostCD:
     baseValue: 0
 --- !u!114 &73893504
 MonoBehaviour:
@@ -529,6 +535,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMelee: 0
+--- !u!114 &73893507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57bec97ef428f7d489d1b0bc402e39d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  isInvincible: 0
 --- !u!1 &345800566
 GameObject:
   m_ObjectHideFlags: 0

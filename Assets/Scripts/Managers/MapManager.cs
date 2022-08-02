@@ -81,6 +81,7 @@ public class MapManager : MonoBehaviour
         // FIND ENEMY MANAGER
         enemyManager = GameObject.Find("EnemyManager").GetComponent<EnemyManager>();
         enemyManager.spawnPointManager.DeleteAllSpawnPoints();
+        enemyManager.ClearAllEnemies();
 
         // CLEAR TILES
         tileManager.ClearTiles();

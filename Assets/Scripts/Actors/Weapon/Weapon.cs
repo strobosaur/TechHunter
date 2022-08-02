@@ -29,6 +29,7 @@ public class Weapon : MonoBehaviour
     protected virtual void Awake()
     {
         wpnTimers = new float[(int)WeaponTimers.end];
+        owner = GetComponent<Fighter>();
     }
 
     // UPDATE

@@ -50,7 +50,7 @@ public class StateEnemyMove : EnemyState
         else if (targetDist < enemy.chargeDist) 
         {
             // CHARGE STATE
-            if (Time.time > enemy.timerArr[(int)Enemy.EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
+            if (Time.time > enemy.timerArr[(int)EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
                 stateMachine.ChangeState(enemy.stateCharge);
         }
 
