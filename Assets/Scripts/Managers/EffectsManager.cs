@@ -14,9 +14,11 @@ public class EffectsManager : MonoBehaviour
     // DUST PS POOL
     private ObjectPool<ParticleSystem> dustPool;
     private ObjectPool<ParticleSystem> bloodPool01;
+    private ObjectPool<ParticleSystem> bloodPool02;
 
     public ParticleSystem dustPSPrefab;
     public ParticleSystem blood01PSPrefab;
+    public ParticleSystem blood02PSPrefab;
 
     void Awake()
     {
@@ -48,6 +50,17 @@ public class EffectsManager : MonoBehaviour
         }, bloodPS01 => {
             Destroy(bloodPS01.gameObject);
         }, false, 100, 1000);
+        
+        // CREATE BLOOD POOL 2
+        bloodPool02 = new ObjectPool<ParticleSystem>(() => { 
+            return Instantiate(blood02PSPrefab);
+        }, bloodPS02 => {
+            bloodPS02.gameObject.SetActive(true);
+        }, bloodPS02 => {
+            bloodPS02.gameObject.SetActive(false);
+        }, bloodPS02 => {
+            Destroy(bloodPS02.gameObject);
+        }, false, 100, 1000);
     }
 
     // SPAWN DUST
@@ -62,6 +75,14 @@ public class EffectsManager : MonoBehaviour
     public ParticleSystem SpawnBlood01(Vector2 pos)
     {
         var bloodPS = bloodPool01.Get();
+        bloodPS.transform.position = pos;
+        return bloodPS;
+    }
+
+    // SPAWN BLOOD 2
+    public ParticleSystem SpawnBlood02(Vector2 pos)
+    {
+        var bloodPS = bloodPool02.Get();
         bloodPS.transform.position = pos;
         return bloodPS;
     }

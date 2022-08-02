@@ -81,9 +81,14 @@ public class Enemy : Fighter, IDamageable
     // RECEIVE DAMAGE
     public void ReceiveDamage(DoDamage damage, Vector2 originDir)
     {
+        // CREATE BLOOD
+        Instantiate(EffectsManager.instance.SpawnBlood01(transform.position));
+        
         rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
+        
         stats.TakeDamage(damage.damage);
         CheckDeath(stats);
+        
         hitflash.Flash();
     }
 
@@ -92,6 +97,9 @@ public class Enemy : Fighter, IDamageable
     {
         if (stats.HPcur <= 0f)
         {
+            // CREATE BLOOD
+            Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
+
             EnemyManager.instance.enemyList.Remove(this);
             Inventory.instance.kills++;
             if (Random.value < 0.05) Inventory.instance.scraps += 1;

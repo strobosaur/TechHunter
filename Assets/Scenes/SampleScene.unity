@@ -6283,6 +6283,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustPSPrefab: {fileID: 9083866938092989127, guid: ad7046ba975e95f449ea64352b8bd470, type: 3}
   blood01PSPrefab: {fileID: 6961995724406377597, guid: c271e0efba3a41043b2089f272648125, type: 3}
+  blood02PSPrefab: {fileID: 7216396114529738105, guid: 0aaecd1f51376b14faaf43e790c19424, type: 3}
 --- !u!1 &1256537330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6295,6 +6296,8 @@ GameObject:
   - component: {fileID: 1256537331}
   - component: {fileID: 1256537333}
   - component: {fileID: 1256537334}
+  - component: {fileID: 1256537336}
+  - component: {fileID: 1256537335}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6361,6 +6364,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerList: []
+--- !u!114 &1256537335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256537330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad9b68e04d96d524594622d0fca79428, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1256537336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256537330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681b3824552b44442be0ee30ee860f51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  kills: 0
+  water: 0
+  scraps: 0
+  techPieces: 0
 --- !u!4 &1383084804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1754024236319150697, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
