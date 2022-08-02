@@ -179,7 +179,7 @@ MonoBehaviour:
   randomEachIteration: 1
   RNGsize: 70
   RNGpoints: 16
-  RNGminDist: 2
+  RNGminDist: 4
   CAlivechance: 0.375
   corrLen: 12
   corrCount: 15

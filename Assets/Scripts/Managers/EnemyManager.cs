@@ -78,5 +78,7 @@ public class EnemyManager : MonoBehaviour
         {
             Destroy(enemy.gameObject);
         }
+
+        enemyList.Clear();
     }
 }
