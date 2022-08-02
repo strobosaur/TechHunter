@@ -84,6 +84,9 @@ public class Player : Fighter, IDamageable
     {
         if (!invincibility.isInvincible)
         {
+            // CREATE BLOOD
+            Instantiate(EffectsManager.instance.SpawnBlood01(transform.position));
+            
             rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
             stats.TakeDamage(damage.damage);
             CheckDeath(stats);

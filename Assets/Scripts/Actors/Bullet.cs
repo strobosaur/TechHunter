@@ -73,6 +73,10 @@ public class Bullet : MonoBehaviour
         {
             MakeTrail(collision.transform.position);
             DestroyBullet();
+
+            // CREATE BLOOD
+            Instantiate(EffectsManager.instance.SpawnBlood01(transform.position));
+
             if (collision.GetComponent<IDamageable>() != null)
                 collision.GetComponent<IDamageable>().ReceiveDamage(damage, (collision.transform.position - transform.position).normalized);
         }        

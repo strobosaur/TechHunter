@@ -93,6 +93,8 @@ public class Enemy : Fighter, IDamageable
         if (stats.HPcur <= 0f)
         {
             EnemyManager.instance.enemyList.Remove(this);
+            Inventory.instance.kills++;
+            if (Random.value < 0.05) Inventory.instance.scraps += 1;
             Destroy(gameObject);
         }
     }
