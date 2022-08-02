@@ -16,11 +16,13 @@ public class SpawnPointManager : MonoBehaviour
     public List<Vector2Int> FindSpawnPoints(Vector2Int startPos, List<Vector2Int> positions, int number, float minDist = 5f, float startPosDist = 0f)
     {
         List<Vector2Int> outList = new List<Vector2Int>();
+        List<Vector2Int> outListFinal = new List<Vector2Int>();
 
         var furthest = FurthestInList(startPos, positions);
         outList.Add(furthest);
         positions.Remove(furthest);
 
+        // FIND SPAWN POINT PLACES AND CREATE OBJECTS
         for (int i = 1; i < number; i++)
         {
             var data = FurthestInListsAverage(startPos, positions, outList, minDist, startPosDist);
@@ -31,7 +33,15 @@ public class SpawnPointManager : MonoBehaviour
             }
         }
 
-        return outList;
+        // MAKE SURE SPAWN POINTS ARE AT DISTANCE FROM START POSITION
+        for (int j = 0; j < outList.Count; j++)
+        {
+            if (Vector2.Distance(startPos, outList[j]) > startPosDist) {
+                outListFinal.Add(outList[j]);
+            }
+        }
+
+        return outListFinal;
     }
 
     private Vector2Int FurthestInList(Vector2Int position, List<Vector2Int> list)
@@ -43,6 +53,23 @@ public class SpawnPointManager : MonoBehaviour
         {
             tempDist = Vector2.Distance(position, list[i]);
             if (tempDist > distance) {
+                distance = tempDist;
+                index = i;
+            }
+        }
+
+        return list[index];
+    }
+
+    private Vector2Int NearestInList(Vector2Int position, List<Vector2Int> list)
+    {
+        float distance = Mathf.Infinity;
+        float tempDist;
+        int index = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            tempDist = Vector2.Distance(position, list[i]);
+            if (tempDist < distance) {
                 distance = tempDist;
                 index = i;
             }
@@ -68,7 +95,8 @@ public class SpawnPointManager : MonoBehaviour
                 tempDist2 = Vector2.Distance(list1[i], list2[j]);
                 
                 if ((((tempDist1 + tempDist2) / 2f) > distance)
-                && ((tempDist1 > startPosDist) && (tempDist2 > minDist)))
+                && (tempDist1 > startPosDist) 
+                && (tempDist2 > minDist))
                 {
                     distance = ((tempDist1 + tempDist2) / 2f);
                     index = i;
@@ -80,7 +108,7 @@ public class SpawnPointManager : MonoBehaviour
         return (found, list1[index]);
     }
 
-    public void MakeSpawnPoints(Vector2Int startPos, List<Vector2Int> positions, int number, float minDist = 5f, float startPosDist = 0f)
+    public bool MakeSpawnPoints(Vector2Int startPos, List<Vector2Int> positions, int number, float minDist = 5f, float startPosDist = 0f)
     {
         List<Vector2Int> list = FindSpawnPoints(startPos, positions, number, minDist, startPosDist);
         foreach (var position in list)
@@ -89,6 +117,12 @@ public class SpawnPointManager : MonoBehaviour
             ob.transform.position = (Vector2)position;
 
             spawnPoints.Add(ob);
+        }
+
+        if (list.Count > 0) {
+            return true;
+        } else {
+            return false;
         }
     }
 
