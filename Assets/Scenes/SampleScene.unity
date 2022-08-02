@@ -487,7 +487,7 @@ MonoBehaviour:
   staminaCur:
     baseValue: 0
   moveSpd:
-    baseValue: 3
+    baseValue: 3.5
   moveBoost:
     baseValue: 0
   moveBoostTime:
@@ -636,7 +636,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186675264875102815, guid: 383599571025ae3408c27b2063b753c4, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6186675264875102815, guid: 383599571025ae3408c27b2063b753c4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6282,6 +6282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dustPSPrefab: {fileID: 9083866938092989127, guid: ad7046ba975e95f449ea64352b8bd470, type: 3}
+  blood01PSPrefab: {fileID: 6961995724406377597, guid: c271e0efba3a41043b2089f272648125, type: 3}
 --- !u!1 &1256537330
 GameObject:
   m_ObjectHideFlags: 0

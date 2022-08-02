@@ -170,7 +170,7 @@ MonoBehaviour:
   moveSpd:
     baseValue: 3
   moveBoost:
-    baseValue: 2.5
+    baseValue: 1.5
   moveBoostTime:
     baseValue: 3
   moveBoostCD:

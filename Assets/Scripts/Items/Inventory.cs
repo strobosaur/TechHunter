@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
 
     // ECONOMY
+    public int kills = 0;
     public int water = 0;
     public int scraps = 0;
     public int techPieces = 0;
