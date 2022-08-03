@@ -22,5 +22,8 @@ public class GameManager : MonoBehaviour
         }
 
         playerManager = GetComponent<PlayerManager>();
+
+        // DISABLE MOUSE CURSOR
+        Cursor.visible = false;
     }
 }

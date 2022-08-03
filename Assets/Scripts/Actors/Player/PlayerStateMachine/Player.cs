@@ -40,7 +40,7 @@ public class Player : Fighter, IDamageable
 
         // CREATE WEAPON
         weapon = GetComponent<IWeapon>();
-        wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 8);
+        wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 1, 1, 5);
         weapon.SetWeaponParams(wpnStats);
         stats2 = new PlayerStats(2f, 3f, 6f, 3f);
         moveBoost = GetComponent<PlayerMoveBoost>();
@@ -86,7 +86,7 @@ public class Player : Fighter, IDamageable
         {
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood01(transform.position));
-            
+
             rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
             stats.TakeDamage(damage.damage);
             CheckDeath(stats);
