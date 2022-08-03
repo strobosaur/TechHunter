@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnPointManager : MonoBehaviour
 {
-    public List<GameObject> spawnPoints;
+    public static List<GameObject> spawnPoints;
 
     public GameObject spawnPoint;
 

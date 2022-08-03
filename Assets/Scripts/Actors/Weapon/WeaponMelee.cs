@@ -14,8 +14,11 @@ public class WeaponMelee : Weapon, IWeapon
     {
         if (Vector2.Distance(origin, target.position) <= wpnParams.range.GetValue())
         {
+            var burst = wpnParams.burst.GetValue();
+            var shots = wpnParams.shots.GetValue();
+            
             // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
-            if ((burstCount <= wpnParams.burst.GetValue()) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
+            if ((burstCount <= burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
                 // SET FIRE RATE TIMER
                 if (burstCount <= 0) wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate.GetValue();
 
@@ -25,12 +28,16 @@ public class WeaponMelee : Weapon, IWeapon
                 // FIRE ACTUAL WEAPON
                 //MuzzleFlash(origin, 1f);
 
-                // CHECK FOR HIT
-                var targetOb = target.GetComponent<IDamageable>();
-                if (targetOb != null)
+                // MAKE CORRECT AMOUNT OF SHOTS
+                for (int i = 0; i < shots; i++)
                 {
-                    var damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
-                    targetOb.ReceiveDamage(damage, (target.position - origin).normalized);
+                    // CHECK FOR HIT
+                    var targetOb = target.GetComponent<IDamageable>();
+                    if (targetOb != null)
+                    {
+                        var damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
+                        targetOb.ReceiveDamage(damage, (target.position - origin).normalized);
+                    }
                 }
 
                 // var collision = (Physics2D.CircleCast(origin, 4f, (target.position - origin).normalized));
