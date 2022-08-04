@@ -31,6 +31,12 @@ public class CameraController : MonoBehaviour
         stateLevel = new CameraStateLevel(this, stateMachine);
     }
 
+    // START
+    void Start()
+    {
+        stateMachine.Initialize(stateMenu);
+    }
+
     // UPDATE
     void Update()
     {
