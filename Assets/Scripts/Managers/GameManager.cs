@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
         // GET MANAGER COMPONENTS
         playerManager = GetComponent<PlayerManager>();
         displayManager = GetComponent<DisplayManager>();
-        menuManager = GetComponent<MenuManager>();
 
         // INIT STATE MACHINE
         stateMachine = new StateMachine();

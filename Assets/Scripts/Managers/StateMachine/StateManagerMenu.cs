@@ -11,6 +11,7 @@ public class StateManagerMenu : ManagerState
     public override void Enter()
     {
         base.Enter();
+        manager.menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
     }
 
     public override void Exit()
