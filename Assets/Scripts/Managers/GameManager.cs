@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GameManager : MonoBehaviour
     public StateManagerMenu stateMenu;
     public StateManagerBase stateBase;
     public StateManagerLevel stateLevel;
+
+    // CAMERA BLACKSCREEN
+    Image blackscreen;
 
     // AWAKE
     void Awake()
@@ -50,7 +54,7 @@ public class GameManager : MonoBehaviour
     // START
     void Start()
     {
-        stateMachine.Iinitialize(stateMenu);
+        stateMachine.Initialize(stateMenu);
     }
 
     // UPDATE
@@ -64,4 +68,10 @@ public class GameManager : MonoBehaviour
     {
         stateMachine.CurrentState.PhysicsUpdate();
     }
+}
+
+public enum MainMenuOptions {
+    newGame,
+    highscores,
+    quit
 }
