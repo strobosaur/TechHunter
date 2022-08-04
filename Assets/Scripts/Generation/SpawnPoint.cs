@@ -8,6 +8,7 @@ public class SpawnPoint : MonoBehaviour
     public float spawnCDBase = 60f;
     public float spawnCD = 60f;
     public float spawnMultiplier = 0.1f;
+    public Queue<int> spawnQueue = new Queue<int>();
     
     // Start is called before the first frame update
     void Start()
@@ -30,9 +31,23 @@ public class SpawnPoint : MonoBehaviour
 
     public void SpawnEnemies()
     {
-        int glandCount = Mathf.RoundToInt((Random.Range(0,4) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
-        int germCount = Mathf.RoundToInt((Random.Range(3,8) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
-        int shellCount = Mathf.RoundToInt((Random.Range(3,12) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f))) * spawnMultiplier);
+        int shellCount = 0;
+        int germiniteCount = 0;
+        int glandCount = 0;
+        int allCount = 0;
+
+        int waveSize = SpawnPointManager.instance.waveSize;
+        int spawnPoints = SpawnPointManager.instance.spawnPoints.Count;
+
+        // CALCULATE WAVE SIZE
+        while (allCount < Mathf.CeilToInt(waveSize / spawnPoints))
+        {
+            glandCount += Mathf.RoundToInt(Random.Range(0,2) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)));
+            germiniteCount += Mathf.RoundToInt(Random.Range(1,3) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)));
+            shellCount += Mathf.RoundToInt(Random.Range(1,4) + Mathf.RoundToInt(Random.Range(0f, 0.75f)) + Mathf.RoundToInt(Random.Range(0f, 0.625f)));
+
+            allCount = shellCount + germiniteCount + glandCount;
+        }
 
         // GLANDS
         for (int i = 0; i < glandCount; i++)
@@ -47,7 +62,7 @@ public class SpawnPoint : MonoBehaviour
         }
 
         // GERMINITES
-        for (int j = 0; j < germCount; j++)
+        for (int j = 0; j < germiniteCount; j++)
         {
             var pos = Random.insideUnitCircle * 2f;
             //var ob = Instantiate(EnemyManager.instance.enemyPrefabList[1]);
@@ -69,5 +84,8 @@ public class SpawnPoint : MonoBehaviour
             ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
             ob.transform.position = pos + (Vector2)transform.position;
         }
+
+        // UPDATE WAVE COUNT
+        SpawnPointManager.instance.waveCount += 1f / spawnPoints;
     }
 }
