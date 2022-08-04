@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     public AstarPath astar;
     public static EnemyManager instance;
 
-    public SpawnPointManager spawnPointManager;
+    public SpawnPointGenerator spawnPointGenerator;
 
     public Dictionary<string, EntityStats> enemyStats = new Dictionary<string, EntityStats>();
     public List<GameObject> enemyPrefabList = new List<GameObject>();
@@ -23,7 +23,7 @@ public class EnemyManager : MonoBehaviour
     {
         instance = this;
         astar = GameObject.Find("A*").GetComponent<AstarPath>();
-        spawnPointManager = GetComponent<SpawnPointManager>();
+        spawnPointGenerator = GetComponent<SpawnPointGenerator>();
 
         // CREATE SHELL POOL
         shellPool = new ObjectPool<GameObject>(() => { 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6ee50de24e3e543b1fdc643ed2bb7d, type: 3}
+  m_Name: Tree01
+  m_EditorClassIdentifier: 
+  propName: tree01
+  propPrefab: {fileID: 5425237453533835722, guid: face2f70d152e06428f20ca61b7d3d68, type: 3}
+  rngWeight: 0.5
