@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
     // START
     private void Start()
     {
-        PlayMusic("OneButtonBeats");        
+        //PlayMusic("OneButtonBeats");        
     }
 
     // FIXED UPDATE
