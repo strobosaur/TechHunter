@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateMachine
+public class CameraStateMachine
 {
     // CURRENT STATE HOLDER
-    public ManagerState CurrentState { get; private set; }
+    public CameraState CurrentState { get; private set; }
 
     // INITIALIZE STATE MACHINE
-    public void Initialize(ManagerState startingState)
+    public void Initialize(CameraState startingState)
     {
         CurrentState = startingState;
         CurrentState.Enter();
     }
 
-    // CHANGE STATE
-    public void ChangeState(ManagerState newState)
+    // CHANGE STATE MACHINE STATE
+    public void ChangeState(CameraState newState)
     {
         CurrentState.Exit();
         CurrentState = newState;

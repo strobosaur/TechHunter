@@ -11,8 +11,6 @@ public class MenuManager : MonoBehaviour
     // UPDATE
     void Update()
     {
-        if (InputManager.input.down.WasPressedThisFrame()) currentIndex = (((currentIndex + menuTexts.Count) + 1) % menuTexts.Count);
-        if (InputManager.input.up.WasPressedThisFrame()) currentIndex = (((currentIndex + menuTexts.Count) - 1) % menuTexts.Count);
         UpdateTexts(currentIndex);
     }
 

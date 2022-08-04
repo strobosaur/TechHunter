@@ -4,33 +4,43 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    private Player player;
-    private Transform playerTransform;
-    private Transform crossTransform;
-    private Vector2 targetPos;
-    private Vector2 moveDelta;
-    private float camDistMove = 1f;
-    private float moveSpd = 0.075f;
+    // PLAYER VARIABLES
+    public Player player;
+    public Transform playerTransform;
+    public Transform crossTransform;
+
+    // TARGET & MOVEMENT PARAMETERS
+    public Vector2 targetPos;
+    public Vector2 moveDelta;
+    public float camDistMove = 1f;
+    public float moveSpd = 0.075f;
+
+    // STATE MACHINE
+    CameraStateMachine stateMachine;
+    CameraStateMenu stateMenu;
+    CameraStateBase stateBase;
+    CameraStateLevel stateLevel;
 
     // AWAKE
     void Awake()
     {
-        player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
-        playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
-        crossTransform = GameObject.Find("Crosshair").transform;
+        // CREATE STATE MACHINE
+        stateMachine = new CameraStateMachine();
+        stateMenu = new CameraStateMenu(this, stateMachine);
+        stateBase = new CameraStateBase(this, stateMachine);
+        stateLevel = new CameraStateLevel(this, stateMachine);
     }
 
     // UPDATE
     void Update()
     {
-        if (player == null) player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
-        if (playerTransform == null) playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
-        if (crossTransform == null) crossTransform = GameObject.Find("Crosshair").transform;
+        stateMachine.CurrentState.LogicUpdate();
     }
 
     // FIXED UPDATE
     void FixedUpdate()
     {
+        stateMachine.CurrentState.PhysicsUpdate();
         UpdateCameraPosition();
     }
 
@@ -43,24 +53,8 @@ public class CameraController : MonoBehaviour
     // UPDATE CAMERA POSITION
     public void UpdateCameraPosition()
     {
-        // IF PLAYER AIMING
-        if (InputManager.input.look.ReadValue<Vector2>().magnitude > 0)
-        {
-            targetPos = Vector2.Lerp(playerTransform.position, crossTransform.position, 0.33f);
-        } else if (InputManager.input.move.ReadValue<Vector2>().magnitude > 0) {
-            targetPos = playerTransform.position + ((Vector3)player.rb.velocity * camDistMove);
-        } else {
-            targetPos = playerTransform.position;
-        }
-
         // SMOOTH MOVEMENT BY LERPING & FIX COORDINATES TO WHOLE PIXELS
         moveDelta = Vector2.Lerp(transform.position, targetPos, moveSpd);
         moveDelta = Globals.PPPos(moveDelta);
-    }
-
-    // ACTUALLY MOVE CAMERA
-    public void MoveCamera()
-    {
-
     }
 }
