@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StateManagerMenu : ManagerState
+public class StateManagerMenuExit : ManagerState
 {
     MenuManager menu;
 
@@ -11,22 +11,21 @@ public class StateManagerMenu : ManagerState
     Color bsColor;
 
     float bsFadeTime = 2f;
-    float bsFadeCounter = 0f;
+    float bsFadeCounter = 0;
 
     // CONSTRUCTOR
-    public StateManagerMenu(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
+    public StateManagerMenuExit(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
 
     // ENTER
     public override void Enter()
     {
         base.Enter();
-
         manager.menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
         menu = manager.menuManager;
-
+        
         blackscreen = GameObject.Find("BlackScreen").GetComponent<Image>();
         bsColor = blackscreen.color;
-        bsColor.a = 1f;
+        bsColor.a = 0;
         blackscreen.color = bsColor;
         blackscreen.enabled = true;
     }
@@ -42,33 +41,7 @@ public class StateManagerMenu : ManagerState
     {
         base.LogicUpdate();
 
-        // UPDATE BLACKSCREEN
-        BlackScreenFade(blackscreen, false);
-
-        // SWITCH MENU INDEX
-        if (InputManager.input.down.WasPressedThisFrame()) menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) + 1) % menu.menuTexts.Count);
-        if (InputManager.input.up.WasPressedThisFrame()) menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) - 1) % menu.menuTexts.Count);
-
-        // MAKE MENU CHOICE
-        if (InputManager.input.B.WasPressedThisFrame()) 
-        {
-            switch (menu.currentIndex)
-            {
-                // NEW GAME
-                case 0:
-                stateMachine.ChangeState(manager.stateMenuExit);
-                break;
-
-                // HIGHSCORES
-                case 1:
-                break;
-
-                // QUIT GAME
-                case 2:
-                Application.Quit();
-                break;
-            }
-        }
+        BlackScreenFade(blackscreen, true);
     }
 
     // PHYSICS UPDATE

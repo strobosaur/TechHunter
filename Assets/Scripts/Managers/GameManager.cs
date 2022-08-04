@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
     public StateManagerMenu stateMenu;
+    public StateManagerMenuExit stateMenuExit;
     public StateManagerBase stateBase;
     public StateManagerLevel stateLevel;
 
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         // INIT STATE MACHINE
         stateMachine = new StateMachine();
         stateMenu = new StateManagerMenu(this, stateMachine);
+        stateMenuExit = new StateManagerMenuExit(this, stateMachine);
         stateBase = new StateManagerBase(this, stateMachine);
         stateLevel = new StateManagerLevel(this, stateMachine);
 
