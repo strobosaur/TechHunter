@@ -9,7 +9,7 @@ public class StateManagerMenuExit : ManagerState
     MenuManager menu;
 
     // ON MENU EXIT
-    public System.Action OnMenuExit;
+    public System.Action<int> OnMenuExit;
 
     // CONSTRUCTOR
     public StateManagerMenuExit(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
@@ -53,6 +53,7 @@ public class StateManagerMenuExit : ManagerState
         {
             case (int)MainMenuOptions.newGame:
             Debug.Log("New Game!");
+            stateMachine.ChangeState(manager.stateBase);
             break;
 
             case (int)MainMenuOptions.highscores:

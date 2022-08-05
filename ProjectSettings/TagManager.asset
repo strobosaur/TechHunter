@@ -42,8 +42,26 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Void
+    uniqueID: 3905440919
+    locked: 0
   - name: Background
     uniqueID: 157546173
+    locked: 0
+  - name: Floor
+    uniqueID: 69190121
+    locked: 0
+  - name: FloorLedges
+    uniqueID: 3334779441
+    locked: 0
+  - name: Walls
+    uniqueID: 3402518015
+    locked: 0
+  - name: Deco
+    uniqueID: 898352437
+    locked: 0
+  - name: Deco2
+    uniqueID: 1898788587
     locked: 0
   - name: Actors
     uniqueID: 3103470673

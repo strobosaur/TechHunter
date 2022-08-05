@@ -1,0 +1,3052 @@
+fileFormatVersion: 2
+guid: 8aa21b8c8182a7c4cb586856e8f76958
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: pillar02_01
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dd8481d8761739418e579d55ef1b863
+      internalID: -1602024500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_01
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c21f4439cf4dd4a4d9e891564e9ebb79
+      internalID: -445243939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_02
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcaf4b70024cae8428933ad12df07b55
+      internalID: 669849087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar02_02
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 496
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1e4c3addd3e7c44d85cb8f2ecbedf18
+      internalID: -312901468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_03
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc2239e710273164ab2ca14f31ef7f89
+      internalID: -524304049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_04
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3ad68ccb5254984088121d46d0a9036
+      internalID: 943296467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar02_03
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4117ae615e4670142802fcc0080faf0a
+      internalID: 1685995683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar03_01
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95d15a865c369504abbe0986fddc106a
+      internalID: -1610450195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_01
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6a19dd6cf872c448afcd824fe2b3954
+      internalID: 727748156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_02
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7707c372d558f304c875539af5c2222d
+      internalID: -245527947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_05
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80acd7ef6eb79f245ab9f92392d76991
+      internalID: -4916002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_06
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc6bf6d2bf071de4680242ea07f3c5b3
+      internalID: 1211897356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar02_04
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c11d271b9d60c40b32430233df2e54
+      internalID: -1125692456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar03_02
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df678ad56aff8d642a3d86fb030806a7
+      internalID: 1463470893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_03
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43c5b02da17caeb4599ef65290d4ff40
+      internalID: -1197382114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_04
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98b9d541836ed114c97e6e32eaf5a504
+      internalID: 1476067679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_07
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a8d21849c1f2a4697fce585ea65da9
+      internalID: 1359151393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar01_08
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 974135b0570c7dd49b896c76978f1f2d
+      internalID: 904687852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar02_05
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd4b7e18d6ce1ba4eb0c4ca61032ab40
+      internalID: -1488961450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar03_03
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f31fe1d03e7eb4b8f8ce19c11f407e
+      internalID: -1588787166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_05
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28dd9d4c19b811c4d8111696b5d6ada3
+      internalID: 1024989633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: pillar04_06
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 448
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eae7ddfa5f42f7348a8c052e65e3ca40
+      internalID: -1114899979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_nnw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642c577fc78bb5e4ba3ed8435fdc004e
+      internalID: 1194708760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_23
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a063c463db9f50419d92c5b529f3fe1
+      internalID: -1526916300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_01
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3053438fc36a39c45bb2a6befc1775fa
+      internalID: 1790424877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_02
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19f1effe68a1dd647ad515127865ba28
+      internalID: -1487599905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_01
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b397e55dc3e9a1d44aa9c2077a067a91
+      internalID: -903146944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_02
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 416
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b45e15a39b4a2ee408f6941148f94547
+      internalID: -1475574430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_nnw_sw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1330e846a15da7143b9e94547b0cf324
+      internalID: 1938750047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_nne_se
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f787091fe46c54746b1ea01414388567
+      internalID: -1659949534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_03
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1b12001665614648a915f1baf3dd68e
+      internalID: -2073832065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_04
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c31f79a1ed6e12c4681dd822a8630df4
+      internalID: 96154294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_03
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff1a5990d9d13e4bae7bcab7ef6b71d
+      internalID: -1659497573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_04
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f436df32cd6cd948b0b155d122b4763
+      internalID: -736477432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_nnw_ssw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3481034d0d1f494c8686ac0afe2a8e1
+      internalID: -206506380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_nnw_sse
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18fc8b3884180e9458403e8ef3586951
+      internalID: 1625941131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_05
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 029f922a751639447bf23904df3500cd
+      internalID: 1923684209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_06
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6cc2e3577c0fcf43b270cc71dc0f07e
+      internalID: 807941086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_05
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d30293b7f5b268d4aaf5e9819a2f7356
+      internalID: -1767739395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_06
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 384
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ae1fa332acf66439ed18cf6afaee3a
+      internalID: 1036999186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01se
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec1863b123bf7f44a021da1bfc8d82b
+      internalID: 1039809723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01s
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabbd548f137f354c9d0eb4736ca1324
+      internalID: -1607892702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02s
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c49330d93d260724c856eeb60961a512
+      internalID: -425929325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03s
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fda7e46bae487ac4e90ea6dc944a85a8
+      internalID: -1257447306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04s
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0605235dcc181b34c91b6510c89181a8
+      internalID: 1045554604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01sw
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 368
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf5b4ba2981088344b585da0f4913bbe
+      internalID: -879374850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04e
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc8c90eec328af04cb0f5f77b5c51843
+      internalID: -1295978060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01ss
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06f0c800d39d5034b9f5ca8c6fe7c929
+      internalID: -675703476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02ss
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 208eff23e5420cd43af4ba87f9224230
+      internalID: 433788660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03ss
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d7bc746b5f654e4a85a0d1b78ea472b
+      internalID: -1401999397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04ss
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971e865c5f5f8094c962fa2790091d79
+      internalID: -1271709675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01w
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 105b51c3a5d7b8e41b6548240f6f76df
+      internalID: 1564825314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_07
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a77c1c20de3f84545ab345487635d0be
+      internalID: 742596249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_08
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 411b9cc66b5b83843b478d396b541511
+      internalID: -1978166701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_07
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48d278907be5332488aeacaf9cd6bd12
+      internalID: -1841971158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_08
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b511ed3940db64fb0ce7682e86029f
+      internalID: -1599712395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_wnw
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ba8eee8b13b528479a500fd837e980e
+      internalID: -344728596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03e
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c655d172bf9a6a347add202fa3a6817e
+      internalID: -1121585162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01sss
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26a255d133b6d0a44a32f8186fbcff1d
+      internalID: 2012561323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02sss
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb5f839a438a5244bca850f0fba8726
+      internalID: -813485185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03sss
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 630c637dd8730404399101b27dda291b
+      internalID: 1601704803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04sss
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2b0b391c1d39a341bee59ba529c6f81
+      internalID: 652699256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02w
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2cfad6d330aef64a8535af080281ab8
+      internalID: -417257117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_ene
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a5929197bf26064cac546860621127f
+      internalID: -1821328898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_09
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f04f1f44b2bbfdf45907fbf23b7d0d61
+      internalID: 2018796554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_10
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f18df63e94fe2b4f9532aebf0aa4f49
+      internalID: 1293289746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_09
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 477f7d84d88b9a74cb4dcc3bd3083a08
+      internalID: -924322072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_10
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 336
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75d90cafde445ee4bbcdf28ee4a14476
+      internalID: 803808703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_wsw
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2aa389836281c4f9eecdf9c4f4e420
+      internalID: -1213866699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02e
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c40da51e71bcb064fb6f16fd20782005
+      internalID: -844448590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_hole
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abec6d669ac5de74a9e1f8006046ae4f
+      internalID: 926413511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03w
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cea2856a66521542aa428ed6cee5445
+      internalID: -1580903095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_ese
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 320
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c57d30d629100b42ac294091cf11b6b
+      internalID: 1935166660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01e
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2d3a0b35e0140c43b7c77e81f498db6
+      internalID: 821511461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04w
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4811f03f40437764cbde901042cf332c
+      internalID: -1969752584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_11
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 563d482dc65465247b3bd4b0ae163bc3
+      internalID: -903366612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_12
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b58efd5fcb4104e9b9cfe0626bf097
+      internalID: -1613526516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_11
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae8a5f3bd82ae67438d26d28efe38136
+      internalID: 172223454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_12
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab00c5002ed582547bb20900fa75b306
+      internalID: -1964569964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01ne
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 077706bcded664745817d7f5d88245e8
+      internalID: -1452287231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_04n
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c84448a443a0d54a8e3b52c2a9dda43
+      internalID: 404492777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_03n
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a4a92f03268e14abe61a13290029d7
+      internalID: 906210854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_02n
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79099c287869dc14ab608b694910604f
+      internalID: -1901147942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01n
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d867024596263944db8807663be6d281
+      internalID: 1301436010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_01nw
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246c74ceb44e35c4a94a879b750a3072
+      internalID: 1902316236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_13
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1029385c2d580c43b0359a2371b2617
+      internalID: -464510674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_14
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17217c188376f284aaf399b1e99ee160
+      internalID: 1931519601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_13
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15530582c32cc374da7c6c5fabf3b551
+      internalID: -1262012998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_14
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4eb00a0a8d5ea44be3590b08aebb6d
+      internalID: 11109288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_ssw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea6d98d86e2637d4c95e36aba5989047
+      internalID: 1991014054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge01_crn_sse
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 272
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13ed62db222c7a2489f0b059445274fd
+      internalID: -888954357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_15
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f760913e8c634e6488aa6e3956c22a38
+      internalID: -1073812370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_16
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b4a64d9f8ac51c46a889b363a0d863f
+      internalID: 1855469208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_15
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4517c5ce016d82d4ca6262a5aae45622
+      internalID: 96070242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_16
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8af8ef7b54efe6f418ff6e3ae3163283
+      internalID: -408241290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_nnw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 548a49dee9ba7434db69f50a5066fa7f
+      internalID: -166151853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_nne
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 147df31a9f66a6848b7880e36de7b2b7
+      internalID: -1508516934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_17
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bf02ef819e3c1c4184644fd0b5f0726
+      internalID: -1182988352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor01_18
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b677be479f187dd4e8b56b316fdce4a6
+      internalID: -720822618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_17
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe446225e02959945ab022a54d0821f8
+      internalID: 1185623080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: floor02_18
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 158795139e88e3345b88e94fc5edc7bc
+      internalID: 1844481985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_wnw
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a684744caa5031c459e421140a952d49
+      internalID: 1791025081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_nw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2700ded299f5ac84e8de1c5aa79a52b8
+      internalID: -155490529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_ne
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55af7bc5ea99f1e48b9bd19968c9c543
+      internalID: -486914615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_ene
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b213144b06a7272499fffbf87d2e1d72
+      internalID: 862708997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_wsw
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d48817c65479d64ea1fb57446c16e6e
+      internalID: 1760718972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_sw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 233ed30e6bea25d449848ea1c3368c0d
+      internalID: 1397122436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_se
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48e7716ebcc2eaf4d8b3dc43dc0c1c07
+      internalID: 334282923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_ese
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eeadb886a5fc3944abaeeef040a3800d
+      internalID: 1028892458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_196
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 637c13e0be015df429b89457a521065d
+      internalID: -1624640579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_197
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 924b38341f3379d4ab98500e23179ae6
+      internalID: -284117276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_198
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9bb2dca9a134b74da50bfa8dbce99ce
+      internalID: 235861540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_199
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c316e10b11b0e546a4ba049a9611de7
+      internalID: 882707576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_ssw
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e174dbefb720d304985bdfd86516fb41
+      internalID: -1235984954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ledge02_crn_sse
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62cfb0215efd68748bd6b6cc29018d89
+      internalID: 1577929305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_210
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16b50682b5df8b0408eaf65865c8b0b0
+      internalID: -689128080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_211
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2e21fc9343e6764f992e80610933bca
+      internalID: -1993803470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_212
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2a7f3233405cb14fa99c53c6060dfa0
+      internalID: -1007731798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_213
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 192
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fca6e614ad9056f4793942134fae1139
+      internalID: -194420194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_222
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3303d0e19ef10be4783b87b7a2772f66
+      internalID: 1804771143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_223
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8518d9959e11c9646a568354fc4b5d54
+      internalID: 1858719600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_224
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e875297b902cb844f8a087d8b4c96475
+      internalID: -1361118905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_225
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 176
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9a28c62a15c1594fa4566f528773af2
+      internalID: -777551911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_234
+      rect:
+        serializedVersion: 2
+        x: 928
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f779168e580e886408b82ca177dc1e86
+      internalID: 441991185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_235
+      rect:
+        serializedVersion: 2
+        x: 944
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a218a9b9904d83e45bdefcdd6631b246
+      internalID: -149201356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_236
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8e2b2cec7e93a746a00b55530af6569
+      internalID: 1329662014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mainlevbuild_237
+      rect:
+        serializedVersion: 2
+        x: 976
+        y: 160
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00a9cf0ea60b9574f8a0efdfcabe5d61
+      internalID: 1720064037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      mainlevbuild_119: 1971476517
+      mainlevbuild_228: 1455637952
+      ledge01_04ss: -1271709675
+      floor02_13: -1262012998
+      mainlevbuild_120: -696828859
+      ledge01_04w: -1969752584
+      mainlevbuild_125: -2022750712
+      pillar03_01: -1610450195
+      ledge01_03s: -1257447306
+      mainlevbuild_59: 602827471
+      mainlevbuild_56: -1286224703
+      mainlevbuild_197: -284117276
+      mainlevbuild_173: -64128004
+      pillar04_06: -1114899979
+      floor02_06: 1036999186
+      ledge01_03e: -1121585162
+      mainlevbuild_79: 1892958
+      floor01_16: 1855469208
+      mainlevbuild_188: 768299475
+      mainlevbuild_28: -737893787
+      mainlevbuild_144: 1396871932
+      mainlevbuild_118: 354207156
+      mainlevbuild_78: 913251750
+      floor02_12: -1964569964
+      pillar04_04: 1476067679
+      mainlevbuild_111: 434536619
+      ledge02_crn_wsw: 1760718972
+      mainlevbuild_140: -549007807
+      ledge01_04sss: 652699256
+      ledge01_02w: -417257117
+      ledge01_crn_ene: -1821328898
+      mainlevbuild_42: 382380569
+      mainlevbuild_38: 162811329
+      mainlevbuild_154: -1562059234
+      floor02_14: 11109288
+      mainlevbuild_102: 109519892
+      floor02_03: -1659497573
+      floor01_06: 807941086
+      mainlevbuild_214: -1824864190
+      mainlevbuild_230: -1402187581
+      mainlevbuild_210: -689128080
+      mainlevbuild_229: -415399256
+      mainlevbuild_103: -1713392770
+      mainlevbuild_39: -1922573411
+      ledge01_04s: 1045554604
+      pillar01_07: 1359151393
+      mainlevbuild_202: -1390383831
+      floor01_08: -1978166701
+      ledge01_01ne: -1452287231
+      mainlevbuild_193: -1263527445
+      ledge01_02sss: -813485185
+      mainlevbuild_171: 1489421505
+      mainlevbuild_124: 602608316
+      ledge02_crn_nw: -155490529
+      mainlevbuild_196: -1624640579
+      mainlevbuild_98: 898128921
+      floor02_10: 803808703
+      mainlevbuild_227: -1918224649
+      mainlevbuild_170: -989450120
+      ledge01_01sss: 2012561323
+      mainlevbuild_191: -93202743
+      mainlevbuild_23: -1526916300
+      ledge01_03sss: 1601704803
+      mainlevbuild_209: -1120941077
+      mainlevbuild_41: 1589905028
+      mainlevbuild_117: -1690844082
+      mainlevbuild_141: 193715352
+      mainlevbuild_100: -955153772
+      mainlevbuild_43: -1293545601
+      mainlevbuild_203: -1187297504
+      ledge01_02e: -844448590
+      ledge02_crn_sse: 1577929305
+      pillar04_05: 1024989633
+      floor02_15: 96070242
+      ledge01_crn_ssw: 1991014054
+      floor01_17: -1182988352
+      pillar04_01: 727748156
+      ledge01_01ss: -675703476
+      mainlevbuild_217: 1592705866
+      floor02_16: -408241290
+      floor01_09: 2018796554
+      mainlevbuild_58: 1351574226
+      mainlevbuild_174: 268033332
+      ledge02_crn_sw: 1397122436
+      mainlevbuild_237: 1720064037
+      floor02_11: 172223454
+      ledge01_01e: 821511461
+      mainlevbuild_55: -1121352684
+      ledge01_02ss: 433788660
+      ledge02_crn_wnw: 1791025081
+      mainlevbuild_96: -284324960
+      mainlevbuild_211: -1993803470
+      ledge01_04n: 404492777
+      mainlevbuild_205: -1449283317
+      floor02_07: -1841971158
+      mainlevbuild_169: -1083436942
+      mainlevbuild_189: 794786558
+      floor01_03: -2073832065
+      floor02_08: -1599712395
+      ledge01_crn_sse: -888954357
+      mainlevbuild_207: -196355291
+      pillar01_08: 904687852
+      mainlevbuild_156: 161719733
+      ledge01_crn_nne_se: -1659949534
+      floor01_12: -1613526516
+      mainlevbuild_235: -149201356
+      ledge02_crn_nnw: -166151853
+      mainlevbuild_127: -555076688
+      mainlevbuild_225: -777551911
+      mainlevbuild_195: 123453494
+      ledge01_01w: 1564825314
+      ledge01_01n: 1301436010
+      floor01_14: 1931519601
+      mainlevbuild_160: -525817004
+      ledge01_04e: -1295978060
+      mainlevbuild_222: 1804771143
+      mainlevbuild_224: -1361118905
+      mainlevbuild_76: 846652034
+      mainlevbuild_172: -833231593
+      ledge01_03w: -1580903095
+      mainlevbuild_234: 441991185
+      floor01_04: 96154294
+      pillar01_02: 669849087
+      ledge01_01s: -1607892702
+      mainlevbuild_220: 549693096
+      mainlevbuild_143: -473572584
+      ledge02_crn_ese: 1028892458
+      floor01_11: -903366612
+      pillar03_02: 1463470893
+      floor01_07: 742596249
+      mainlevbuild_82: 1249152674
+      pillar01_01: -445243939
+      mainlevbuild_213: -194420194
+      mainlevbuild_168: -1536140942
+      mainlevbuild_155: -1347487802
+      floor02_05: -1767739395
+      mainlevbuild_232: 1024751097
+      ledge02_crn_ssw: -1235984954
+      mainlevbuild_231: -243159357
+      mainlevbuild_159: -2145918801
+      mainlevbuild_208: -1455050758
+      pillar01_06: 1211897356
+      mainlevbuild_218: 1029643233
+      mainlevbuild_157: 448302381
+      mainlevbuild_158: 526223745
+      floor01_hole: 926413511
+      mainlevbuild_236: 1329662014
+      floor01_02: -1487599905
+      pillar04_02: -245527947
+      ledge02_crn_se: 334282923
+      mainlevbuild_112: -281921851
+      ledge01_crn_wnw: -344728596
+      mainlevbuild_81: 908315129
+      mainlevbuild_26: 1329617253
+      mainlevbuild_54: -1289153626
+      ledge01_01nw: 1902316236
+      ledge01_03n: 906210854
+      mainlevbuild_40: -636033331
+      floor02_01: -903146944
+      mainlevbuild_25: -1221317324
+      mainlevbuild_212: -1007731798
+      mainlevbuild_122: 362700998
+      pillar02_05: -1488961450
+      mainlevbuild_29: 1143058658
+      ledge01_crn_wsw: -1213866699
+      mainlevbuild_77: -419344972
+      mainlevbuild_161: -727515120
+      mainlevbuild_128: -309071989
+      floor02_18: 1844481985
+      floor01_18: -720822618
+      ledge01_01sw: -879374850
+      ledge01_crn_ese: 1935166660
+      mainlevbuild_194: -1373414630
+      mainlevbuild_226: 1905825102
+      pillar01_03: -524304049
+      mainlevbuild_215: -500614331
+      mainlevbuild_198: 235861540
+      ledge02_crn_ne: -486914615
+      mainlevbuild_190: -1105273328
+      pillar02_01: -1602024500
+      mainlevbuild_83: -1560708365
+      mainlevbuild_53: -63216792
+      floor02_17: 1185623080
+      pillar02_02: -312901468
+      mainlevbuild_113: 248232724
+      mainlevbuild_123: 397371229
+      floor01_05: 1923684209
+      ledge01_crn_nnw_sse: 1625941131
+      floor02_09: -924322072
+      mainlevbuild_44: -1324598355
+      floor02_04: -736477432
+      mainlevbuild_24: 500096997
+      mainlevbuild_129: -675832347
+      mainlevbuild_192: 652944116
+      mainlevbuild_216: 1760771834
+      mainlevbuild_27: 1525098301
+      mainlevbuild_30: 480916930
+      mainlevbuild_221: -1063166174
+      mainlevbuild_223: 1858719600
+      mainlevbuild_233: -1027610890
+      floor02_02: -1475574430
+      mainlevbuild_206: -510250176
+      ledge02_crn_ene: 862708997
+      mainlevbuild_238: 1665477845
+      pillar03_03: -1588787166
+      floor01_10: 1293289746
+      mainlevbuild_175: -595747811
+      mainlevbuild_142: 1153587762
+      floor01_15: -1073812370
+      mainlevbuild_204: 799470257
+      ledge01_01se: 1039809723
+      mainlevbuild_219: 1806713939
+      pillar04_03: -1197382114
+      mainlevbuild_45: 1834444301
+      ledge01_crn_nnw: 1194708760
+      mainlevbuild_80: 248772760
+      pillar02_03: 1685995683
+      pillar02_04: -1125692456
+      mainlevbuild_101: 1992708872
+      mainlevbuild_146: 1765939994
+      floor01_13: -464510674
+      mainlevbuild_147: 732370069
+      mainlevbuild_145: 174364105
+      mainlevbuild_126: -1338571370
+      ledge01_03ss: -1401999397
+      ledge01_crn_nnw_sw: 1938750047
+      ledge01_crn_nnw_ssw: -206506380
+      ledge02_crn_nne: -1508516934
+      mainlevbuild_31: -1026489197
+      pillar01_04: 943296467
+      mainlevbuild_99: 390561311
+      mainlevbuild_52: -110767752
+      mainlevbuild_199: 882707576
+      ledge01_02s: -425929325
+      ledge01_02n: -1901147942
+      floor01_01: 1790424877
+      mainlevbuild_97: 306810357
+      mainlevbuild_57: 1450570459
+      pillar01_05: -4916002
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
