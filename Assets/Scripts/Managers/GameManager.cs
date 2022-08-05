@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public PlayerManager playerManager;
     public DisplayManager displayManager;
     public MenuManager menuManager;
+    public CameraController cam;
 
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     public StateManagerLevel stateLevel;
 
     // CAMERA BLACKSCREEN
-    Image blackscreen;
+    public Blackscreen blackscreen;
 
     // AWAKE
     void Awake()
@@ -41,6 +42,8 @@ public class GameManager : MonoBehaviour
         // GET MANAGER COMPONENTS
         playerManager = GetComponent<PlayerManager>();
         displayManager = GetComponent<DisplayManager>();
+        cam = Camera.main.GetComponent<CameraController>();
+        blackscreen = cam.blackscreen;
 
         // INIT STATE MACHINE
         stateMachine = new StateMachine();

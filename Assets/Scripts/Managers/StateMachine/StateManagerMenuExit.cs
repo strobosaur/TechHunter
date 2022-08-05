@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class StateManagerMenuExit : ManagerState
 {
+    // MENU MANAGER
     MenuManager menu;
 
-    Image blackscreen;
-    Color bsColor;
-
-    float bsFadeTime = 2f;
-    float bsFadeCounter = 0;
+    // ON MENU EXIT
+    public System.Action OnMenuExit;
 
     // CONSTRUCTOR
     public StateManagerMenuExit(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
@@ -20,14 +18,14 @@ public class StateManagerMenuExit : ManagerState
     public override void Enter()
     {
         base.Enter();
+
+        // GET MENU COMPONENTS
         manager.menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
         menu = manager.menuManager;
-        
-        blackscreen = GameObject.Find("BlackScreen").GetComponent<Image>();
-        bsColor = blackscreen.color;
-        bsColor.a = 0;
-        blackscreen.color = bsColor;
-        blackscreen.enabled = true;
+
+        // START BLACK SCREEN FADE
+        manager.blackscreen.StartBlackScreenFade(true);
+        manager.blackscreen.OnBlackScreenBlack += MakeMenuChoice;
     }
 
     // EXIT
@@ -40,8 +38,6 @@ public class StateManagerMenuExit : ManagerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        BlackScreenFade(blackscreen, true);
     }
 
     // PHYSICS UPDATE
@@ -50,18 +46,20 @@ public class StateManagerMenuExit : ManagerState
         base.PhysicsUpdate();
     }
 
-    // BLACKSCREEN FADE
-    void BlackScreenFade(Image blackscreen, bool fadeIn)
+    // MAKE MENU CHOICE
+    private void MakeMenuChoice()
     {
-        if (bsFadeCounter < bsFadeTime)
+        switch (menu.currentIndex)
         {
-            bsFadeCounter = Globals.Approach(bsFadeCounter, bsFadeTime, Time.deltaTime);
-            if (fadeIn) bsColor.a = (bsFadeCounter / bsFadeTime);
-            else bsColor.a = 1f - (bsFadeCounter / bsFadeTime);
-            blackscreen.color = bsColor;
-        } else {
-            if (!fadeIn)
-                blackscreen.enabled = false;
+            case (int)MainMenuOptions.newGame:
+            Debug.Log("New Game!");
+            break;
+
+            case (int)MainMenuOptions.highscores:
+            break;
+
+            case (int)MainMenuOptions.quit:
+            break;
         }
     }
 }
