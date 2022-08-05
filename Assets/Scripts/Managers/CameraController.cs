@@ -9,6 +9,9 @@ public class CameraController : MonoBehaviour
     public Transform playerTransform;
     public Transform crossTransform;
 
+    // BLACKSCREEN
+    public Blackscreen blackscreen;
+
     // TARGET & MOVEMENT PARAMETERS
     public Vector2 targetPos;
     public Vector2 moveDelta;
@@ -29,6 +32,9 @@ public class CameraController : MonoBehaviour
         stateMenu = new CameraStateMenu(this, stateMachine);
         stateBase = new CameraStateBase(this, stateMachine);
         stateLevel = new CameraStateLevel(this, stateMachine);
+
+        // BLACKSCREEN
+        blackscreen = GetComponentInChildren<Blackscreen>();
     }
 
     // START

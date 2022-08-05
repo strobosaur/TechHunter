@@ -7,12 +7,6 @@ public class StateManagerMenu : ManagerState
 {
     MenuManager menu;
 
-    Image blackscreen;
-    Color bsColor;
-
-    float bsFadeTime = 2f;
-    float bsFadeCounter = 0f;
-
     // CONSTRUCTOR
     public StateManagerMenu(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
 
@@ -21,14 +15,12 @@ public class StateManagerMenu : ManagerState
     {
         base.Enter();
 
+        // GET MENU COMPONENTS
         manager.menuManager = GameObject.Find("Menu").GetComponent<MenuManager>();
         menu = manager.menuManager;
 
-        blackscreen = GameObject.Find("BlackScreen").GetComponent<Image>();
-        bsColor = blackscreen.color;
-        bsColor.a = 1f;
-        blackscreen.color = bsColor;
-        blackscreen.enabled = true;
+        // START BLACKSCREEN FADE IN
+        manager.blackscreen.StartBlackScreenFade(false);
     }
 
     // EXIT
@@ -41,9 +33,6 @@ public class StateManagerMenu : ManagerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        // UPDATE BLACKSCREEN
-        BlackScreenFade(blackscreen, false);
 
         // SWITCH MENU INDEX
         if (InputManager.input.down.WasPressedThisFrame()) menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) + 1) % menu.menuTexts.Count);
@@ -75,20 +64,5 @@ public class StateManagerMenu : ManagerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    // BLACKSCREEN FADE
-    void BlackScreenFade(Image blackscreen, bool fadeIn)
-    {
-        if (bsFadeCounter < bsFadeTime)
-        {
-            bsFadeCounter = Globals.Approach(bsFadeCounter, bsFadeTime, Time.deltaTime);
-            if (fadeIn) bsColor.a = (bsFadeCounter / bsFadeTime);
-            else bsColor.a = 1f - (bsFadeCounter / bsFadeTime);
-            blackscreen.color = bsColor;
-        } else {
-            if (!fadeIn)
-                blackscreen.enabled = false;
-        }
     }
 }
