@@ -44,3 +44,10 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
     }
 }
+
+public enum EquipmentSlot {
+    head,
+    chest,
+    legs,
+    weapon
+}

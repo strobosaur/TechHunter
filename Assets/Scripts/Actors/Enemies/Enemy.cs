@@ -47,7 +47,6 @@ public class Enemy : Fighter, IDamageable
         // CREATE WEAPON
         if (weapon == null)
             weapon = GetComponent<IWeapon>();
-        weapon.SetWeaponParams(wpnStats);
 
         chargeDist = 8f;
 

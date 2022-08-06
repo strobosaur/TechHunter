@@ -17,10 +17,3 @@ public class Equipment : Item
         RemoveFromInventory();
     }
 }
-
-public enum EquipmentSlot {
-    head,
-    chest,
-    legs,
-    weapon
-}

@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1004670130657727163}
   - component: {fileID: 1004670130657727160}
   - component: {fileID: 2302509538139626946}
+  - component: {fileID: 1546278534966160997}
   - component: {fileID: -8492539105425625631}
-  - component: {fileID: -8436796117733942107}
   - component: {fileID: 1004670130657727162}
   - component: {fileID: 1004670130657727157}
   - component: {fileID: 1004670130657727156}
@@ -163,6 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+--- !u!114 &1546278534966160997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004670130657727148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0c4f436b066164d9a24c9e23d64d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &-8492539105425625631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,19 +189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashColor: {r: 1, g: 1, b: 1, a: 0}
   flashDuration: 0.5
---- !u!114 &-8436796117733942107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004670130657727148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f61d874bc2c30084595cf9a43d454644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isMelee: 0
 --- !u!95 &1004670130657727162
 Animator:
   serializedVersion: 4

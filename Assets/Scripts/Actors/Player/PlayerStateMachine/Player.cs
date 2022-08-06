@@ -9,7 +9,6 @@ public class Player : Fighter, IDamageable
     public PlayerInvincibility invincibility;
 
     // STATS
-    public EntityStats statsBlueprint;
     public float animSpd = 0.35f;
     public Vector2 facingDir;
     public Vector2 aimTarget;
@@ -38,12 +37,13 @@ public class Player : Fighter, IDamageable
 
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
-        StatsInit(statsBlueprint, wpnStats);
+        //StatsInit(statsBlueprint, wpnStats);
+        //stats = PlayerManager.instance.playerStats;
 
         // CREATE WEAPON
         weapon = GetComponent<IWeapon>();
         //wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 1, 1, 5);
-        weapon.SetWeaponParams(wpnStats);
+        //weapon.SetWeaponParams(wpnStats);
         moveBoost = GetComponent<PlayerMoveBoost>();
 
         // CREATE STATE MACHINE
@@ -55,6 +55,7 @@ public class Player : Fighter, IDamageable
     // START
     protected override void Start()
     {
+        stats = PlayerManager.instance.playerStats;
         stateMachine.Iinitialize(stateIdle);
     }
 

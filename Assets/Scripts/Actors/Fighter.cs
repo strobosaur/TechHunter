@@ -21,7 +21,7 @@ public class Fighter : Movable
         base.Awake();
 
         // GET WEAPON
-        weapon = GetComponent<IWeapon>();
+        weapon = GetComponent<WeaponComponent>();
 
         // GET HITFLASH
         hitflash = GetComponent<HitFlash>();
