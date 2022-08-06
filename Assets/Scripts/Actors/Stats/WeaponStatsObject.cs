@@ -16,6 +16,8 @@ public class WeaponStatsObject
     public StatInt shots = new StatInt();     // HOW MANY SHOTS ARE FIRED AT ONCE
     public StatInt burst = new StatInt();  // NUMBER OF SHOTS IN ONE BURST
 
+    //public Stat[] stats = new Stat[System.Enum.GetNames(typeof(WeaponATR)).Length];
+
     public void InitStats(WeaponParams stats)
     {
         isMelee = stats.isMelee;
@@ -30,4 +32,8 @@ public class WeaponStatsObject
         shots.SetValue(stats.shots.GetValue());
         burst.SetValue(stats.burst.GetValue());
     }
+}
+
+public enum WeaponATR {
+    frate, brate, dmg, range, spr, dmgSpr, bulletSpd, knockback, shots, burst
 }
