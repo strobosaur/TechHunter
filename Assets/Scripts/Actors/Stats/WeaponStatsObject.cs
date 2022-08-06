@@ -13,7 +13,6 @@ public class WeaponStatsObject
     public Stat dmgSpr = new Stat();    // HOW RANDOM THE DAMAGE IS
     public Stat bulletSpd = new Stat(); // BULLET SPEED
     public Stat knockback = new Stat(); // BULLET SPEED
-    public StatInt pierce = new StatInt();    // HOW MANY TARGETS CAN BE PIERCED
     public StatInt shots = new StatInt();     // HOW MANY SHOTS ARE FIRED AT ONCE
     public StatInt burst = new StatInt();  // NUMBER OF SHOTS IN ONE BURST
 
@@ -28,7 +27,6 @@ public class WeaponStatsObject
         dmgSpr.SetValue(stats.dmgSpr.GetValue());
         bulletSpd.SetValue(stats.bulletSpd.GetValue());
         knockback.SetValue(stats.knockback.GetValue());
-        pierce.SetValue(stats.pierce.GetValue());
         shots.SetValue(stats.shots.GetValue());
         burst.SetValue(stats.burst.GetValue());
     }

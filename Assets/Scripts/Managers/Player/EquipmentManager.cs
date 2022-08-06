@@ -13,6 +13,7 @@ public class EquipmentManager : MonoBehaviour
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
 
+    // AWAKE
     void Awake()
     {
         if (instance != null)
@@ -25,12 +26,14 @@ public class EquipmentManager : MonoBehaviour
         inventory = Inventory.instance;
     }
 
+    // START
     void Start()
     {
         int equipSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[equipSlots];
     }
 
+    // EQUIP ITEM
     public void Equip(Equipment newItem)
     {
         int slotIndex = (int)newItem.equipSlot;
@@ -53,6 +56,7 @@ public class EquipmentManager : MonoBehaviour
         currentEquipment[slotIndex] = newItem;
     }
 
+    // UNEQUIP ITEM
     public void Unequip(int slotIndex)
     {
         // CHECK FOR ITEM IN SLOT

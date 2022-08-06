@@ -2,25 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsObject : MonoBehaviour
+public class PlayerStatsObject
 {
-    public StatInt HPmax;
+    public StatInt HPmax = new StatInt();
     public float HPcur;
 
-    public Stat armor;
+    public Stat armor = new Stat();
 
-    public Stat staminaMax;
+    public Stat staminaMax = new Stat();
     public float staminaCur;
 
-    public Stat moveSpd;
+    public Stat moveSpd = new Stat();
 
-    public Stat moveBoostSpd;
-    public Stat moveBoostTime;
-    public Stat moveBoostCD;
+    public Stat moveBoostSpd = new Stat();
+    public Stat moveBoostTime = new Stat();
+    public Stat moveBoostCD = new Stat();
     
-    public Stat invincibilityTime;
+    public Stat invincibilityTime = new Stat();
 
-    public WeaponStatsObject weaponStats;
+    public WeaponStatsObject wpnStats = new WeaponStatsObject();
 
     public void TakeDamage(float damage)
     {
