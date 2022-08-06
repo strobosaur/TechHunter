@@ -11,16 +11,6 @@ public class Movable : MonoBehaviour
     // RIGIDBODY
     public Rigidbody2D rb { get; protected set; }
 
-    // PLAYER DATA
-    public EntityData data;
-    public EntityStats stats;
-
-    // STATE MACHINE
-    //public StateMachine stateMachine { get; protected set; }
-
-    //public StateIdle stateIdle { get; protected set; }
-    //public StateMove stateMove { get; protected set; }
-
     // MOVEMENT
     public IMoveInput moveInput;
     public ILookInput lookInput;
@@ -41,10 +31,6 @@ public class Movable : MonoBehaviour
 
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // PLAYER DATA
-        data = new EntityData();
-        stats = GetComponent<EntityStats>();
-
         // FORCE QUEUE
         forceQueue = new Queue<Vector2>();
 
@@ -53,29 +39,23 @@ public class Movable : MonoBehaviour
         lookInput = GetComponent<ILookInput>();
         movement = GetComponent<IMoveable>();
         combat = GetComponent<ICombat>();
-
-        // CREATE STATE MACHINE
-        //stateMachine = new StateMachine();
-        //stateIdle = new StateIdle(this, stateMachine, "idle");
-        //stateMove = new StateMove(this, stateMachine, "move");
     }
 
     // START
     protected virtual void Start()
     {
-        //stateMachine.Iinitialize(stateIdle);
+        
     }
 
     // UPDATE
     protected virtual void Update()
     {
-        //stateMachine.CurrentState.LogicUpdate();
+        
     }
 
     // FIXED UPDATE
     protected virtual void FixedUpdate()
     {
-        //stateMachine.CurrentState.PhysicsUpdate();
         if (forceQueue.Count > 0) ApplyForces();
     }
 

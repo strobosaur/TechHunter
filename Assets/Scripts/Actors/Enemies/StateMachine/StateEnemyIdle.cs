@@ -9,7 +9,7 @@ public class StateEnemyIdle : EnemyState
     Vector2 lookInput;
 
     // CONSTRUCTOR
-    public StateEnemyIdle(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName) {}
+    public StateEnemyIdle(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) {}
 
     // DO CHECKS
     public override void DoChecks()
@@ -46,7 +46,7 @@ public class StateEnemyIdle : EnemyState
         lookInput = enemy.lookInput.GetLookInput();
 
         // CHECK FOR MOVEMENT & CHANGE STATE
-        if (targetDist < enemy.wpnStats.range.GetValue())
+        if (targetDist < enemy.stats.wpnStats.range.GetValue())
         {
             // ATTACK STATE
             stateMachine.ChangeState(enemy.stateAttack);

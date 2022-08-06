@@ -8,6 +8,7 @@ public class PlayerMoveBoost : MonoBehaviour
     public float lastBoost;
     private bool isBoosting;
 
+    // AWAKE
     void Awake()
     {
         player = GetComponent<Player>();
@@ -15,18 +16,20 @@ public class PlayerMoveBoost : MonoBehaviour
         lastBoost = Time.time;
     }
 
+    // UPDATE
     void Update()
     {
-        if ((Time.time > lastBoost + player.stats2.moveBoostTime.GetValue()) && (isBoosting)) {
-            player.stats.moveSpd.RemoveModifier(player.stats2.moveBoost.GetValue());
+        if ((Time.time > lastBoost + player.stats.moveBoostTime.GetValue()) && (isBoosting)) {
+            player.stats.moveSpd.RemoveModifier(player.stats.moveBoostSpd.GetValue());
             isBoosting = false;
         }
     }
 
+    // BOOST MOVE SPEED
     public void MoveBoost()
     {
-        if (Time.time > lastBoost + player.stats2.moveBoostCD.GetValue()){
-            player.stats.moveSpd.AddModifier(player.stats2.moveBoost.GetValue());
+        if (Time.time > lastBoost + player.stats.moveBoostCD.GetValue()){
+            player.stats.moveSpd.AddModifier(player.stats.moveBoostSpd.GetValue());
             lastBoost = Time.time;
             isBoosting = true;
         }

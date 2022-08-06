@@ -33,7 +33,7 @@ public class PlayerInvincibility : MonoBehaviour
     {
         if (isInvincible)
         {
-            if (Time.time > player.stats2.lastDamage + player.stats2.invincibilityTime.GetValue())
+            if (Time.time > player.lastDamage + player.stats.invincibilityTime.GetValue())
             {
                 DisableInvincible();
             }

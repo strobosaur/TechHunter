@@ -9,7 +9,7 @@ public class StateEnemyMove : EnemyState
     Vector2 lookInput;
 
     // CONSTRUCTOR
-    public StateEnemyMove(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName) {}
+    public StateEnemyMove(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) {}
 
     // DO CHECKS
     public override void DoChecks()
@@ -42,7 +42,7 @@ public class StateEnemyMove : EnemyState
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
         // CHANGE STATE?
-        if (targetDist < enemy.wpnStats.range.GetValue()) 
+        if (targetDist < enemy.stats.wpnStats.range.GetValue()) 
         {
             // ATTACK STATE
             stateMachine.ChangeState(enemy.stateAttack);

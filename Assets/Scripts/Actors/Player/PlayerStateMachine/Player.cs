@@ -5,10 +5,15 @@ using UnityEngine;
 public class Player : Fighter, IDamageable
 {
     // PLAYER DATA
-    public PlayerData data;
-    public PlayerStats stats2;
     public PlayerMoveBoost moveBoost;
     public PlayerInvincibility invincibility;
+
+    // STATS
+    public EntityStats statsBlueprint;
+    public float animSpd = 0.35f;
+    public Vector2 facingDir;
+    public Vector2 aimTarget;
+    public float lastDamage;
 
     // STATE MACHINE
     public PlayerStateMachine stateMachine { get; private set; }
@@ -18,16 +23,11 @@ public class Player : Fighter, IDamageable
 
     // CROSSHAIR
     public Crosshair crosshair { get; private set; }
-    //public IWeapon weapon;
-    //public WeaponParams wpnStats;
 
     // AWAKE
     protected override void Awake()
     {
         base.Awake();
-
-        // PLAYER DATA
-        data = new PlayerData();
 
         // GET MOVE INPUT COMPONENT
         moveInput = GetComponent<IMoveInput>();
@@ -38,17 +38,18 @@ public class Player : Fighter, IDamageable
 
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
+        StatsInit(statsBlueprint, wpnStats);
+
         // CREATE WEAPON
         weapon = GetComponent<IWeapon>();
-        wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 1, 1, 5);
+        //wpnStats = new WeaponParams(false, 1.5f, 0.1f, 1f, 15f, 0.5f, 0.15f, 32f, 1f, 1, 1, 5);
         weapon.SetWeaponParams(wpnStats);
-        stats2 = new PlayerStats(2f, 3f, 6f, 3f);
         moveBoost = GetComponent<PlayerMoveBoost>();
 
         // CREATE STATE MACHINE
         stateMachine = new PlayerStateMachine();
-        stateIdle = new StatePlayerIdle(this, stateMachine, "idle");
-        stateMove = new StatePlayerMove(this, stateMachine, "move");
+        stateIdle = new StatePlayerIdle(this, stateMachine);
+        stateMove = new StatePlayerMove(this, stateMachine);
     }
 
     // START
@@ -91,12 +92,13 @@ public class Player : Fighter, IDamageable
             stats.TakeDamage(damage.damage);
             CheckDeath(stats);
             hitflash.Flash();
-            stats2.lastDamage = Time.time;
+            lastDamage = Time.time;
             invincibility.SetInvincible();
         }
     }
 
-    public void CheckDeath(EntityStats stats)
+    // CHECK PLAYER DEATH
+    public void CheckDeath(StatsObject stats)
     {
         if (stats.HPcur <= 0f)
         {

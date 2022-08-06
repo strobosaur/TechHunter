@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class StateManagerLevel : ManagerState
 {
-    public StateManagerLevel(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine)
-    {
-    }
+    public StateManagerLevel(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
 
     public override void Enter()
     {
         base.Enter();
+
+        // SET CAMERA STATE
+        manager.cam.stateMachine.ChangeState(manager.cam.stateLevel);
     }
 
     public override void Exit()

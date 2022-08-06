@@ -10,7 +10,7 @@ public class WeaponRanged : Weapon, IWeapon
         isMelee = false;
     }
 
-    public override void WeaponAttack(Vector3 origin, Transform target)
+    public override void WeaponAttack(Vector3 origin, Transform target, WeaponStatsObject wpnParams)
     {
         var burst = wpnParams.burst.GetValue();
         var shots = wpnParams.shots.GetValue();

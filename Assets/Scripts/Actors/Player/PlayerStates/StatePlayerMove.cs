@@ -7,9 +7,7 @@ public class StatePlayerMove : PlayerState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StatePlayerMove(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
-    {
-    }
+    public StatePlayerMove(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine){}
 
     public override void DoChecks()
     {
@@ -40,7 +38,7 @@ public class StatePlayerMove : PlayerState
 
         // COMBAT
         if (InputManager.input.R2.IsPressed())
-            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform);
+            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
 
         // MOVE BOOST
         if (InputManager.input.B.IsPressed()) {

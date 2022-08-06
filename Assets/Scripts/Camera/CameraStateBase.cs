@@ -11,6 +11,10 @@ public class CameraStateBase : CameraState
     public override void Enter()
     {
         base.Enter();
+        
+        camera.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
+        camera.playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
+        camera.crossTransform = GameObject.Find("Crosshair").transform;
     }
 
     // EXIT STATE
@@ -23,6 +27,20 @@ public class CameraStateBase : CameraState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (camera.player == null) camera.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
+        if (camera.playerTransform == null) camera.playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
+        if (camera.crossTransform == null) camera.crossTransform = GameObject.Find("Crosshair").transform;
+        
+        // IF PLAYER AIMING
+        if (InputManager.input.look.ReadValue<Vector2>().magnitude > 0)
+        {
+            camera.targetPos = Vector2.Lerp(camera.playerTransform.position, camera.crossTransform.position, 0.33f);
+        } else if (InputManager.input.move.ReadValue<Vector2>().magnitude > 0) {
+            camera.targetPos = camera.playerTransform.position + ((Vector3)camera.player.rb.velocity * camera.camDistMove);
+        } else {
+            camera.targetPos = camera.playerTransform.position;
+        }
     }
 
     // PHYSICS UPDATE

@@ -9,7 +9,7 @@ public class StateEnemyAttack : EnemyState
     Vector2 lookInput;
 
     // CONSTRUCTOR
-    public StateEnemyAttack(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName) {}
+    public StateEnemyAttack(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) {}
 
     // DO CHECKS
     public override void DoChecks()
@@ -49,8 +49,7 @@ public class StateEnemyAttack : EnemyState
         {
             stateMachine.ChangeState(enemy.stateIdle);
         } else {
-            //Debug.Log("Combat: " + enemy.combat + "\nWeapon: " + enemy.weapon + "\nTarget: " + enemy.target);
-            enemy.combat.Attack(enemy.weapon, enemy.transform.position, enemy.target);
+            enemy.combat.Attack(enemy.weapon, enemy.transform.position, enemy.target, enemy.stats.wpnStats);
         }
 
         // ANIMATOR

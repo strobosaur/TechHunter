@@ -21,6 +21,9 @@ public class StateManagerMenu : ManagerState
 
         // START BLACKSCREEN FADE IN
         manager.blackscreen.StartBlackScreenFade(false);
+
+        // SET CAMERA STATE
+        manager.cam.stateMachine.ChangeState(manager.cam.stateMenu);
     }
 
     // EXIT

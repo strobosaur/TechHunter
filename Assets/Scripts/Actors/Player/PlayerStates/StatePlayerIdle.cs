@@ -7,7 +7,7 @@ public class StatePlayerIdle : PlayerState
     Vector2 moveInput;
     Vector2 lookInput;
 
-    public StatePlayerIdle(Player player, PlayerStateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
+    public StatePlayerIdle(Player player, PlayerStateMachine stateMachine) : base(player, stateMachine)
     {
     }
 
@@ -39,7 +39,7 @@ public class StatePlayerIdle : PlayerState
 
         // COMBAT
         if (InputManager.input.R2.IsPressed())
-            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform);
+            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
 
         // MOVE BOOST
         if (InputManager.input.B.IsPressed()) {

@@ -10,7 +10,7 @@ public class WeaponMelee : Weapon, IWeapon
         isMelee = true;
     }
 
-    public override void WeaponAttack(Vector3 origin, Transform target)
+    public override void WeaponAttack(Vector3 origin, Transform target, WeaponStatsObject wpnParams)
     {
         if (Vector2.Distance(origin, target.position) <= wpnParams.range.GetValue())
         {

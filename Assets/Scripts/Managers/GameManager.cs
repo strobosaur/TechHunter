@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     // MANAGER STATE
     public MenuManager menu;
+    Scene currentScene;
 
     // PERSISTENT MANAGERS
     public PlayerManager playerManager;
@@ -53,13 +55,29 @@ public class GameManager : MonoBehaviour
         stateLevel = new StateManagerLevel(this, stateMachine);
 
         // DISABLE MOUSE CURSOR
-        Cursor.visible = false;
+        //Cursor.visible = false;
+
+        // GET CURRENT SCENE
+        currentScene = SceneManager.GetActiveScene();
     }
 
     // START
     void Start()
     {
-        stateMachine.Initialize(stateMenu);
+        switch (currentScene.name)
+        {
+            case "01_MainMenu":
+            stateMachine.Initialize(stateMenu);
+            break;
+
+            case "02_Base":
+            stateMachine.Initialize(stateBase);
+            break;
+
+            case "03_Level":
+            stateMachine.Initialize(stateLevel);
+            break;
+        }
     }
 
     // UPDATE

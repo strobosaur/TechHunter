@@ -9,7 +9,7 @@ public class StateEnemyCharge : EnemyState
     Vector2 lookInput;
 
     // CONSTRUCTOR
-    public StateEnemyCharge(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName) {}
+    public StateEnemyCharge(Enemy enemy, EnemyStateMachine stateMachine) : base(enemy, stateMachine) {}
 
     // DO CHECKS
     public override void DoChecks()
@@ -21,7 +21,7 @@ public class StateEnemyCharge : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.stats.moveSpd.AddModifier(enemy.stats.moveBoost.GetValue());
+        enemy.stats.moveSpd.AddModifier(enemy.stats.moveBoostSpd.GetValue());
         enemy.timerArr[(int)EnemyTimers.chargeState] = Time.time;
     }
 
@@ -29,7 +29,7 @@ public class StateEnemyCharge : EnemyState
     public override void Exit()
     {
         base.Exit();
-        enemy.stats.moveSpd.RemoveModifier(enemy.stats.moveBoost.GetValue());
+        enemy.stats.moveSpd.RemoveModifier(enemy.stats.moveBoostSpd.GetValue());
     }
 
     // LOGIC UPDATE
@@ -51,7 +51,7 @@ public class StateEnemyCharge : EnemyState
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
         // SWITCH STATES
-        if (targetDist <= enemy.wpnStats.range.GetValue()) {
+        if (targetDist <= enemy.stats.wpnStats.range.GetValue()) {
             stateMachine.ChangeState(enemy.stateAttack);
         } else if (Time.time > startTime + enemy.stats.moveBoostTime.GetValue()) {
             stateMachine.ChangeState(enemy.stateIdle);
