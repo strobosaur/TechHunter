@@ -75,5 +75,5 @@ public class Weapon : MonoBehaviour
         return wpnParams;
     }
 
-    public virtual void WeaponAttack(Vector3 origin, Transform target){}
+    public virtual void WeaponAttack(Vector3 origin, Transform target, WeaponStatsObject wpnParams){}
 }

@@ -7,6 +7,13 @@ public class Enemy : Fighter, IDamageable
     // TARGET
     public Transform target;
 
+    public float animSpd = 0.35f;
+    public Vector2 facingDir;
+    public Vector2 aimTarget;
+
+    // ENEMY STATS
+    public EntityStats statsBlueprint;
+
     // STATE MACHINE SETUP
     public EnemyStateMachine stateMachine { get; protected set; }
 
@@ -25,10 +32,6 @@ public class Enemy : Fighter, IDamageable
     {
         base.Awake();
 
-        // ENEMY DATA
-        data = new EntityData();
-        //stats = GetComponent<EntityStats>();
-
         // TIMERS
         timerArr = new float[(int)EnemyTimers.end];
 
@@ -38,10 +41,12 @@ public class Enemy : Fighter, IDamageable
         movement = GetComponent<IMoveable>();
         combat = GetComponent<ICombat>();
 
+        // INIT STATS
+        StatsInit(statsBlueprint, wpnStats);
+
         // CREATE WEAPON
         if (weapon == null)
             weapon = GetComponent<IWeapon>();
-        wpnStats = new WeaponParams(true, 2f, 0.3f, 1, 1.5f, 1, 0, 0, 0.5f, 1);
         weapon.SetWeaponParams(wpnStats);
 
         chargeDist = 8f;
@@ -52,10 +57,10 @@ public class Enemy : Fighter, IDamageable
 
         // CREATE STATE MACHINE
         stateMachine = new EnemyStateMachine();
-        stateIdle = new StateEnemyIdle(this, stateMachine, "idle");
-        stateMove = new StateEnemyMove(this, stateMachine, "move");
-        stateCharge = new StateEnemyCharge(this, stateMachine, "charge");
-        stateAttack = new StateEnemyAttack(this, stateMachine, "attack");
+        stateIdle = new StateEnemyIdle(this, stateMachine);
+        stateMove = new StateEnemyMove(this, stateMachine);
+        stateCharge = new StateEnemyCharge(this, stateMachine);
+        stateAttack = new StateEnemyAttack(this, stateMachine);
     }
 
     // START
@@ -93,7 +98,7 @@ public class Enemy : Fighter, IDamageable
     }
 
     // CHECK DAMAGE
-    public void CheckDeath(EntityStats stats)
+    public void CheckDeath(StatsObject stats)
     {
         if (stats.HPcur <= 0f)
         {

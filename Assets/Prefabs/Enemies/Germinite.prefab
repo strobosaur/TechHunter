@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 640108655522021684}
   - component: {fileID: 640108655522021683}
   - component: {fileID: 640108655522021682}
-  - component: {fileID: 640108655522021681}
   - component: {fileID: 4241270793043093604}
   - component: {fileID: 6329121655212747068}
   - component: {fileID: -6446743913011305276}
@@ -102,10 +101,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba0b6df7d06f274cb59fe1ccfdd8e1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 0}
   dustPS: {fileID: 1204032103941762971}
   hitflash: {fileID: 0}
+  wpnStats: {fileID: 11400000, guid: 4d87a7be1a2f67746b924a92ba5ebf6e, type: 2}
   target: {fileID: 0}
+  animSpd: 0.35
+  facingDir: {x: 0, y: 0}
+  aimTarget: {x: 0, y: 0}
+  statsBlueprint: {fileID: 11400000, guid: a0db798204743014cb2d318326ba7a96, type: 2}
   timerArr: []
   chargeDist: 0
 --- !u!114 &640108655522021684
@@ -147,34 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8708d750518a843b0e0ab33607acee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &640108655522021681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 640108655522021677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7470690f0399c49a28cc6a29ea013f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HPmax: 10
-  HPcur: 10
-  armor:
-    baseValue: 0
-  staminaMax:
-    baseValue: 0
-  staminaCur:
-    baseValue: 0
-  moveSpd:
-    baseValue: 3
-  moveBoost:
-    baseValue: 1.5
-  moveBoostTime:
-    baseValue: 3
-  moveBoostCD:
-    baseValue: 10
 --- !u!114 &4241270793043093604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +249,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1191496623
-  m_SortingLayer: 2
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: -1514590016, guid: dc08b33083aafe64a9a1a41fe6757e42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

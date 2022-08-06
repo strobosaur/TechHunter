@@ -9,13 +9,10 @@ public class EnemyState
 
     protected float startTime;
 
-    private string animBoolName;
-
-    public EnemyState(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName)
+    public EnemyState(Enemy enemy, EnemyStateMachine stateMachine)
     {
         this.enemy = enemy;
         this.stateMachine = stateMachine;
-        this.animBoolName = animBoolName;
     }
 
     public virtual void Enter()
@@ -47,7 +44,7 @@ public class EnemyState
 
                 // UPDATE ANIMATOR PARAMETERS
                 enemy.anim.SetFloat("magnitude", moveDelta.magnitude);
-                enemy.anim.speed = moveDelta.magnitude * enemy.data.animSpd;
+                enemy.anim.speed = moveDelta.magnitude * enemy.animSpd;
 
                 // WEAPON
                 if (enemy.weapon != null) enemy.combat.UpdateWeapon(moveDelta);
@@ -75,7 +72,7 @@ public class EnemyState
         if (Vector3.Distance(target, enemy.transform.position) > 0.2f)
         {
             // FACING DIRECTIOn
-            enemy.data.facingDir = (target - enemy.transform.position).normalized;
+            enemy.facingDir = (target - enemy.transform.position).normalized;
         }
     }
 }

@@ -19,10 +19,10 @@ public class CameraController : MonoBehaviour
     public float moveSpd = 0.075f;
 
     // STATE MACHINE
-    CameraStateMachine stateMachine;
-    CameraStateMenu stateMenu;
-    CameraStateBase stateBase;
-    CameraStateLevel stateLevel;
+    public CameraStateMachine stateMachine;
+    public CameraStateMenu stateMenu;
+    public CameraStateBase stateBase;
+    public CameraStateLevel stateLevel;
 
     // AWAKE
     void Awake()

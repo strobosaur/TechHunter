@@ -15,13 +15,13 @@ public class PlayerCombat : MonoBehaviour, ICombat
         if (transform.GetChild(2) != null) wpnSr = transform.GetChild(2).GetComponent<SpriteRenderer>();
     }
 
-    public void Attack(IWeapon weapon, Vector2 origin, Transform target)
+    public void Attack(IWeapon weapon, Vector2 origin, Transform target, WeaponStatsObject wpnStats)
     {
         // COMBAT
         if ((weapon != null) && (InputManager.input.R2.IsPressed()))
         {
             // AIM
-            player.FireWeapon(weapon, player.crosshair.transform);
+            player.FireWeapon(weapon, player.crosshair.transform, wpnStats);
         }
     }
 

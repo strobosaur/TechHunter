@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32870a45631c1f4f85e4fcb9b169c9c, type: 3}
+  m_Name: PlayerBaseWeapon
+  m_EditorClassIdentifier: 
+  equipSlot: 3
+  armorModifier: 0
+  damageModifier: 0
+  isMelee: 0
+  frate:
+    baseValue: 1.5
+  brate:
+    baseValue: 0.15
+  dmg:
+    baseValue: 1
+  range:
+    baseValue: 10
+  spr:
+    baseValue: 0.75
+  dmgSpr:
+    baseValue: 0.25
+  bulletSpd:
+    baseValue: 32
+  knockback:
+    baseValue: 1
+  pierce:
+    baseValue: 0
+  shots:
+    baseValue: 1
+  burst:
+    baseValue: 3

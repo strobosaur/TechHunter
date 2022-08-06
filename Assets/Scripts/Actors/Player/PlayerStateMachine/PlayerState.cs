@@ -9,34 +9,33 @@ public class PlayerState
 
     protected float startTime;
 
-    private string animBoolName;
-
-    public PlayerState(Player player, PlayerStateMachine stateMachine, string animBoolName)
+    // CONSTRUCTOR
+    public PlayerState(Player player, PlayerStateMachine stateMachine)
     {
         this.player = player;
         this.stateMachine = stateMachine;
-        this.animBoolName = animBoolName;
     }
 
+    // ON STATE ENTER
     public virtual void Enter()
     {
         DoChecks();
-        //player.anim.SetBool(animBoolName, true);
         startTime = Time.time;
     }
 
-    public virtual void Exit()
-    {
-        //player.anim.SetBool(animBoolName, false);
-    }
+    // ON STATE EXIT
+    public virtual void Exit(){}
     
+    // LOGIC UPDATE
     public virtual void LogicUpdate(){}
     
+    // PHYSICS UPDATE
     public virtual void PhysicsUpdate()
     {
         DoChecks();
     }
     
+    // DO CHECKS
     public virtual void DoChecks(){}    
 
     // UPDATE ANIMATOR
@@ -51,7 +50,7 @@ public class PlayerState
 
                 // UPDATE ANIMATOR PARAMETERS
                 player.anim.SetFloat("magnitude", moveDelta.magnitude);
-                player.anim.speed = moveDelta.magnitude * player.data.animSpd;
+                player.anim.speed = moveDelta.magnitude * player.animSpd;
 
                 // WEAPON
                 if (player.weapon != null) player.combat.UpdateWeapon(moveDelta);
@@ -83,6 +82,6 @@ public class PlayerState
     protected void GetFacingDir(Vector3 target)
     {
         // FACING DIRECTIOn
-        player.data.facingDir = target.normalized;
+        player.facingDir = target.normalized;
     }
 }

@@ -11,9 +11,9 @@ public class EnemyCombat : MonoBehaviour, ICombat
         enemy = GetComponent<Enemy>();
     }
 
-    public void Attack(IWeapon weapon, Vector2 origin, Transform target)
+    public void Attack(IWeapon weapon, Vector2 origin, Transform target, WeaponStatsObject wpnStats)
     {
-        enemy.FireWeapon(weapon, target);
+        enemy.FireWeapon(weapon, target, wpnStats);
     }
 
     public void UpdateWeapon(Vector2 dir)

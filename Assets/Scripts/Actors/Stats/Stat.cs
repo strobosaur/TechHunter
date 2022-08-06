@@ -8,12 +8,6 @@ public class Stat
     [SerializeField] private float baseValue;
     private List<float> modifiers = new List<float>();
 
-    // public Stat(float baseValue)
-    // {
-    //     this.baseValue = baseValue;
-    //     this.modifiers = new List<float>();
-    // }
-
     public float GetValue()
     {
         float outValue = baseValue;
@@ -44,12 +38,6 @@ public class StatInt
 {
     [SerializeField] private int baseValue;
     private List<int> modifiers = new List<int>();
-
-    // public StatInt(int baseValue)
-    // {
-    //     this.baseValue = baseValue;
-    //     modifiers = new List<int>();
-    // }
 
     public int GetValue()
     {
