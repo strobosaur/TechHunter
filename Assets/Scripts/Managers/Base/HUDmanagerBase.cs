@@ -14,8 +14,12 @@ public class HUDmanagerBase : MonoBehaviour
 
     void Start()
     {
+        UpdateResourceTexts();
+    }
+    
+    public void UpdateResourceTexts()
+    {
         scrapsText.text = Inventory.instance.scraps.ToString();
         techText.text = Inventory.instance.techPieces.ToString();
     }
-    
 }

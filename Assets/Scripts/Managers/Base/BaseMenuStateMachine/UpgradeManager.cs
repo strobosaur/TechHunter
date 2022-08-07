@@ -6,7 +6,7 @@ public class UpgradeManager : MonoBehaviour
 {
     public int[] upgradeCounts = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
 
-    public List<UpgItem> wpnUpgList;
+    public List<UpgItem> wpnUpgList = new List<UpgItem>();
     public List<UpgItem> armorUpgList;
 
     // AWAKE
@@ -27,7 +27,7 @@ public class UpgradeManager : MonoBehaviour
     // START
     void Start()
     {
-        Invoke("WpnUpgDefault", 0f);
+        
     }
 
     // UPGRADE WEAPON

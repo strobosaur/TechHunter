@@ -9,9 +9,6 @@ public class StateManagerBase : ManagerState
     public override void Enter()
     {
         base.Enter();
-
-        // SET CAMERA STATE
-        manager.cam.stateMachine.ChangeState(manager.cam.stateBase);
     }
 
     public override void Exit()
