@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public DisplayManager displayManager;
     public MenuManager menuManager;
     public CameraController cam;
+    public UpgradeManager upgManager;
 
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
 
     // CAMERA BLACKSCREEN
     public Blackscreen blackscreen;
+
+    // PLAYER
+    public Player player;
 
     // AWAKE
     void Awake()
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
         playerManager = GetComponent<PlayerManager>();
         displayManager = GetComponent<DisplayManager>();
         cam = Camera.main.GetComponent<CameraController>();
+        upgManager = GetComponent<UpgradeManager>();
         blackscreen = cam.blackscreen;
 
         // INIT STATE MACHINE

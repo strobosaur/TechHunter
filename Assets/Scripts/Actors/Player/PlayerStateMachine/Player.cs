@@ -19,6 +19,7 @@ public class Player : Fighter, IDamageable
 
     public StatePlayerIdle stateIdle { get; private set; }
     public StatePlayerMove stateMove { get; private set; }
+    public StatePlayerDisabled stateDisabled { get; private set; }
 
     // CROSSHAIR
     public Crosshair crosshair { get; private set; }
@@ -50,6 +51,7 @@ public class Player : Fighter, IDamageable
         stateMachine = new PlayerStateMachine();
         stateIdle = new StatePlayerIdle(this, stateMachine);
         stateMove = new StatePlayerMove(this, stateMachine);
+        stateDisabled = new StatePlayerDisabled(this, stateMachine);
     }
 
     // START

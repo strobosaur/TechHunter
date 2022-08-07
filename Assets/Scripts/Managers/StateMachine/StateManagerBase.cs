@@ -9,6 +9,7 @@ public class StateManagerBase : ManagerState
     public override void Enter()
     {
         base.Enter();
+        manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
     }
 
     public override void Exit()
