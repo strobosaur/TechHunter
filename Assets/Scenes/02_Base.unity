@@ -5395,7 +5395,6 @@ GameObject:
   - component: {fileID: 955379659}
   - component: {fileID: 955379663}
   - component: {fileID: 955379662}
-  - component: {fileID: 955379661}
   - component: {fileID: 955379660}
   m_Layer: 5
   m_Name: PlayerMenuContainer
@@ -5460,19 +5459,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &955379661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 955379658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
 --- !u!114 &955379662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11093,6 +11079,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeCounts: 0000000000000000000000000000000000000000
+  upgradeCostsTech: 0000000000000000000000000000000000000000
+  upgradeCostsScraps: 0000000000000000000000000000000000000000
+  upgradeDeprecator: 0.8
 --- !u!1 &1166968420
 GameObject:
   m_ObjectHideFlags: 0
@@ -32264,6 +32253,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrapsText: {fileID: 859750145}
   techText: {fileID: 1599831812}
+  upgradeGroup: {fileID: 0}
+  playerGroup: {fileID: 0}
   upgManager: {fileID: 0}
   wpnUpgTexts:
   - {fileID: 1398270922}
@@ -37268,7 +37259,6 @@ GameObject:
   - component: {fileID: 1848811353}
   - component: {fileID: 1848811357}
   - component: {fileID: 1848811356}
-  - component: {fileID: 1848811355}
   - component: {fileID: 1848811354}
   m_Layer: 5
   m_Name: UpgradeMenuContainer
@@ -37328,19 +37318,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &1848811355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1848811352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fafe2cfe61f6974895a912c3755e8f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_AllowSwitchOff: 0
 --- !u!114 &1848811356
 MonoBehaviour:
   m_ObjectHideFlags: 0

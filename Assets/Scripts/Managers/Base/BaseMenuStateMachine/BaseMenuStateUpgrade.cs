@@ -42,7 +42,12 @@ public class BaseMenuStateUpgrade : BaseMenuState
         Inventory.instance.onScrapsChanged += manager.UpdateResourceTexts;
         Inventory.instance.onTechChanged += manager.UpdateResourceTexts;
 
+        // ENABLE GUI GROUPS
+        manager.TogglePlayerMenu(true);
+        manager.ToggleUpgradeMenu(true);
+
         // UPDATE TEXTS
+        manager.UpdatePlayerTexts();
         UpdateMenuTexts();
         UpdateCostTexts();
     }
@@ -59,6 +64,10 @@ public class BaseMenuStateUpgrade : BaseMenuState
 
         Inventory.instance.onScrapsChanged -= manager.UpdateResourceTexts;
         Inventory.instance.onTechChanged -= manager.UpdateResourceTexts;
+
+        // DISABLE GUI GROUPS
+        manager.TogglePlayerMenu(false);
+        manager.ToggleUpgradeMenu(false);
         
         // SET PLAYER TO ACTIVE
         player.stateMachine.ChangeState(player.stateIdle);
@@ -118,6 +127,11 @@ public class BaseMenuStateUpgrade : BaseMenuState
                 manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
                 break;
             }
+        }
+
+        // EXIT MENU
+        if (InputManager.input.A.WasPressedThisFrame()){
+            stateMachine.ChangeState(manager.stateIdle);
         }
     }
 
