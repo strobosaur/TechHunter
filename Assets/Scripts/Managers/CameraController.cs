@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CameraController : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class CameraController : MonoBehaviour
     public Transform playerTransform;
     public Transform crossTransform;
 
-    // BLACKSCREEN
+    // BLACKSCREEN & GUI
     public Blackscreen blackscreen;
+    public TMP_Text interactableText;
 
     // TARGET & MOVEMENT PARAMETERS
     public Vector2 targetPos;
@@ -33,8 +35,9 @@ public class CameraController : MonoBehaviour
         stateBase = new CameraStateBase(this, stateMachine);
         stateLevel = new CameraStateLevel(this, stateMachine);
 
-        // BLACKSCREEN
+        // BLACKSCREEN & GUI
         blackscreen = GetComponentInChildren<Blackscreen>();
+        interactableText = GameObject.Find("InteractableMessage").GetComponent<TMP_Text>();
     }
 
     // START

@@ -43,8 +43,6 @@ public class BaseManager : MonoBehaviour
     {
         // INIT STATE MACHINE
         stateMachine.Initialize(stateUpgrade);
-
-
     }
 
     void Update()

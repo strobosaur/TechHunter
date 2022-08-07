@@ -7,6 +7,7 @@ public class Player : Fighter, IDamageable
     // PLAYER DATA
     public PlayerMoveBoost moveBoost;
     public PlayerInvincibility invincibility;
+    public PlayerInteraction interaction;
 
     // STATS
     public float animSpd = 0.35f;
@@ -35,6 +36,7 @@ public class Player : Fighter, IDamageable
         movement = GetComponent<IMoveable>();
         combat = GetComponent<ICombat>();
         invincibility = GetComponent<PlayerInvincibility>();
+        interaction = GetComponent<PlayerInteraction>();
 
         crosshair = GameObject.Find("Crosshair").GetComponent<Crosshair>();
 
