@@ -9,6 +9,9 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
+    public System.Action onScrapsChanged;
+    public System.Action onTechChanged;
+
     // ITEMS IN INVENTORY
     public List<Item> items = new List<Item>();
 
@@ -16,7 +19,7 @@ public class Inventory : MonoBehaviour
     public int kills = 0;
     public int water = 0;
     public int scraps = 0;
-    public int techPieces = 0;
+    public int techUnits = 0;
 
     void Awake()
     {
@@ -42,6 +45,18 @@ public class Inventory : MonoBehaviour
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
+    }
+
+    public void ChangeScraps(int amount)
+    {
+        scraps += amount;
+        onScrapsChanged?.Invoke();
+    }
+
+    public void ChangeTechUnits(int amount)
+    {
+        techUnits += amount;
+        onTechChanged?.Invoke();
     }
 }
 

@@ -9,6 +9,8 @@ public class UpgradeManager : MonoBehaviour
     public List<UpgItem> wpnUpgList = new List<UpgItem>();
     public List<UpgItem> armorUpgList;
 
+    public System.Action onStatsChanged;
+
     // AWAKE
     void Awake()
     {
@@ -76,6 +78,9 @@ public class UpgradeManager : MonoBehaviour
             
             bonusCounter--;
         } while (bonusCounter > 0);
+
+        // FIRE EVENTS ON STAT CHANGED
+        onStatsChanged?.Invoke();
     }
 
     // GET WEIGHTED RANDOM

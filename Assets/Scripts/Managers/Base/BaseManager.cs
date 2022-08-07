@@ -5,7 +5,11 @@ using TMPro;
 
 public class BaseManager : MonoBehaviour
 {
+    // RESOURCE TEXTS
+    public TMP_Text scrapsText, techText;
+    
     // WEAPON UPGRADES
+    public UpgradeManager upgManager;
     public List<TMP_Text> wpnUpgTexts;
     public List<TMP_Text> wpnUpgFields;
     public TMP_Text upgMessage;
@@ -19,6 +23,7 @@ public class BaseManager : MonoBehaviour
 
     void Awake()
     {
+        upgManager = GameManager.instance.upgManager;
         stateMachine = new BaseMenuStateMachine();
         stateIdle = new BaseMenuStateIdle(this, stateMachine);
         stateUpgrade = new BaseMenuStateUpgrade(this, stateMachine);
@@ -26,8 +31,25 @@ public class BaseManager : MonoBehaviour
 
     void Start()
     {
-        stateMachine.Initialize(stateIdle);
+        //stateMachine.Initialize(stateIdle);
+        stateMachine.Initialize(stateUpgrade);
         UpdatePlayerTexts();
+    }
+
+    void Update()
+    {
+        stateMachine.CurrentState.LogicUpdate();
+    }
+
+    void FixedUpdate()
+    {
+        stateMachine.CurrentState.PhysicsUpdate();
+    }
+    
+    public void UpdateResourceTexts()
+    {
+        scrapsText.text = Inventory.instance.scraps.ToString();
+        techText.text = Inventory.instance.techUnits.ToString();
     }
 
     // UPDATE PLAYER STAT TEXTS
@@ -39,6 +61,7 @@ public class BaseManager : MonoBehaviour
             if (i == (int)PlayerStatTexts.armor) playerStatTexts[i].text = PlayerManager.instance.playerStats.armor.GetValue().ToString();
             if (i == (int)PlayerStatTexts.moveSpd) playerStatTexts[i].text = PlayerManager.instance.playerStats.moveSpd.GetValue().ToString();
 
+            if (i == (int)PlayerStatTexts.dmg) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.dmg.GetValue().ToString();
             if (i == (int)PlayerStatTexts.frate) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.frate.GetValue().ToString();
             if (i == (int)PlayerStatTexts.brate) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.brate.GetValue().ToString();
             if (i == (int)PlayerStatTexts.range) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.range.GetValue().ToString();
