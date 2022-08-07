@@ -7,7 +7,7 @@ public class MenuText : MonoBehaviour
 {
     TMP_Text tmpText;
     Vector2 startPos;
-    Vector2 choiceOffset = new Vector2(-8,0);
+    [SerializeField] Vector2 choiceOffset = new Vector2(-8,0);
     Vector2 targetPos;
 
     public float baseAlpha = 0.5f;
@@ -15,6 +15,7 @@ public class MenuText : MonoBehaviour
     public float currentAlpha;
 
     public bool isChosen = false;
+    public bool isDisabled = false;
 
     // AWAKE
     void Awake()
@@ -38,6 +39,11 @@ public class MenuText : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, startPos, 0.1f);
         }
 
+        if (isDisabled && currentAlpha > Mathf.Epsilon)
+        {
+            currentAlpha = Mathf.Lerp(currentAlpha, 0f, 0.1f);
+        }
+
         UpdateTextAlpha();
     }
 
@@ -45,5 +51,11 @@ public class MenuText : MonoBehaviour
     void UpdateTextAlpha()
     {
         tmpText.alpha = currentAlpha * (1f - (DisplayManager.instance.textAlpha1 * 0.3f)) * (1f - (DisplayManager.instance.textAlpha2 * 0.15f));
+    }
+
+    // DISABLE TEXT
+    public void DisableText()
+    {
+        isDisabled = true;
     }
 }
