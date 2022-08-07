@@ -8,6 +8,10 @@ public class BaseManager : MonoBehaviour
     // RESOURCE TEXTS
     public TMP_Text scrapsText, techText;
 
+    // CANVAS GROUPS
+    public CanvasGroup upgradeGroup;
+    public CanvasGroup playerGroup;
+
     // WEAPON UPGRADES
     public UpgradeManager upgManager;
     public List<TMP_Text> wpnUpgTexts;
@@ -24,7 +28,12 @@ public class BaseManager : MonoBehaviour
 
     void Awake()
     {
+        // GET COMPONENT REFERENCES
         upgManager = GameManager.instance.upgManager;
+        upgradeGroup = GameObject.Find("UpgradeMenuContainer").GetComponent<CanvasGroup>();
+        playerGroup = GameObject.Find("PlayerMenuContainer").GetComponent<CanvasGroup>();
+
+        // INITIALIZE STATE MACHINE
         stateMachine = new BaseMenuStateMachine();
         stateIdle = new BaseMenuStateIdle(this, stateMachine);
         stateUpgrade = new BaseMenuStateUpgrade(this, stateMachine);
@@ -32,9 +41,10 @@ public class BaseManager : MonoBehaviour
 
     void Start()
     {
-        //stateMachine.Initialize(stateIdle);
+        // INIT STATE MACHINE
         stateMachine.Initialize(stateUpgrade);
-        UpdatePlayerTexts();
+
+
     }
 
     void Update()
@@ -70,6 +80,28 @@ public class BaseManager : MonoBehaviour
             if (i == (int)PlayerStatTexts.knockback) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.knockback.GetValue().ToString();
             if (i == (int)PlayerStatTexts.shots) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.shots.GetValue().ToString();
             if (i == (int)PlayerStatTexts.burst) playerStatTexts[i].text = PlayerManager.instance.playerStats.wpnStats.burst.GetValue().ToString();
+        }
+    }
+
+    public void TogglePlayerMenu(bool show = true)
+    {
+        if (show) {
+            playerGroup.alpha = 1f;
+            playerGroup.interactable = true;
+        } else {
+            playerGroup.alpha = 0f;
+            playerGroup.interactable = false;
+        }
+    }
+
+    public void ToggleUpgradeMenu(bool show = true)
+    {
+        if (show) {
+            upgradeGroup.alpha = 1f;
+            upgradeGroup.interactable = true;
+        } else {
+            upgradeGroup.alpha = 0f;
+            upgradeGroup.interactable = false;
         }
     }
 }
