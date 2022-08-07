@@ -7,11 +7,12 @@ public class BaseManager : MonoBehaviour
 {
     // RESOURCE TEXTS
     public TMP_Text scrapsText, techText;
-    
+
     // WEAPON UPGRADES
     public UpgradeManager upgManager;
     public List<TMP_Text> wpnUpgTexts;
-    public List<TMP_Text> wpnUpgFields;
+    public List<TMP_Text> wpnUpgFieldsScraps;
+    public List<TMP_Text> wpnUpgFieldsTech;
     public TMP_Text upgMessage;
 
     // PLAYER STATS

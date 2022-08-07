@@ -7,6 +7,8 @@ public class BaseMenuStateUpgrade : BaseMenuState
 {
     public Player player;
     List<TMP_Text> menuOptions;
+    List<TMP_Text> menuCostsTech;
+    List<TMP_Text> menuCostsScraps;
 
     public System.Action onMenuIndexChanged;
 
@@ -21,13 +23,28 @@ public class BaseMenuStateUpgrade : BaseMenuState
         base.Enter();
 
         player = GameManager.instance.player;
+
+        // SET PLAYER TO DISABLED
         player.stateMachine.ChangeState(player.stateDisabled);
 
         menuIndex = 0;
+
+        // GET TEXT REFERENCES
         menuOptions = manager.wpnUpgTexts;
+        menuCostsTech = manager.wpnUpgFieldsTech;
+        menuCostsScraps = manager.wpnUpgFieldsScraps;
+
+        // SUBSCRIBE TO EVENTS
         manager.upgManager.onStatsChanged += manager.UpdatePlayerTexts;
+        manager.upgManager.onStatsChanged += UpdateCostTexts;
         onMenuIndexChanged += UpdateMenuTexts;
+
+        Inventory.instance.onScrapsChanged += manager.UpdateResourceTexts;
+        Inventory.instance.onTechChanged += manager.UpdateResourceTexts;
+
+        // UPDATE TEXTS
         UpdateMenuTexts();
+        UpdateCostTexts();
     }
 
     // ON STATE EXIT
@@ -35,9 +52,15 @@ public class BaseMenuStateUpgrade : BaseMenuState
     {
         base.Exit();
 
+        // UNSUBSCRIBE TO EVENTS
         manager.upgManager.onStatsChanged -= manager.UpdatePlayerTexts;
+        manager.upgManager.onStatsChanged -= UpdateCostTexts;
         onMenuIndexChanged -= UpdateMenuTexts;
+
+        Inventory.instance.onScrapsChanged -= manager.UpdateResourceTexts;
+        Inventory.instance.onTechChanged -= manager.UpdateResourceTexts;
         
+        // SET PLAYER TO ACTIVE
         player.stateMachine.ChangeState(player.stateIdle);
     }
 
@@ -49,16 +72,20 @@ public class BaseMenuStateUpgrade : BaseMenuState
         // SWITCH MENU INDEX
         if (InputManager.input.down.WasPressedThisFrame()) 
         {
-            Debug.Log(menuIndex);
             menuIndex = (((menuIndex + menuOptions.Count) + 1) % menuOptions.Count);
             onMenuIndexChanged?.Invoke();
         }
 
         if (InputManager.input.up.WasPressedThisFrame()) 
         {
-            Debug.Log(menuIndex);
             menuIndex = (((menuIndex + menuOptions.Count) - 1) % menuOptions.Count);
             onMenuIndexChanged?.Invoke();
+        }
+
+        // CHEAT MONEY
+        if (InputManager.input.X.WasPressedThisFrame()){
+            Inventory.instance.ChangeScraps(100);
+            Inventory.instance.ChangeTechUnits(1);
         }
 
         // MAKE MENU CHOICE
@@ -68,31 +95,29 @@ public class BaseMenuStateUpgrade : BaseMenuState
             {
                 // UPGRADE WEAPON
                 case ((int)UpgradeType.weapon):
-                manager.upgManager.UpgradeWeapon(PlayerManager.instance.playerStats.wpnStats, 1);
+                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 1);
                 break;
 
                 // UPGRADE ARMOR
                 case ((int)UpgradeType.armor):
-                //upgManager.UpgradeWeapon(PlayerManager.instance.playerStats.wpnStats, 1);
+                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 1);
                 break;
 
-                // UPGRADE ARMOR
-                case ((int)UpgradeType.helmet):
-                //upgManager.UpgradeWeapon(PlayerManager.instance.playerStats.wpnStats, 1);
+                // UPGRADE HEAD
+                case ((int)UpgradeType.head):
+                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 1);
                 break;
 
-                // UPGRADE ARMOR
+                // UPGRADE BOOTS
                 case ((int)UpgradeType.boots):
-                //upgManager.UpgradeWeapon(PlayerManager.instance.playerStats.wpnStats, 1);
+                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 1);
                 break;
 
-                // UPGRADE ARMOR
+                // UPGRADE BODY
                 case ((int)UpgradeType.body):
-                //upgManager.UpgradeWeapon(PlayerManager.instance.playerStats.wpnStats, 1);
+                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
                 break;
             }
-
-            //manager.UpdatePlayerTexts();
         }
     }
 
@@ -109,9 +134,23 @@ public class BaseMenuStateUpgrade : BaseMenuState
         {
             if (i == menuIndex) {
                 menuOptions[i].GetComponent<MenuText>().isChosen = true;
+                menuCostsTech[i].GetComponent<MenuText>().isChosen = true;
+                menuCostsScraps[i].GetComponent<MenuText>().isChosen = true;
             } else {
                 menuOptions[i].GetComponent<MenuText>().isChosen = false;
+                menuCostsTech[i].GetComponent<MenuText>().isChosen = false;
+                menuCostsScraps[i].GetComponent<MenuText>().isChosen = false;
             }
+        }
+    }
+
+    // UPDATE COST TEXTS
+    public void UpdateCostTexts()
+    {
+        for (int i = 0; i < menuCostsTech.Count; i++)
+        {
+            menuCostsTech[i].text = manager.upgManager.upgradeCostsTech[i].ToString();
+            menuCostsScraps[i].text = manager.upgManager.upgradeCostsScraps[i].ToString();
         }
     }
 }
