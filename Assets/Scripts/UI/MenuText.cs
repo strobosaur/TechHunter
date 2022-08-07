@@ -30,13 +30,16 @@ public class MenuText : MonoBehaviour
     // UPDATE
     void Update()
     {
-        if (isChosen)
+        if (!isDisabled)
         {
-            currentAlpha = Mathf.Lerp(currentAlpha, choiceAlpha, 0.1f);
-            transform.position = Vector2.Lerp(transform.position, startPos + choiceOffset, 0.1f);
-        } else {
-            currentAlpha = Mathf.Lerp(currentAlpha, baseAlpha, 0.1f);
-            transform.position = Vector2.Lerp(transform.position, startPos, 0.1f);
+            if (isChosen)
+            {
+                currentAlpha = Mathf.Lerp(currentAlpha, choiceAlpha, 0.1f);
+                transform.position = Vector2.Lerp(transform.position, startPos + choiceOffset, 0.1f);
+            } else {
+                currentAlpha = Mathf.Lerp(currentAlpha, baseAlpha, 0.1f);
+                transform.position = Vector2.Lerp(transform.position, startPos, 0.1f);
+            }
         }
 
         if (isDisabled && currentAlpha > Mathf.Epsilon)

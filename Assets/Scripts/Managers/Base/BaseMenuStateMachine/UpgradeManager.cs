@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
+    // UPGRADE STATS COUNTERS
     public int[] upgradeCounts = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
+    public int[] upgradeCostsTech = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
+    public int[] upgradeCostsScraps = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
 
+    // UPGRADE ITEM LISTS
     public List<UpgItem> wpnUpgList = new List<UpgItem>();
-    public List<UpgItem> armorUpgList;
+    public List<UpgItem> armorUpgList = new List<UpgItem>();
+    public List<UpgItem> headUpgList = new List<UpgItem>();
+    public List<UpgItem> bootsUpgList = new List<UpgItem>();
+    public List<UpgItem> bodyUpgList = new List<UpgItem>();
+
+    public float upgradeDeprecator = 0.8f;
 
     public System.Action onStatsChanged;
 
@@ -15,76 +24,198 @@ public class UpgradeManager : MonoBehaviour
     void Awake()
     {
         // WEAPON UPGRADES
-        wpnUpgList.Add(new UpgItem("WpnUpgFrate", 4));
-        wpnUpgList.Add(new UpgItem("WpnUpgBrate", 3));
-        wpnUpgList.Add(new UpgItem("WpnUpgDamage", 8));
-        wpnUpgList.Add(new UpgItem("WpnUpgRange", 2));
-        wpnUpgList.Add(new UpgItem("WpnUpgSpr", 3));
-        wpnUpgList.Add(new UpgItem("WpnUpgDmgSpr", 1));
-        wpnUpgList.Add(new UpgItem("WpnUpgShots", 1));
-        wpnUpgList.Add(new UpgItem("WpnUpgBurst", 4));
-        wpnUpgList.Add(new UpgItem("WpnUpgKnockback", 2));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnFrate, 6));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnBrate, 3));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnDmg, 10));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnRange, 2));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnSpr, 3));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnDmgSpr, 1));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnShots, 1));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnBurst, 3));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
+
+        // ARMOR UPGRADES
+        armorUpgList.Add(new UpgItem(UpgStat.armorUpg, 10));
+        armorUpgList.Add(new UpgItem(UpgStat.HPupg, 6));
+        armorUpgList.Add(new UpgItem(UpgStat.moveSpd, 1));
+
+        // HEAD UPGRADES
+        headUpgList.Add(new UpgItem(UpgStat.armorUpg, 5));
+        headUpgList.Add(new UpgItem(UpgStat.HPupg, 2));
+        headUpgList.Add(new UpgItem(UpgStat.wpnShots, 1));
+        headUpgList.Add(new UpgItem(UpgStat.wpnDmgSpr, 1));
+        headUpgList.Add(new UpgItem(UpgStat.wpnBrate, 2));
+        headUpgList.Add(new UpgItem(UpgStat.wpnSpr, 1));
+        headUpgList.Add(new UpgItem(UpgStat.wpnRange, 1));
+
+        // BOOTS UPGRADES
+        bootsUpgList.Add(new UpgItem(UpgStat.armorUpg, 2));
+        bootsUpgList.Add(new UpgItem(UpgStat.moveSpd, 5));
+        bootsUpgList.Add(new UpgItem(UpgStat.HPupg, 2));
+        bootsUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
+        bootsUpgList.Add(new UpgItem(UpgStat.moveBoostSpd, 2));
+        bootsUpgList.Add(new UpgItem(UpgStat.moveBoostTime, 2));
+
+        // BODE UPGRADES
+        bodyUpgList.Add(new UpgItem(UpgStat.HPupg, 15));
+        bodyUpgList.Add(new UpgItem(UpgStat.armorUpg, 6));
+        bodyUpgList.Add(new UpgItem(UpgStat.wpnBurst, 2));
+        bodyUpgList.Add(new UpgItem(UpgStat.moveSpd, 1));
     }
 
     // START
     void Start()
     {
-        
+        // UPDATE COSTS
+        UpdateCosts();
     }
 
-    // UPGRADE WEAPON
-    public void UpgradeWeapon(WeaponStatsObject stats, int level)
+    // UPDATE UPGRADE COSTS
+    private void UpdateCosts()
+    {
+        for (int i = 0; i < upgradeCounts.Length; i++)
+        {
+            upgradeCostsTech[i] = 1 + (Mathf.FloorToInt(upgradeCounts[i] * 1.75f));
+            upgradeCostsScraps[i] = 25 + (Mathf.FloorToInt(upgradeCounts[i] * 75f));
+        }
+    }
+
+    // HANDLE UPGRADE
+    public bool HandleUpgrade(StatsObject stats, UpgradeType upgType, int level = 1)
+    {
+        UpdateCosts();
+
+        // CHECK ENOUGH RESOURCES
+        if ((Inventory.instance.scraps >= upgradeCostsScraps[(int)upgType])
+        && (Inventory.instance.techUnits >= upgradeCostsTech[(int)upgType]))
+        {
+            // CONSUME RESOURCES
+            Inventory.instance.ChangeScraps(-upgradeCostsScraps[(int)upgType]);
+            Inventory.instance.ChangeTechUnits(-upgradeCostsTech[(int)upgType]);
+
+            // MAKE CORRECT UPGRADE TYPE
+            switch (upgType)
+            {
+                case UpgradeType.weapon:
+                upgradeCounts[(int)upgType]++;
+                wpnUpgList = UpgradeStats(stats, wpnUpgList, level);
+                break;
+                
+                case UpgradeType.armor:
+                upgradeCounts[(int)upgType]++;
+                armorUpgList = UpgradeStats(stats, armorUpgList, level);
+                break;
+                
+                case UpgradeType.head:
+                upgradeCounts[(int)upgType]++;
+                headUpgList = UpgradeStats(stats, headUpgList, level);
+                break;
+                
+                case UpgradeType.boots:
+                upgradeCounts[(int)upgType]++;
+                bootsUpgList = UpgradeStats(stats, bootsUpgList, level);
+                break;
+                
+                case UpgradeType.body:
+                upgradeCounts[(int)upgType]++;
+                bodyUpgList = UpgradeStats(stats, armorUpgList, level);
+                break;
+            }
+
+            // UPDATE COSTS
+            UpdateCosts();
+
+            // FIRE EVENTS ON STAT CHANGED
+            onStatsChanged?.Invoke();
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // UPGRADE STATS
+    public List<UpgItem> UpgradeStats(StatsObject stats, List<UpgItem> upgList, int level = 1)
     {
         int bonusCounter = 3;
         do {
-            switch (GetWeightedRandomUpg(wpnUpgList).upgName)
+            var upgrade = GetWeightedRandomUpg(upgList);
+            upgList = upgrade.Item2;
+
+            switch (upgrade.Item1.upgStat)
             {
-                case "WpnUpgFrate":
-                WpnUpgFrate(stats);
+                // WEAPON STATS
+                case UpgStat.wpnFrate:
+                WpnUpgFrate(stats.wpnStats);
                 break;
 
-                case "WpnUpgBrate":
-                WpnUpgBrate(stats);
+                case UpgStat.wpnBrate:
+                WpnUpgBrate(stats.wpnStats);
                 break;
 
-                case "WpnUpgDamage":
-                WpnUpgDamage(stats);
+                case UpgStat.wpnDmg:
+                WpnUpgDamage(stats.wpnStats);
                 break;
 
-                case "WpnUpgRange":
-                WpnUpgRange(stats);
+                case UpgStat.wpnRange:
+                WpnUpgRange(stats.wpnStats);
                 break;
 
-                case "WpnUpgSpr":
-                WpnUpgSpr(stats);
+                case UpgStat.wpnSpr:
+                WpnUpgSpr(stats.wpnStats);
                 break;
 
-                case "WpnUpgDmgSpr":
-                WpnUpgDmgSpr(stats);
+                case UpgStat.wpnDmgSpr:
+                WpnUpgDmgSpr(stats.wpnStats);
                 break;
 
-                case "WpnUpgShots":
-                WpnUpgShots(stats);
+                case UpgStat.wpnShots:
+                WpnUpgShots(stats.wpnStats);
                 break;
 
-                case "WpnUpgBurst":
-                WpnUpgBurst(stats);
+                case UpgStat.wpnBurst:
+                WpnUpgBurst(stats.wpnStats);
                 break;
 
-                case "WpnUpgKnockback":
-                WpnUpgKnockback(stats);
+                case UpgStat.wpnKnockback:
+                WpnUpgKnockback(stats.wpnStats);
+                break;
+
+                // BODY STATS
+                case UpgStat.HPupg:
+                StatsUpgHP(stats);
+                break;
+                
+                case UpgStat.armorUpg:
+                StatsUpgArmor(stats);
+                break;
+                
+                case UpgStat.moveSpd:
+                StatsUpgMoveSpd(stats);
+                break;
+                
+                case UpgStat.moveBoostSpd:
+                StatsUpgMoveBoostSpd(stats);
+                break;
+                
+                case UpgStat.moveBoostTime:
+                StatsUpgMoveBoostTime(stats);
+                break;
+                
+                case UpgStat.staminaUpg:
+                StatsUpgStamina(stats);
                 break;
             }
             
             bonusCounter--;
         } while (bonusCounter > 0);
 
-        // FIRE EVENTS ON STAT CHANGED
-        onStatsChanged?.Invoke();
+        // RETURN LIST
+        return upgList;
     }
 
     // GET WEIGHTED RANDOM
-    UpgItem GetWeightedRandomUpg(List<UpgItem> upgList)
+    (UpgItem, List<UpgItem>) GetWeightedRandomUpg(List<UpgItem> upgList)
     {
         float totalWeight = 0;
         float rng;
@@ -102,15 +233,18 @@ public class UpgradeManager : MonoBehaviour
         {
             if ((rng > counter) && (rng < counter + upgList[i].weight))
             {
-                return upgList[i];
+                upgList[i].weight *= upgradeDeprecator;
+                return (upgList[i], upgList);
             } else {
                 counter += upgList[i].weight;
             }
         }
 
-        return upgList[i];
+        upgList[i].weight *= upgradeDeprecator;
+        return (upgList[i], upgList);
     }
 
+    // UPGRADE FUNCTIONS
     void WpnUpgFrate(WeaponStatsObject stats, float amount = 0.25f) => stats.frate.AddModifier(-(stats.frate.GetValue() * amount));
     void WpnUpgBrate(WeaponStatsObject stats, float amount = 0.25f) => stats.brate.AddModifier(-(stats.brate.GetValue() * amount));
     void WpnUpgDamage(WeaponStatsObject stats, float amount = 1) => stats.dmg.AddModifier(amount);
@@ -122,29 +256,52 @@ public class UpgradeManager : MonoBehaviour
     void WpnUpgKnockback(WeaponStatsObject stats, float amount = 0.5f) => stats.knockback.AddModifier(amount);
 
     void StatsUpgHP(StatsObject stats, int amount = 5) => stats.HPmax.AddModifier(amount);
+    void StatsUpgArmor(StatsObject stats, int amount = 1) => stats.armor.AddModifier(amount);
     void StatsUpgStamina(StatsObject stats, float amount = 10) => stats.staminaMax.AddModifier(amount);
     void StatsUpgMoveSpd(StatsObject stats, float amount = 0.25f) => stats.moveSpd.AddModifier(amount);
-    void StatsUpgMoveBoostSpd(StatsObject stats, float amount = 0.5f) => stats.moveBoostSpd.AddModifier(amount);
-    void StatsUpgMoveBoostTime(StatsObject stats, float amount = 0.5f) => stats.moveBoostTime.AddModifier(amount);
+    void StatsUpgMoveBoostSpd(StatsObject stats, float amount = 0.25f) => stats.moveBoostSpd.AddModifier(amount);
+    void StatsUpgMoveBoostTime(StatsObject stats, float amount = 0.25f) => stats.moveBoostTime.AddModifier(amount);
 }
 
+// UPGRADE ITEM CLASS
 public class UpgItem
 {
-    public UpgItem(string upgName, float weight)
+    public UpgItem(UpgStat upgStat, float weight)
     {
-        this.upgName = upgName;
+        //this.upgName = upgName;
+        this.upgStat = upgStat;
         this.weight = weight;
     }
 
-    public string upgName;
+    public UpgStat upgStat;
     public float weight;
-    public System.Action upgAction;
 }
 
+// UPGRADE TYPE ENUM
 public enum UpgradeType {
     weapon,
     armor,
-    helmet,
+    head,
     boots,
     body
+}
+
+// UPGRADE STAT ENUM
+public enum UpgStat {
+    wpnFrate,
+    wpnBrate,
+    wpnDmg,
+    wpnRange,
+    wpnSpr,
+    wpnDmgSpr,
+    wpnKnockback,
+    wpnShots,
+    wpnBurst,
+    moveSpd,
+    moveBoostSpd,
+    moveBoostTime,
+    HPupg,
+    armorUpg,
+    invincibilityUpg,
+    staminaUpg
 }
