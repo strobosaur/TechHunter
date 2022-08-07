@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     // MANAGER STATE
     public MenuManager menu;
-    Scene currentScene;
+    public Scene currentScene;
 
     // PERSISTENT MANAGERS
     public PlayerManager playerManager;

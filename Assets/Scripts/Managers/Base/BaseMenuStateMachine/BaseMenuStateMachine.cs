@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseMenuStateMachine : MonoBehaviour
+public class BaseMenuStateMachine
 {
     public BaseMenuState CurrentState { get; private set; }
 
