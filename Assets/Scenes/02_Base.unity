@@ -11539,7 +11539,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1160390447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11669,6 +11669,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062bbb221643ab14c8a419afe87078e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNames:
+  - 01_MainMenu
+  - 02_Base
+  - 03_Level
   levelGenerated: 0
 --- !u!1 &1166968420
 GameObject:
@@ -33382,7 +33386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -33404,7 +33408,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -39913,7 +39917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2026387056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39926,6 +39930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c443e09cded3e4d8ba4b0dbd468d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   crossTransform: {fileID: 0}
@@ -40202,8 +40207,8 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067393990}
   m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!114 &2067393993

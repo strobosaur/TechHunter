@@ -52,7 +52,12 @@ public class StateManagerMenuExit : ManagerState
         switch (menu.currentIndex)
         {
             case (int)MainMenuOptions.newGame:
-            Debug.Log("New Game!");
+            //Debug.Log("New Game!");
+
+            // LOAD BASE SCENE
+            manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);
+
+            // CHANGE STATE TO BASE STATE
             stateMachine.ChangeState(manager.stateBase);
             break;
 

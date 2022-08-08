@@ -10,6 +10,14 @@ public class StateManagerLevel : ManagerState
     {
         base.Enter();
 
+        // BLACKSCREEN FADE IN
+        manager.blackscreen.StartBlackScreenFade(false);
+
+        // FIND PLAYER
+        manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
+
+        PlayerManager.instance.FindPlayers();
+
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateLevel);
     }
@@ -22,6 +30,9 @@ public class StateManagerLevel : ManagerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        // FIND PLAYER
+        if (manager.player == null) manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
     }
 
     public override void PhysicsUpdate()

@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 73893502}
   - component: {fileID: 73893508}
   - component: {fileID: 73893504}
+  - component: {fileID: 73893509}
   - component: {fileID: 73893505}
   - component: {fileID: 73893507}
   m_Layer: 3
@@ -461,6 +462,7 @@ MonoBehaviour:
   wpnStats: {fileID: 11400000, guid: 604b1b3479eff5544bca457c98b27e74, type: 2}
   moveBoost: {fileID: 0}
   invincibility: {fileID: 0}
+  interaction: {fileID: 0}
   animSpd: 0.35
   facingDir: {x: 0, y: 0}
   aimTarget: {x: 0, y: 0}
@@ -546,6 +548,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0c4f436b066164d9a24c9e23d64d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &73893509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73893490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd5ba7e934c55f45956364f966cc8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactables: []
+  closest: {fileID: 0}
 --- !u!1 &345800566
 GameObject:
   m_ObjectHideFlags: 0
@@ -5526,7 +5542,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -5626,10 +5642,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c443e09cded3e4d8ba4b0dbd468d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   crossTransform: {fileID: 0}
   blackscreen: {fileID: 0}
+  interactableText: {fileID: 0}
   targetPos: {x: 0, y: 0}
   moveDelta: {x: 0, y: 0}
   camDistMove: 1
@@ -6356,13 +6374,15 @@ GameObject:
   - component: {fileID: 1256537334}
   - component: {fileID: 1256537336}
   - component: {fileID: 1256537335}
+  - component: {fileID: 1256537338}
+  - component: {fileID: 1256537337}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1256537331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6376,11 +6396,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 0}
+  currentScene:
+    m_Handle: 0
   playerManager: {fileID: 0}
   displayManager: {fileID: 0}
   menuManager: {fileID: 0}
   cam: {fileID: 0}
+  upgManager: {fileID: 0}
+  levelManager: {fileID: 0}
   blackscreen: {fileID: 0}
+  player: {fileID: 0}
 --- !u!4 &1256537332
 Transform:
   m_ObjectHideFlags: 0
@@ -6457,7 +6482,40 @@ MonoBehaviour:
   kills: 0
   water: 0
   scraps: 0
-  techPieces: 0
+  techUnits: 0
+--- !u!114 &1256537337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256537330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 062bbb221643ab14c8a419afe87078e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneNames:
+  - 01_MainMenu
+  - 02_Base
+  - 03_Level
+  levelGenerated: 0
+--- !u!114 &1256537338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256537330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53eb845971e9054983be9cdeb310f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeCounts: 0000000000000000000000000000000000000000
+  upgradeCostsTech: 0000000000000000000000000000000000000000
+  upgradeCostsScraps: 0000000000000000000000000000000000000000
+  upgradeDeprecator: 0.8
 --- !u!4 &1383084804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1754024236319150697, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
