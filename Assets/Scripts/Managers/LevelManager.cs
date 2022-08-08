@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public float difficulty { get; private set; }
     public BaseMissionItem nextLevel { get; private set; }
+    public bool levelGenerated = false;
 
     void Awake()
     {
@@ -15,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public void SetNextLevel(BaseMissionItem level)
     {
         nextLevel = level;
+        levelGenerated = false;
     }
 
     public void AddDifficulty(float amount)
