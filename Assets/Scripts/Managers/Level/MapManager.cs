@@ -13,6 +13,8 @@ public class MapManager : MonoBehaviour
 
     public EnemyManager enemyManager;
 
+    public BaseMissionItem nextLevel;
+
     // PARAMETERS
     public float chance = 0.5f;
     public int iterations = 25;

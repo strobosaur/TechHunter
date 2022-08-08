@@ -7,6 +7,8 @@ public class BaseMenuStateMission : BaseMenuState
 {
     public Player player;
     List<TMP_Text> menuOptions;
+    List<TMP_Text> menuMapDifficulties;
+    List<TMP_Text> menuMapSizes;
     private bool isInteractable;
 
     public System.Action onMenuIndexChanged;
@@ -31,13 +33,14 @@ public class BaseMenuStateMission : BaseMenuState
 
         // GET TEXT REFERENCES
         menuOptions = manager.missionManager.missionTextLocList;
+        menuMapDifficulties = manager.missionManager.missionTextDifList;
+        menuMapSizes = manager.missionManager.missionTextSizeList;
 
         // SUBSCRIBE TO EVENTS
         onMenuIndexChanged += UpdateMenuTexts;
 
         // ENABLE GUI GROUPS
-        manager.TogglePlayerMenu(false);
-        manager.ToggleUpgradeMenu(false);
+        manager.missionManager.ToggleMissionMenu(true);
 
         // UPDATE TEXTS
         UpdateMenuTexts();
@@ -52,6 +55,7 @@ public class BaseMenuStateMission : BaseMenuState
         onMenuIndexChanged -= UpdateMenuTexts;
 
         // DISABLE GUI GROUPS
+        manager.missionManager.ToggleMissionMenu(false);
         
         // SET PLAYER TO ACTIVE
         player.stateMachine.ChangeState(player.stateIdle);
@@ -78,40 +82,16 @@ public class BaseMenuStateMission : BaseMenuState
             }
 
             // MAKE MENU CHOICE
-            if (InputManager.input.B.WasPressedThisFrame()) 
-            {
-                switch (menuIndex)
-                {
-                    // UPGRADE WEAPON
-                    case ((int)UpgradeType.weapon):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 1);
-                    break;
-
-                    // UPGRADE ARMOR
-                    case ((int)UpgradeType.armor):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 1);
-                    break;
-
-                    // UPGRADE HEAD
-                    case ((int)UpgradeType.head):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 1);
-                    break;
-
-                    // UPGRADE BOOTS
-                    case ((int)UpgradeType.boots):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 1);
-                    break;
-
-                    // UPGRADE BODY
-                    case ((int)UpgradeType.body):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
-                    break;
-                }
-            }
-
-            // EXIT MENU
             if (InputManager.input.A.WasPressedThisFrame()){
+
+                // EXIT MENU
                 stateMachine.ChangeState(manager.stateIdle);
+
+            } else if (InputManager.input.B.WasPressedThisFrame()) {
+                
+                // NEXT MISSION
+                GameManager.instance.levelManager.SetNextLevel(manager.missionManager.missionList[menuIndex]);
+                stateMachine.ChangeState(manager.stateMissionExit);
             }
         } else {
             isInteractable = true;
@@ -131,8 +111,12 @@ public class BaseMenuStateMission : BaseMenuState
         {
             if (i == menuIndex) {
                 menuOptions[i].GetComponent<MenuText>().isChosen = true;
+                menuMapDifficulties[i].GetComponent<MenuText>().isChosen = true;
+                menuMapSizes[i].GetComponent<MenuText>().isChosen = true;
             } else {
                 menuOptions[i].GetComponent<MenuText>().isChosen = false;
+                menuMapDifficulties[i].GetComponent<MenuText>().isChosen = false;
+                menuMapSizes[i].GetComponent<MenuText>().isChosen = false;
             }
         }
     }
