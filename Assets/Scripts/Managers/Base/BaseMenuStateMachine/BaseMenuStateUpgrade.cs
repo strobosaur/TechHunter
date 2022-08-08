@@ -9,6 +9,7 @@ public class BaseMenuStateUpgrade : BaseMenuState
     List<TMP_Text> menuOptions;
     List<TMP_Text> menuCostsTech;
     List<TMP_Text> menuCostsScraps;
+    private bool isInteractable;
 
     public System.Action onMenuIndexChanged;
 
@@ -23,6 +24,7 @@ public class BaseMenuStateUpgrade : BaseMenuState
         base.Enter();
 
         player = GameManager.instance.player;
+        isInteractable = false;
 
         // SET PLAYER TO DISABLED
         player.stateMachine.ChangeState(player.stateDisabled);
@@ -78,60 +80,65 @@ public class BaseMenuStateUpgrade : BaseMenuState
     {
         base.LogicUpdate();
 
-        // SWITCH MENU INDEX
-        if (InputManager.input.down.WasPressedThisFrame()) 
+        if (isInteractable)
         {
-            menuIndex = (((menuIndex + menuOptions.Count) + 1) % menuOptions.Count);
-            onMenuIndexChanged?.Invoke();
-        }
-
-        if (InputManager.input.up.WasPressedThisFrame()) 
-        {
-            menuIndex = (((menuIndex + menuOptions.Count) - 1) % menuOptions.Count);
-            onMenuIndexChanged?.Invoke();
-        }
-
-        // CHEAT MONEY
-        if (InputManager.input.X.WasPressedThisFrame()){
-            Inventory.instance.ChangeScraps(100);
-            Inventory.instance.ChangeTechUnits(1);
-        }
-
-        // MAKE MENU CHOICE
-        if (InputManager.input.B.WasPressedThisFrame()) 
-        {
-            switch (menuIndex)
+            // SWITCH MENU INDEX
+            if (InputManager.input.down.WasPressedThisFrame()) 
             {
-                // UPGRADE WEAPON
-                case ((int)UpgradeType.weapon):
-                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 1);
-                break;
-
-                // UPGRADE ARMOR
-                case ((int)UpgradeType.armor):
-                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 1);
-                break;
-
-                // UPGRADE HEAD
-                case ((int)UpgradeType.head):
-                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 1);
-                break;
-
-                // UPGRADE BOOTS
-                case ((int)UpgradeType.boots):
-                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 1);
-                break;
-
-                // UPGRADE BODY
-                case ((int)UpgradeType.body):
-                manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
-                break;
+                menuIndex = (((menuIndex + menuOptions.Count) + 1) % menuOptions.Count);
+                onMenuIndexChanged?.Invoke();
             }
-        }
 
-        // EXIT MENU
-        if (InputManager.input.A.WasPressedThisFrame()){
-            stateMachine.ChangeState(manager.stateIdle);
+            if (InputManager.input.up.WasPressedThisFrame()) 
+            {
+                menuIndex = (((menuIndex + menuOptions.Count) - 1) % menuOptions.Count);
+                onMenuIndexChanged?.Invoke();
+            }
+
+            // CHEAT MONEY
+            if (InputManager.input.X.WasPressedThisFrame()){
+                Inventory.instance.ChangeScraps(100);
+                Inventory.instance.ChangeTechUnits(1);
+            }
+
+            // MAKE MENU CHOICE
+            if (InputManager.input.B.WasPressedThisFrame()) 
+            {
+                switch (menuIndex)
+                {
+                    // UPGRADE WEAPON
+                    case ((int)UpgradeType.weapon):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 1);
+                    break;
+
+                    // UPGRADE ARMOR
+                    case ((int)UpgradeType.armor):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 1);
+                    break;
+
+                    // UPGRADE HEAD
+                    case ((int)UpgradeType.head):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 1);
+                    break;
+
+                    // UPGRADE BOOTS
+                    case ((int)UpgradeType.boots):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 1);
+                    break;
+
+                    // UPGRADE BODY
+                    case ((int)UpgradeType.body):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
+                    break;
+                }
+            }
+
+            // EXIT MENU
+            if (InputManager.input.A.WasPressedThisFrame()){
+                stateMachine.ChangeState(manager.stateIdle);
+            }
+        } else {
+            isInteractable = true;
         }
     }
 

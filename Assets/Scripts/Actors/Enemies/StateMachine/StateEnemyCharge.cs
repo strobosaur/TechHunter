@@ -42,6 +42,7 @@ public class StateEnemyCharge : EnemyState
         {
             enemy.target = enemy.FindTarget();
             stateMachine.ChangeState(enemy.stateIdle);
+            return;
         }
 
         // DISTANCE TO TARGET

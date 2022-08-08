@@ -57,7 +57,7 @@ public class StateEnemyIdle : EnemyState
             if (Time.time > enemy.timerArr[(int)EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
                 stateMachine.ChangeState(enemy.stateCharge);
 
-        } else if (moveInput.magnitude > 0) {
+        } else if (moveInput.magnitude > Mathf.Epsilon) {
 
             // MOVE STATE
             stateMachine.ChangeState(enemy.stateMove);

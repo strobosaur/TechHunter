@@ -45,18 +45,6 @@ public class StatePlayerMove : PlayerState
             player.moveBoost.MoveBoost();
         }
 
-        // INTERACTION
-        if (InputManager.input.B.WasPressedThisFrame()) {
-            player.interaction.InteractClosest();
-        }
-        
-        // CHECK FOR MOVEMENT
-        if (moveInput.magnitude > 0) {
-            
-        } else {
-            stateMachine.ChangeState(player.stateMove);
-        }
-
         // INVINCIBILITY UPDATE
         player.invincibility.UpdateInvincibilityTimer();
 
@@ -69,6 +57,16 @@ public class StatePlayerMove : PlayerState
 
         // MOVE DUST
         player.MoveDust();
+        
+        // CHECK FOR MOVEMENT
+        if (!(moveInput.magnitude > Mathf.Epsilon)) {
+            stateMachine.ChangeState(player.stateIdle);            
+        }
+
+        // INTERACTION
+        if (InputManager.input.B.WasPressedThisFrame()) {
+            player.interaction.InteractClosest();
+        }
     }
 
     // PHYSICS UPDATE

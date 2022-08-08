@@ -43,29 +43,39 @@ public class PlayerInteraction : MonoBehaviour
     // FIND CLOSEST
     public void FindClosest()
     {
-        if (interactables.Count < 1) return;
+        if (interactables.Count < 1) 
+        {
+            closest = null;
+            return;
+        }
 
         float distance = Mathf.Infinity;
         float tempDist;
-        int index = 0;
+        int index = -1;
         for (int i = 0; i < interactables.Count; i++)
         {
             tempDist = Vector2.Distance(transform.position, interactables[i].transform.position);
-            if (tempDist < distance)
+            if ((tempDist < distance) && (interactables[i].isInteractable))
             {
                 distance = tempDist;
                 index = i;
             }
         }
 
-        closest = interactables[index];
+        if (index == -1)
+        {
+            closest = null;
+            return;
+        } else {
+            closest = interactables[index];
+        }
     }
 
     // INTERACT WITH CLOSEST
     public void InteractClosest()
     {
         FindClosest();
-        closest.Interact();
+        if (closest != null) closest.Interact();
     }
 
     // UPDATE SCREEN MESSAGE
