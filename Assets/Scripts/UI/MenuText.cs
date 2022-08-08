@@ -61,4 +61,10 @@ public class MenuText : MonoBehaviour
     {
         isDisabled = true;
     }
+
+    // SET START POS
+    public void SetStartPos(Vector2 pos)
+    {
+        startPos = pos;
+    }
 }
