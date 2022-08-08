@@ -5,6 +5,8 @@ using TMPro;
 
 public class CameraController : MonoBehaviour
 {
+    public CameraController instance;
+
     // PLAYER VARIABLES
     public Player player;
     public Transform playerTransform;
@@ -29,6 +31,14 @@ public class CameraController : MonoBehaviour
     // AWAKE
     void Awake()
     {
+        // CREATE SINGLETON
+        if (instance == null){
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
+
         // CREATE STATE MACHINE
         stateMachine = new CameraStateMachine();
         stateMenu = new CameraStateMenu(this, stateMachine);

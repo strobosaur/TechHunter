@@ -9,7 +9,15 @@ public class StateManagerBase : ManagerState
     public override void Enter()
     {
         base.Enter();
+
+        // BLACKSCREEN FADE IN
+        manager.blackscreen.StartBlackScreenFade(false);
+
+        // FIND PLAYER
         manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
+
+        // SET CAMERA STATE
+        manager.cam.stateMachine.ChangeState(manager.cam.stateBase);
     }
 
     public override void Exit()
@@ -20,6 +28,9 @@ public class StateManagerBase : ManagerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        // FIND PLAYER
+        if (manager.player == null) manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
     }
 
     public override void PhysicsUpdate()

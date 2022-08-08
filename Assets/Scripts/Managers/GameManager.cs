@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         cam = Camera.main.GetComponent<CameraController>();
         upgManager = GetComponent<UpgradeManager>();
         levelManager = GetComponent<LevelManager>();
-        blackscreen = cam.blackscreen;
+        blackscreen = Camera.main.GetComponentInChildren<Blackscreen>();
 
         // INIT STATE MACHINE
         stateMachine = new StateMachine();

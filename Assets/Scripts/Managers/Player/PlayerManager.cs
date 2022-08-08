@@ -44,7 +44,7 @@ public class PlayerManager : MonoBehaviour
     }
 
     // FIND ALL PLAYERS
-    private void FindPlayers()
+    public void FindPlayers()
     {        
         var players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var item in players)
