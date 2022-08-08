@@ -37,22 +37,13 @@ public class StatePlayerIdle : PlayerState
         // CROSSHAIR
         player.crosshair.UpdateCrosshair(lookInput);
 
-        // COMBAT
-        if (InputManager.input.R2.IsPressed())
-            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
-
         // MOVE BOOST
         if (InputManager.input.R1.IsPressed()) {
             player.moveBoost.MoveBoost();
         }
 
-        // INTERACTION
-        if (InputManager.input.B.WasPressedThisFrame()) {
-            player.interaction.InteractClosest();
-        }
-
         // CHECK FOR MOVEMENT & CHANGE STATE
-        if (moveInput.magnitude > 0)
+        if (moveInput.magnitude > Mathf.Epsilon)
         {
             stateMachine.ChangeState(player.stateMove);
         }
@@ -69,6 +60,15 @@ public class StatePlayerIdle : PlayerState
 
         // MOVE DUST
         player.MoveDust();
+
+        // COMBAT
+        if (InputManager.input.R2.IsPressed())
+            player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
+
+        // INTERACTION
+        if (InputManager.input.B.WasPressedThisFrame()) {
+            player.interaction.InteractClosest();
+        }
     }
 
     public override void PhysicsUpdate()

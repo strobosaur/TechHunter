@@ -5,14 +5,15 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     public float radius = 2f;
-    bool isInteractable = false;
+    public bool isInteractable = false;
     public string objectName;
+    Player player;
 
     public void OnTriggerEnter2D(Collider2D coll)
     {
-        Player player = coll.GetComponent<Player>();
+        player = coll.GetComponent<Player>();
         if (player != null){
-            Debug.Log("Player at shop");
+            Debug.Log("Player at " + objectName);
             player.interaction.AddInteractable(this);
             isInteractable = true;
         }
@@ -22,7 +23,7 @@ public class Interactable : MonoBehaviour
     {
         Player player = coll.GetComponent<Player>();
         if (player != null){
-            Debug.Log("Player left shop");
+            Debug.Log("Player left " + objectName);
             player.interaction.RemoveInteractable(this);
             isInteractable = false;
         }

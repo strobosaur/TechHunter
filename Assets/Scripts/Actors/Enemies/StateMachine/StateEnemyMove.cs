@@ -38,6 +38,10 @@ public class StateEnemyMove : EnemyState
         if (enemy.target == null)
             enemy.target = enemy.FindTarget();
 
+        // GET INPUT
+        moveInput = enemy.moveInput.GetMoveInput();
+        if (lookInput != null ) lookInput = enemy.lookInput.GetLookInput();
+
         // DISTANCE TO TARGET
         targetDist = Vector2.Distance(enemy.transform.position, enemy.target.position);
 
@@ -53,15 +57,9 @@ public class StateEnemyMove : EnemyState
             if (Time.time > enemy.timerArr[(int)EnemyTimers.chargeState] + enemy.stats.moveBoostCD.GetValue())
                 stateMachine.ChangeState(enemy.stateCharge);
         }
-
-        // GET INPUT
-        moveInput = enemy.moveInput.GetMoveInput();
-        if (lookInput != null ) lookInput = enemy.lookInput.GetLookInput();
-        
-        // CHECK FOR MOVEMENT
-        if (moveInput.magnitude > 0) {
-        } else {
-            stateMachine.ChangeState(enemy.stateMove);
+        else if (!(moveInput.magnitude > Mathf.Epsilon)) 
+        {
+            stateMachine.ChangeState(enemy.stateIdle);
         }
 
         // ANIMATOR

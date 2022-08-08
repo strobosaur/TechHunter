@@ -39,6 +39,7 @@ public class StateEnemyAttack : EnemyState
         {
             enemy.target = enemy.FindTarget();
             stateMachine.ChangeState(enemy.stateIdle);
+            return;
         }
 
         // DISTANCE TO TARGET
@@ -47,8 +48,11 @@ public class StateEnemyAttack : EnemyState
         // SWITCH STATES
         if (targetDist > enemy.wpnStats.range.GetValue())
         {
+            // TARGET OUT OF RANGE = BACK TO IDLE STATE
             stateMachine.ChangeState(enemy.stateIdle);
         } else {
+
+            // IF IN RANGE; ATTACK ENEMY
             enemy.combat.Attack(enemy.weapon, enemy.transform.position, enemy.target, enemy.stats.wpnStats);
         }
 
