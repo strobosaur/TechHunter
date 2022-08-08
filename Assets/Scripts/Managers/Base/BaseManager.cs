@@ -12,6 +12,9 @@ public class BaseManager : MonoBehaviour
     public CanvasGroup upgradeGroup;
     public CanvasGroup playerGroup;
 
+    // MISSION COMPONENT
+    public BaseMissionManager missionManager;
+
     // WEAPON UPGRADES
     public UpgradeManager upgManager;
     public List<TMP_Text> wpnUpgTexts;
@@ -25,11 +28,13 @@ public class BaseManager : MonoBehaviour
     public BaseMenuStateMachine stateMachine;
     public BaseMenuStateIdle stateIdle;
     public BaseMenuStateUpgrade stateUpgrade;
+    public BaseMenuStateMission stateMission;
 
     void Awake()
     {
         // GET COMPONENT REFERENCES
         upgManager = GameManager.instance.upgManager;
+        missionManager = GetComponent<BaseMissionManager>();
         upgradeGroup = GameObject.Find("UpgradeMenuContainer").GetComponent<CanvasGroup>();
         playerGroup = GameObject.Find("PlayerMenuContainer").GetComponent<CanvasGroup>();
 
@@ -37,12 +42,13 @@ public class BaseManager : MonoBehaviour
         stateMachine = new BaseMenuStateMachine();
         stateIdle = new BaseMenuStateIdle(this, stateMachine);
         stateUpgrade = new BaseMenuStateUpgrade(this, stateMachine);
+        stateMission = new BaseMenuStateMission(this, stateMachine);
     }
 
     void Start()
     {
         // INIT STATE MACHINE
-        stateMachine.Initialize(stateUpgrade);
+        stateMachine.Initialize(stateIdle);
     }
 
     void Update()
