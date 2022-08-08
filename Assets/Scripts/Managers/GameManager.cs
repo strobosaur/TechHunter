@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public MenuManager menuManager;
     public CameraController cam;
     public UpgradeManager upgManager;
+    public LevelManager levelManager;
 
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         displayManager = GetComponent<DisplayManager>();
         cam = Camera.main.GetComponent<CameraController>();
         upgManager = GetComponent<UpgradeManager>();
+        levelManager = GetComponent<LevelManager>();
         blackscreen = cam.blackscreen;
 
         // INIT STATE MACHINE

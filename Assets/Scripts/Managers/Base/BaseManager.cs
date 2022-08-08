@@ -29,6 +29,7 @@ public class BaseManager : MonoBehaviour
     public BaseMenuStateIdle stateIdle;
     public BaseMenuStateUpgrade stateUpgrade;
     public BaseMenuStateMission stateMission;
+    public BaseMenuStateMissionExit stateMissionExit;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class BaseManager : MonoBehaviour
         stateIdle = new BaseMenuStateIdle(this, stateMachine);
         stateUpgrade = new BaseMenuStateUpgrade(this, stateMachine);
         stateMission = new BaseMenuStateMission(this, stateMachine);
+        stateMissionExit = new BaseMenuStateMissionExit(this, stateMachine);
     }
 
     void Start()
