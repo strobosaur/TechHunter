@@ -27,12 +27,7 @@ public class SpawnPointManager : MonoBehaviour
 
     void Update()
     {
-        // if (Mathf.FloorToInt(waveCount % 2) == 0)
-        // {
-        //     difficulty += 0.25f + Random.Range(0,0.25f);
-        //     waveSize += Mathf.RoundToInt(difficulty);
-        //     waveCount = 0;
-        // }
+        
     }
 
     public void UpdateWaves()

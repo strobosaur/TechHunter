@@ -29,6 +29,7 @@ public class BaseMenuStateMissionExit : BaseMenuState
     public override void Exit()
     {
         base.Exit();
+        GameManager.instance.blackscreen.OnBlackScreenBlack -= NextMission;
     }
 
     // LOGIC UPDATE
@@ -48,5 +49,6 @@ public class BaseMenuStateMissionExit : BaseMenuState
     {
         Debug.Log("Next Mission");
         GameManager.instance.levelManager.LoadScene(GameManager.instance.levelManager.sceneNames[(int)SceneName.InLevel]);
+        GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
     }
 }

@@ -45,7 +45,7 @@ public class MapManager : MonoBehaviour
     {
         //GenerateMap();
         //GenerateMapCF();
-        GenerateMapRNG();
+        //GenerateMapRNG();
         //GenerateMapBSP_RW();
     }
 
