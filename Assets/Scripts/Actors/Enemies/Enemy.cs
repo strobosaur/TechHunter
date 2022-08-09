@@ -104,9 +104,17 @@ public class Enemy : Fighter, IDamageable
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
 
+            // REMOVE FROM LIST & UPDATE KILLS
             EnemyManager.instance.enemyList.Remove(this);
             Inventory.instance.kills++;
-            if (Random.value < 0.05) Inventory.instance.scraps += 1;
+
+            // DROP SCRAPS?
+            if (Random.value < 0.075) {
+                Inventory.instance.scraps += (25 + Random.Range(0, 25));
+                HUDlevel.instance.onScrapsChanged?.Invoke();
+            }
+
+            // DESTROY OBJECT
             Destroy(gameObject);
         }
     }
