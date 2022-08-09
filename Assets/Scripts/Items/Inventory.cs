@@ -16,6 +16,9 @@ public class Inventory : MonoBehaviour
     public List<Item> items = new List<Item>();
 
     // ECONOMY
+    public int totalScraps = 0;
+    public int totalTechUnits = 0;
+
     public int kills = 0;
     public int water = 0;
     public int scraps = 0;
@@ -51,12 +54,14 @@ public class Inventory : MonoBehaviour
     {
         scraps += amount;
         onScrapsChanged?.Invoke();
+        if (amount > 0) totalScraps += amount;
     }
 
     public void ChangeTechUnits(int amount)
     {
         techUnits += amount;
         onTechChanged?.Invoke();
+        if (amount > 0) totalTechUnits += amount;
     }
 }
 

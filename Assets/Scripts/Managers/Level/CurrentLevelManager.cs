@@ -37,8 +37,8 @@ public class CurrentLevelManager : MonoBehaviour
         } else if ((levelStarted) && (!levelWon) && !(levelTimeLeft > 0)) {
             levelTimeLeft = 0;
             HUDlevel.instance.UpdateTimer(levelTimeLeft);
-            levelWon = true;
-            onLevelWon?.Invoke();
+
+            LevelWin();
         }
     }
 
@@ -47,7 +47,7 @@ public class CurrentLevelManager : MonoBehaviour
         levelKills = 0;
         levelScraps = 0;
         levelTechUnits = 0;
-        
+
         levelStarted = true;
         levelWon = false;
         levelDuration = duration;
@@ -55,5 +55,14 @@ public class CurrentLevelManager : MonoBehaviour
         levelStartTime = Time.time;
 
         onLevelStart?.Invoke();
+    }
+
+    public void LevelWin()
+    {
+        int techUnits = 1 + (Random.Range(0,3));
+        levelTechUnits += techUnits;
+        Inventory.instance.ChangeTechUnits(techUnits);
+        levelWon = true;
+        onLevelWon?.Invoke();
     }
 }

@@ -107,10 +107,13 @@ public class Enemy : Fighter, IDamageable
             // REMOVE FROM LIST & UPDATE KILLS
             EnemyManager.instance.enemyList.Remove(this);
             Inventory.instance.kills++;
+            CurrentLevelManager.instance.levelKills++;
 
             // DROP SCRAPS?
             if (Random.value < 0.33) {
-                Inventory.instance.scraps += (5 + Random.Range(0, 15));
+                int scraps = (5 + Random.Range(0, 15));
+                Inventory.instance.scraps += scraps;
+                CurrentLevelManager.instance.levelScraps += scraps;
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 

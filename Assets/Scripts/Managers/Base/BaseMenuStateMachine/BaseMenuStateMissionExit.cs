@@ -47,8 +47,14 @@ public class BaseMenuStateMissionExit : BaseMenuState
     // NEXT MISSION
     public void NextMission()
     {
-        Debug.Log("Next Mission");
-        manager.stateMachine.ChangeState(manager.stateIdle);
+        //Debug.Log("Next Mission");
+        // ADD DIFFICULTY
+        LevelManager.instance.AddDifficulty(LevelManager.instance.nextLevel.difficulty);
+
+        // CHANGE BACK TO ENTER STATE
+        manager.stateMachine.ChangeState(manager.stateEnter);
+
+        // LOAD SCENE
         GameManager.instance.levelManager.LoadScene(GameManager.instance.levelManager.sceneNames[(int)SceneName.InLevel]);
         GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
     }
