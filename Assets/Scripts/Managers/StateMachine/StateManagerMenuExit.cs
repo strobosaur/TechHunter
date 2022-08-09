@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StateManagerMenuExit : ManagerState
@@ -26,12 +27,15 @@ public class StateManagerMenuExit : ManagerState
         // START BLACK SCREEN FADE
         manager.blackscreen.StartBlackScreenFade(true);
         manager.blackscreen.OnBlackScreenBlack += MakeMenuChoice;
+        SceneManager.sceneLoaded += InitBaseState;
     }
 
     // EXIT
     public override void Exit()
     {
         base.Exit();
+        SceneManager.sceneLoaded -= InitBaseState;
+        manager.blackscreen.OnBlackScreenBlack -= MakeMenuChoice;
     }
 
     // LOGIC UPDATE
@@ -56,9 +60,6 @@ public class StateManagerMenuExit : ManagerState
 
             // LOAD BASE SCENE
             manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);
-
-            // CHANGE STATE TO BASE STATE
-            stateMachine.ChangeState(manager.stateBase);
             break;
 
             case (int)MainMenuOptions.highscores:
@@ -67,5 +68,11 @@ public class StateManagerMenuExit : ManagerState
             case (int)MainMenuOptions.quit:
             break;
         }
+    }
+
+    public void InitBaseState(Scene s, LoadSceneMode mode)
+    {
+        // CHANGE STATE TO BASE STATE
+        stateMachine.ChangeState(manager.stateBase);
     }
 }

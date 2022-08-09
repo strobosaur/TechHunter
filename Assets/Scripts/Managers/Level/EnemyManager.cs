@@ -22,6 +22,36 @@ public class EnemyManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+    }
+
+    void Start()
+    {
+
+    }
+
+    // GET ENEMY OBJECT FROM POOL
+    public GameObject GetEnemyPool(int index)
+    {
+        if (index == 0) return shellPool.Get();
+        if (index == 1) return germPool.Get();
+        if (index == 2) return glandPool.Get();
+        else return shellPool.Get();
+    }
+
+    // CLEAR ALL ENEMIES
+    public void ClearAllEnemies()
+    {
+        foreach(var enemy in enemyList)
+        {
+            Destroy(enemy.gameObject);
+        }
+
+        enemyList.Clear();
+    }
+
+    // INITIALIZE ENEMY MANAGER
+    public void InitEnemyManager()
+    {
         astar = GameObject.Find("A*").GetComponent<AstarPath>();
         spawnPointGenerator = GetComponent<SpawnPointGenerator>();
 
@@ -57,28 +87,5 @@ public class EnemyManager : MonoBehaviour
         }, gland => {
             Destroy(gland.gameObject);
         }, false, 100, 300);
-    }
-
-    void Start()
-    {
-
-    }
-
-    public GameObject GetEnemyPool(int index)
-    {
-        if (index == 0) return shellPool.Get();
-        if (index == 1) return germPool.Get();
-        if (index == 2) return glandPool.Get();
-        else return shellPool.Get();
-    }
-
-    public void ClearAllEnemies()
-    {
-        foreach(var enemy in enemyList)
-        {
-            Destroy(enemy.gameObject);
-        }
-
-        enemyList.Clear();
     }
 }

@@ -37,7 +37,8 @@ public class SpawnPoint : MonoBehaviour
         int allCount = 0;
 
         int waveSize = SpawnPointManager.instance.waveSize;
-        int spawnPoints = SpawnPointManager.instance.spawnPoints.Count;
+        //int spawnPoints = SpawnPointManager.instance.spawnPoints.Count;
+        int spawnPoints = SpawnPointGenerator.spawnPoints.Count;
 
         // CALCULATE WAVE SIZE
         while (allCount < Mathf.CeilToInt(waveSize / spawnPoints))

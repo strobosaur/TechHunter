@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    public List<GameObject> playerList;
+    public List<GameObject> playerList = new List<GameObject>();
 
     public EntityStats statsBlueprint;
     public WeaponParams wpnStatsBlueprint;
@@ -16,7 +17,12 @@ public class PlayerManager : MonoBehaviour
         instance = this;
         StatsInit(statsBlueprint, wpnStatsBlueprint);
 
-        FindPlayers();
+        //FindPlayers();
+    }
+
+    void Start()
+    {
+        
     }
 
     // STATS INIT
@@ -45,7 +51,8 @@ public class PlayerManager : MonoBehaviour
 
     // FIND ALL PLAYERS
     public void FindPlayers()
-    {        
+    {
+        playerList.Clear();
         var players = GameObject.FindGameObjectsWithTag("Player");
         foreach (var item in players)
         {
