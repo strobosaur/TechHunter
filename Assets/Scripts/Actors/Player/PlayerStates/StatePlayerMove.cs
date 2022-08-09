@@ -64,6 +64,7 @@ public class StatePlayerMove : PlayerState
         }
 
         // INTERACTION
+        player.interaction.UpdateInteractable();
         if (InputManager.input.B.WasPressedThisFrame()) {
             player.interaction.InteractClosest();
         }

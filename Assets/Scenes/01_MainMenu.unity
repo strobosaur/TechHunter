@@ -700,6 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78c443e09cded3e4d8ba4b0dbd468d26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   player: {fileID: 0}
   playerTransform: {fileID: 0}
   crossTransform: {fileID: 0}
@@ -1757,6 +1758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackscreen: {fileID: 0}
+  interactableMessage: {fileID: 2132460128}
 --- !u!1 &1966707690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1893,6 +1895,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 062bbb221643ab14c8a419afe87078e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNames:
+  - 01_MainMenu
+  - 02_Base
+  - 03_Level
   levelGenerated: 0
 --- !u!114 &1966707698
 MonoBehaviour:
@@ -2037,7 +2043,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Interactable
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 43ad0dc8e123aaf41b9b0c0211cd1d64, type: 2}
   m_sharedMaterial: {fileID: 1277165961413220658, guid: 43ad0dc8e123aaf41b9b0c0211cd1d64, type: 2}

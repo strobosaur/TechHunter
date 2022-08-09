@@ -19,6 +19,11 @@ public class PlayerInteraction : MonoBehaviour
     // UPDATE
     void Update()
     {
+    }
+
+    // UPDATE INTERACTABLE
+    public void UpdateInteractable()
+    {
         if (interactables.Count > 0) {
             InvokeRepeating("FindClosest", 0f, 0.1f);
             UpdateScreenMsg(closest, GameManager.instance.cam);

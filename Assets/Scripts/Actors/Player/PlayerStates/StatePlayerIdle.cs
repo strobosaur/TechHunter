@@ -66,6 +66,7 @@ public class StatePlayerIdle : PlayerState
             player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
 
         // INTERACTION
+        player.interaction.UpdateInteractable();
         if (InputManager.input.B.WasPressedThisFrame()) {
             player.interaction.InteractClosest();
         }

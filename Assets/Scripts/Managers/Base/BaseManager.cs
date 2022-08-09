@@ -47,6 +47,11 @@ public class BaseManager : MonoBehaviour
         stateMissionExit = new BaseMenuStateMissionExit(this, stateMachine);
     }
 
+    void OnEnable()
+    {
+        UpdateResourceTexts();
+    }
+
     void Start()
     {
         // INIT STATE MACHINE
