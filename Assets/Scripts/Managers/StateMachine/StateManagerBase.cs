@@ -36,8 +36,6 @@ public class StateManagerBase : ManagerState
     // INIT LEVEL SCENE
     public void InitBaseScene(Scene s, LoadSceneMode mode)
     {
-        Debug.Log(" INIT BASE SCENE ");
-
         // BLACKSCREEN FADE IN
         manager.blackscreen.StartBlackScreenFade(false);
 

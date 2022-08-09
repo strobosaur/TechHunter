@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        difficulty = 0;
+        difficulty = 1;
     }
 
     // SET NEXT LEVEL PARAMETERS

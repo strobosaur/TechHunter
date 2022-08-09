@@ -26,6 +26,7 @@ public class BaseManager : MonoBehaviour
     public List<TMP_Text> playerStatTexts;
 
     public BaseMenuStateMachine stateMachine;
+    public BaseMenuStateEnter stateEnter;
     public BaseMenuStateIdle stateIdle;
     public BaseMenuStateUpgrade stateUpgrade;
     public BaseMenuStateMission stateMission;
@@ -41,6 +42,7 @@ public class BaseManager : MonoBehaviour
 
         // INITIALIZE STATE MACHINE
         stateMachine = new BaseMenuStateMachine();
+        stateEnter = new BaseMenuStateEnter(this, stateMachine);
         stateIdle = new BaseMenuStateIdle(this, stateMachine);
         stateUpgrade = new BaseMenuStateUpgrade(this, stateMachine);
         stateMission = new BaseMenuStateMission(this, stateMachine);
@@ -55,7 +57,7 @@ public class BaseManager : MonoBehaviour
     void Start()
     {
         // INIT STATE MACHINE
-        stateMachine.Initialize(stateIdle);
+        stateMachine.Initialize(stateEnter);
     }
 
     void Update()

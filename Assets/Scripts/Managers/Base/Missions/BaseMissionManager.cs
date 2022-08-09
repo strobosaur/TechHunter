@@ -8,20 +8,21 @@ public class BaseMissionManager : MonoBehaviour
     public CanvasGroup missionGroup;
 
     public GameObject locationTextPF, difficultyTextPF, sizeTextPF;
+
     public List<TMP_Text> missionTextLocList = new List<TMP_Text>();
     public List<TMP_Text> missionTextDifList = new List<TMP_Text>();
     public List<TMP_Text> missionTextSizeList = new List<TMP_Text>();
+
     public List<BaseMissionItem> missionList = new List<BaseMissionItem>();
+
+    public System.Action onMissionListChanged;
 
     void Awake()
     {
         missionGroup = GameObject.Find("MissionMenuContainer").GetComponent<CanvasGroup>();
-        missionList.Add(new BaseMissionItem("Mission 1", 2, 3));
-        missionList.Add(new BaseMissionItem("Mission 2", 1, 5));
-        missionList.Add(new BaseMissionItem("Mission 3", 3, 2));
-
-        CreateTextLists();
+        onMissionListChanged = CreateTextLists;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,11 +61,6 @@ public class BaseMissionManager : MonoBehaviour
         }
     }
 
-    void GenerateMissions(int difficulty)
-    {
-
-    }
-
     public void ToggleMissionMenu(bool show = true)
     {
         if (show) {
@@ -74,5 +70,13 @@ public class BaseMissionManager : MonoBehaviour
             missionGroup.alpha = 0f;
             missionGroup.interactable = false;
         }
+    }
+
+    public void GenerateMissions()
+    {
+        missionList.Clear();
+        int missionCount = Mathf.RoundToInt(Mathf.Min(5f, 2f + Random.Range(0f, LevelManager.instance.difficulty * 0.65f)));
+        missionList = BaseMissionGenerator.GenerateMissions(LevelManager.instance.difficulty, missionCount);
+        onMissionListChanged?.Invoke();
     }
 }
