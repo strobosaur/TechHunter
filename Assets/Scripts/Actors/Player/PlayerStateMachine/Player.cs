@@ -93,12 +93,18 @@ public class Player : Fighter, IDamageable
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood01(transform.position));
 
+            // TAKE DAMAGE
             rb.AddForce(originDir * damage.force, ForceMode2D.Impulse);
             stats.TakeDamage(damage.damage);
-            CheckDeath(stats);
             hitflash.Flash();
             lastDamage = Time.time;
             invincibility.SetInvincible();
+
+            // CHECK DEATH
+            CheckDeath(stats);
+
+            // UPDATE HUD
+            HUDlevel.instance.onHPchanged?.Invoke();
         }
     }
 

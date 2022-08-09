@@ -61,5 +61,8 @@ public class StateManagerLevel : ManagerState
         // SETUP ENEMIES & GENERATE MAP
         EnemyManager.instance.InitEnemyManager();
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
+
+        // INIT HUD
+        HUDlevel.instance.UpdateHUD();
     }
 }
