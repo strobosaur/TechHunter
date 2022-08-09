@@ -48,6 +48,7 @@ public class BaseMenuStateMissionExit : BaseMenuState
     public void NextMission()
     {
         Debug.Log("Next Mission");
+        manager.stateMachine.ChangeState(manager.stateIdle);
         GameManager.instance.levelManager.LoadScene(GameManager.instance.levelManager.sceneNames[(int)SceneName.InLevel]);
         GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
     }

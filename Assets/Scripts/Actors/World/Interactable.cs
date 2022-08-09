@@ -13,7 +13,7 @@ public class Interactable : MonoBehaviour
     {
         player = coll.GetComponent<Player>();
         if (player != null){
-            Debug.Log("Player at " + objectName);
+            //Debug.Log("Player at " + objectName);
             player.interaction.AddInteractable(this);
             isInteractable = true;
         }
@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
     {
         Player player = coll.GetComponent<Player>();
         if (player != null){
-            Debug.Log("Player left " + objectName);
+            //Debug.Log("Player left " + objectName);
             player.interaction.RemoveInteractable(this);
             isInteractable = false;
         }

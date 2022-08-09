@@ -6,7 +6,7 @@ using TMPro;
 public class HUDlevel : MonoBehaviour
 {
     public static HUDlevel instance;
-    public TMP_Text HPmax, HPcur, scraps, tech;
+    public TMP_Text HPmax, HPcur, scraps, tech, timer;
 
     public System.Action onHPchanged;
     public System.Action onScrapsChanged;
@@ -49,5 +49,17 @@ public class HUDlevel : MonoBehaviour
     private void UpdateTech()
     {
         tech.text = Inventory.instance.techUnits.ToString();
+    }
+
+    public void UpdateTimer(float timeLeft)
+    {        
+        if (timeLeft > 0)
+        {
+            System.TimeSpan result = System.TimeSpan.FromSeconds(timeLeft);
+            System.DateTime actualResult = System.DateTime.MinValue.Add(result);
+            timer.text = actualResult.ToString("mm:ss:ff");
+        } else {
+            timer.text = "LEVEL WON";
+        }
     }
 }

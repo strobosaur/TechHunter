@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Blackscreen : MonoBehaviour
 {
     public Image blackscreen;
+    public TMP_Text interactableMessage;
     Color bsColor;
 
     float bsFadeTime = 2f;
@@ -28,6 +30,8 @@ public class Blackscreen : MonoBehaviour
     {
         if (isFading) {
             BlackScreenFade(fadeToBlack);
+        } else if (interactableMessage.enabled == false) {
+            interactableMessage.enabled = true;
         }
     }
 
@@ -68,6 +72,7 @@ public class Blackscreen : MonoBehaviour
         isFading = true;
         fadeToBlack = toBlack;
         bsFadeCounter = 0f;
+        interactableMessage.enabled = false;
 
         // FADE TO BLACK
         if (toBlack) {

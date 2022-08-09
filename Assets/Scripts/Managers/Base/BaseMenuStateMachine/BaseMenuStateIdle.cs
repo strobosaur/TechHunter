@@ -9,7 +9,7 @@ public class BaseMenuStateIdle : BaseMenuState
     public override void Enter()
     {
         base.Enter();
-        
+
         manager.TogglePlayerMenu(false);
         manager.ToggleUpgradeMenu(false);
         manager.missionManager.ToggleMissionMenu(false);

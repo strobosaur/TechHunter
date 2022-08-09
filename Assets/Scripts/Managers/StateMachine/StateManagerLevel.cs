@@ -7,6 +7,7 @@ public class StateManagerLevel : ManagerState
 {
     public StateManagerLevel(GameManager manager, StateMachine stateMachine) : base(manager, stateMachine){}
 
+    // ON STATE ENTER
     public override void Enter()
     {
         base.Enter();
@@ -15,15 +16,22 @@ public class StateManagerLevel : ManagerState
         SceneManager.sceneLoaded += InitLevelScene;
     }
 
+    // ON STATE EXIT
     public override void Exit()
     {
         base.Exit();
+
+        // CLEAR LISTS
         PlayerManager.instance.playerList.Clear();
+        PropGenerator.instance.ClearAllProps();
+        EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
+        EnemyManager.instance.ClearAllEnemies();
 
         // UNSUBSCRIBE TO SCENE CHANGED
         SceneManager.sceneLoaded -= InitLevelScene;
     }
 
+    // STATE LOGIC UPDATE
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -35,17 +43,19 @@ public class StateManagerLevel : ManagerState
         }
     }
 
+    // STATE PHYSICS UPDATE
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
     }
 
+    // INITIALIZE LEVEL SCENE
     public void InitLevelScene(Scene s, LoadSceneMode mode)
     {
-        Debug.Log("Level Scene Loaded: " + s.name);
         InitializeLevel();
     }
 
+    // INITIALIZE LEVEL
     public void InitializeLevel()
     {
         // BLACKSCREEN FADE IN
@@ -54,6 +64,7 @@ public class StateManagerLevel : ManagerState
         // FIND PLAYERS
         manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
         PlayerManager.instance.FindPlayers();
+        manager.player.crosshair.ToggleVisibility(true);
 
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateLevel);
@@ -62,7 +73,33 @@ public class StateManagerLevel : ManagerState
         EnemyManager.instance.InitEnemyManager();
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
 
+        // START LEVEL
+        CurrentLevelManager.instance.StartLevel(120);
+        CurrentLevelManager.instance.onLevelWon += LevelWon;
+
         // INIT HUD
         HUDlevel.instance.UpdateHUD();
+    }
+
+    // HANDLE LEVEL WON
+    private void LevelWon()
+    {
+        CurrentLevelManager.instance.onLevelWon -= LevelWon;
+
+        manager.blackscreen.StartBlackScreenFade();
+        manager.blackscreen.OnBlackScreenBlack += ChangeStateBase;
+    }
+
+    // CHANGE STATE BACK TO BASE
+    private void ChangeStateBase()
+    {
+        // UNSUBSCRIBE TO EVENT
+        manager.blackscreen.OnBlackScreenBlack -= ChangeStateBase;
+
+        // CHANGE STATE TO BASE
+        manager.stateMachine.ChangeState(manager.stateBase);
+
+        // LOAD BASE SCENE
+        manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);
     }
 }

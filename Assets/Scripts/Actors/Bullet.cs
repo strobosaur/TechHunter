@@ -68,7 +68,7 @@ public class Bullet : MonoBehaviour
     // CHECK FOR HIT
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        Debug.Log("Bullet hit " + collision);
+        //Debug.Log("Bullet hit " + collision);
         if (shooter.tag != collision.tag)
         {
             MakeTrail(collision.transform.position);

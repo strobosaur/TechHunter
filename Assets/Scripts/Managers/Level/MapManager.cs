@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 
 public class MapManager : MonoBehaviour
 {
+    public static MapManager instance;
+
     public TileManager tileManager;
     public RandomNeighborhoodGraph rngGen = new RandomNeighborhoodGraph();
     public Vector2Int startPos = Vector2Int.zero;
@@ -43,6 +45,8 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
+        instance = this;
+        
         //GenerateMap();
         //GenerateMapCF();
         //GenerateMapRNG();

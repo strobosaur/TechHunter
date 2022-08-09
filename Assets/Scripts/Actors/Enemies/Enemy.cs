@@ -109,8 +109,8 @@ public class Enemy : Fighter, IDamageable
             Inventory.instance.kills++;
 
             // DROP SCRAPS?
-            if (Random.value < 0.075) {
-                Inventory.instance.scraps += (25 + Random.Range(0, 25));
+            if (Random.value < 0.33) {
+                Inventory.instance.scraps += (5 + Random.Range(0, 15));
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 
