@@ -8,24 +8,43 @@ public class SpawnPoint : MonoBehaviour
     public float spawnCDBase = 60f;
     public float spawnCD = 60f;
     public float spawnMultiplier = 0.1f;
+    public bool isSpawning = true;
     public Queue<int> spawnQueue = new Queue<int>();
     
     // Start is called before the first frame update
     void Start()
     {
-        spawnCD *= Random.Range(0.75f, 1.25f);
-        SpawnEnemies();
-        lastSpawn = Time.time;
+        // spawnCD *= Random.Range(0.75f, 1.25f);
+        // SpawnEnemies();
+        // lastSpawn = Time.time;
+    }
+
+    void OnEnable()
+    {
+        EnsureMinDistance();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time > lastSpawn + spawnCD)
+        // if (Time.time > lastSpawn + spawnCD)
+        // {
+        //     SpawnEnemies();
+        //     lastSpawn = Time.time;
+        //     spawnCD = spawnCDBase * Random.Range(0.75f, 1.25f);
+        // }
+    }
+
+    // ENSURE MIN DIST
+    private void EnsureMinDistance()
+    {
+        foreach (var spawnPoint in SpawnPointGenerator.spawnPoints)
         {
-            SpawnEnemies();
-            lastSpawn = Time.time;
-            spawnCD = spawnCDBase * Random.Range(0.75f, 1.25f);
+            if (spawnPoint != this) {
+                if (Vector2.Distance(transform.position, spawnPoint.transform.position) < 10f) {
+                    Destroy(gameObject);
+                }
+            }
         }
     }
 

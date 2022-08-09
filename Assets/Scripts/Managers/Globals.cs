@@ -99,4 +99,44 @@ public static class Globals
     {
         return new Vector2(SmoothDZ(input.x,min,max), SmoothDZ(input.y,min,max));
     }
+
+    // CLOSEST IN LIST
+    public static GameObject ClosestInList(Vector2 position, List<GameObject> list)
+    {
+        if (list.Count < 1) return null;
+
+        float distance = Mathf.Infinity;
+        float tempDist;
+        int index = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            tempDist = Vector2.Distance(position, list[i].transform.position);
+            if (tempDist < distance) {
+                distance = tempDist;
+                index = i;
+            }
+        }
+
+        return list[index];
+    }
+
+    // FURTHEST OBJECT IN LIST
+    public static GameObject FurthestInList(Vector2 position, List<GameObject> list)
+    {
+        if (list.Count < 1) return null;
+
+        float distance = 0;
+        float tempDist;
+        int index = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            tempDist = Vector2.Distance(position, list[i].transform.position);
+            if (tempDist > distance) {
+                distance = tempDist;
+                index = i;
+            }
+        }
+
+        return list[index];
+    }
 }

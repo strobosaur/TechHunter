@@ -135,11 +135,11 @@ public class UpgradeManager : MonoBehaviour
     }
 
     // UPGRADE STATS
-    public List<UpgItem> UpgradeStats(StatsObject stats, List<UpgItem> upgList, int level = 1)
+    public List<UpgItem> UpgradeStats(StatsObject stats, List<UpgItem> upgList, int level = 3, bool deprecate = true)
     {
-        int bonusCounter = 3;
+        int bonusCounter = level;
         do {
-            var upgrade = GetWeightedRandomUpg(upgList);
+            var upgrade = GetWeightedRandomUpg(upgList, deprecate);
             upgList = upgrade.Item2;
 
             switch (upgrade.Item1.upgStat)
@@ -215,7 +215,7 @@ public class UpgradeManager : MonoBehaviour
     }
 
     // GET WEIGHTED RANDOM
-    (UpgItem, List<UpgItem>) GetWeightedRandomUpg(List<UpgItem> upgList)
+    (UpgItem, List<UpgItem>) GetWeightedRandomUpg(List<UpgItem> upgList, bool deprecate = true)
     {
         float totalWeight = 0;
         float rng;
@@ -240,7 +240,7 @@ public class UpgradeManager : MonoBehaviour
             }
         }
 
-        upgList[i].weight *= upgradeDeprecator;
+        if (deprecate) upgList[i].weight *= upgradeDeprecator;
         return (upgList[i], upgList);
     }
 

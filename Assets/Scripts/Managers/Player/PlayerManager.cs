@@ -12,17 +12,12 @@ public class PlayerManager : MonoBehaviour
     public WeaponParams wpnStatsBlueprint;
     public StatsObject playerStats;
 
+    public System.Action onGameOver;
+
     void Awake()
     {
         instance = this;
         StatsInit(statsBlueprint, wpnStatsBlueprint);
-
-        //FindPlayers();
-    }
-
-    void Start()
-    {
-        
     }
 
     // STATS INIT

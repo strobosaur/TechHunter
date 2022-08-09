@@ -111,15 +111,27 @@ public class Enemy : Fighter, IDamageable
 
             // DROP SCRAPS?
             if (Random.value < 0.33) {
-                int scraps = (5 + Random.Range(0, 15));
-                Inventory.instance.scraps += scraps;
-                CurrentLevelManager.instance.levelScraps += scraps;
+                int scraps = (5 + Random.Range(0, 15 + (int)(LevelManager.instance.difficulty * 2f)));
+                Inventory.instance.ChangeScraps(scraps);
+                HUDlevel.instance.onScrapsChanged?.Invoke();
+            }
+
+            // DROP TECH?
+            if (Random.value < 0.025) {
+                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.05f)));
+                Inventory.instance.ChangeTechUnits(tech);
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 
             // DESTROY OBJECT
             Destroy(gameObject);
         }
+    }
+
+    // UPGRADE STATS
+    public void UpgradeStats(int count)
+    {
+        EnemyManager.instance.upgManager.HandleEnemyUpgrade(stats, count);
     }
 
     // FIND NEW TARGET

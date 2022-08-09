@@ -74,8 +74,10 @@ public class StateManagerLevel : ManagerState
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
 
         // START LEVEL
-        CurrentLevelManager.instance.StartLevel(120);
+        CurrentLevelManager.instance.StartLevel(120 * (1f + (LevelManager.instance.difficulty * 0.1f)));
         CurrentLevelManager.instance.onLevelWon += LevelWon;
+
+        SpawnPointManager.instance.StartSpawning();
 
         // INIT HUD
         HUDlevel.instance.UpdateHUD();

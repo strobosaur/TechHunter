@@ -10,6 +10,7 @@ public class EnemyManager : MonoBehaviour
     public static EnemyManager instance;
 
     public SpawnPointGenerator spawnPointGenerator;
+    public EnemyUpgradeManager upgManager;
 
     public Dictionary<string, EntityStats> enemyStats = new Dictionary<string, EntityStats>();
     public List<GameObject> enemyPrefabList = new List<GameObject>();
@@ -54,6 +55,7 @@ public class EnemyManager : MonoBehaviour
     {
         astar = GameObject.Find("A*").GetComponent<AstarPath>();
         spawnPointGenerator = GetComponent<SpawnPointGenerator>();
+        upgManager = GetComponent<EnemyUpgradeManager>();
 
         // CREATE SHELL POOL
         shellPool = new ObjectPool<GameObject>(() => { 

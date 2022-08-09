@@ -113,6 +113,7 @@ public class Player : Fighter, IDamageable
     {
         if (stats.HPcur <= 0f)
         {
+            PlayerManager.instance.onGameOver?.Invoke();
             Destroy(gameObject);
         }
     }
