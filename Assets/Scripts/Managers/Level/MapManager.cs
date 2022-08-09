@@ -43,10 +43,13 @@ public class MapManager : MonoBehaviour
     public int BSPsteps = 25;
     public int BSPiterations = 5;
 
-    void Start()
+    void Awake()
     {
         instance = this;
-        
+    }
+
+    void Start()
+    {
         //GenerateMap();
         //GenerateMapCF();
         //GenerateMapRNG();

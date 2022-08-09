@@ -8,7 +8,7 @@ public class CurrentLevelManager : MonoBehaviour
 
     public float levelStartTime;
     public float levelDuration;
-    public float levelTimeLeft;
+    public float levelTimeLeft = Mathf.Infinity;
 
     public bool levelStarted;
     public bool levelWon;
@@ -59,7 +59,7 @@ public class CurrentLevelManager : MonoBehaviour
 
     public void LevelWin()
     {
-        int techUnits = 1 + (Random.Range(0,3));
+        int techUnits = 1 + Mathf.RoundToInt(((Random.Range(0.2f,3f))) * (LevelManager.instance.difficulty * 0.5f));
         levelTechUnits += techUnits;
         Inventory.instance.ChangeTechUnits(techUnits);
         levelWon = true;
