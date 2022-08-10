@@ -22,6 +22,7 @@ public class Enemy : Fighter, IDamageable
     public StateEnemyMove stateMove { get; protected set; }
     public StateEnemyCharge stateCharge { get; protected set; }
     public StateEnemyAttack stateAttack { get; protected set; }
+    public StateEnemyDisabled stateDisabled { get; protected set; }
 
     public float[] timerArr;
 
@@ -61,6 +62,7 @@ public class Enemy : Fighter, IDamageable
         stateMove = new StateEnemyMove(this, stateMachine);
         stateCharge = new StateEnemyCharge(this, stateMachine);
         stateAttack = new StateEnemyAttack(this, stateMachine);
+        stateDisabled = new StateEnemyDisabled(this, stateMachine);
     }
 
     // START
@@ -139,7 +141,10 @@ public class Enemy : Fighter, IDamageable
     // FIND NEW TARGET
     public Transform FindTarget()
     {
-        return GameManager.instance.playerManager.playerList[Random.Range(0,GameManager.instance.playerManager.playerList.Count)].transform;
+        if (GameManager.instance.playerManager.playerList.Count > 0)
+            return GameManager.instance.playerManager.playerList[Random.Range(0,GameManager.instance.playerManager.playerList.Count)].transform;
+        else
+            return null;
     }
 }
 

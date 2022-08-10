@@ -36,6 +36,7 @@ public class CameraController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         } else {
+            Globals.DestroyAllChildren(gameObject);
             Destroy(gameObject);
         }
 

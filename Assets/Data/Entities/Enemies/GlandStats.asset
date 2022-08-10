@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Gland
   HPmax:
-    baseValue: 10
+    baseValue: 5
   armor:
     baseValue: 0
   staminaMax:

@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         } else {
+            Globals.DestroyAllChildren(gameObject);
             Destroy(gameObject);
         }
 

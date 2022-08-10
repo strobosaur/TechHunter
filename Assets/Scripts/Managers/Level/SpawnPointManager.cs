@@ -10,9 +10,8 @@ public class SpawnPointManager : MonoBehaviour
     public EnemyManager enemyManager;
 
     public float difficulty;
-    public int waves = 10;
-    public int waveSize = 10;
-    public float waveCount = 0;
+    public float waveCount;
+    float spawnMod = 0.75f;
 
     public float startTime;
     public float lastSpawnTime;
@@ -24,7 +23,8 @@ public class SpawnPointManager : MonoBehaviour
     {
         instance = this;
         enemyManager = EnemyManager.instance;
-        nextSpawnTimeBase = 35f;
+        nextSpawnTimeBase = 45f;
+        waveCount = 0;
     }
 
     void OnEnable()
@@ -95,9 +95,9 @@ public class SpawnPointManager : MonoBehaviour
         float difficultyMod2 = (difficulty * 0.4f) + (waveCount * 0.33f);
         int difficultyMod3;
 
-        int shells = Random.Range(2,5) + Mathf.RoundToInt(Random.Range(difficultyMod1 * 1.25f, difficultyMod2 * 1.33f));
-        int germinites = Random.Range(1,4) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2));
-        int glands = Random.Range(0,3) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2));
+        int shells = Mathf.RoundToInt(Random.Range(2,5) + Mathf.RoundToInt(Random.Range(difficultyMod1 * 1.25f, difficultyMod2 * 1.33f)) * spawnMod);
+        int germinites = Mathf.RoundToInt(Random.Range(1,4) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
+        int glands = Mathf.RoundToInt(Random.Range(0,3) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
 
         // SHELLS
         for (int k = 0; k < shells; k++)

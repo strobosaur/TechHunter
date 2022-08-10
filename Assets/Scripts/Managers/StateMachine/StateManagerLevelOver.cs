@@ -20,7 +20,7 @@ public class StateManagerLevelOver : ManagerState
 
         manager.blackscreen.OnBlackScreenBlack += ToggleInteraction;
 
-        SceneManager.sceneLoaded += InitBaseState;
+        SceneManager.sceneLoaded += InitMenuState;
     }
 
     // ON STATE EXIT
@@ -34,9 +34,11 @@ public class StateManagerLevelOver : ManagerState
         EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
         EnemyManager.instance.ClearAllEnemies();
 
+        manager.blackscreen.StartBlackScreenFade(false);
+
         // UNSUBSCRIBE        
         manager.blackscreen.OnBlackScreenBlack -= ToggleInteraction;
-        SceneManager.sceneLoaded -= InitBaseState;
+        SceneManager.sceneLoaded -= InitMenuState;
     }
 
     // STATE LOGIC UPDATE
@@ -46,11 +48,12 @@ public class StateManagerLevelOver : ManagerState
 
         if ((blackScreenBlack) && (!hsDisplayed) && (InputManager.input.B.WasPressedThisFrame())) {
             ScoreManager.instance.DisplayHighscores();
+            hsDisplayed = true;
         } else if ((hsDisplayed) && (InputManager.input.B.WasPressedThisFrame())) {
             ScoreManager.instance.DisplayHighscores(false);
 
             // LOAD BASE SCENE
-            manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);
+            manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.MainMenu]);
         }
     }
 
@@ -76,9 +79,14 @@ public class StateManagerLevelOver : ManagerState
         blackScreenBlack = true;
     }
 
-    public void InitBaseState(Scene s, LoadSceneMode mode)
+    public void InitMenuState(Scene s, LoadSceneMode mode)
     {
+        SceneManager.sceneLoaded -= InitMenuState;
+
         // CHANGE STATE TO BASE STATE
-        stateMachine.ChangeState(manager.stateBase);
+        stateMachine.ChangeState(manager.stateMenu);
+
+        // SET CAMERA STATE
+        manager.cam.stateMachine.ChangeState(manager.cam.stateMenu);
     }
 }
