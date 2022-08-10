@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7470690f0399c49a28cc6a29ea013f, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
+  entityName: 
   HPmax:
-    baseValue: 25
+    baseValue: 10
   armor:
-    baseValue: 1
+    baseValue: 0
   staminaMax:
     baseValue: 10
   moveSpd:

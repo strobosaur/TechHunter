@@ -20,15 +20,6 @@ public class StateManagerLevel : ManagerState
     public override void Exit()
     {
         base.Exit();
-
-        // CLEAR LISTS
-        PlayerManager.instance.playerList.Clear();
-        PropGenerator.instance.ClearAllProps();
-        EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
-        EnemyManager.instance.ClearAllEnemies();
-
-        // UNSUBSCRIBE TO SCENE CHANGED
-        SceneManager.sceneLoaded -= InitLevelScene;
     }
 
     // STATE LOGIC UPDATE
@@ -52,6 +43,9 @@ public class StateManagerLevel : ManagerState
     // INITIALIZE LEVEL SCENE
     public void InitLevelScene(Scene s, LoadSceneMode mode)
     {
+        // UNSUBSCRIBE TO SCENE CHANGED
+        SceneManager.sceneLoaded -= InitLevelScene;
+        
         InitializeLevel();
     }
 
@@ -74,8 +68,9 @@ public class StateManagerLevel : ManagerState
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
 
         // START LEVEL
-        CurrentLevelManager.instance.StartLevel(120 * (1f + (LevelManager.instance.difficulty * 0.1f)));
+        CurrentLevelManager.instance.StartLevel(120 * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.005f, 2f)) + (LevelManager.instance.difficulty * 0.2f)));
         CurrentLevelManager.instance.onLevelWon += LevelWon;
+        PlayerManager.instance.onGameOver += HandleGameOver;
 
         SpawnPointManager.instance.StartSpawning();
 
@@ -87,21 +82,19 @@ public class StateManagerLevel : ManagerState
     private void LevelWon()
     {
         CurrentLevelManager.instance.onLevelWon -= LevelWon;
+        PlayerManager.instance.onGameOver -= HandleGameOver;
 
         manager.blackscreen.StartBlackScreenFade();
-        manager.blackscreen.OnBlackScreenBlack += ChangeStateBase;
+        stateMachine.ChangeState(manager.stateLevelWon);
     }
 
-    // CHANGE STATE BACK TO BASE
-    private void ChangeStateBase()
+    // HANDLE GAME OVER
+    private void HandleGameOver()
     {
-        // UNSUBSCRIBE TO EVENT
-        manager.blackscreen.OnBlackScreenBlack -= ChangeStateBase;
+        CurrentLevelManager.instance.onLevelWon -= LevelWon;
+        PlayerManager.instance.onGameOver -= HandleGameOver;
 
-        // CHANGE STATE TO BASE
-        manager.stateMachine.ChangeState(manager.stateBase);
-
-        // LOAD BASE SCENE
-        manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);
+        manager.blackscreen.StartBlackScreenFade(true, true);
+        stateMachine.ChangeState(manager.stateLevelOver);
     }
 }

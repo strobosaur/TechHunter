@@ -17,24 +17,22 @@ MonoBehaviour:
   damageModifier: 0
   isMelee: 0
   frate:
-    baseValue: 1.5
+    baseValue: 2
   brate:
-    baseValue: 0.15
+    baseValue: 0.3
   dmg:
     baseValue: 1
   range:
-    baseValue: 10
+    baseValue: 6
   spr:
     baseValue: 0.75
   dmgSpr:
-    baseValue: 0.25
+    baseValue: 1
   bulletSpd:
     baseValue: 32
   knockback:
     baseValue: 1
-  pierce:
-    baseValue: 0
   shots:
     baseValue: 1
   burst:
-    baseValue: 3
+    baseValue: 1

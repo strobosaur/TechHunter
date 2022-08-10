@@ -1775,6 +1775,7 @@ GameObject:
   - component: {fileID: 1966707691}
   - component: {fileID: 1966707698}
   - component: {fileID: 1966707697}
+  - component: {fileID: 1966707699}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1807,6 +1808,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
+  totalScraps: 0
+  totalTechUnits: 0
   kills: 0
   water: 0
   scraps: 0
@@ -1916,6 +1919,18 @@ MonoBehaviour:
   upgradeCostsTech: 0000000000000000000000000000000000000000
   upgradeCostsScraps: 0000000000000000000000000000000000000000
   upgradeDeprecator: 0.8
+--- !u!114 &1966707699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966707690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7b8e646cdae5242972a6db8d314eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2125101444
 GameObject:
   m_ObjectHideFlags: 0

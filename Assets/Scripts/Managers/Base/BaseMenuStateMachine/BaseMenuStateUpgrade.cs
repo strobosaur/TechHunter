@@ -108,27 +108,27 @@ public class BaseMenuStateUpgrade : BaseMenuState
                 {
                     // UPGRADE WEAPON
                     case ((int)UpgradeType.weapon):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 1);
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.weapon, 3);
                     break;
 
                     // UPGRADE ARMOR
                     case ((int)UpgradeType.armor):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 1);
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.armor, 3);
                     break;
 
                     // UPGRADE HEAD
                     case ((int)UpgradeType.head):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 1);
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.head, 3);
                     break;
 
                     // UPGRADE BOOTS
                     case ((int)UpgradeType.boots):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 1);
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.boots, 3);
                     break;
 
                     // UPGRADE BODY
                     case ((int)UpgradeType.body):
-                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 1);
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 3);
                     break;
                 }
             }

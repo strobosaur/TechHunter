@@ -19,6 +19,9 @@ public class HUDlevel : MonoBehaviour
         onHPchanged += UpdateHP;
         onScrapsChanged += UpdateScraps;
         onTechChanged += UpdateTech;
+
+        Inventory.instance.onScrapsChanged += UpdateScraps;
+        Inventory.instance.onTechChanged += UpdateTech;
     }
 
     void OnDisable()
@@ -26,6 +29,9 @@ public class HUDlevel : MonoBehaviour
         onHPchanged -= UpdateHP;
         onScrapsChanged -= UpdateScraps;
         onTechChanged -= UpdateTech;
+
+        Inventory.instance.onScrapsChanged -= UpdateScraps;
+        Inventory.instance.onTechChanged -= UpdateTech;
     }
 
     public void UpdateHUD()
