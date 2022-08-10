@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public StateManagerMenuExit stateMenuExit;
     public StateManagerBase stateBase;
     public StateManagerLevel stateLevel;
+    public StateManagerLevelWon stateLevelWon;
+    public StateManagerLevelOver stateLevelOver;
 
     // CAMERA BLACKSCREEN
     public Blackscreen blackscreen;
@@ -60,6 +62,8 @@ public class GameManager : MonoBehaviour
         stateMenuExit = new StateManagerMenuExit(this, stateMachine);
         stateBase = new StateManagerBase(this, stateMachine);
         stateLevel = new StateManagerLevel(this, stateMachine);
+        stateLevelWon = new StateManagerLevelWon(this, stateMachine);
+        stateLevelOver = new StateManagerLevelOver(this, stateMachine);
 
         // DISABLE MOUSE CURSOR
         //Cursor.visible = false;

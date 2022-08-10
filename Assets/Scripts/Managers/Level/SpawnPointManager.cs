@@ -24,7 +24,7 @@ public class SpawnPointManager : MonoBehaviour
     {
         instance = this;
         enemyManager = EnemyManager.instance;
-        nextSpawnTimeBase = 45f;
+        nextSpawnTimeBase = 35f;
     }
 
     void OnEnable()
@@ -33,6 +33,7 @@ public class SpawnPointManager : MonoBehaviour
         //CurrentLevelManager.instance.onLevelStart += StartSpawning;
         CurrentLevelManager.instance.onLevelWon += StopSpawning;
         PlayerManager.instance.onGameOver += StopSpawning;
+        PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
     }
 
     void OnDisable()
@@ -41,6 +42,7 @@ public class SpawnPointManager : MonoBehaviour
         //CurrentLevelManager.instance.onLevelStart -= StartSpawning;
         CurrentLevelManager.instance.onLevelWon -= StopSpawning;
         PlayerManager.instance.onGameOver -= StopSpawning;
+        PlayerManager.instance.onGameOver -= EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
     }
 
     void Start()
@@ -50,19 +52,22 @@ public class SpawnPointManager : MonoBehaviour
 
     void Update()
     {
-        if (isSpawning) {
-            if (nextSpawnTime > 0) {
-                nextSpawnTime -= Time.deltaTime;
-            } else {
-                SpawnNextWave();
-                nextSpawnTime = SetNextSpawnTime();
+        if (SpawnPointGenerator.spawnPoints.Count > 0)
+        {
+            if (isSpawning) {
+                if (nextSpawnTime > 0) {
+                    nextSpawnTime -= Time.deltaTime;
+                } else {
+                    SpawnNextWave();
+                    nextSpawnTime = SetNextSpawnTime();
+                }
             }
-        }        
+        }
     }
 
     public float SetNextSpawnTime()
     {        
-        return ((nextSpawnTimeBase * Random.Range(0.5f, 1.5f)) / (1f + (difficulty * Random.Range(0f, 0.2f))));
+        return ((nextSpawnTimeBase * Random.Range(0.75f, 1.25f)) / (1f + (difficulty * Random.Range(0f, 0.2f))));
     }
 
     public void StopSpawning()
@@ -78,6 +83,7 @@ public class SpawnPointManager : MonoBehaviour
         startTime = Time.time;
 
         nextSpawnTime = SetNextSpawnTime();
+        SpawnNextWave();
     }
 
     public void SpawnNextWave()

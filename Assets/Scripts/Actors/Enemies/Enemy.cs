@@ -118,10 +118,10 @@ public class Enemy : Fighter, IDamageable
             }
 
             // DROP TECH?
-            if (Random.value < 0.025) {
-                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.025f)));
+            if (Random.value < 0.01f) {
+                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.0025f)));
                 Inventory.instance.ChangeTechUnits(tech);
-                HUDlevel.instance.onScrapsChanged?.Invoke();
+                HUDlevel.instance.onTechChanged?.Invoke();
             }
 
             // DESTROY OBJECT

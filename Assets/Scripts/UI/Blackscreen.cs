@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Blackscreen : MonoBehaviour
 {
     public Image blackscreen;
-    public TMP_Text interactableMessage;
+    public TMP_Text interactableMessage, goText;
     Color bsColor;
 
     float bsFadeTime = 2f;
@@ -67,12 +67,23 @@ public class Blackscreen : MonoBehaviour
     }
 
     // START FADER
-    public void StartBlackScreenFade(bool toBlack = true)
+    public void StartBlackScreenFade(bool toBlack = true, bool gameOver = false)
     {
         isFading = true;
         fadeToBlack = toBlack;
         bsFadeCounter = 0f;
         interactableMessage.enabled = false;
+
+        // SHOW GAME OVER TEXT?
+        if (gameOver) {
+            goText.gameObject.SetActive(true);
+            goText.enabled = true;
+            goText.GetComponent<MenuText>().currentAlpha = 0f;
+            goText.GetComponent<MenuText>().baseAlpha = 0.9f;
+        } else {
+            goText.gameObject.SetActive(false);
+            goText.enabled = false;
+        }
 
         // FADE TO BLACK
         if (toBlack) {

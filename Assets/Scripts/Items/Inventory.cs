@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour
     // ECONOMY
     public int totalScraps = 0;
     public int totalTechUnits = 0;
+    
+    public int missionsWon = 0;
 
     public int kills = 0;
     public int water = 0;
@@ -73,6 +75,11 @@ public class Inventory : MonoBehaviour
         techUnits += amount;
         onTechChanged?.Invoke();
         if (amount > 0) totalTechUnits += amount;
+    }
+
+    public void MissionWin()
+    {
+        missionsWon++;
     }
 }
 
