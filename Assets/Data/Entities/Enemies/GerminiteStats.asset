@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Germinite
   HPmax:
-    baseValue: 5
+    baseValue: 3
   armor:
     baseValue: 0
   staminaMax:

@@ -139,4 +139,15 @@ public static class Globals
 
         return list[index];
     }
+
+    // DESTROY ALL CHILD OBJECTS
+    public static void DestroyAllChildren(GameObject parent)
+    {
+        var children = parent.GetComponentsInChildren<GameObject>();
+
+        foreach (var item in children)
+        {
+            GameObject.Destroy(item);
+        }
+    }
 }

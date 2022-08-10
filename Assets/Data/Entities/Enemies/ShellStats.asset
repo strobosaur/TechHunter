@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityName: Shell
   HPmax:
-    baseValue: 3
+    baseValue: 2
   armor:
     baseValue: 0
   staminaMax:

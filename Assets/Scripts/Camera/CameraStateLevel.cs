@@ -32,14 +32,17 @@ public class CameraStateLevel : CameraState
         if (camera.playerTransform == null) camera.playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
         if (camera.crossTransform == null) camera.crossTransform = GameObject.Find("Crosshair").transform;
         
-        // IF PLAYER AIMING
-        if (InputManager.input.look.ReadValue<Vector2>().magnitude > 0)
+        if (camera.player != null)
         {
-            camera.targetPos = Vector2.Lerp(camera.playerTransform.position, camera.crossTransform.position, 0.33f);
-        } else if (InputManager.input.move.ReadValue<Vector2>().magnitude > 0) {
-            camera.targetPos = camera.playerTransform.position + ((Vector3)camera.player.rb.velocity * camera.camDistMove);
-        } else {
-            camera.targetPos = camera.playerTransform.position;
+            // IF PLAYER AIMING
+            if (InputManager.input.look.ReadValue<Vector2>().magnitude > 0)
+            {
+                camera.targetPos = Vector2.Lerp(camera.playerTransform.position, camera.crossTransform.position, 0.33f);
+            } else if (InputManager.input.move.ReadValue<Vector2>().magnitude > 0) {
+                camera.targetPos = camera.playerTransform.position + ((Vector3)camera.player.rb.velocity * camera.camDistMove);
+            } else {
+                camera.targetPos = camera.playerTransform.position;
+            }
         }
     }
 

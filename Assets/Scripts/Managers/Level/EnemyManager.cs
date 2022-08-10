@@ -30,6 +30,16 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+    void OnEnable()
+    {
+        PlayerManager.instance.onGameOver += AllEnemiesDisabledState;
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.instance.onGameOver -= AllEnemiesDisabledState;
+    }
+
     // GET ENEMY OBJECT FROM POOL
     public GameObject GetEnemyPool(int index)
     {
@@ -48,6 +58,15 @@ public class EnemyManager : MonoBehaviour
         }
 
         enemyList.Clear();
+    }
+
+    // DISABLE ALL ENEMIES
+    public void AllEnemiesDisabledState()
+    {
+        foreach (var enemy in enemyList)
+        {
+            enemy.stateMachine.ChangeState(enemy.stateDisabled);
+        }
     }
 
     // INITIALIZE ENEMY MANAGER

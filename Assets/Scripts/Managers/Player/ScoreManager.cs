@@ -16,14 +16,16 @@ public class ScoreManager : MonoBehaviour
 
     public int totalScore;
 
+    void Awake()
+    {
+        instance = this;
+    }
+
     // ON ENABLE
     void OnEnable()
     {
         // DISABLE ALL ELEMENTS
         ToggleHighscoreGUI(false);
-
-        PlayerManager.instance.onGameOver += CreateHighscoreEntry;
-        PlayerManager.instance.onGameOver += SaveGame;
     }
 
     // ON DISABLE
@@ -31,6 +33,12 @@ public class ScoreManager : MonoBehaviour
     {
         PlayerManager.instance.onGameOver -= CreateHighscoreEntry;
         PlayerManager.instance.onGameOver -= SaveGame;
+    }
+
+    void Start()
+    {
+        PlayerManager.instance.onGameOver += CreateHighscoreEntry;
+        PlayerManager.instance.onGameOver += SaveGame;
     }
 
     // CALCULATE FINAL SCORE
