@@ -59,7 +59,7 @@ public class CurrentLevelManager : MonoBehaviour
 
     public void LevelWin()
     {
-        int techUnits = 1 + Mathf.RoundToInt(((Random.Range(0.2f,3f))) * (LevelManager.instance.difficulty * 0.5f));
+        int techUnits = 1 + Mathf.RoundToInt(((Random.Range(0.05f,1f))) * (LevelManager.instance.difficulty * 0.25f));
         levelTechUnits += techUnits;
         Inventory.instance.ChangeTechUnits(techUnits);
         levelWon = true;

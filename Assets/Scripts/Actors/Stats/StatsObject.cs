@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StatsObject
 {
+    public string entityName;
     public StatInt HPmax = new StatInt();
     public float HPcur;
 

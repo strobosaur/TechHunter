@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7470690f0399c49a28cc6a29ea013f, type: 3}
   m_Name: GerminiteStats
   m_EditorClassIdentifier: 
+  entityName: Germinite
   HPmax:
-    baseValue: 10
+    baseValue: 5
   armor:
     baseValue: 0
   staminaMax:

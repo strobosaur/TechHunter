@@ -38,7 +38,7 @@ public class StatePlayerIdle : PlayerState
         player.crosshair.UpdateCrosshair(lookInput);
 
         // MOVE BOOST
-        if (InputManager.input.R1.IsPressed()) {
+        if (InputManager.input.L2.IsPressed()) {
             player.moveBoost.MoveBoost();
         }
 

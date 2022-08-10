@@ -72,6 +72,7 @@ public class WeaponComponent : MonoBehaviour, IWeapon
     {
         var burst = wpnParams.burst.GetValue();
         var shots = wpnParams.shots.GetValue();
+        Vector2 targetDir = (target.position - origin).normalized;
 
         // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
         if ((burstCount <= burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
@@ -87,10 +88,11 @@ public class WeaponComponent : MonoBehaviour, IWeapon
             // FIRE SET AMOUNT OF TIMES
             for (int i = 0; i < shots; i++)
             {
-                var targetDist = Vector3.Distance(origin, target.position);
-                var targetPos = target.position;
+                //var targetDist = Vector3.Distance(origin, target.position);
+                var targetPos = (Vector2)origin + (targetDir * wpnParams.range.GetValue());
                 var ob = WeaponManager.instance.SpawnBullet();
-                var rnd = Random.insideUnitCircle * (Mathf.Min(wpnParams.range.GetValue(), targetDist) * wpnParams.spr.GetValue() * 0.25f);
+                //var rnd = Random.insideUnitCircle * (Mathf.Min(wpnParams.range.GetValue(), targetDist) * wpnParams.spr.GetValue() * 0.25f);
+                var rnd = Random.insideUnitCircle * wpnParams.range.GetValue() * wpnParams.spr.GetValue() * 0.25f;
 
                 targetPos.x += rnd.x;
                 targetPos.y += rnd.y;

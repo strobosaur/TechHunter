@@ -41,7 +41,7 @@ public class StatePlayerMove : PlayerState
             player.combat.Attack(player.weapon, player.rb.position, player.crosshair.transform, player.stats.wpnStats);
 
         // MOVE BOOST
-        if (InputManager.input.R1.IsPressed()) {
+        if (InputManager.input.L2.IsPressed()) {
             player.moveBoost.MoveBoost();
         }
 

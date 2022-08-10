@@ -16,7 +16,7 @@ public class UpgradeManager : MonoBehaviour
     public List<UpgItem> bootsUpgList = new List<UpgItem>();
     public List<UpgItem> bodyUpgList = new List<UpgItem>();
 
-    public float upgradeDeprecator = 0.8f;
+    public float upgradeDeprecator = 0.66f;
 
     public System.Action onStatsChanged;
 
@@ -24,43 +24,43 @@ public class UpgradeManager : MonoBehaviour
     void Awake()
     {
         // WEAPON UPGRADES
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnFrate, 6));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnBrate, 3));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnDmg, 10));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnFrate, 8));
+        //wpnUpgList.Add(new UpgItem(UpgStat.wpnBrate, 3));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnDmg, 30));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnRange, 2));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnSpr, 3));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnDmgSpr, 1));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnShots, 1));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnBurst, 3));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnBurst, 4));
 
         // ARMOR UPGRADES
-        armorUpgList.Add(new UpgItem(UpgStat.armorUpg, 10));
+        armorUpgList.Add(new UpgItem(UpgStat.armorUpg, 20));
         armorUpgList.Add(new UpgItem(UpgStat.HPupg, 6));
         armorUpgList.Add(new UpgItem(UpgStat.moveSpd, 1));
+        armorUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 3));
+        armorUpgList.Add(new UpgItem(UpgStat.wpnSpr, 3));
+        armorUpgList.Add(new UpgItem(UpgStat.wpnBrate, 3));
 
         // HEAD UPGRADES
         headUpgList.Add(new UpgItem(UpgStat.armorUpg, 5));
         headUpgList.Add(new UpgItem(UpgStat.HPupg, 2));
         headUpgList.Add(new UpgItem(UpgStat.wpnShots, 1));
         headUpgList.Add(new UpgItem(UpgStat.wpnDmgSpr, 1));
-        headUpgList.Add(new UpgItem(UpgStat.wpnBrate, 2));
         headUpgList.Add(new UpgItem(UpgStat.wpnSpr, 1));
         headUpgList.Add(new UpgItem(UpgStat.wpnRange, 1));
 
         // BOOTS UPGRADES
         bootsUpgList.Add(new UpgItem(UpgStat.armorUpg, 2));
-        bootsUpgList.Add(new UpgItem(UpgStat.moveSpd, 5));
+        bootsUpgList.Add(new UpgItem(UpgStat.moveSpd, 25));
         bootsUpgList.Add(new UpgItem(UpgStat.HPupg, 2));
-        bootsUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
         bootsUpgList.Add(new UpgItem(UpgStat.moveBoostSpd, 2));
         bootsUpgList.Add(new UpgItem(UpgStat.moveBoostTime, 2));
 
         // BODE UPGRADES
-        bodyUpgList.Add(new UpgItem(UpgStat.HPupg, 15));
-        bodyUpgList.Add(new UpgItem(UpgStat.armorUpg, 6));
+        bodyUpgList.Add(new UpgItem(UpgStat.HPupg, 25));
+        bodyUpgList.Add(new UpgItem(UpgStat.armorUpg, 10));
         bodyUpgList.Add(new UpgItem(UpgStat.wpnBurst, 2));
         bodyUpgList.Add(new UpgItem(UpgStat.moveSpd, 1));
+        bodyUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
     }
 
     // START
@@ -76,7 +76,7 @@ public class UpgradeManager : MonoBehaviour
         for (int i = 0; i < upgradeCounts.Length; i++)
         {
             upgradeCostsTech[i] = 1 + (Mathf.FloorToInt(upgradeCounts[i] * 1.75f));
-            upgradeCostsScraps[i] = 25 + (Mathf.FloorToInt(upgradeCounts[i] * 75f));
+            upgradeCostsScraps[i] = 25 + (Mathf.FloorToInt(upgradeCounts[i] * 50f));
         }
     }
 
@@ -233,7 +233,7 @@ public class UpgradeManager : MonoBehaviour
         {
             if ((rng > counter) && (rng < counter + upgList[i].weight))
             {
-                upgList[i].weight *= upgradeDeprecator;
+                if (deprecate) upgList[i].weight *= upgradeDeprecator;
                 return (upgList[i], upgList);
             } else {
                 counter += upgList[i].weight;
@@ -247,7 +247,7 @@ public class UpgradeManager : MonoBehaviour
     // UPGRADE FUNCTIONS
     void WpnUpgFrate(WeaponStatsObject stats, float amount = 0.25f) => stats.frate.AddModifier(-(stats.frate.GetValue() * amount));
     void WpnUpgBrate(WeaponStatsObject stats, float amount = 0.25f) => stats.brate.AddModifier(-(stats.brate.GetValue() * amount));
-    void WpnUpgDamage(WeaponStatsObject stats, float amount = 1) => stats.dmg.AddModifier(amount);
+    void WpnUpgDamage(WeaponStatsObject stats, float amount = 0.5f) => stats.dmg.AddModifier(amount);
     void WpnUpgRange(WeaponStatsObject stats, float amount = 2.5f) => stats.range.AddModifier(amount);
     void WpnUpgSpr(WeaponStatsObject stats, float amount = 0.25f) => stats.spr.AddModifier(-(stats.spr.GetValue() * amount));
     void WpnUpgDmgSpr(WeaponStatsObject stats, float amount = 0.25f) => stats.dmgSpr.AddModifier(-(stats.dmgSpr.GetValue() * amount));
@@ -255,12 +255,15 @@ public class UpgradeManager : MonoBehaviour
     void WpnUpgBurst(WeaponStatsObject stats, int amount = 1) => stats.burst.AddModifier(amount);
     void WpnUpgKnockback(WeaponStatsObject stats, float amount = 0.5f) => stats.knockback.AddModifier(amount);
 
-    void StatsUpgHP(StatsObject stats, int amount = 5) => stats.HPmax.AddModifier(amount);
     void StatsUpgArmor(StatsObject stats, int amount = 1) => stats.armor.AddModifier(amount);
     void StatsUpgStamina(StatsObject stats, float amount = 10) => stats.staminaMax.AddModifier(amount);
     void StatsUpgMoveSpd(StatsObject stats, float amount = 0.25f) => stats.moveSpd.AddModifier(amount);
     void StatsUpgMoveBoostSpd(StatsObject stats, float amount = 0.25f) => stats.moveBoostSpd.AddModifier(amount);
     void StatsUpgMoveBoostTime(StatsObject stats, float amount = 0.25f) => stats.moveBoostTime.AddModifier(amount);
+    void StatsUpgHP(StatsObject stats, int amount = 5){
+        stats.HPmax.AddModifier(amount);
+        stats.HPcur = stats.HPmax.GetValue();
+    } 
 }
 
 // UPGRADE ITEM CLASS

@@ -43,6 +43,7 @@ public class StateManagerBase : ManagerState
         PlayerManager.instance.FindPlayers();
         manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
         manager.player.crosshair.ToggleVisibility(false);
+        PlayerManager.instance.playerStats.HPcur = manager.player.stats.HPmax.GetValue();
 
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateBase);

@@ -13,6 +13,7 @@ public class Enemy : Fighter, IDamageable
 
     // ENEMY STATS
     public EntityStats statsBlueprint;
+    public string entityName;
 
     // STATE MACHINE SETUP
     public EnemyStateMachine stateMachine { get; protected set; }
@@ -105,25 +106,26 @@ public class Enemy : Fighter, IDamageable
             Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
 
             // REMOVE FROM LIST & UPDATE KILLS
-            EnemyManager.instance.enemyList.Remove(this);
             Inventory.instance.kills++;
+            Inventory.instance.killDict[stats.entityName]++;
             CurrentLevelManager.instance.levelKills++;
 
             // DROP SCRAPS?
             if (Random.value < 0.33) {
-                int scraps = (5 + Random.Range(0, 15 + (int)(LevelManager.instance.difficulty * 2f)));
+                int scraps = (5 + Random.Range(0, 10 + (int)(LevelManager.instance.difficulty * 0.2f)));
                 Inventory.instance.ChangeScraps(scraps);
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 
             // DROP TECH?
             if (Random.value < 0.025) {
-                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.05f)));
+                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.025f)));
                 Inventory.instance.ChangeTechUnits(tech);
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 
             // DESTROY OBJECT
+            EnemyManager.instance.enemyList.Remove(this);
             Destroy(gameObject);
         }
     }
