@@ -24,6 +24,7 @@ public class SpawnPointManager : MonoBehaviour
     {
         instance = this;
         enemyManager = EnemyManager.instance;
+        nextSpawnTimeBase = 45f;
     }
 
     void OnEnable()
@@ -61,7 +62,7 @@ public class SpawnPointManager : MonoBehaviour
 
     public float SetNextSpawnTime()
     {        
-        return (nextSpawnTimeBase * Random.Range(0.5f, 1.5f)) / (1f + (difficulty * Random.Range(0f, 0.2f)));
+        return ((nextSpawnTimeBase * Random.Range(0.5f, 1.5f)) / (1f + (difficulty * Random.Range(0f, 0.2f))));
     }
 
     public void StopSpawning()

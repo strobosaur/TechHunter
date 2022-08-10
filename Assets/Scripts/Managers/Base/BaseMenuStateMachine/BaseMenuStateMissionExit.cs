@@ -56,6 +56,5 @@ public class BaseMenuStateMissionExit : BaseMenuState
 
         // LOAD SCENE
         GameManager.instance.levelManager.LoadScene(GameManager.instance.levelManager.sceneNames[(int)SceneName.InLevel]);
-        GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
     }
 }

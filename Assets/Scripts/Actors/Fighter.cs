@@ -51,6 +51,8 @@ public class Fighter : Movable
     {
         this.stats = new StatsObject();
 
+        this.stats.entityName = stats.entityName;
+
         this.stats.HPmax.SetValue(stats.HPmax.GetValue());
         this.stats.HPcur = this.stats.HPmax.GetValue();
 

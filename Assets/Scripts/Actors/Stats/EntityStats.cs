@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Entity Stats", menuName = "Stats/Stats")]
 public class EntityStats : ScriptableObject
 {
+    public string entityName;
+
     public StatInt HPmax;
 
     public Stat armor;

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    // SINGLETON
     public static Inventory instance;
 
+    // ITEM CHANGED EVENTS
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
+    // RESOURCE CHANGED EVENTS
     public System.Action onScrapsChanged;
     public System.Action onTechChanged;
+
+    // ENEMY KILLS DICTIONARY
+    public Dictionary<string,int> killDict = new Dictionary<string,int>();
 
     // ITEMS IN INVENTORY
     public List<Item> items = new List<Item>();
@@ -32,6 +38,11 @@ public class Inventory : MonoBehaviour
         }
 
         instance = this;
+
+        killDict.Clear();
+        killDict.Add("Shell", 0);
+        killDict.Add("Germinite", 0);
+        killDict.Add("Gland", 0);
     }
 
     public void AddItem(Item item)
