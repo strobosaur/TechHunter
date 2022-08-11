@@ -12,22 +12,19 @@ public class StateManagerLevelWon : ManagerState
     {
         base.Enter();
 
-        SceneManager.sceneLoaded += InitBaseState;
-
-        manager.blackscreen.OnBlackScreenBlack += ChangeStateBase;
-    }
-
-    // ON STATE EXIT
-    public override void Exit()
-    {
-        base.Exit();
+        manager.blackscreen.OnBlackScreenBlack += ChangeSceneBase;
 
         // CLEAR LISTS
         PlayerManager.instance.playerList.Clear();
         PropGenerator.instance.ClearAllProps();
         EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
         EnemyManager.instance.ClearAllEnemies();
-        manager.blackscreen.OnBlackScreenBlack -= ChangeStateBase;
+    }
+
+    // ON STATE EXIT
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     // STATE LOGIC UPDATE
@@ -42,20 +39,10 @@ public class StateManagerLevelWon : ManagerState
         base.PhysicsUpdate();
     }
 
-    // INIT STATE BASE
-    public void InitBaseState(Scene s, LoadSceneMode mode)
-    {
-        SceneManager.sceneLoaded -= InitBaseState;
-
-        // CHANGE STATE TO BASE STATE
-        stateMachine.ChangeState(manager.stateBase);
-    }
-
     // CHANGE STATE BACK TO BASE
-    private void ChangeStateBase()
+    private void ChangeSceneBase()
     {
-        // CHANGE STATE TO BASE
-        //manager.stateMachine.ChangeState(manager.stateBase);
+        manager.blackscreen.OnBlackScreenBlack -= ChangeSceneBase;
 
         // LOAD BASE SCENE
         manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);

@@ -27,14 +27,12 @@ public class StateManagerMenuExit : ManagerState
         // START BLACK SCREEN FADE
         manager.blackscreen.StartBlackScreenFade(true);
         manager.blackscreen.OnBlackScreenBlack += MakeMenuChoice;
-        SceneManager.sceneLoaded += InitBaseState;
     }
 
     // EXIT
     public override void Exit()
     {
         base.Exit();
-        SceneManager.sceneLoaded -= InitBaseState;
         manager.blackscreen.OnBlackScreenBlack -= MakeMenuChoice;
     }
 
@@ -68,11 +66,5 @@ public class StateManagerMenuExit : ManagerState
             case (int)MainMenuOptions.quit:
             break;
         }
-    }
-
-    public void InitBaseState(Scene s, LoadSceneMode mode)
-    {
-        // CHANGE STATE TO BASE STATE
-        stateMachine.ChangeState(manager.stateBase);
     }
 }

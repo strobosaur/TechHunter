@@ -11,9 +11,7 @@ public class StateManagerLevel : ManagerState
     public override void Enter()
     {
         base.Enter();
-
-        // SUBSCRIBE TO SCENE CHANGED
-        SceneManager.sceneLoaded += InitLevelScene;
+        InitializeLevel();
     }
 
     // ON STATE EXIT
@@ -38,15 +36,6 @@ public class StateManagerLevel : ManagerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    // INITIALIZE LEVEL SCENE
-    public void InitLevelScene(Scene s, LoadSceneMode mode)
-    {
-        // UNSUBSCRIBE TO SCENE CHANGED
-        SceneManager.sceneLoaded -= InitLevelScene;
-        
-        InitializeLevel();
     }
 
     // INITIALIZE LEVEL

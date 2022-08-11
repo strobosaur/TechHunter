@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
+    
+    public StateManagerStartGame stateStartGame;
     public StateManagerMenu stateMenu;
     public StateManagerMenuExit stateMenuExit;
     public StateManagerBase stateBase;
@@ -59,6 +61,7 @@ public class GameManager : MonoBehaviour
 
         // INIT STATE MACHINE
         stateMachine = new StateMachine();
+        stateStartGame = new StateManagerStartGame(this, stateMachine);
         stateMenu = new StateManagerMenu(this, stateMachine);
         stateMenuExit = new StateManagerMenuExit(this, stateMachine);
         stateBase = new StateManagerBase(this, stateMachine);
@@ -76,20 +79,7 @@ public class GameManager : MonoBehaviour
     // START
     void Start()
     {
-        switch (currentScene.name)
-        {
-            case "01_MainMenu":
-            stateMachine.Initialize(stateMenu);
-            break;
-
-            case "02_Base":
-            stateMachine.Initialize(stateBase);
-            break;
-
-            case "03_Level":
-            stateMachine.Initialize(stateLevel);
-            break;
-        }
+        stateMachine.Initialize(stateStartGame);
     }
 
     // UPDATE

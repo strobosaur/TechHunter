@@ -15,12 +15,16 @@ public class CameraStateLevel : CameraState
         camera.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
         camera.playerTransform = GameObject.Find(Globals.G_PLAYERNAME).transform;
         camera.crossTransform = GameObject.Find("Crosshair").transform;
+
+        PlayerManager.instance.onGameOver += ChangeStateMenu;
     }
 
     // EXIT STATE
     public override void Exit()
     {
         base.Exit();
+
+        PlayerManager.instance.onGameOver -= ChangeStateMenu;
     }
 
     // LOGIC UPDATE
@@ -50,5 +54,12 @@ public class CameraStateLevel : CameraState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    // CHANGE STATE MENU
+    private void ChangeStateMenu()
+    {
+        PlayerManager.instance.onGameOver -= ChangeStateMenu;
+        stateMachine.ChangeState(camera.stateMenu);
     }
 }
