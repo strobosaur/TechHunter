@@ -249,12 +249,12 @@ public class UpgradeManager : MonoBehaviour
     }
 
     // UPGRADE FUNCTIONS
-    void WpnUpgFrate(WeaponStatsObject stats, float amount = 0.25f) => stats.frate.AddModifier(-(stats.frate.GetValue() * amount));
-    void WpnUpgBrate(WeaponStatsObject stats, float amount = 0.25f) => stats.brate.AddModifier(-(stats.brate.GetValue() * amount));
-    void WpnUpgDamage(WeaponStatsObject stats, float amount = 0.5f) => stats.dmg.AddModifier(amount);
-    void WpnUpgRange(WeaponStatsObject stats, float amount = 2.5f) => stats.range.AddModifier(amount);
-    void WpnUpgSpr(WeaponStatsObject stats, float amount = 0.25f) => stats.spr.AddModifier(-(stats.spr.GetValue() * amount));
-    void WpnUpgDmgSpr(WeaponStatsObject stats, float amount = 0.25f) => stats.dmgSpr.AddModifier(-(stats.dmgSpr.GetValue() * amount));
+    void WpnUpgFrate(WeaponStatsObject stats, float amount = 0.125f) => stats.frate.AddModifier(-(stats.frate.GetValue() * amount));
+    void WpnUpgBrate(WeaponStatsObject stats, float amount = 0.125f) => stats.brate.AddModifier(-(stats.brate.GetValue() * amount));
+    void WpnUpgDamage(WeaponStatsObject stats, float amount = 0.25f) => stats.dmg.AddModifier(amount);
+    void WpnUpgRange(WeaponStatsObject stats, float amount = 2f) => stats.range.AddModifier(amount);
+    void WpnUpgSpr(WeaponStatsObject stats, float amount = 0.2f) => stats.spr.AddModifier(-(stats.spr.GetValue() * amount));
+    void WpnUpgDmgSpr(WeaponStatsObject stats, float amount = 0.2f) => stats.dmgSpr.AddModifier(-(stats.dmgSpr.GetValue() * amount));
     void WpnUpgShots(WeaponStatsObject stats, int amount = 1) => stats.shots.AddModifier(amount);
     void WpnUpgBurst(WeaponStatsObject stats, int amount = 1) => stats.burst.AddModifier(amount);
     void WpnUpgKnockback(WeaponStatsObject stats, float amount = 0.5f) => stats.knockback.AddModifier(amount);

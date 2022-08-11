@@ -25,6 +25,6 @@ public class StatsObject
 
     public void TakeDamage(float damage)
     {
-        HPcur -= damage / (1f + (armor.GetValue() * 0.2f));
+        HPcur -= damage / (1f + (armor.GetValue() * 0.1f));
     }    
 }
