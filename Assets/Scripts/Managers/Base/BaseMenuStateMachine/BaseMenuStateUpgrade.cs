@@ -52,6 +52,9 @@ public class BaseMenuStateUpgrade : BaseMenuState
         manager.UpdatePlayerTexts();
         UpdateMenuTexts();
         UpdateCostTexts();
+
+        // PLAY SOUND EFFECT
+        AudioManager.instance.Play("menu_blip");
     }
 
     // ON STATE EXIT
@@ -85,12 +88,19 @@ public class BaseMenuStateUpgrade : BaseMenuState
             // SWITCH MENU INDEX
             if (InputManager.input.down.WasPressedThisFrame()) 
             {
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
+
                 menuIndex = (((menuIndex + menuOptions.Count) + 1) % menuOptions.Count);
                 onMenuIndexChanged?.Invoke();
             }
 
             if (InputManager.input.up.WasPressedThisFrame()) 
             {
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
+
                 menuIndex = (((menuIndex + menuOptions.Count) - 1) % menuOptions.Count);
                 onMenuIndexChanged?.Invoke();
             }
@@ -135,6 +145,10 @@ public class BaseMenuStateUpgrade : BaseMenuState
 
             // EXIT MENU
             if (InputManager.input.A.WasPressedThisFrame()){
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
+                
                 stateMachine.ChangeState(manager.stateIdle);
             }
         } else {

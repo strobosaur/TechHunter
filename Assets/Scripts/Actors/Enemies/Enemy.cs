@@ -107,6 +107,9 @@ public class Enemy : Fighter, IDamageable
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
 
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("hit");
+
             // REMOVE FROM LIST & UPDATE KILLS
             Inventory.instance.kills++;
             Inventory.instance.killDict[stats.entityName]++;

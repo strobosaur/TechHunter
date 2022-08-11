@@ -89,6 +89,10 @@ public class UpgradeManager : MonoBehaviour
         if ((Inventory.instance.scraps >= upgradeCostsScraps[(int)upgType])
         && (Inventory.instance.techUnits >= upgradeCostsTech[(int)upgType]))
         {
+
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_choice");
+
             // CONSUME RESOURCES
             Inventory.instance.ChangeScraps(-upgradeCostsScraps[(int)upgType]);
             Inventory.instance.ChangeTechUnits(-upgradeCostsTech[(int)upgType]);

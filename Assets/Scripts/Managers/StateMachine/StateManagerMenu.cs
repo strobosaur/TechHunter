@@ -48,12 +48,20 @@ public class StateManagerMenu : ManagerState
         base.LogicUpdate();
 
         // SWITCH MENU INDEX
-        if (InputManager.input.down.WasPressedThisFrame()) menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) + 1) % menu.menuTexts.Count);
-        if (InputManager.input.up.WasPressedThisFrame()) menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) - 1) % menu.menuTexts.Count);
+        if (InputManager.input.down.WasPressedThisFrame()) {
+            menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) + 1) % menu.menuTexts.Count);
+            AudioManager.instance.Play("menu_blip");
+        }
+
+        if (InputManager.input.up.WasPressedThisFrame()) {
+            menu.currentIndex = (((menu.currentIndex + menu.menuTexts.Count) - 1) % menu.menuTexts.Count);
+            AudioManager.instance.Play("menu_blip");
+        }
 
         // MAKE MENU CHOICE
         if (InputManager.input.B.WasPressedThisFrame()) 
         {
+            AudioManager.instance.Play("menu_choice");
             switch (menu.currentIndex)
             {
                 // NEW GAME

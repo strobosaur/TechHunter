@@ -45,8 +45,15 @@ public class StateManagerLevelOver : ManagerState
         if ((blackScreenBlack) && (!hsDisplayed) && (InputManager.input.B.WasPressedThisFrame())) {
             ScoreManager.instance.DisplayHighscores();
             hsDisplayed = true;
+
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_blip");
+
         } else if ((hsDisplayed) && (InputManager.input.B.WasPressedThisFrame())) {
             ScoreManager.instance.DisplayHighscores(false);
+
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_choice");
 
             // CLEAR LEVEL OBJECTS
             PlayerManager.instance.playerList.Clear();

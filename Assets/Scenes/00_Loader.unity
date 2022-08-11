@@ -2328,7 +2328,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2458,5 +2458,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 2096395754}
   effectSource: {fileID: 1350602727}
-  sounds: []
-  tracks: []
+  sounds:
+  - clip: {fileID: 8300000, guid: a7521481f8bc1dd428aa5d1ebcdc11ef, type: 3}
+    name: menu_choice
+  - clip: {fileID: 8300000, guid: abd31a2a20f89a24e8ec53543e9f6fe6, type: 3}
+    name: menu_blip
+  - clip: {fileID: 8300000, guid: ead724b281138ba488a6b0ba2e928309, type: 3}
+    name: pistol
+  - clip: {fileID: 8300000, guid: 8b74f87b6081db048b68889f769893d3, type: 3}
+    name: melee01
+  - clip: {fileID: 8300000, guid: e70a1b15aeb2151478ce09ec06d15e6e, type: 3}
+    name: melee02
+  - clip: {fileID: 8300000, guid: 81a511e7db6913748a490611becd7e30, type: 3}
+    name: melee03
+  - clip: {fileID: 8300000, guid: caaa3017b2ef31a41bc700ce957bd63d, type: 3}
+    name: hit01
+  - clip: {fileID: 8300000, guid: 64d8912250dfcec4f94fdadb3182361f, type: 3}
+    name: hit02
+  - clip: {fileID: 8300000, guid: 5f92cf527b8799b478e2662a1830d1a1, type: 3}
+    name: hit03
+  - clip: {fileID: 8300000, guid: 8b931129759bc444681c00222eee0270, type: 3}
+    name: hit04
+  tracks:
+  - clip: {fileID: 8300000, guid: bcb4a848d6e1f0b46bd8213d68996016, type: 3}
+    name: MenuOST

@@ -116,6 +116,9 @@ public class Player : Fighter, IDamageable
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
 
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("hit");
+
             // DESTROY OBJECT
             PlayerManager.instance.onGameOver?.Invoke();
             Destroy(gameObject);

@@ -73,21 +73,33 @@ public class BaseMenuStateMission : BaseMenuState
             {
                 menuIndex = (((menuIndex + menuOptions.Count) + 1) % menuOptions.Count);
                 onMenuIndexChanged?.Invoke();
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
             }
 
             if (InputManager.input.up.WasPressedThisFrame()) 
             {
                 menuIndex = (((menuIndex + menuOptions.Count) - 1) % menuOptions.Count);
                 onMenuIndexChanged?.Invoke();
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
             }
 
             // MAKE MENU CHOICE
             if (InputManager.input.A.WasPressedThisFrame()){
 
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_blip");
+
                 // EXIT MENU
                 stateMachine.ChangeState(manager.stateIdle);
 
             } else if (InputManager.input.B.WasPressedThisFrame()) {
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("menu_choice");
                 
                 // NEXT MISSION
                 GameManager.instance.levelManager.SetNextLevel(manager.missionManager.missionList[menuIndex]);

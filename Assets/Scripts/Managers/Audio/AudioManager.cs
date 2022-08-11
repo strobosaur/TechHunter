@@ -12,11 +12,12 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
     public Sound[] tracks;
 
-    private string[] jumpSounds = {"jump01","jump02","jump03"};
-    private string[] grappleSounds = {"grapple01","grapple02","grapple03"};
+    private string[] shootSounds = {"pistol01","pistol02","pistol03"};
+    private string[] meleeSounds = {"melee01","melee02","melee03"};
+    private string[] menuSounds = {"menu_choice","menu_blip"};
     private string[] hitSounds = {"hit01","hit02","hit03","hit04"};
 
-    private float musicFadeTime = 5f;
+    private float musicFadeTime = 7.5f;
     private float musicStartTime;
     private float musicFadeFactor;
     private float musicVolume = 0.66f;
@@ -39,7 +40,7 @@ public class AudioManager : MonoBehaviour
     // START
     private void Start()
     {
-        //PlayMusic("OneButtonBeats");        
+        PlayMusic("MenuOST");
     }
 
     // FIXED UPDATE
@@ -51,8 +52,10 @@ public class AudioManager : MonoBehaviour
     // PLAY SOUND EFFECT
     public void Play(string name)
     {
-        if (name == "jump") { name = jumpSounds[UnityEngine.Random.Range(0, jumpSounds.Length)]; }
-        if (name == "grapple") { name = grappleSounds[UnityEngine.Random.Range(0, grappleSounds.Length)]; }
+        if (name == "menu_blip") { name = menuSounds[1]; }
+        if (name == "menu_choice") { name = menuSounds[0]; }
+        if (name == "shoot") { name = shootSounds[UnityEngine.Random.Range(0, shootSounds.Length)]; }
+        if (name == "melee") { name = meleeSounds[UnityEngine.Random.Range(0, meleeSounds.Length)]; }
         if (name == "hit") { name = hitSounds[UnityEngine.Random.Range(0, hitSounds.Length)]; }
 
         Sound s = Array.Find(sounds, sound => sound.name == name);
