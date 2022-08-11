@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
     public BaseMissionItem nextLevel { get; private set; }
     public bool levelGenerated = false;
 
+    private string sceneName;
+
     // AWAKE
     void Awake()
     {
@@ -44,7 +46,9 @@ public class LevelManager : MonoBehaviour
     {
         // LOAD SCENE
         //var scene = SceneManager.LoadSceneAsync(sceneName);
+        this.sceneName = sceneName;
         SceneManager.LoadScene(sceneName);
+        SceneManager.sceneLoaded += InitState;
         //scene.allowSceneActivation = false;
 
         // do {
@@ -59,15 +63,39 @@ public class LevelManager : MonoBehaviour
 
             // ENTER MAIN MENU SCENE
             onMenuSceneLoaded?.Invoke();
-            GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
+            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
 
         } else if (sceneName == sceneNames[(int)SceneName.InBase]) {
 
             // ENTER BASE SCENE
             onBaseSceneLoaded?.Invoke();
-            GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateBase);
+            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateBase);
 
         } else if (sceneName == sceneNames[(int)SceneName.InLevel]) {
+
+            // ENTER LEVEL SCENE
+            onLevelSceneLoaded?.Invoke();
+            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
+        }
+    }
+
+    public void InitState(Scene s, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= InitState;
+        // FIRE SUBSCRIBED EVENTS
+        if (s.name == sceneNames[(int)SceneName.MainMenu]) {
+
+            // ENTER MAIN MENU SCENE
+            onMenuSceneLoaded?.Invoke();
+            GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
+
+        } else if (s.name == sceneNames[(int)SceneName.InBase]) {
+
+            // ENTER BASE SCENE
+            onBaseSceneLoaded?.Invoke();
+            GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateBase);
+
+        } else if (s.name == sceneNames[(int)SceneName.InLevel]) {
 
             // ENTER LEVEL SCENE
             onLevelSceneLoaded?.Invoke();

@@ -54,21 +54,7 @@ public class CameraController : MonoBehaviour
     // START
     void Start()
     {
-        switch (GameManager.instance.currentScene.name)
-        {
-            case "01_MainMenu":
-            stateMachine.Initialize(stateMenu);
-            break;
-
-            case "02_Base":
-            stateMachine.Initialize(stateBase);
-            break;
-
-            case "03_Level":
-            stateMachine.Initialize(stateLevel);
-            break;
-        }
-        //stateMachine.Initialize(stateMenu);
+        stateMachine.Initialize(stateMenu);
     }
 
     // UPDATE
