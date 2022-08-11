@@ -104,6 +104,12 @@ public class Enemy : Fighter, IDamageable
     {
         if (stats.HPcur <= 0f)
         {
+            float dropChance = 1f;
+
+            if (entityName == "Shell") dropChance = 1f;
+            if (entityName == "Germinite") dropChance = 1.25f;
+            if (entityName == "Gland") dropChance = 1.75f;
+
             // CREATE BLOOD
             Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
 
@@ -116,15 +122,15 @@ public class Enemy : Fighter, IDamageable
             CurrentLevelManager.instance.levelKills++;
 
             // DROP SCRAPS?
-            if (Random.value < 0.33) {
-                int scraps = (5 + Random.Range(0, 10 + (int)(LevelManager.instance.difficulty * 0.2f)));
+            if (Random.value < (0.5f + (dropChance * 0.2f))) {
+                int scraps = (1 + Random.Range(0, 10 + (int)(LevelManager.instance.difficulty * 0.2f * dropChance)));
                 Inventory.instance.ChangeScraps(scraps);
                 HUDlevel.instance.onScrapsChanged?.Invoke();
             }
 
             // DROP TECH?
-            if (Random.value < 0.01f) {
-                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.0025f)));
+            if (Random.value < (0.01f + (dropChance * 0.005f))) {
+                int tech = (1 + Random.Range(0, (int)(LevelManager.instance.difficulty * 0.0025f * dropChance)));
                 Inventory.instance.ChangeTechUnits(tech);
                 HUDlevel.instance.onTechChanged?.Invoke();
             }
