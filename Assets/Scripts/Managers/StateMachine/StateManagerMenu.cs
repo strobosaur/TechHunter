@@ -32,6 +32,8 @@ public class StateManagerMenu : ManagerState
 
         // LOAD GAME
         ScoreManager.instance.LoadGame();
+
+        manager.cam.blackscreen.interactableMessage.text = "";
     }
 
     // EXIT

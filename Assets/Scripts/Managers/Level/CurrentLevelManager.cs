@@ -25,6 +25,13 @@ public class CurrentLevelManager : MonoBehaviour
         instance = this;
         levelStarted = false;
         levelWon = false;
+
+        onLevelWon += DisableCounter;
+    }
+
+    void OnDisable()
+    {
+        onLevelWon -= DisableCounter;
     }
 
     void Update()
@@ -65,5 +72,10 @@ public class CurrentLevelManager : MonoBehaviour
         Inventory.instance.MissionWin();
         levelWon = true;
         onLevelWon?.Invoke();
+    }
+
+    public void DisableCounter()
+    {
+        levelStarted = false;
     }
 }

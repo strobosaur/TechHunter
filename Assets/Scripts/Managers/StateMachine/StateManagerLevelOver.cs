@@ -19,6 +19,8 @@ public class StateManagerLevelOver : ManagerState
         hsDisplayed = false;
 
         manager.blackscreen.OnBlackScreenBlack += ToggleInteraction;
+
+        manager.blackscreen.interactableMessage.text = "";
     }
 
     // ON STATE EXIT

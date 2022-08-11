@@ -17,7 +17,7 @@ MonoBehaviour:
   damageModifier: 0
   isMelee: 0
   frate:
-    baseValue: 2
+    baseValue: 1.25
   brate:
     baseValue: 0.3
   dmg:

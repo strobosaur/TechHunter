@@ -50,12 +50,14 @@ public class EnemyMoveInput : MonoBehaviour, IMoveInput
         return direction;
     }
 
+    // UPDATE PATH
     private void UpdatePath()
     {
-        if (seeker.IsDone())
+        if ((seeker.IsDone()) && (target != null))
             seeker.StartPath(transform.position, target.position, OnPathComplete);
     }
 
+    // ON PATH COMPLETE
     private void OnPathComplete(Path p)
     {
         if (!p.error)

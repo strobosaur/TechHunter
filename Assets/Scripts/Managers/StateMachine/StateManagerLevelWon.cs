@@ -13,6 +13,8 @@ public class StateManagerLevelWon : ManagerState
         base.Enter();
 
         manager.blackscreen.OnBlackScreenBlack += ChangeSceneBase;
+
+        manager.blackscreen.interactableMessage.text = "";
     }
 
     // ON STATE EXIT
