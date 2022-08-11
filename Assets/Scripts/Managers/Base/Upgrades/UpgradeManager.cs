@@ -27,7 +27,7 @@ public class UpgradeManager : MonoBehaviour
         wpnUpgList.Add(new UpgItem(UpgStat.wpnFrate, 8));
         //wpnUpgList.Add(new UpgItem(UpgStat.wpnBrate, 3));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnDmg, 30));
-        wpnUpgList.Add(new UpgItem(UpgStat.wpnRange, 2));
+        wpnUpgList.Add(new UpgItem(UpgStat.wpnRange, 4));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnDmgSpr, 1));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnShots, 1));
         wpnUpgList.Add(new UpgItem(UpgStat.wpnBurst, 4));

@@ -17,7 +17,6 @@ public class StateManagerBase : ManagerState
         // FIND PLAYER
         PlayerManager.instance.FindPlayers();
         manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
-        manager.player.crosshair.ToggleVisibility(false);
 
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateBase);

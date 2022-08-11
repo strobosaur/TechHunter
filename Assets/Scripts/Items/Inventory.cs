@@ -47,6 +47,26 @@ public class Inventory : MonoBehaviour
         killDict.Add("Gland", 0);
     }
 
+    // RESET INVENTORY
+    public void ResetInventory()
+    {
+        totalScraps = 0;
+        totalTechUnits = 0;
+        missionsWon = 0;
+        kills = 0;
+        water = 0;
+        scraps = 0;
+        techUnits = 0;
+
+        items.Clear();
+
+        killDict.Clear();
+        killDict.Add("Shell", 0);
+        killDict.Add("Germinite", 0);
+        killDict.Add("Gland", 0);
+
+    }
+
     public void AddItem(Item item)
     {
         items.Add(item);

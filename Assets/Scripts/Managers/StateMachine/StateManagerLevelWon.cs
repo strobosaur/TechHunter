@@ -13,12 +13,6 @@ public class StateManagerLevelWon : ManagerState
         base.Enter();
 
         manager.blackscreen.OnBlackScreenBlack += ChangeSceneBase;
-
-        // CLEAR LISTS
-        PlayerManager.instance.playerList.Clear();
-        PropGenerator.instance.ClearAllProps();
-        EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
-        EnemyManager.instance.ClearAllEnemies();
     }
 
     // ON STATE EXIT
@@ -43,6 +37,12 @@ public class StateManagerLevelWon : ManagerState
     private void ChangeSceneBase()
     {
         manager.blackscreen.OnBlackScreenBlack -= ChangeSceneBase;
+
+        // CLEAR LISTS
+        PlayerManager.instance.playerList.Clear();
+        PropGenerator.instance.ClearAllProps();
+        EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
+        EnemyManager.instance.ClearAllEnemies();
 
         // LOAD BASE SCENE
         manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InBase]);

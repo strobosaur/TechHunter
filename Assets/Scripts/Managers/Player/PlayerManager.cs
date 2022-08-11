@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
-    
+
     public List<GameObject> playerList = new List<GameObject>();
 
     public EntityStats statsBlueprint;
@@ -53,5 +53,12 @@ public class PlayerManager : MonoBehaviour
         {
             playerList.Add(item);
         }
+    }
+
+    // RESET PLAYER SESSION
+    public void ResetGameSession()
+    {
+        StatsInit(statsBlueprint, wpnStatsBlueprint);
+        Inventory.instance.ResetInventory();
     }
 }

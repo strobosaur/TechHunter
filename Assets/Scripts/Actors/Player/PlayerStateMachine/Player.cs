@@ -113,6 +113,10 @@ public class Player : Fighter, IDamageable
     {
         if (stats.HPcur <= 0f)
         {
+            // CREATE BLOOD
+            Instantiate(EffectsManager.instance.SpawnBlood02(transform.position));
+
+            // DESTROY OBJECT
             PlayerManager.instance.onGameOver?.Invoke();
             Destroy(gameObject);
         }
