@@ -85,6 +85,9 @@ public class WeaponComponent : MonoBehaviour, IWeapon
             // FIRE ACTUAL WEAPON
             MuzzleFlash(origin, 1f);
 
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("shoot");
+
             // FIRE SET AMOUNT OF TIMES
             for (int i = 0; i < shots; i++)
             {
@@ -129,6 +132,9 @@ public class WeaponComponent : MonoBehaviour, IWeapon
 
                 // FIRE ACTUAL WEAPON
                 //MuzzleFlash(origin, 1f);
+
+                // PLAY SOUND EFFECT
+                AudioManager.instance.Play("melee");
 
                 // MAKE CORRECT AMOUNT OF SHOTS
                 for (int i = 0; i < shots; i++)
