@@ -2463,8 +2463,12 @@ MonoBehaviour:
     name: menu_choice
   - clip: {fileID: 8300000, guid: abd31a2a20f89a24e8ec53543e9f6fe6, type: 3}
     name: menu_blip
-  - clip: {fileID: 8300000, guid: ead724b281138ba488a6b0ba2e928309, type: 3}
-    name: pistol
+  - clip: {fileID: 8300000, guid: fbeefed003bc72d4586ac19473b727f7, type: 3}
+    name: pistol01
+  - clip: {fileID: 8300000, guid: 725b77936b47ac141af39f69d6b4ed11, type: 3}
+    name: pistol02
+  - clip: {fileID: 8300000, guid: db9456de8f8d87f4bb4d427a291c1dcd, type: 3}
+    name: pistol03
   - clip: {fileID: 8300000, guid: 8b74f87b6081db048b68889f769893d3, type: 3}
     name: melee01
   - clip: {fileID: 8300000, guid: e70a1b15aeb2151478ce09ec06d15e6e, type: 3}

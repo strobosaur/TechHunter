@@ -44,6 +44,9 @@ public class BaseMenuStateMission : BaseMenuState
 
         // UPDATE TEXTS
         UpdateMenuTexts();
+
+        // PLAY SOUND EFFECT
+        AudioManager.instance.Play("menu_blip");
     }
 
     // ON STATE EXIT
