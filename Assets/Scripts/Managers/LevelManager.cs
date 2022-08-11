@@ -45,38 +45,9 @@ public class LevelManager : MonoBehaviour
     public void LoadScene(string sceneName) 
     {
         // LOAD SCENE
-        //var scene = SceneManager.LoadSceneAsync(sceneName);
         this.sceneName = sceneName;
         SceneManager.LoadScene(sceneName);
         SceneManager.sceneLoaded += InitState;
-        //scene.allowSceneActivation = false;
-
-        // do {
-
-        // } while (scene.progress < 0.9f);
-
-        // ALLOW SCENE ACTIVATION
-        //scene.allowSceneActivation = true;
-
-        // FIRE SUBSCRIBED EVENTS
-        if (sceneName == sceneNames[(int)SceneName.MainMenu]) {
-
-            // ENTER MAIN MENU SCENE
-            onMenuSceneLoaded?.Invoke();
-            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
-
-        } else if (sceneName == sceneNames[(int)SceneName.InBase]) {
-
-            // ENTER BASE SCENE
-            onBaseSceneLoaded?.Invoke();
-            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateBase);
-
-        } else if (sceneName == sceneNames[(int)SceneName.InLevel]) {
-
-            // ENTER LEVEL SCENE
-            onLevelSceneLoaded?.Invoke();
-            //GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateLevel);
-        }
     }
 
     public void InitState(Scene s, LoadSceneMode mode)

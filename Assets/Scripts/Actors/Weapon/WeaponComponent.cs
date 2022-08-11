@@ -75,7 +75,7 @@ public class WeaponComponent : MonoBehaviour, IWeapon
         Vector2 targetDir = (target.position - origin).normalized;
 
         // CHECK IF FIRE TIMER IS 0 & BURST COUNT IS UNDER LIMIT
-        if ((burstCount <= burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
+        if ((burstCount < burst) && !(wpnTimers[(int)WeaponTimers.burstTimer] > 0)) {
             // SET FIRE RATE TIMER
             if (burstCount <= 0) wpnTimers[(int)WeaponTimers.fireTimer] = wpnParams.frate.GetValue();
 

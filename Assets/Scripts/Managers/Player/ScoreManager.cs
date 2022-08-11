@@ -26,19 +26,16 @@ public class ScoreManager : MonoBehaviour
     {
         // DISABLE ALL ELEMENTS
         ToggleHighscoreGUI(false);
+        LoadGame();
     }
 
     // ON DISABLE
     void OnDisable()
     {
-        PlayerManager.instance.onGameOver -= CreateHighscoreEntry;
-        PlayerManager.instance.onGameOver -= SaveGame;
     }
 
     void Start()
     {
-        PlayerManager.instance.onGameOver += CreateHighscoreEntry;
-        PlayerManager.instance.onGameOver += SaveGame;
     }
 
     // CALCULATE FINAL SCORE
@@ -96,6 +93,8 @@ public class ScoreManager : MonoBehaviour
 
         highscoreList.Add((date,missionsWon,difficulty,totalTech,kills,score));
         highscoreList = highscoreList.OrderByDescending(score => score.Item6).ToList();
+
+        SaveGame();
     }
 
     // DISPLAY HIGHSCORES
@@ -153,6 +152,7 @@ public class ScoreManager : MonoBehaviour
     // LOAD STATE SCENE MANAGEMENT
     public void SaveGame()
     {
+        // CREATE NEW SAVE STRING
         string s = "";
         foreach (var item in highscoreList)
         {
@@ -196,7 +196,7 @@ public class ScoreManager : MonoBehaviour
             }
 
             // ORDER LIST BY DESCENDING
-            highscoreList = highscoreList.OrderByDescending(score => score.Item2).ToList();
+            highscoreList = highscoreList.OrderByDescending(score => score.Item6).ToList();
         }
     }
 }

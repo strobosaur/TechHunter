@@ -19,18 +19,15 @@ public class StateManagerLevelOver : ManagerState
         hsDisplayed = false;
 
         manager.blackscreen.OnBlackScreenBlack += ToggleInteraction;
-
-        // CLEAR LEVEL OBJECTS
-        PlayerManager.instance.playerList.Clear();
-        PropGenerator.instance.ClearAllProps();
-        EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
-        EnemyManager.instance.ClearAllEnemies();
     }
 
     // ON STATE EXIT
     public override void Exit()
     {
         base.Exit();
+
+        // RESET GAME SESSION
+        PlayerManager.instance.ResetGameSession();
 
         manager.blackscreen.StartBlackScreenFade(false);
 
@@ -48,6 +45,12 @@ public class StateManagerLevelOver : ManagerState
             hsDisplayed = true;
         } else if ((hsDisplayed) && (InputManager.input.B.WasPressedThisFrame())) {
             ScoreManager.instance.DisplayHighscores(false);
+
+            // CLEAR LEVEL OBJECTS
+            PlayerManager.instance.playerList.Clear();
+            PropGenerator.instance.ClearAllProps();
+            EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints();
+            EnemyManager.instance.ClearAllEnemies();
 
             // LOAD BASE SCENE
             manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.MainMenu]);
