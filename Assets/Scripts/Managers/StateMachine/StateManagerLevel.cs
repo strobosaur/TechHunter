@@ -48,6 +48,7 @@ public class StateManagerLevel : ManagerState
         manager.player = GameObject.Find(Globals.G_PLAYERNAME).GetComponent<Player>();
         PlayerManager.instance.FindPlayers();
         manager.player.crosshair.ToggleVisibility(true);
+        //manager.player.stateMachine.ChangeState(manager.player.stateIdle);
 
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateLevel);
@@ -69,6 +70,10 @@ public class StateManagerLevel : ManagerState
 
         // INIT HUD
         HUDlevel.instance.UpdateHUD();
+
+        manager.cam.transform.position = new Vector3(manager.player.transform.position.x,manager.player.transform.position.y,manager.cam.transform.position.z);
+
+        manager.cam.dustPS.SetActive(false);
     }
 
     // HANDLE LEVEL WON
@@ -81,6 +86,7 @@ public class StateManagerLevel : ManagerState
 
         manager.blackscreen.StartBlackScreenFade();
         stateMachine.ChangeState(manager.stateLevelWon);
+        manager.player.stateMachine.ChangeState(manager.player.stateDisabled);
     }
 
     // HANDLE GAME OVER

@@ -50,19 +50,13 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        //GenerateMap();
-        //GenerateMapCF();
-        //GenerateMapRNG();
-        //GenerateMapBSP_RW();
     }
 
     void Update()
     {
         if (InputManager.input.X.WasPressedThisFrame())
         {
-            //GenerateMapCF();
-            GenerateMapRNG();
-            //GenerateMapBSP_RW();
+            //GenerateMapRNG();
         }
     }
 
