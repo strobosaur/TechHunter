@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+    
     public List<GameObject> playerList = new List<GameObject>();
 
     public EntityStats statsBlueprint;
@@ -17,7 +18,6 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         instance = this;
-        StatsInit(statsBlueprint, wpnStatsBlueprint);
     }
 
     // STATS INIT
