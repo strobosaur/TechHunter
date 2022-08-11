@@ -34,6 +34,8 @@ public class StateManagerMenu : ManagerState
         ScoreManager.instance.LoadGame();
 
         manager.cam.blackscreen.interactableMessage.text = "";
+
+        manager.cam.dustPS.SetActive(true);
     }
 
     // EXIT

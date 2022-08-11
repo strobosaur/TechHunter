@@ -15,6 +15,7 @@ public class CameraController : MonoBehaviour
     // BLACKSCREEN & GUI
     public Blackscreen blackscreen;
     public TMP_Text interactableText;
+    public GameObject dustPS;
 
     // TARGET & MOVEMENT PARAMETERS
     public Vector2 targetPos;
@@ -39,6 +40,8 @@ public class CameraController : MonoBehaviour
             Globals.DestroyAllChildren(gameObject);
             Destroy(gameObject);
         }
+
+        dustPS = GameObject.Find("DustPS");
 
         // CREATE STATE MACHINE
         stateMachine = new CameraStateMachine();

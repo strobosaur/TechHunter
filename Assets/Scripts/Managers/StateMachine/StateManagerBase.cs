@@ -22,6 +22,10 @@ public class StateManagerBase : ManagerState
         manager.cam.stateMachine.ChangeState(manager.cam.stateBase);
 
         PlayerManager.instance.playerStats.HPcur = PlayerManager.instance.playerStats.HPmax.GetValue();
+
+        manager.cam.transform.position = new Vector3(manager.player.transform.position.x,manager.player.transform.position.y,manager.cam.transform.position.z);
+
+        manager.cam.dustPS.SetActive(false);
     }
 
     public override void Exit()
