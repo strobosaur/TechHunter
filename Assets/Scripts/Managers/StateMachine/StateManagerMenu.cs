@@ -71,6 +71,7 @@ public class StateManagerMenu : ManagerState
 
                 // HIGHSCORES
                 case 1:
+                stateMachine.ChangeState(manager.stateMenuHighscores);
                 break;
 
                 // QUIT GAME

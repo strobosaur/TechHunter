@@ -26,4 +26,13 @@ public class MenuManager : MonoBehaviour
             }
         }
     }
+
+    // TOGGLE ALL TEXTS
+    public void ToggleMenuTexts(bool show = true)
+    {
+        foreach (var text in menuTexts)
+        {
+            text.gameObject.SetActive(show);
+        }
+    }
 }

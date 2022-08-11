@@ -15,6 +15,9 @@ public class StateManagerLevelWon : ManagerState
         manager.blackscreen.OnBlackScreenBlack += ChangeSceneBase;
 
         manager.blackscreen.interactableMessage.text = "";
+
+        // PLAY SOUND EFFECT
+        AudioManager.instance.Play("menu_choice");
     }
 
     // ON STATE EXIT

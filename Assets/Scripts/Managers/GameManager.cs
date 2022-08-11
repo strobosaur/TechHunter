@@ -23,9 +23,10 @@ public class GameManager : MonoBehaviour
 
     // MANAGER STATE MACHINE
     public StateMachine stateMachine;
-    
+
     public StateManagerStartGame stateStartGame;
     public StateManagerMenu stateMenu;
+    public StateManagerMenuHighscores stateMenuHighscores;
     public StateManagerMenuExit stateMenuExit;
     public StateManagerBase stateBase;
     public StateManagerLevel stateLevel;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         stateMachine = new StateMachine();
         stateStartGame = new StateManagerStartGame(this, stateMachine);
         stateMenu = new StateManagerMenu(this, stateMachine);
+        stateMenuHighscores = new StateManagerMenuHighscores(this, stateMachine);
         stateMenuExit = new StateManagerMenuExit(this, stateMachine);
         stateBase = new StateManagerBase(this, stateMachine);
         stateLevel = new StateManagerLevel(this, stateMachine);
