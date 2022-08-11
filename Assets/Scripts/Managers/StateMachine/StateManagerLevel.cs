@@ -57,7 +57,7 @@ public class StateManagerLevel : ManagerState
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
 
         // START LEVEL
-        CurrentLevelManager.instance.StartLevel(120 * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.005f, 2f)) + (LevelManager.instance.difficulty * 0.2f)));
+        CurrentLevelManager.instance.StartLevel(60 * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.005f, 2f)) + (LevelManager.instance.difficulty * 0.2f)));
         CurrentLevelManager.instance.onLevelWon += LevelWon;
         PlayerManager.instance.onGameOver += HandleGameOver;
 

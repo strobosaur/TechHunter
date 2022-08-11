@@ -26,6 +26,9 @@ public class StateManagerMenu : ManagerState
 
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateMenu);
+
+        // INIT PLAYER STATS
+        PlayerManager.instance.StatsInit(PlayerManager.instance.statsBlueprint, PlayerManager.instance.wpnStatsBlueprint);
     }
 
     // EXIT
