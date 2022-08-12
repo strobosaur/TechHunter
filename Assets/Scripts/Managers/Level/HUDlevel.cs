@@ -9,12 +9,16 @@ public class HUDlevel : MonoBehaviour
     public TMP_Text HPmax, HPcur, scraps, tech, timer;
 
     public System.Action onHPchanged;
+    public System.Action onScrapsChanged;
+    public System.Action onTechChanged;
 
     void OnEnable()
     {
         instance = this;
 
         onHPchanged += UpdateHP;
+        onScrapsChanged += UpdateScraps;
+        onTechChanged += UpdateTech;
 
         Inventory.instance.onScrapsChanged += UpdateScraps;
         Inventory.instance.onTechChanged += UpdateTech;
@@ -23,6 +27,8 @@ public class HUDlevel : MonoBehaviour
     void OnDisable()
     {
         onHPchanged -= UpdateHP;
+        onScrapsChanged -= UpdateScraps;
+        onTechChanged -= UpdateTech;
 
         Inventory.instance.onScrapsChanged -= UpdateScraps;
         Inventory.instance.onTechChanged -= UpdateTech;

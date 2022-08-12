@@ -27,11 +27,11 @@ public class StateManagerStartGame : ManagerState
         base.LogicUpdate();
 
         // LOAD MENU SCENE
-        //manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.MainMenu]);
+        manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.MainMenu]);
 
         // TEMP
-        PlayerManager.instance.ResetGameSession();
-        manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InLevel]);
+        // PlayerManager.instance.ResetGameSession();
+        // manager.levelManager.LoadScene(manager.levelManager.sceneNames[(int)SceneName.InLevel]);
     }
 
     // PHYSICS UPDATE

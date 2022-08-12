@@ -19,10 +19,12 @@ public class PowerPylon : Interactable
     {
         if ((!isPoweredUp) && (!CurrentLevelManager.instance.waveStarted))
         {
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_blip");
+
             objectName = "";
             isPoweredUp = true;
             isInteractable = false;
-            pylonProp.GetComponent<PowerPylonProp>().PowerUpPylon();
             CurrentLevelManager.instance.StartWave(spawnPoint.gameObject);
             CurrentLevelManager.instance.onWaveCleared += GrantDrops;
         }
@@ -30,6 +32,11 @@ public class PowerPylon : Interactable
 
     private void GrantDrops()
     {
+        // PLAY SOUND EFFECT
+        AudioManager.instance.Play("menu_choice");
+
+        pylonProp.GetComponent<PowerPylonProp>().PowerUpPylon();
+
         int scraps = Random.Range(10,51);
         int tech = Random.Range(0,1) + Mathf.RoundToInt(Random.Range(0f,0.55f));
         Inventory.instance.ChangeScraps(scraps);

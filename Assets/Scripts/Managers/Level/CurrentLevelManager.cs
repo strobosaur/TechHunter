@@ -47,6 +47,7 @@ public class CurrentLevelManager : MonoBehaviour
                 onWaveCleared?.Invoke();
                 waveStarted = false;
                 pylonsPoweredOn++;
+                Inventory.instance.totalPylonsPoweredOn++;
                 
                 HUDlevel.instance.UpdatePylons(pylonsPoweredOn, pylonsToPowerOn);
 

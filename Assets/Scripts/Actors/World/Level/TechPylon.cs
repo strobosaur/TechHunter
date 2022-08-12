@@ -30,7 +30,14 @@ public class TechPylon : Interactable
     {
         if (canActivate)
         {
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_choice");
+
             CurrentLevelManager.instance.LevelWin();
+        } else {
+
+            // PLAY SOUND EFFECT
+            AudioManager.instance.Play("menu_blip");
         }
     }
 
