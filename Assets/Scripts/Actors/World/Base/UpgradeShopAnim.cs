@@ -21,7 +21,7 @@ public class UpgradeShopAnim : MonoBehaviour
             currentAlpha = Globals.Approach(currentAlpha, targetAlpha, 0.01f);
         }
 
-        col.a = currentAlpha * (1f - (DisplayManager.instance.textAlpha1 * 0.3f)) * (1f - (DisplayManager.instance.textAlpha2 * 0.15f));
+        col.a = currentAlpha * (1f - (DisplayManager.instance.textAlpha1 * 0.4f)) * (1f - (DisplayManager.instance.textAlpha2 * 0.25f)) * Random.Range(0.5f, 2f);
         sr.color = col;
     }
 
