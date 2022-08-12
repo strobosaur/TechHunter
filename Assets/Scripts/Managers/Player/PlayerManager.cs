@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour
     public StatsObject playerStats;
 
     public System.Action onGameOver;
+    public System.Action onHPchanged;
 
     void Awake()
     {
@@ -42,6 +43,14 @@ public class PlayerManager : MonoBehaviour
 
         this.playerStats.wpnStats = new WeaponStatsObject();
         this.playerStats.wpnStats.InitStats(wpnStats);
+    }
+
+    // CHANGE HP VALUE
+    public void ChangeHP(float amount)
+    {
+        if (amount > 0) playerStats.HPcur = Globals.Approach(playerStats.HPcur, playerStats.HPmax.GetValue(), amount);
+        else playerStats.HPcur = Globals.Approach(playerStats.HPcur, 0, amount);
+        onHPchanged?.Invoke();
     }
 
     // FIND ALL PLAYERS

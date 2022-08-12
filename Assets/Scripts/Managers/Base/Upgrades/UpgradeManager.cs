@@ -131,6 +131,7 @@ public class UpgradeManager : MonoBehaviour
 
             // FIRE EVENTS ON STAT CHANGED
             onStatsChanged?.Invoke();
+            PlayerManager.instance.ChangeHP(PlayerManager.instance.playerStats.HPmax.GetValue());
 
             return true;
         } else {

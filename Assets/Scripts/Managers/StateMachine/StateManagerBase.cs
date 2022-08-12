@@ -21,7 +21,7 @@ public class StateManagerBase : ManagerState
         // SET CAMERA STATE
         manager.cam.stateMachine.ChangeState(manager.cam.stateBase);
 
-        PlayerManager.instance.playerStats.HPcur = PlayerManager.instance.playerStats.HPmax.GetValue();
+        PlayerManager.instance.ChangeHP(PlayerManager.instance.playerStats.HPmax.GetValue());
 
         manager.cam.transform.position = new Vector3(manager.player.transform.position.x,manager.player.transform.position.y,manager.cam.transform.position.z);
 

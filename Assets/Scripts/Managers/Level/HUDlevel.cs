@@ -43,8 +43,8 @@ public class HUDlevel : MonoBehaviour
 
     private void UpdateHP()
     {
-        HPmax.text = Mathf.RoundToInt(PlayerManager.instance.playerStats.HPmax.GetValue()).ToString();
-        HPcur.text = Mathf.RoundToInt(PlayerManager.instance.playerStats.HPcur).ToString();
+        HPmax.text = Mathf.CeilToInt(PlayerManager.instance.playerStats.HPmax.GetValue()).ToString();
+        HPcur.text = Mathf.CeilToInt(PlayerManager.instance.playerStats.HPcur).ToString();
     }
 
     private void UpdateScraps()
