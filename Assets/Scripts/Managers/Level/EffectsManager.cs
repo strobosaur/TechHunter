@@ -86,15 +86,4 @@ public class EffectsManager : MonoBehaviour
         bloodPS.transform.position = pos;
         return bloodPS;
     }
-
-    // public void PlayDustPS(Vector3 position, int count = 1, float radius = 0f, float time = 1f, float spd = 0f, float size = 0.5f)
-    // {
-    //     for (int i = 0; i < count; i++)
-    //     {
-    //         Vector2 rnd = Random.insideUnitCircle * radius;
-    //         rnd.x += position.x;
-    //         rnd.y += position.y;
-    //         puffPS.Emit(rnd,Vector3.up * Random.Range(0, spd), size, time * Random.Range(0.5f, 1.0f), Color.white);
-    //     }
-    // }
 }

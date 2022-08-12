@@ -29,32 +29,18 @@ public class SpawnPointManager : MonoBehaviour
 
     void OnEnable()
     {
-        // SUBSCRIBE TO EVENTS
-        //CurrentLevelManager.instance.onLevelStart += StartSpawning;
-
-        // TEMP
-        // CurrentLevelManager.instance.onLevelWon += StopSpawning;
-        // PlayerManager.instance.onGameOver += StopSpawning;
-        // PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
+        
     }
 
     void OnDisable()
     {
         // SUBSCRIBE TO EVENTS
-        //CurrentLevelManager.instance.onLevelStart -= StartSpawning;
-        CurrentLevelManager.instance.onLevelWon -= StopSpawning;
-        PlayerManager.instance.onGameOver -= StopSpawning;
         PlayerManager.instance.onGameOver -= EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
     }
 
     void Start()
     {
-        // TEMP
-        CurrentLevelManager.instance.onLevelWon += StopSpawning;
-        PlayerManager.instance.onGameOver += StopSpawning;
         PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
-        // TEMP
-
         spawnPoints = SpawnPointGenerator.spawnPoints;
     }
 
@@ -94,65 +80,88 @@ public class SpawnPointManager : MonoBehaviour
         SpawnNextWave();
     }
 
-    public void SpawnNextWave()
+    // SPAWN NEXT WAVE
+    public List<Enemy> SpawnNextWave(GameObject spawnPoint = null, int count = 1)
     {
-        Vector2 spawnPos = SpawnPointGenerator.spawnPoints[Random.Range(0, SpawnPointGenerator.spawnPoints.Count)].transform.position;
-        Vector2 spawnPosMod;
+        List<Enemy> waveList = new List<Enemy>();
+        GameObject tempPoint;
+        Vector2 spawnPos;
 
-        float difficultyMod1 = (difficulty * 0.15f) + (waveCount * 0.1f);
-        float difficultyMod2 = (difficulty * 0.4f) + (waveCount * 0.33f);
-        int difficultyMod3;
-
-        int shells = Mathf.RoundToInt(Random.Range(2,5) + Mathf.RoundToInt(Random.Range(difficultyMod1 * 1.25f, difficultyMod2 * 1.33f)) * spawnMod);
-        int germinites = Mathf.RoundToInt(Random.Range(1,4) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
-        int glands = Mathf.RoundToInt(Random.Range(0,3) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
-
-        // SHELLS
-        for (int k = 0; k < shells; k++)
+        for (int n = 0; n < count; n++)
         {
-            difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
+            if ((spawnPoint != null) && (spawnPoints.Count > 1))
+            {
+                do {
+                    tempPoint = SpawnPointGenerator.spawnPoints[Random.Range(0, SpawnPointGenerator.spawnPoints.Count)];
+                } while (tempPoint == spawnPoint);
 
-            spawnPosMod = Random.insideUnitCircle * 2.5f;
+                spawnPos = tempPoint.transform.position;
 
-            var ob = EnemyManager.instance.GetEnemyPool(0);
-            ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
-            EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+            } else {
+                spawnPos = SpawnPointGenerator.spawnPoints[Random.Range(0, SpawnPointGenerator.spawnPoints.Count)].transform.position;
+            }
 
-            ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
-            ob.transform.position = spawnPos + spawnPosMod;
-        }
+            Vector2 spawnPosMod;
 
-        // GERMINITES
-        for (int j = 0; j < germinites; j++)
-        {
-            difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
+            float difficultyMod1 = (difficulty * 0.15f) + (waveCount * 0.1f);
+            float difficultyMod2 = (difficulty * 0.4f) + (waveCount * 0.33f);
+            int difficultyMod3;
 
-            spawnPosMod = Random.insideUnitCircle * 2.5f;
+            int shells = Mathf.RoundToInt(Random.Range(2,5) + Mathf.RoundToInt(Random.Range(difficultyMod1 * 1.25f, difficultyMod2 * 1.33f)) * spawnMod);
+            int germinites = Mathf.RoundToInt(Random.Range(1,4) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
+            int glands = Mathf.RoundToInt(Random.Range(0,3) + Mathf.RoundToInt(Random.Range(difficultyMod1, difficultyMod2)) * spawnMod);
 
-            var ob = EnemyManager.instance.GetEnemyPool(1);
-            ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
-            EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+            // SHELLS
+            for (int k = 0; k < shells; k++)
+            {
+                difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
 
-            ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
-            ob.transform.position = spawnPos + spawnPosMod;
-        }
+                spawnPosMod = Random.insideUnitCircle.normalized * Random.Range(0, 1.5f);
 
-        // GLANDS
-        for (int i = 0; i < glands; i++)
-        {
-            difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
+                var ob = EnemyManager.instance.GetEnemyPool(0);
+                ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
+                EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+                waveList.Add(ob.GetComponent<Enemy>());
 
-            spawnPosMod = Random.insideUnitCircle * 2.5f;
+                ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
+                ob.transform.position = spawnPos + spawnPosMod;
+            }
 
-            var ob = EnemyManager.instance.GetEnemyPool(2);
-            ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
-            EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+            // GERMINITES
+            for (int j = 0; j < germinites; j++)
+            {
+                difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
 
-            ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
-            ob.transform.position = spawnPos + spawnPosMod;
+                spawnPosMod = Random.insideUnitCircle.normalized * Random.Range(0, 1.5f);
+
+                var ob = EnemyManager.instance.GetEnemyPool(1);
+                ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
+                EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+                waveList.Add(ob.GetComponent<Enemy>());
+
+                ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
+                ob.transform.position = spawnPos + spawnPosMod;
+            }
+
+            // GLANDS
+            for (int i = 0; i < glands; i++)
+            {
+                difficultyMod3 = Mathf.RoundToInt(difficulty * Random.Range(0.1f, 0.5f));
+
+                spawnPosMod = Random.insideUnitCircle.normalized * Random.Range(0, 1.5f);
+
+                var ob = EnemyManager.instance.GetEnemyPool(2);
+                ob.GetComponent<Enemy>().UpgradeStats(difficultyMod3);
+                EnemyManager.instance.enemyList.Add(ob.GetComponent<Enemy>());
+                waveList.Add(ob.GetComponent<Enemy>());
+
+                ob.GetComponent<EnemyMoveInput>().target = GameObject.Find("Player").transform;
+                ob.transform.position = spawnPos + spawnPosMod;
+            }
         }
 
         waveCount++;
+        return waveList;
     }
 }
 

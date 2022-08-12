@@ -55,20 +55,16 @@ public class StateManagerLevel : ManagerState
         
         // SETUP ENEMIES & GENERATE MAP
         EnemyManager.instance.InitEnemyManager();
-        GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
+        GameObject.Find("MapManager").GetComponent<MapManager>().GenerateLevel();
 
         // START LEVEL
         // TEMP
-        //CurrentLevelManager.instance.StartLevel(75f * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.0025f, 2f)) + (LevelManager.instance.difficulty * 0.075f)));
+        CurrentLevelManager.instance.StartLevel();
 
         // SUBSCRIBE TO EVENTS
         CurrentLevelManager.instance.onLevelWon += LevelWon;
         PlayerManager.instance.onGameOver += ScoreManager.instance.CreateHighscoreEntry;
         PlayerManager.instance.onGameOver += HandleGameOver;
-
-        // START SPAWNING ENEMIES
-        // TEMP
-        //SpawnPointManager.instance.StartSpawning();
 
         // INIT HUD
         HUDlevel.instance.UpdateHUD();

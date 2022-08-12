@@ -47,7 +47,6 @@ public class BaseMenuStateMissionExit : BaseMenuState
     // NEXT MISSION
     public void NextMission()
     {
-        //Debug.Log("Next Mission");
         // ADD DIFFICULTY
         LevelManager.instance.AddDifficulty(1 + LevelManager.instance.nextLevel.difficulty);
 

@@ -7,6 +7,8 @@ public class PropGenerator : MonoBehaviour
 {
     public static PropGenerator instance;
 
+    public GameObject propContainer;
+
     public List<Prop> propList = new List<Prop>();
     public List<PropData> rngList;
     public float totalWeight;
@@ -22,6 +24,8 @@ public class PropGenerator : MonoBehaviour
         {
             totalWeight += prop.rngWeight;
         }
+
+        propContainer = GameObject.Find("PropContainer");
     }
 
     public void GenerateProps(IEnumerable<Vector2Int> floorPositions)
@@ -34,12 +38,12 @@ public class PropGenerator : MonoBehaviour
         {
             if (Random.value < propChance)
             {
-                propPosition = Random.insideUnitCircle * 0.5f;
+                propPosition = Random.insideUnitCircle * 0.25f;
 
                 propPosition += (Vector2)position;
 
                 var propData = GetRandomPropData();
-                var ob = Instantiate(propData.propPrefab);
+                var ob = Instantiate(propData.propPrefab, propContainer.transform);
                 var prop = ob.GetComponent<Prop>();
 
                 prop.propName = propData.propName;
