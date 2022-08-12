@@ -49,6 +49,7 @@ public class ScoreManager : MonoBehaviour
 
         float totalScraps = Inventory.instance.totalScraps;
         float totalTech = Inventory.instance.totalTechUnits;
+        float totalPylonsPoweredOn = Inventory.instance.totalPylonsPoweredOn;
 
         float missionsWon = Inventory.instance.missionsWon;
         float difficulty = LevelManager.instance.difficulty;
@@ -59,6 +60,7 @@ public class ScoreManager : MonoBehaviour
 
         tempScore += totalScraps * 2;
         tempScore += totalTech * 100f;
+        tempScore += totalPylonsPoweredOn * 25f;
         tempScore += missionsWon * 250f;
 
         tempScore += difficulty * 100f;

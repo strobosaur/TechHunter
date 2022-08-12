@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
     // ECONOMY
     public int totalScraps = 0;
     public int totalTechUnits = 0;
+    public int totalPylonsPoweredOn = 0;
     
     public int missionsWon = 0;
 
@@ -52,6 +53,7 @@ public class Inventory : MonoBehaviour
     {
         totalScraps = 0;
         totalTechUnits = 0;
+        totalPylonsPoweredOn = 0;
         missionsWon = 0;
         kills = 0;
         water = 0;
