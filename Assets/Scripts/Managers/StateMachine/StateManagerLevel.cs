@@ -58,7 +58,8 @@ public class StateManagerLevel : ManagerState
         GameObject.Find("MapManager").GetComponent<MapManager>().GenerateMapRNG();
 
         // START LEVEL
-        CurrentLevelManager.instance.StartLevel(75f * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.0025f, 2f)) + (LevelManager.instance.difficulty * 0.075f)));
+        // TEMP
+        //CurrentLevelManager.instance.StartLevel(75f * (1f + (-Mathf.Pow(LevelManager.instance.difficulty * 0.0025f, 2f)) + (LevelManager.instance.difficulty * 0.075f)));
 
         // SUBSCRIBE TO EVENTS
         CurrentLevelManager.instance.onLevelWon += LevelWon;
@@ -66,7 +67,8 @@ public class StateManagerLevel : ManagerState
         PlayerManager.instance.onGameOver += HandleGameOver;
 
         // START SPAWNING ENEMIES
-        SpawnPointManager.instance.StartSpawning();
+        // TEMP
+        //SpawnPointManager.instance.StartSpawning();
 
         // INIT HUD
         HUDlevel.instance.UpdateHUD();

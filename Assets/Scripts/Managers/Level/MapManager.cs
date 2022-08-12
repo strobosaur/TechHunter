@@ -133,7 +133,10 @@ public class MapManager : MonoBehaviour
         } while (!enemyManager.spawnPointGenerator.MakeSpawnPoints(startPos, nodePositions, 4, rngSpawnDist, rngStartDist));
 
         // PLACE PLAYER AT START POSITION
-        GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f);
+        GameObject.Find(Globals.G_PLAYERNAME).transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y - 2f,0f);
+
+        var pylon = GameObject.Find("TechPylon");
+        pylon.transform.position = new Vector3(rngGen.startPos.x,rngGen.startPos.y,0f);
 
         // UPDATE A* GRID
         Invoke("UpdateAstar", 0.5f);

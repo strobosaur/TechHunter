@@ -31,9 +31,11 @@ public class SpawnPointManager : MonoBehaviour
     {
         // SUBSCRIBE TO EVENTS
         //CurrentLevelManager.instance.onLevelStart += StartSpawning;
-        CurrentLevelManager.instance.onLevelWon += StopSpawning;
-        PlayerManager.instance.onGameOver += StopSpawning;
-        PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
+
+        // TEMP
+        // CurrentLevelManager.instance.onLevelWon += StopSpawning;
+        // PlayerManager.instance.onGameOver += StopSpawning;
+        // PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
     }
 
     void OnDisable()
@@ -47,6 +49,12 @@ public class SpawnPointManager : MonoBehaviour
 
     void Start()
     {
+        // TEMP
+        CurrentLevelManager.instance.onLevelWon += StopSpawning;
+        PlayerManager.instance.onGameOver += StopSpawning;
+        PlayerManager.instance.onGameOver += EnemyManager.instance.spawnPointGenerator.DeleteAllSpawnPoints;
+        // TEMP
+
         spawnPoints = SpawnPointGenerator.spawnPoints;
     }
 
