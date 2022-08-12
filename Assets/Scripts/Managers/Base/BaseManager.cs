@@ -6,7 +6,7 @@ using TMPro;
 public class BaseManager : MonoBehaviour
 {
     // RESOURCE TEXTS
-    public TMP_Text scrapsText, techText;
+    public TMP_Text scrapsText, techText, HPmax, HPcur;
 
     // CANVAS GROUPS
     public CanvasGroup upgradeGroup;
@@ -52,6 +52,12 @@ public class BaseManager : MonoBehaviour
     void OnEnable()
     {
         UpdateResourceTexts();
+        PlayerManager.instance.onHPchanged += UpdateHP;
+    }
+
+    void OnDisable()
+    {
+        PlayerManager.instance.onHPchanged -= UpdateHP;
     }
 
     void Start()
@@ -68,6 +74,12 @@ public class BaseManager : MonoBehaviour
     void FixedUpdate()
     {
         stateMachine.CurrentState.PhysicsUpdate();
+    }
+
+    public void UpdateHP()
+    {
+        HPmax.text = Mathf.RoundToInt(PlayerManager.instance.playerStats.HPmax.GetValue()).ToString();
+        HPcur.text = Mathf.RoundToInt(PlayerManager.instance.playerStats.HPcur).ToString();
     }
     
     public void UpdateResourceTexts()
