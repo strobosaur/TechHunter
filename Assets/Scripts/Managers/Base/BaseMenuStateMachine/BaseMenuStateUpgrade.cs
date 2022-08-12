@@ -140,6 +140,11 @@ public class BaseMenuStateUpgrade : BaseMenuState
                     case ((int)UpgradeType.body):
                     manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.body, 3);
                     break;
+
+                    // BUY TECH
+                    case ((int)UpgradeType.tech):
+                    manager.upgManager.HandleUpgrade(PlayerManager.instance.playerStats, UpgradeType.tech, 3);
+                    break;
                 }
             }
 
@@ -184,8 +189,8 @@ public class BaseMenuStateUpgrade : BaseMenuState
     {
         for (int i = 0; i < menuCostsTech.Count; i++)
         {
-            menuCostsTech[i].text = manager.upgManager.upgradeCostsTech[i].ToString();
-            menuCostsScraps[i].text = manager.upgManager.upgradeCostsScraps[i].ToString();
+            menuCostsTech[i].text = (manager.upgManager.upgradeCostsTech[i] == 0) ? "" : manager.upgManager.upgradeCostsTech[i].ToString();
+            menuCostsScraps[i].text = (manager.upgManager.upgradeCostsScraps[i] == 0) ? "" : manager.upgManager.upgradeCostsScraps[i].ToString();
         }
     }
 }

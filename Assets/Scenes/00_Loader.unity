@@ -296,10 +296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53eb845971e9054983be9cdeb310f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upgradeCounts: 0000000000000000000000000000000000000000
-  upgradeCostsTech: 0000000000000000000000000000000000000000
-  upgradeCostsScraps: 0000000000000000000000000000000000000000
-  upgradeDeprecator: 0.8
+  upgradeCounts: 000000000000000000000000000000000000000000000000
+  upgradeCostsTech: 000000000000000000000000000000000000000000000000
+  upgradeCostsScraps: 000000000000000000000000000000000000000000000000
+  upgradeDeprecator: 0.66
 --- !u!114 &396629189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +327,7 @@ MonoBehaviour:
   items: []
   totalScraps: 0
   totalTechUnits: 0
+  totalPylonsPoweredOn: 0
   missionsWon: 0
   kills: 0
   water: 0
@@ -783,6 +784,7 @@ MonoBehaviour:
   crossTransform: {fileID: 0}
   blackscreen: {fileID: 0}
   interactableText: {fileID: 0}
+  dustPS: {fileID: 0}
   targetPos: {x: 0, y: 0}
   moveDelta: {x: 0, y: 0}
   camDistMove: 1

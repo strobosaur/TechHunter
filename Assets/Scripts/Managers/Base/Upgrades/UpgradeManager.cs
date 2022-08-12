@@ -73,11 +73,14 @@ public class UpgradeManager : MonoBehaviour
     // UPDATE UPGRADE COSTS
     private void UpdateCosts()
     {
-        for (int i = 0; i < upgradeCounts.Length; i++)
+        for (int i = 0; i < (int)UpgradeType.tech; i++)
         {
             upgradeCostsTech[i] = 1 + (Mathf.FloorToInt(upgradeCounts[i] * 1.75f));
             upgradeCostsScraps[i] = 25 + (Mathf.FloorToInt(upgradeCounts[i] * 50f));
         }
+
+        upgradeCostsScraps[(int)UpgradeType.tech] = 500;
+        upgradeCostsTech[(int)UpgradeType.tech] = 0;
     }
 
     // HANDLE UPGRADE
@@ -123,6 +126,11 @@ public class UpgradeManager : MonoBehaviour
                 case UpgradeType.body:
                 upgradeCounts[(int)upgType]++;
                 bodyUpgList = UpgradeStats(stats, armorUpgList, level);
+                break;
+                
+                case UpgradeType.tech:
+                upgradeCounts[(int)upgType]++;
+                Inventory.instance.ChangeTechUnits(1);
                 break;
             }
 
@@ -291,7 +299,8 @@ public enum UpgradeType {
     armor,
     head,
     boots,
-    body
+    body,
+    tech
 }
 
 // UPGRADE STAT ENUM
