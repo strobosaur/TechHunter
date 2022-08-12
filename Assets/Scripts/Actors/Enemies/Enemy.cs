@@ -137,6 +137,7 @@ public class Enemy : Fighter, IDamageable
 
             // DESTROY OBJECT
             EnemyManager.instance.enemyList.Remove(this);
+            CurrentLevelManager.currentWave.Remove(this);
             Destroy(gameObject);
         }
     }

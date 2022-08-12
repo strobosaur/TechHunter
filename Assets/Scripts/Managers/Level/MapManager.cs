@@ -60,22 +60,9 @@ public class MapManager : MonoBehaviour
         }
     }
 
-    public void GenerateMap()
+    public void GenerateLevel()
     {
-        tileManager.ClearTiles();
-        HashSet<Vector2Int> floorPos = RunRandomWalk();
-        floorPos = AddCardinalDirs(floorPos);
-        tileManager.PaintFloorTiles(floorPos);
-        WallFinder.MakeWalls(floorPos, tileManager);
-    }
-
-    public void GenerateMapCF()
-    {
-        tileManager.ClearTiles();
-        HashSet<Vector2Int> floorPos = RandomWalk.CorridorFirstGeneration(corrLen, corrCount, walkLength);
-        //floorPos = AddCardinalDirs(floorPos);
-        tileManager.PaintFloorTiles(floorPos);
-        WallFinder.MakeWalls(floorPos, tileManager);
+        GenerateMapRNG();
     }
 
     // GENERATE MAP WITH CELLULAR AUTOMATA + RANDOM NEIGHBORHOOD GRAPH
@@ -147,20 +134,6 @@ public class MapManager : MonoBehaviour
         EnemyManager.instance.astar.Scan();        
     }
 
-    public void GenerateMapBSP_RW()
-    {
-        tileManager.ClearTiles();
-        List<BoundsInt> bounds = RandomWalk.BSPgen(new BoundsInt(
-            new Vector3Int(-(BSPwidth / 2), -(BSPheight / 2), 0),
-            new Vector3Int((BSPwidth / 2), (BSPheight / 2), 0)), BSProomWidth, BSProomHeight);
-
-        List<Vector2Int> roomPositions = RandomWalk.FindPotentialRoomPos(bounds);
-        HashSet<Vector2Int> floorTiles = RandomWalk.MakeRoomsBSP(roomPositions, bounds, BSPsteps, BSPiterations, BSPpadding);
-
-        tileManager.PaintFloorTiles(floorTiles);
-        WallFinder.MakeWalls(floorTiles, tileManager);
-    }
-
     public HashSet<Vector2Int> AddCardinalDirs(IEnumerable<Vector2Int> positions)
     {
         HashSet<Vector2Int> outSet = new HashSet<Vector2Int>();
@@ -174,21 +147,5 @@ public class MapManager : MonoBehaviour
         }
 
         return outSet;
-    }
-
-    public HashSet<Vector2Int> RunRandomWalk()
-    {
-        var currPos = startPos;
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
-
-        for (int i = 0; i < iterations; i++)
-        {
-            var path = RandomWalk.RandomWalkGen(currPos, walkLength, chance);
-            floorPositions.UnionWith(path);
-            if (randomEachIteration)
-                currPos = floorPositions.ElementAt(Random.Range(0,floorPositions.Count));
-        }
-        
-        return floorPositions;
     }
 }

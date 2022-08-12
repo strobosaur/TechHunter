@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SpawnPointGenerator : MonoBehaviour
 {
-    public static List<GameObject> spawnPoints;
+    public static List<GameObject> spawnPoints = new List<GameObject>();
+    public static List<PowerPylon> pylonList = new List<PowerPylon>();
 
     public GameObject spawnPoint;
+    public GameObject pylonPrefab;
 
     void Awake()
     {
@@ -117,6 +119,9 @@ public class SpawnPointGenerator : MonoBehaviour
             ob.transform.position = (Vector2)position;
 
             spawnPoints.Add(ob);
+
+            var ob2 = Instantiate(pylonPrefab, ob.transform);
+            pylonList.Add(ob2.GetComponent<PowerPylon>());
         }
 
         if (list.Count > 0) {
@@ -130,9 +135,11 @@ public class SpawnPointGenerator : MonoBehaviour
     {
         foreach (var item in spawnPoints)
         {
+            Destroy(item.transform.GetChild(0).gameObject);
             Destroy(item);
         }
 
+        pylonList.Clear();
         spawnPoints.Clear();
     }
 }

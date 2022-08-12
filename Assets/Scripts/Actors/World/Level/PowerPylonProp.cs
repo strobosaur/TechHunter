@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TechPylonProp : MonoBehaviour
+public class PowerPylonProp : MonoBehaviour
 {
-    public TechPylon pylonParent;
+    public PowerPylon pylonParent;
     public GameObject pylonText;
     public SpriteRenderer textSR;
 
-    public float pylonTextAlpha = 1f;
-    public float pylonAlphaRate = 0.05f;
+    private float pylonTextAlphaBase = 0.8f;
+    private float pylonTextAlphaMin = 0f;
+    private float pylonTextAlpha = 1f;
+    private float pylonAlphaRate = 0.025f;
 
     void OnEnable()
     {
-        pylonParent = GetComponentInParent<TechPylon>();
+        pylonParent = GetComponentInParent<PowerPylon>();
         pylonText = transform.GetChild(0).gameObject;
         textSR = pylonText.GetComponent<SpriteRenderer>();
         textSR.enabled = false;
@@ -41,18 +43,27 @@ public class TechPylonProp : MonoBehaviour
                 pylonAlphaRate *= -1f;
 
             Color col = textSR.color;
-            col.a = 0.8f * pylonTextAlpha * Random.Range(0.8f,1.4f);
+            col.a = pylonTextAlphaMin + (pylonTextAlphaBase * pylonTextAlpha * Random.Range(0.8f,1.4f));
             textSR.color = col;
         }
     }
 
     void ActivatePylon()
     {
-        textSR.enabled = true;
+        if (!pylonParent.isPoweredUp)
+            textSR.enabled = true;
     }
 
     void DeactivatePylon()
     {
-        textSR.enabled = false;
+        if (!pylonParent.isPoweredUp)
+            textSR.enabled = false;
+    }
+
+    public void PowerUpPylon()
+    {
+        textSR.enabled = true;
+        pylonTextAlphaMin = 0.3f;
+        pylonTextAlphaBase = 0.6f;
     }
 }

@@ -21,6 +21,11 @@ public class TileManager : MonoBehaviour
     {
         PaintTiles(floorPositions, floorTilemap, floorTiles, decoChance);
     }
+    
+    public void PaintWallTiles(IEnumerable<Vector2Int> wallPositions)
+    {
+        PaintTiles(wallPositions, wallTilemap, wallTiles, decoChance);
+    }
 
     public void PaintSingleWall(Vector2Int position)
     {

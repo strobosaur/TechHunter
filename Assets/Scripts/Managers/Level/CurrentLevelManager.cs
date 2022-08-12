@@ -5,63 +5,87 @@ using UnityEngine;
 public class CurrentLevelManager : MonoBehaviour
 {
     public static CurrentLevelManager instance;
+    public static List<Enemy> currentWave = new List<Enemy>();
 
     public float levelStartTime;
-    public float levelDuration;
-    public float levelTimeLeft = Mathf.Infinity;
 
     public bool levelStarted;
     public bool levelWon;
+    public bool waveStarted = false;
 
     public int levelKills;
     public int levelScraps;
     public int levelTechUnits;
 
+    public int pylonsPoweredOn = 0;
+    private int pylonsToPowerOn;
+
     public System.Action onLevelStart;
     public System.Action onLevelWon;
+    public System.Action onWaveCleared;
+    public System.Action onPylonCountReached;
 
     void OnEnable()
     {
         instance = this;
         levelStarted = false;
         levelWon = false;
-
-        onLevelWon += DisableCounter;
+        waveStarted = false;
     }
 
     void OnDisable()
     {
-        onLevelWon -= DisableCounter;
+
     }
 
     void Update()
     {
-        if ((levelStarted) && (levelTimeLeft > 0))
+        if (waveStarted)
         {
-            levelTimeLeft -= Time.deltaTime;
-            HUDlevel.instance.UpdateTimer(levelTimeLeft);
+            if (currentWave.Count < 1)
+            {
+                onWaveCleared?.Invoke();
+                waveStarted = false;
+                pylonsPoweredOn++;
+                
+                HUDlevel.instance.UpdatePylons(pylonsPoweredOn, pylonsToPowerOn);
 
-        } else if ((levelStarted) && (!levelWon) && !(levelTimeLeft > 0)) {
-            levelTimeLeft = 0;
-            HUDlevel.instance.UpdateTimer(levelTimeLeft);
-
-            LevelWin();
+                if (pylonsPoweredOn >= pylonsToPowerOn) {
+                    onPylonCountReached?.Invoke();
+                }
+            }
         }
     }
 
-    public void StartLevel(float duration)
+    public void StartLevel()
     {
+        currentWave.Clear();
+
         levelKills = 0;
         levelScraps = 0;
         levelTechUnits = 0;
+        pylonsPoweredOn = 0;
+
+        int totalPylons = SpawnPointGenerator.pylonList.Count;
+        int pylonDifficultyMod = Mathf.Min(totalPylons, Mathf.RoundToInt(SpawnPointGenerator.pylonList.Count * (LevelManager.instance.difficulty / 20f)));
+        pylonsToPowerOn = Mathf.Max(1, pylonDifficultyMod);
 
         levelStarted = true;
         levelWon = false;
-        levelDuration = duration;
-        levelTimeLeft = duration;
+        waveStarted = false;
+
         levelStartTime = Time.time;
 
+        HUDlevel.instance.UpdatePylons(pylonsPoweredOn, pylonsToPowerOn);
+
         onLevelStart?.Invoke();
+    }
+
+    // START WAVE
+    public void StartWave(GameObject spawnPoint)
+    {
+        waveStarted = true;
+        currentWave = SpawnPointManager.instance.SpawnNextWave(spawnPoint, pylonsPoweredOn + 1);
     }
 
     public void LevelWin()
@@ -72,10 +96,5 @@ public class CurrentLevelManager : MonoBehaviour
         Inventory.instance.MissionWin();
         levelWon = true;
         onLevelWon?.Invoke();
-    }
-
-    public void DisableCounter()
-    {
-        levelStarted = false;
     }
 }

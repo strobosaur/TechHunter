@@ -326,16 +326,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 59904967}
   startPos: {x: 0, y: 0}
+  levelStartPos: {x: 0, y: 0}
   nodePositions: []
   enemyManager: {fileID: 0}
   chance: 1
   iterations: 10
   walkLength: 250
   randomEachIteration: 1
-  RNGsize: 70
+  RNGsize: 64
   RNGpoints: 16
   RNGminDist: 4
-  CAlivechance: 0.375
+  CAlivechance: 0.4
   corrLen: 12
   corrCount: 15
   BSPwidth: 128
@@ -395,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee1664048ecab648838023d5f453066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  propContainer: {fileID: 0}
   propList: []
   rngList:
   - {fileID: 11400000, guid: 140eafb29f2917148bc7aadb78a119e6, type: 2}
@@ -1654,6 +1656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   enemyManager: {fileID: 0}
+  pylonPrefab: {fileID: 0}
   difficulty: 1
   waveCount: 0
   startTime: 0
@@ -1674,6 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 4859832800998387679, guid: d627def3685b126489e233e274806c82, type: 3}
+  pylonPrefab: {fileID: 4054983453387753558, guid: 47f6df2d61a1b084c8611c86c95c6c29, type: 3}
 --- !u!114 &345800571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1759,8 +1763,8 @@ SpriteRenderer:
   m_SortingLayerID: -1191496623
   m_SortingLayer: 8
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 914d107efa39739488a5be7722c0e856, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6ff58e9589b44974bbeb81f4879ff1c0, type: 3}
+  m_Color: {r: 0.33333337, g: 0.88235295, b: 0.74948895, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -8752,6 +8756,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1106621165
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1106621166}
+  m_Layer: 0
+  m_Name: PropContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1106621166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1106621165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1152815029
 GameObject:
   m_ObjectHideFlags: 0
