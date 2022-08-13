@@ -22,7 +22,7 @@ MonoBehaviour:
   moveSpd:
     baseValue: 2.5
   moveBoostSpd:
-    baseValue: 1.5
+    baseValue: 2
   moveBoostTime:
     baseValue: 2.5
   moveBoostCD:

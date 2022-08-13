@@ -22,9 +22,9 @@ MonoBehaviour:
   moveSpd:
     baseValue: 2.5
   moveBoostSpd:
-    baseValue: 1.5
+    baseValue: 3
   moveBoostTime:
-    baseValue: 2.5
+    baseValue: 3
   moveBoostCD:
     baseValue: 7.5
   invincibilityTime:

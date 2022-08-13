@@ -905,6 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9167488646297100193, guid: 9ec621ae57a19a941864c7661057dc59, type: 3}
+  glandBulletPrefab: {fileID: 9167488646297100193, guid: 102f1d420a7992b47baaed87cbf3aed0, type: 3}
   usePool: 1
 --- !u!1 &1350602725
 GameObject:

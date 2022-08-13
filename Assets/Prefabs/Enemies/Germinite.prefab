@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 640108655522021680}
   - component: {fileID: 640108655522021679}
   - component: {fileID: 640108655522021678}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Germinite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -109,6 +109,7 @@ MonoBehaviour:
   facingDir: {x: 0, y: 0}
   aimTarget: {x: 0, y: 0}
   statsBlueprint: {fileID: 11400000, guid: a0db798204743014cb2d318326ba7a96, type: 2}
+  entityName: 
   timerArr: []
   chargeDist: 0
 --- !u!114 &640108655522021684
@@ -293,9 +294,9 @@ GameObject:
   - component: {fileID: 640108655725399214}
   - component: {fileID: 640108655725399216}
   - component: {fileID: 640108655725399215}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,6 +411,10 @@ PrefabInstance:
     - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
       propertyPath: m_Name
       value: MoveDustPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}

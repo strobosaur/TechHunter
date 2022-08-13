@@ -326,7 +326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileManager: {fileID: 59904967}
   startPos: {x: 0, y: 0}
-  levelStartPos: {x: 0, y: 0}
   nodePositions: []
   enemyManager: {fileID: 0}
   chance: 1
@@ -432,7 +431,7 @@ GameObject:
   - component: {fileID: 73893509}
   - component: {fileID: 73893505}
   - component: {fileID: 73893507}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1656,7 +1655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints: []
   enemyManager: {fileID: 0}
-  pylonPrefab: {fileID: 0}
   difficulty: 1
   waveCount: 0
   startTime: 0
@@ -6765,6 +6763,7 @@ MonoBehaviour:
   objectName: 
   pylonProp: {fileID: 724839002}
   pylonText: {fileID: 429453806}
+  canActivate: 0
 --- !u!4 &559355270
 Transform:
   m_ObjectHideFlags: 0
@@ -6792,7 +6791,7 @@ GameObject:
   - component: {fileID: 612353373}
   - component: {fileID: 612353376}
   - component: {fileID: 612353375}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7056,13 +7055,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelStartTime: 0
-  levelDuration: 0
-  levelTimeLeft: 0
   levelStarted: 0
   levelWon: 0
+  waveStarted: 0
   levelKills: 0
   levelScraps: 0
   levelTechUnits: 0
+  pylonsPoweredOn: 0
 --- !u!114 &662843825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8295,6 +8294,7 @@ MonoBehaviour:
   items: []
   totalScraps: 0
   totalTechUnits: 0
+  totalPylonsPoweredOn: 0
   missionsWon: 0
   kills: 0
   water: 0
@@ -9051,6 +9051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9167488646297100193, guid: 9ec621ae57a19a941864c7661057dc59, type: 3}
+  glandBulletPrefab: {fileID: 0}
   usePool: 1
 --- !u!1 &1331043893
 GameObject:
@@ -9643,7 +9644,7 @@ GameObject:
   - component: {fileID: 1523238211}
   - component: {fileID: 1523238213}
   - component: {fileID: 1523238212}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15394,6 +15395,10 @@ PrefabInstance:
     - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
       propertyPath: m_Name
       value: MoveDustPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}

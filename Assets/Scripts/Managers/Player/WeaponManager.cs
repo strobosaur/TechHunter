@@ -10,7 +10,9 @@ public class WeaponManager : MonoBehaviour
 
     // BULLET POOL
     private ObjectPool<Bullet> bulletPool;
+    private ObjectPool<Bullet> glandBulletPool;
     [SerializeField] private Bullet bulletPrefab;
+    [SerializeField] private Bullet glandBulletPrefab;
     [SerializeField] private bool usePool;
 
     // AWAKE
@@ -32,11 +34,25 @@ public class WeaponManager : MonoBehaviour
         }, bullet => {
             Destroy(bullet.gameObject);
         }, false, 100, 1000);
+        
+        // CREATE BULLET POOL
+        glandBulletPool = new ObjectPool<Bullet>(() => { 
+            return Instantiate(glandBulletPrefab);
+        }, glandBullet => {
+            glandBullet.gameObject.SetActive(true);
+        }, glandBullet => {
+            glandBullet.gameObject.SetActive(false);
+        }, glandBullet => {
+            Destroy(glandBullet.gameObject);
+        }, false, 100, 1000);
     }
 
     // SPAWN BULLET
-    public Bullet SpawnBullet()
+    public Bullet SpawnBullet(bool gland = false)
     {
-        return usePool ? bulletPool.Get() : Instantiate(bulletPrefab);
+        if (gland)
+            return usePool ? glandBulletPool.Get() : Instantiate(bulletPrefab);
+        else
+            return usePool ? bulletPool.Get() : Instantiate(bulletPrefab);
     }
 }

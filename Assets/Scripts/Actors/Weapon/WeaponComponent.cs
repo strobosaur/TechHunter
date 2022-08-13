@@ -86,14 +86,17 @@ public class WeaponComponent : MonoBehaviour, IWeapon
             MuzzleFlash(origin, 1f);
 
             // PLAY SOUND EFFECT
-            AudioManager.instance.Play("shoot");
+            if (owner.tag == "Player") AudioManager.instance.Play("shoot");
+            else AudioManager.instance.Play("melee");
 
             // FIRE SET AMOUNT OF TIMES
             for (int i = 0; i < shots; i++)
             {
                 //var targetDist = Vector3.Distance(origin, target.position);
                 var targetPos = (Vector2)origin + (targetDir * wpnParams.range.GetValue());
-                var ob = WeaponManager.instance.SpawnBullet();
+                Bullet ob;
+                if (owner.tag == "Player") ob = WeaponManager.instance.SpawnBullet();
+                else ob = WeaponManager.instance.SpawnBullet(true);
                 //var rnd = Random.insideUnitCircle * (Mathf.Min(wpnParams.range.GetValue(), targetDist) * wpnParams.spr.GetValue() * 0.25f);
                 var rnd = Random.insideUnitCircle * wpnParams.range.GetValue() * wpnParams.spr.GetValue() * 0.25f;
 

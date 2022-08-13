@@ -37,8 +37,10 @@ public class PowerPylon : Interactable
 
         pylonProp.GetComponent<PowerPylonProp>().PowerUpPylon();
 
-        int scraps = Random.Range(10,51);
-        int tech = Random.Range(0,1) + Mathf.RoundToInt(Random.Range(0f,0.55f));
+        float diffMod1 = (LevelManager.instance.difficulty / 20f);
+        float diffMod2 = 1f + (LevelManager.instance.difficulty / 20f);
+        int scraps = Random.Range(10, Mathf.RoundToInt(51f * diffMod2));
+        int tech = Random.Range(0, 2) + Mathf.RoundToInt(Random.Range(0f, 0.55f + diffMod1));
         Inventory.instance.ChangeScraps(scraps);
         Inventory.instance.ChangeTechUnits(tech);
         CurrentLevelManager.instance.onWaveCleared -= GrantDrops;
