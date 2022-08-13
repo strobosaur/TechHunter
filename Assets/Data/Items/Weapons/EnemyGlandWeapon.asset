@@ -23,13 +23,13 @@ MonoBehaviour:
   dmg:
     baseValue: 1
   range:
-    baseValue: 5
+    baseValue: 9
   spr:
     baseValue: 1
   dmgSpr:
     baseValue: 0.15
   bulletSpd:
-    baseValue: 7
+    baseValue: 4.5
   knockback:
     baseValue: 1
   shots:

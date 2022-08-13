@@ -48,11 +48,11 @@ public class BaseMissionManager : MonoBehaviour
             var txt3 = Instantiate(sizeTextPF, missionGroup.transform);
             txt3.GetComponent<TMP_Text>().text = missionList[i].size.ToString();
 
-            txt1.transform.position += new Vector3(0,-16f * i,0);
+            txt1.transform.position += new Vector3(0,-16f * i * Globals.G_SCALE_TO_HD,0);
             txt1.GetComponent<MenuText>().SetStartPos(txt1.transform.position);
-            txt2.transform.position += new Vector3(0,-16f * i,0);
+            txt2.transform.position += new Vector3(0,-16f * i * Globals.G_SCALE_TO_HD,0);
             txt2.GetComponent<MenuText>().SetStartPos(txt2.transform.position);
-            txt3.transform.position += new Vector3(0,-16f * i,0);
+            txt3.transform.position += new Vector3(0,-16f * i * Globals.G_SCALE_TO_HD,0);
             txt3.GetComponent<MenuText>().SetStartPos(txt3.transform.position);
 
             missionTextLocList.Add(txt1.GetComponent<TMP_Text>());

@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         stateLevelOver = new StateManagerLevelOver(this, stateMachine);
 
         // DISABLE MOUSE CURSOR
-        //Cursor.visible = false;
+        Cursor.visible = false;
 
         // GET CURRENT SCENE
         currentScene = SceneManager.GetActiveScene();
@@ -81,6 +81,9 @@ public class GameManager : MonoBehaviour
     // START
     void Start()
     {
+        // ESCAPE & GAME QUIT
+        if (InputManager.input.start.WasPressedThisFrame()) { Application.Quit(); }
+
         stateMachine.Initialize(stateStartGame);
     }
 
