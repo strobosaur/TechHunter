@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public Vector2 target;
     public float moveDelta;
-    public Fighter shooter;
+    //public Fighter shooter;
     public int targetLayer;
     public DoDamage damage;
     private bool isProjectile = true;
@@ -69,14 +69,17 @@ public class Bullet : MonoBehaviour
     // CHECK FOR HIT
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //Debug.Log("Bullet hit " + collision);
-        if ((shooter.tag != collision.tag) && (collision.GetComponent<Collider2D>().GetComponent<Bullet>() == null))
+        if (collision.TryGetComponent<Collider2D>(out var collider))
         {
-            MakeTrail(collision.transform.position);
-            DestroyBullet();
+            //Debug.Log("Bullet hit " + collision);
+            if ((this.tag != collider.tag) && (collider.GetComponent<Collider2D>().GetComponent<Bullet>() == null))
+            {
+                MakeTrail(collider.transform.position);
+                DestroyBullet();
 
-            if (collision.GetComponent<IDamageable>() != null)
-                collision.GetComponent<IDamageable>().ReceiveDamage(damage, (collision.transform.position - transform.position).normalized);
-        }        
+                if (collider.GetComponent<IDamageable>() != null)
+                    collider.GetComponent<IDamageable>().ReceiveDamage(damage, (collider.transform.position - transform.position).normalized);
+            }
+        }
     }
 }

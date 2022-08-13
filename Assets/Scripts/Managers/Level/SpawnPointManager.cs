@@ -46,38 +46,6 @@ public class SpawnPointManager : MonoBehaviour
 
     void Update()
     {
-        if (SpawnPointGenerator.spawnPoints.Count > 0)
-        {
-            if (isSpawning) {
-                if (nextSpawnTime > 0) {
-                    nextSpawnTime -= Time.deltaTime;
-                } else {
-                    SpawnNextWave();
-                    nextSpawnTime = SetNextSpawnTime();
-                }
-            }
-        }
-    }
-
-    public float SetNextSpawnTime()
-    {        
-        return ((nextSpawnTimeBase * Random.Range(0.75f, 1.25f)) / (1f + (difficulty * Random.Range(0f, 0.2f))));
-    }
-
-    public void StopSpawning()
-    {
-        isSpawning = false;
-    }
-
-    public void StartSpawning()
-    {
-        isSpawning = true;
-        difficulty = LevelManager.instance.difficulty;
-        waveCount = 0;
-        startTime = Time.time;
-
-        nextSpawnTime = SetNextSpawnTime();
-        SpawnNextWave();
     }
 
     // SPAWN NEXT WAVE
@@ -103,8 +71,8 @@ public class SpawnPointManager : MonoBehaviour
 
             Vector2 spawnPosMod;
 
-            float difficultyMod1 = (difficulty * 0.15f) + (waveCount * 0.1f);
-            float difficultyMod2 = (difficulty * 0.4f) + (waveCount * 0.33f);
+            float difficultyMod1 = (difficulty * 0.125f) + (waveCount * 0.05f);
+            float difficultyMod2 = (difficulty * 0.33f) + (waveCount * 0.25f);
             int difficultyMod3;
 
             int shells = Mathf.RoundToInt(Random.Range(2,5) + Mathf.RoundToInt(Random.Range(difficultyMod1 * 1.25f, difficultyMod2 * 1.33f)) * spawnMod);
