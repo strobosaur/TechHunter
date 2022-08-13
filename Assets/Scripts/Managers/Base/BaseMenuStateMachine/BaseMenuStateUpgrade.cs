@@ -106,10 +106,10 @@ public class BaseMenuStateUpgrade : BaseMenuState
             }
 
             // CHEAT MONEY
-            if (InputManager.input.X.WasPressedThisFrame()){
-                Inventory.instance.ChangeScraps(100);
-                Inventory.instance.ChangeTechUnits(1);
-            }
+            // if (InputManager.input.X.WasPressedThisFrame()){
+            //     Inventory.instance.ChangeScraps(100);
+            //     Inventory.instance.ChangeTechUnits(1);
+            // }
 
             // MAKE MENU CHOICE
             if (InputManager.input.B.WasPressedThisFrame()) 

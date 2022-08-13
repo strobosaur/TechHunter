@@ -108,7 +108,7 @@ public class WeaponComponent : MonoBehaviour, IWeapon
                 ob.target = targetPos;
                 ob.tag = owner.tag;
                 ob.targetLayer = 3;
-                ob.shooter = owner;
+                //ob.shooter = owner;
                 ob.damage = new DoDamage{damage = wpnParams.dmg.GetValue() * Random.Range(1f - wpnParams.dmgSpr.GetValue(), 1f), force = wpnParams.knockback.GetValue()};
             }
             

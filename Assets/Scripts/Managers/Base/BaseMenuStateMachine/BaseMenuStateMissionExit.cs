@@ -48,7 +48,7 @@ public class BaseMenuStateMissionExit : BaseMenuState
     public void NextMission()
     {
         // ADD DIFFICULTY
-        LevelManager.instance.AddDifficulty(1 + LevelManager.instance.nextLevel.difficulty);
+        LevelManager.instance.AddDifficulty(1 + Mathf.CeilToInt(LevelManager.instance.nextLevel.difficulty * 0.5f));
 
         // CHANGE BACK TO ENTER STATE
         manager.stateMachine.ChangeState(manager.stateEnter);

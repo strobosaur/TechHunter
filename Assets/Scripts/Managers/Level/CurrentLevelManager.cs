@@ -68,7 +68,7 @@ public class CurrentLevelManager : MonoBehaviour
         pylonsPoweredOn = 0;
 
         int totalPylons = SpawnPointGenerator.pylonList.Count;
-        int pylonDifficultyMod = Mathf.Min(totalPylons, Mathf.RoundToInt(SpawnPointGenerator.pylonList.Count * (LevelManager.instance.difficulty / 20f)));
+        int pylonDifficultyMod = Mathf.Min(totalPylons, Mathf.RoundToInt(SpawnPointGenerator.pylonList.Count * (LevelManager.instance.difficulty / 35f)));
         pylonsToPowerOn = Mathf.Max(1, pylonDifficultyMod);
 
         levelStarted = true;
