@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
     public Fighter shooter;
     public int targetLayer;
     public DoDamage damage;
+    private bool isProjectile = true;
 
     // AWAKE
     void Awake()
@@ -69,7 +70,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //Debug.Log("Bullet hit " + collision);
-        if (shooter.tag != collision.tag)
+        if ((shooter.tag != collision.tag) && (collision.GetComponent<Collider2D>().GetComponent<Bullet>() == null))
         {
             MakeTrail(collision.transform.position);
             DestroyBullet();
