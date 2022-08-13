@@ -69,5 +69,6 @@ public class PlayerManager : MonoBehaviour
     {
         StatsInit(statsBlueprint, wpnStatsBlueprint);
         Inventory.instance.ResetInventory();
+        LevelManager.instance.ResetGameSession();
     }
 }

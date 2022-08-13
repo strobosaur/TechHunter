@@ -28,6 +28,14 @@ public class LevelManager : MonoBehaviour
         difficulty = 1;
     }
 
+    // RESET GAME SESSION
+    public void ResetGameSession()
+    {
+        difficulty = 0;
+        levelGenerated = false;
+        nextLevel = null;
+    }
+
     // SET NEXT LEVEL PARAMETERS
     public void SetNextLevel(BaseMissionItem level)
     {
