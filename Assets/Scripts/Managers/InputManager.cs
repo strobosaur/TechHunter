@@ -26,6 +26,8 @@ public class InputManager : MonoBehaviour
     public InputAction down;
     public InputAction left;
     public InputAction right;
+    
+    public InputAction start;
 
     // ON ENABLE
     private void OnEnable()
@@ -66,6 +68,9 @@ public class InputManager : MonoBehaviour
         left.Enable();
         right = instance.Player.Right;
         right.Enable();
+        
+        start = instance.Player.Start;
+        start.Enable();
     }
 
     // ON DISABLE
@@ -92,6 +97,8 @@ public class InputManager : MonoBehaviour
         down.Disable();
         left.Disable();
         right.Disable();
+
+        start.Disable();
     }
 
     void Awake()

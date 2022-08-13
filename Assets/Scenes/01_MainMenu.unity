@@ -883,6 +883,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  start:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &802364506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1177,7 @@ MonoBehaviour:
   crossTransform: {fileID: 0}
   blackscreen: {fileID: 0}
   interactableText: {fileID: 0}
+  dustPS: {fileID: 0}
   targetPos: {x: 0, y: 0}
   moveDelta: {x: 0, y: 0}
   camDistMove: 1
@@ -2314,6 +2324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 9167488646297100193, guid: 9ec621ae57a19a941864c7661057dc59, type: 3}
+  glandBulletPrefab: {fileID: 0}
   usePool: 1
 --- !u!1 &1721739605
 GameObject:
@@ -2364,11 +2375,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 480, y: 270}
+  m_ScreenMatchMode: 2
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -2896,6 +2907,7 @@ MonoBehaviour:
   items: []
   totalScraps: 0
   totalTechUnits: 0
+  totalPylonsPoweredOn: 0
   missionsWon: 0
   kills: 0
   water: 0

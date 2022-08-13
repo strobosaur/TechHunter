@@ -20,9 +20,9 @@ MonoBehaviour:
   staminaMax:
     baseValue: 10
   moveSpd:
-    baseValue: 3
+    baseValue: 5
   moveBoostSpd:
-    baseValue: 2
+    baseValue: 3
   moveBoostTime:
     baseValue: 3
   moveBoostCD:
