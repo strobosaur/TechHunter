@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 1004670130657727162}
   - component: {fileID: 1004670130657727157}
   - component: {fileID: 1004670130657727156}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Gland
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,12 +103,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustPS: {fileID: 1560151572440276913}
   hitflash: {fileID: 0}
-  wpnStats: {fileID: 11400000, guid: 4d87a7be1a2f67746b924a92ba5ebf6e, type: 2}
+  wpnStats: {fileID: 11400000, guid: 6e82b0ba6b42b42489899ad9c2106955, type: 2}
   target: {fileID: 0}
   animSpd: 0.35
   facingDir: {x: 0, y: 0}
   aimTarget: {x: 0, y: 0}
   statsBlueprint: {fileID: 11400000, guid: 57d31bf6fc7922b4bb58770e8313ffc3, type: 2}
+  entityName: 
   timerArr: []
   chargeDist: 0
 --- !u!114 &1004670130657727158
@@ -293,9 +294,9 @@ GameObject:
   - component: {fileID: 1004670131900347358}
   - component: {fileID: 1004670131900347356}
   - component: {fileID: 1004670131900347359}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,6 +407,10 @@ PrefabInstance:
     - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
       propertyPath: m_Name
       value: MoveDustPS
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754024236319150702, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e19f08eafdd6c469f1d31fca8e8da7, type: 3}

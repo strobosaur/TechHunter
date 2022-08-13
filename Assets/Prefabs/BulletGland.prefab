@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1152680823}
   - component: {fileID: 1152680824}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: BulletTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ TrailRenderer:
   m_SortingLayerID: -1191496623
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Time: 0.025
+  m_Time: 0.05
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.5
@@ -95,8 +95,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 0.15686275}
-      key1: {r: 1, g: 1, b: 1, a: 0}
+      key0: {r: 0.8113208, g: 0.13394445, b: 0.13394445, a: 0.15686275}
+      key1: {r: 0.8117647, g: 0.13725491, b: 0.13725491, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -145,8 +145,8 @@ GameObject:
   - component: {fileID: 9167488646297100193}
   - component: {fileID: 8472156353761650786}
   - component: {fileID: 3004072999678152076}
-  m_Layer: 11
-  m_Name: Bullet
+  m_Layer: 10
+  m_Name: BulletGland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1814037813807110704}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -209,7 +209,7 @@ SpriteRenderer:
   m_SortingLayerID: -1191496623
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 45ad18b3c48c8674aa9cfd09229c24bb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1638629003e145c48929cf1342bc8aa0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
