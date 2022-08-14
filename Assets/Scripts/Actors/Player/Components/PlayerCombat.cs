@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCombat : MonoBehaviour, ICombat
 {
@@ -17,11 +18,14 @@ public class PlayerCombat : MonoBehaviour, ICombat
 
     public void Attack(IWeapon weapon, Vector2 origin, Transform target, WeaponStatsObject wpnStats)
     {
-        // COMBAT
-        if ((weapon != null) && (InputManager.input.R2.IsPressed()))
+        if (GameManager.instance.stateMachine.CurrentState == GameManager.instance.stateLevel)
         {
-            // AIM
-            player.FireWeapon(weapon, player.crosshair.transform, wpnStats);
+            // COMBAT
+            if ((weapon != null) && (InputManager.input.R2.IsPressed()))
+            {
+                // AIM
+                player.FireWeapon(weapon, player.crosshair.transform, wpnStats);
+            }
         }
     }
 

@@ -63,10 +63,13 @@ public class UpgradeManager : MonoBehaviour
         bodyUpgList.Add(new UpgItem(UpgStat.wpnKnockback, 2));
     }
 
-    // START
-    void Start()
+    // RESET GAME SESSION
+    public void ResetGameSession()
     {
-        // UPDATE COSTS
+        upgradeCounts = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
+        upgradeCostsTech = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
+        upgradeCostsScraps = new int[System.Enum.GetNames(typeof(UpgradeType)).Length];
+
         UpdateCosts();
     }
 

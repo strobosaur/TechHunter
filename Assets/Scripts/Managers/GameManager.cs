@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public StateManagerStartGame stateStartGame;
     public StateManagerMenu stateMenu;
+    public StateManagerMenuEnter stateMenuEnter;
     public StateManagerMenuHighscores stateMenuHighscores;
     public StateManagerMenuExit stateMenuExit;
     public StateManagerBase stateBase;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         // INIT STATE MACHINE
         stateMachine = new StateMachine();
         stateStartGame = new StateManagerStartGame(this, stateMachine);
+        stateMenuEnter = new StateManagerMenuEnter(this, stateMachine);
         stateMenu = new StateManagerMenu(this, stateMachine);
         stateMenuHighscores = new StateManagerMenuHighscores(this, stateMachine);
         stateMenuExit = new StateManagerMenuExit(this, stateMachine);
@@ -81,15 +83,15 @@ public class GameManager : MonoBehaviour
     // START
     void Start()
     {
-        // ESCAPE & GAME QUIT
-        if (InputManager.input.start.WasPressedThisFrame()) { Application.Quit(); }
-
         stateMachine.Initialize(stateStartGame);
     }
 
     // UPDATE
     void Update()
     {
+        // ESCAPE & GAME QUIT
+        if (InputManager.input.start.WasPressedThisFrame()) { Application.Quit(); }
+        
         stateMachine.CurrentState.LogicUpdate();
     }
 
