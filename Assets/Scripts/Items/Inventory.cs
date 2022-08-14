@@ -57,8 +57,8 @@ public class Inventory : MonoBehaviour
         missionsWon = 0;
         kills = 0;
         water = 0;
-        scraps = 0;
-        techUnits = 0;
+        scraps = 25;
+        techUnits = 1;
 
         items.Clear();
 

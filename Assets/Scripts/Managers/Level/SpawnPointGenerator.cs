@@ -135,8 +135,8 @@ public class SpawnPointGenerator : MonoBehaviour
     {
         foreach (var item in spawnPoints)
         {
-            Destroy(item.transform.GetChild(0).gameObject);
-            Destroy(item);
+            if (item.transform.GetChild(0) != null) Destroy(item.transform.GetChild(0).gameObject);
+            if (item != null) Destroy(item);
         }
 
         pylonList.Clear();

@@ -19,6 +19,8 @@ public class LevelManager : MonoBehaviour
     public BaseMissionItem nextLevel { get; private set; }
     public bool levelGenerated = false;
 
+    private bool logoShown = false;
+
     private string sceneName;
 
     // AWAKE
@@ -26,6 +28,7 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
         difficulty = 1;
+        logoShown = false;
     }
 
     // RESET GAME SESSION
@@ -66,7 +69,11 @@ public class LevelManager : MonoBehaviour
 
             // ENTER MAIN MENU SCENE
             onMenuSceneLoaded?.Invoke();
-            GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
+            if (!logoShown) {
+                logoShown = true;
+                GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenuEnter);
+            }
+            else GameManager.instance.stateMachine.ChangeState(GameManager.instance.stateMenu);
 
         } else if (s.name == sceneNames[(int)SceneName.InBase]) {
 
